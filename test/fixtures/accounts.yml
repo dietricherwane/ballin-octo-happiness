@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  msisdn: MyString
+  account_number: MyString
+  remote_ip_address: MyString
+  password: MyString
+
+two:
+  msisdn: MyString
+  account_number: MyString
+  remote_ip_address: MyString
+  password: MyString

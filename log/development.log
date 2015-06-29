@@ -1,0 +1,176 @@
+  [1m[36m (20.6ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" character varying(255) NOT NULL) [0m
+  [1m[35m (63.5ms)[0m  CREATE UNIQUE INDEX  "unique_schema_migrations" ON "schema_migrations"  ("version")
+  [1m[36mActiveRecord::SchemaMigration Load (1.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to CreateAccounts (20150628071637)
+  [1m[35m (0.5ms)[0m  BEGIN
+  [1m[36m (77.1ms)[0m  [1mCREATE TABLE "accounts" ("id" serial primary key, "msisdn" character varying(13), "account_number" character varying(255), "remote_ip_address" character varying(255), "password" character varying(255), "created_at" timestamp, "updated_at" timestamp) [0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20150628071637"]]
+  [1m[36m (18.4ms)[0m  [1mCOMMIT[0m
+Migrating to AddSaltToAccounts (20150628071748)
+  [1m[35m (0.6ms)[0m  BEGIN
+  [1m[36m (1.2ms)[0m  [1mALTER TABLE "accounts" ADD COLUMN "salt" character varying(255)[0m
+  [1m[35mSQL (0.7ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20150628071748"]]
+  [1m[36m (12.3ms)[0m  [1mCOMMIT[0m
+Migrating to CreateLogs (20150628073828)
+  [1m[35m (0.6ms)[0m  BEGIN
+  [1m[36m (69.1ms)[0m  [1mCREATE TABLE "logs" ("id" serial primary key, "transaction_type" character varying(255), "phone_number" character varying(13), "credit_amount" character varying(255), "checkout_amount" character varying(255), "otp" character varying(255), "pin" character varying(255), "status" boolean, "created_at" timestamp, "updated_at" timestamp) [0m
+  [1m[35mSQL (0.6ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20150628073828"]]
+  [1m[36m (9.6ms)[0m  [1mCOMMIT[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.7ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36mActiveRecord::SchemaMigration Load (1.5ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to AddErrorLogToLogs (20150628074959)
+  [1m[35m (0.7ms)[0m  BEGIN
+  [1m[36m (31.8ms)[0m  [1mALTER TABLE "logs" ADD COLUMN "error_log" text[0m
+  [1m[35mSQL (0.6ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20150628074959"]]
+  [1m[36m (8.7ms)[0m  [1mCOMMIT[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.8ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36mActiveRecord::SchemaMigration Load (35.0ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to AddResponseLogToLogs (20150628180734)
+  [1m[35m (0.6ms)[0m  BEGIN
+  [1m[36m (34.9ms)[0m  [1mALTER TABLE "logs" ADD COLUMN "response_log" text[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20150628180734"]]
+  [1m[36m (20.2ms)[0m  [1mCOMMIT[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.7ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+
+
+Started GET "/" for 127.0.0.1 at 2015-06-28 18:13:20 +0000
+  [1m[36mActiveRecord::SchemaMigration Load (0.9ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by ErrorsController#routing as HTML
+  Rendered public/404.html (2.0ms)
+Completed 404 Not Found in 79ms (Views: 50.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/api/1314a3dfb72826290bbc99c71b510d2b/account/create/58908957" for 127.0.0.1 at 2015-06-28 18:13:36 +0000
+Processing by AccountsController#api_create as HTML
+  Parameters: {"msisdn"=>"58908957"}
+ETHON: Libcurl initialized
+ETHON: performed EASY effective_url=http://195.14.0.128:8080/PAYMONEY_WALLET/rest/ussd_create_compte/58908957 response_code=0 return_code=couldnt_connect total_time=126.331016
+  Rendered text template (0.1ms)
+Completed 200 OK in 127223ms (Views: 8.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/api/1314a3dfb72826290bbc99c71b510d2b/account/create/58908957" for 127.0.0.1 at 2015-06-28 18:19:42 +0000
+Processing by AccountsController#api_create as HTML
+  Parameters: {"msisdn"=>"58908957"}
+ETHON: performed EASY effective_url=http://195.14.0.128:8080/PAYMONEY_WALLET/rest/ussd_create_compte/58908957 response_code=200 return_code=ok total_time=69.877558
+  [1m[35m (0.7ms)[0m  BEGIN
+  [1m[36mSQL (11.9ms)[0m  [1mINSERT INTO "logs" ("created_at", "error_log", "phone_number", "transaction_type", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["created_at", "2015-06-28 18:20:52.514983"], ["error_log", "{\"nom\"=>\"58908957\", \"prenom\"=>nil, \"email\"=>nil, \"status\"=>\"2\", \"compte\"=>\"29150000000060\", \"password\"=>nil, \"solde\"=>nil}"], ["phone_number", "58908957"], ["transaction_type", "Creation"], ["updated_at", "2015-06-28 18:20:52.514983"]]
+  [1m[35m (16.8ms)[0m  COMMIT
+  Rendered text template (0.1ms)
+Completed 200 OK in 69969ms (Views: 1.5ms | ActiveRecord: 36.6ms)
+  [1m[36mActiveRecord::SchemaMigration Load (1.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to AddAccountNumberToLogs (20150628184940)
+  [1m[35m (0.6ms)[0m  BEGIN
+  [1m[36m (1.4ms)[0m  [1mALTER TABLE "logs" ADD COLUMN "account_number" character varying(255)[0m
+  [1m[35mSQL (0.7ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20150628184940"]]
+  [1m[36m (17.6ms)[0m  [1mCOMMIT[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.9ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+
+
+Started GET "/api/1314a3dfb72826290bbc99c71b510d2b/account/credit/29150000000060/2576" for 127.0.0.1 at 2015-06-28 18:55:29 +0000
+  [1m[36mActiveRecord::SchemaMigration Load (1.0ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by AccountsController#api_credit_account as HTML
+  Parameters: {"account"=>"29150000000060", "transaction_amount"=>"2576"}
+ETHON: Libcurl initialized
+ETHON: performed EASY effective_url=http://195.14.0.128:8080/PAYMONEY_WALLET/rest/ussd_credit_compte/29150000000060/2576 response_code=500 return_code=ok total_time=0.922004
+  Rendered text template (0.1ms)
+Completed 200 OK in 946ms (Views: 10.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/api/1314a3dfb72826290bbc99c71b510d2b/account/credit/29150000000060/2576" for 127.0.0.1 at 2015-06-28 18:57:34 +0000
+Processing by AccountsController#api_credit_account as HTML
+  Parameters: {"account"=>"29150000000060", "transaction_amount"=>"2576"}
+ETHON: performed EASY effective_url=http://195.14.0.128:8080/PAYMONEY_WALLET/rest/ussd_credit_compte/29150000000060/2576 response_code=500 return_code=ok total_time=0.6365620000000001
+  Rendered text template (0.0ms)
+Completed 200 OK in 640ms (Views: 1.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/api/1314a3dfb72826290bbc99c71b510d2b/account/credit/29150000000060/257600" for 127.0.0.1 at 2015-06-28 18:57:42 +0000
+Processing by AccountsController#api_credit_account as HTML
+  Parameters: {"account"=>"29150000000060", "transaction_amount"=>"257600"}
+ETHON: performed EASY effective_url=http://195.14.0.128:8080/PAYMONEY_WALLET/rest/ussd_credit_compte/29150000000060/257600 response_code=500 return_code=ok total_time=0.5900369999999999
+  Rendered text template (0.0ms)
+Completed 200 OK in 593ms (Views: 0.9ms | ActiveRecord: 0.0ms)
+  [1m[36mActiveRecord::SchemaMigration Load (32.0ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to AddRemoteIpAddressToLogs (20150628201110)
+  [1m[35m (0.5ms)[0m  BEGIN
+  [1m[36m (47.0ms)[0m  [1mALTER TABLE "logs" ADD COLUMN "remote_ip_address" character varying(255)[0m
+  [1m[35mSQL (0.6ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20150628201110"]]
+  [1m[36m (18.7ms)[0m  [1mCOMMIT[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.7ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+
+
+Started GET "/api/1314a3dfb72826290bbc99c71b510d2b/account/checkout/29150000000060/2576/2500" for 127.0.0.1 at 2015-06-28 20:32:51 +0000
+  [1m[36mActiveRecord::SchemaMigration Load (1.0ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by AccountsController#api_checkout_account as HTML
+  Parameters: {"account"=>"29150000000060", "password"=>"[FILTERED]", "transaction_amount"=>"2500"}
+ETHON: Libcurl initialized
+ETHON: performed EASY effective_url=http://195.14.0.128:8080/PAYMONEY_WALLET/rest/ussd_debit_compte/29150000000060/2576/2500 response_code=404 return_code=ok total_time=0.33832
+  Rendered text template (0.1ms)
+Completed 200 OK in 406ms (Views: 36.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/api/1314a3dfb72826290bbc99c71b510d2b/account/checkout/29150000000060/2576/2500" for 127.0.0.1 at 2015-06-28 20:34:18 +0000
+Processing by AccountsController#api_checkout_account as HTML
+  Parameters: {"account"=>"29150000000060", "password"=>"[FILTERED]", "transaction_amount"=>"2500"}
+ETHON: performed EASY effective_url=http://195.14.0.128:8080/PAYMONEY_WALLET/DO/2/29150000000060/2576/2500 response_code=200 return_code=ok total_time=1.439666
+Completed 500 Internal Server Error in 1445ms
+
+NoMethodError (undefined method `body' for nil:NilClass):
+  app/controllers/accounts_controller.rb:117:in `block in api_checkout_account'
+  app/controllers/accounts_controller.rb:122:in `api_checkout_account'
+
+
+  Rendered /home/dietrich/.rvm/gems/ruby-2.0.0-p195@rails4.0.7/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/_source.erb (1.8ms)
+  Rendered /home/dietrich/.rvm/gems/ruby-2.0.0-p195@rails4.0.7/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (3.1ms)
+  Rendered /home/dietrich/.rvm/gems/ruby-2.0.0-p195@rails4.0.7/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (2.6ms)
+  Rendered /home/dietrich/.rvm/gems/ruby-2.0.0-p195@rails4.0.7/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (52.6ms)
+
+
+Started GET "/api/1314a3dfb72826290bbc99c71b510d2b/account/checkout/29150000000060/2576/2500" for 127.0.0.1 at 2015-06-28 20:45:50 +0000
+Processing by AccountsController#api_checkout_account as HTML
+  Parameters: {"account"=>"29150000000060", "password"=>"[FILTERED]", "transaction_amount"=>"2500"}
+ETHON: performed EASY effective_url=http://195.14.0.128:8080/PAYMONEY_WALLET/DO/2/29150000000060/2576/2500 response_code=200 return_code=ok total_time=0.374443
+  [1m[35m (0.7ms)[0m  BEGIN
+  [1m[36m (0.7ms)[0m  [1mROLLBACK[0m
+Completed 500 Internal Server Error in 497ms
+
+TypeError (can't cast Typhoeus::Response to text):
+  app/controllers/accounts_controller.rb:117:in `block in api_checkout_account'
+  app/controllers/accounts_controller.rb:122:in `api_checkout_account'
+
+
+  Rendered /home/dietrich/.rvm/gems/ruby-2.0.0-p195@rails4.0.7/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/_source.erb (0.7ms)
+  Rendered /home/dietrich/.rvm/gems/ruby-2.0.0-p195@rails4.0.7/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.7ms)
+  Rendered /home/dietrich/.rvm/gems/ruby-2.0.0-p195@rails4.0.7/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.2ms)
+  Rendered /home/dietrich/.rvm/gems/ruby-2.0.0-p195@rails4.0.7/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (18.0ms)
+
+
+Started GET "/api/1314a3dfb72826290bbc99c71b510d2b/account/checkout/29150000000060/2576/2500" for 127.0.0.1 at 2015-06-28 20:47:16 +0000
+Processing by AccountsController#api_checkout_account as HTML
+  Parameters: {"account"=>"29150000000060", "password"=>"[FILTERED]", "transaction_amount"=>"2500"}
+ETHON: performed EASY effective_url=http://195.14.0.128:8080/PAYMONEY_WALLET/DO/2/29150000000060/2576/2500 response_code=200 return_code=ok total_time=0.39271199999999995
+  [1m[35m (0.7ms)[0m  BEGIN
+  [1m[36mSQL (12.0ms)[0m  [1mINSERT INTO "logs" ("account_number", "checkout_amount", "created_at", "error_log", "remote_ip_address", "status", "transaction_type", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["account_number", "29150000000060"], ["checkout_amount", "2500"], ["created_at", "2015-06-28 20:47:16.535093"], ["error_log", "#<Typhoeus::Response:0x007ffd409933e8>"], ["remote_ip_address", "127.0.0.1"], ["status", "f"], ["transaction_type", "Débit du compte"], ["updated_at", "2015-06-28 20:47:16.535093"]]
+  [1m[35m (18.0ms)[0m  COMMIT
+  Rendered text template (0.1ms)
+Completed 200 OK in 459ms (Views: 1.6ms | ActiveRecord: 35.5ms)
+
+
+Started GET "/api/1314a3dfb72826290bbc99c71b510d2b/account/checkout/29150000000060/2576/2500" for 127.0.0.1 at 2015-06-28 20:49:51 +0000
+Processing by AccountsController#api_checkout_account as HTML
+  Parameters: {"account"=>"29150000000060", "password"=>"[FILTERED]", "transaction_amount"=>"2500"}
+ETHON: performed EASY effective_url=http://195.14.0.128:8080/PAYMONEY_WALLET/DO/2/29150000000060/2576/2500 response_code=200 return_code=ok total_time=0.404481
+  [1m[36m (0.5ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.9ms)[0m  INSERT INTO "logs" ("account_number", "checkout_amount", "created_at", "error_log", "remote_ip_address", "status", "transaction_type", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"  [["account_number", "29150000000060"], ["checkout_amount", "2500"], ["created_at", "2015-06-28 20:49:51.961792"], ["error_log", "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?><status><idStatus>3</idStatus><comptes/></status>"], ["remote_ip_address", "127.0.0.1"], ["status", "f"], ["transaction_type", "Débit du compte"], ["updated_at", "2015-06-28 20:49:51.961792"]]
+  [1m[36m (17.0ms)[0m  [1mCOMMIT[0m
+  Rendered text template (0.0ms)
+Completed 200 OK in 458ms (Views: 1.3ms | ActiveRecord: 23.7ms)
+
+
+Started GET "/api/1314a3dfb72826290bbc99c71b510d2b/account/checkout/validate/kkfgkhkfh255gh5fh/fghll77" for 127.0.0.1 at 2015-06-28 21:15:05 +0000
+Processing by AccountsController#api_validate_checkout as HTML
+  Parameters: {"transaction_id"=>"kkfgkhkfh255gh5fh", "pin"=>"fghll77"}
+ETHON: performed EASY effective_url=http://195.14.0.128:8080/PAYMONEY_WALLET/rest/otp_active/fghll77/kkfgkhkfh255gh5fh response_code=404 return_code=ok total_time=0.301323
+  Rendered text template (0.0ms)
+Completed 200 OK in 304ms (Views: 1.1ms | ActiveRecord: 0.0ms)
