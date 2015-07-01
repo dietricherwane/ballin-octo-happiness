@@ -174,3 +174,95 @@ Processing by AccountsController#api_validate_checkout as HTML
 ETHON: performed EASY effective_url=http://195.14.0.128:8080/PAYMONEY_WALLET/rest/otp_active/fghll77/kkfgkhkfh255gh5fh response_code=404 return_code=ok total_time=0.301323
   Rendered text template (0.0ms)
 Completed 200 OK in 304ms (Views: 1.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/api/1314a3dfb72826290bbc99c71b510d2b/account/create/hjgjhg" for 127.0.0.1 at 2015-07-01 18:32:30 +0000
+  [1m[36mActiveRecord::SchemaMigration Load (34.3ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by AccountsController#api_create as HTML
+  Parameters: {"msisdn"=>"hjgjhg"}
+  Rendered text template (0.0ms)
+Completed 200 OK in 63ms (Views: 37.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/api/1314a3dfb72826290bbc99c71b510d2b/account/create/58908957" for 127.0.0.1 at 2015-07-01 18:32:42 +0000
+Processing by AccountsController#api_create as HTML
+  Parameters: {"msisdn"=>"58908957"}
+ETHON: Libcurl initialized
+ETHON: performed EASY effective_url=http://195.14.0.128:8080/PAYMONEY_WALLET/rest/ussd_create_compte/58908957 response_code=200 return_code=ok total_time=1.254693
+  [1m[35m (0.7ms)[0m  BEGIN
+  [1m[36mSQL (40.0ms)[0m  [1mINSERT INTO "logs" ("created_at", "error_log", "phone_number", "remote_ip_address", "status", "transaction_type", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["created_at", "2015-07-01 18:32:44.314420"], ["error_log", "{\"nom\"=>nil, \"prenom\"=>nil, \"email\"=>nil, \"status\"=>\"4\", \"compte\"=>nil, \"password\"=>nil, \"solde\"=>nil}"], ["phone_number", "58908957"], ["remote_ip_address", "127.0.0.1"], ["status", "f"], ["transaction_type", "Creation"], ["updated_at", "2015-07-01 18:32:44.314420"]]
+  [1m[35m (18.3ms)[0m  COMMIT
+  Rendered text template (0.0ms)
+Completed 200 OK in 1481ms (Views: 0.6ms | ActiveRecord: 115.9ms)
+
+
+Started GET "/api/1314a3dfb72826290bbc99c71b510d2b/account/create/60086286" for 127.0.0.1 at 2015-07-01 18:33:31 +0000
+Processing by AccountsController#api_create as HTML
+  Parameters: {"msisdn"=>"60086286"}
+ETHON: performed EASY effective_url=http://195.14.0.128:8080/PAYMONEY_WALLET/rest/ussd_create_compte/60086286 response_code=200 return_code=ok total_time=2.673356
+  [1m[36m (0.5ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (1.0ms)[0m  INSERT INTO "logs" ("created_at", "error_log", "phone_number", "remote_ip_address", "status", "transaction_type", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"  [["created_at", "2015-07-01 18:33:33.693363"], ["error_log", "{\"nom\"=>nil, \"prenom\"=>nil, \"email\"=>nil, \"status\"=>\"4\", \"compte\"=>nil, \"password\"=>nil, \"solde\"=>nil}"], ["phone_number", "60086286"], ["remote_ip_address", "127.0.0.1"], ["status", "f"], ["transaction_type", "Creation"], ["updated_at", "2015-07-01 18:33:33.693363"]]
+  [1m[36m (13.8ms)[0m  [1mCOMMIT[0m
+  Rendered text template (0.0ms)
+Completed 200 OK in 2696ms (Views: 0.8ms | ActiveRecord: 15.3ms)
+
+
+Started GET "/api/1314a3dfb72826290bbc99c71b510d2b/account/credit/29150000000060/25000" for 127.0.0.1 at 2015-07-01 18:35:49 +0000
+Processing by AccountsController#api_credit_account as HTML
+  Parameters: {"account"=>"29150000000060", "transaction_amount"=>"25000"}
+ETHON: performed EASY effective_url=http://195.14.0.128:8080/PAYMONEY_WALLET/rest/ussd_credit_compte/29150000000060/25000 response_code=500 return_code=ok total_time=0.820369
+  Rendered text template (0.0ms)
+Completed 200 OK in 823ms (Views: 0.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/api/1314a3dfb72826290bbc99c71b510d2b/account/create/48485390" for 127.0.0.1 at 2015-07-01 18:38:57 +0000
+Processing by AccountsController#api_create as HTML
+  Parameters: {"msisdn"=>"48485390"}
+ETHON: performed EASY effective_url=http://195.14.0.128:8080/PAYMONEY_WALLET/rest/ussd_create_compte/48485390 response_code=200 return_code=ok total_time=6.724999
+  [1m[35m (0.6ms)[0m  BEGIN
+  [1m[36mSQL (19.9ms)[0m  [1mINSERT INTO "accounts" ("account_number", "created_at", "msisdn", "remote_ip_address", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["account_number", "73960000000074"], ["created_at", "2015-07-01 18:39:04.482701"], ["msisdn", "48485390"], ["remote_ip_address", "127.0.0.1"], ["updated_at", "2015-07-01 18:39:04.482701"]]
+  [1m[35m (22.2ms)[0m  COMMIT
+  [1m[36m (0.3ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.6ms)[0m  INSERT INTO "logs" ("created_at", "phone_number", "remote_ip_address", "response_log", "status", "transaction_type", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"  [["created_at", "2015-07-01 18:39:04.530143"], ["phone_number", "48485390"], ["remote_ip_address", "127.0.0.1"], ["response_log", "{\"nom\"=>\"48485390\", \"prenom\"=>nil, \"email\"=>nil, \"status\"=>\"1\", \"compte\"=>\"73960000000074\", \"password\"=>nil, \"solde\"=>nil}"], ["status", "t"], ["transaction_type", "Creation"], ["updated_at", "2015-07-01 18:39:04.530143"]]
+  [1m[36m (5.9ms)[0m  [1mCOMMIT[0m
+  Rendered text template (0.0ms)
+Completed 200 OK in 6843ms (Views: 0.7ms | ActiveRecord: 54.7ms)
+
+
+Started GET "/api/1314a3dfb72826290bbc99c71b510d2b/account/sold/73960000000074/6047" for 127.0.0.1 at 2015-07-01 18:43:42 +0000
+Processing by AccountsController#api_sold as HTML
+  Parameters: {"account"=>"73960000000074", "password"=>"[FILTERED]"}
+Completed 500 Internal Server Error in 5ms
+
+NameError (undefined local variable or method `transaction_amount' for #<AccountsController:0x007fe458a354c8>):
+  app/controllers/accounts_controller.rb:72:in `api_sold'
+
+
+  Rendered /home/dietrich/.rvm/gems/ruby-2.0.0-p195@rails4.0.7/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/_source.erb (0.9ms)
+  Rendered /home/dietrich/.rvm/gems/ruby-2.0.0-p195@rails4.0.7/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.3ms)
+  Rendered /home/dietrich/.rvm/gems/ruby-2.0.0-p195@rails4.0.7/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.2ms)
+  Rendered /home/dietrich/.rvm/gems/ruby-2.0.0-p195@rails4.0.7/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (35.0ms)
+
+
+Started GET "/api/1314a3dfb72826290bbc99c71b510d2b/account/sold/73960000000074/6047" for 127.0.0.1 at 2015-07-01 18:44:06 +0000
+Processing by AccountsController#api_sold as HTML
+  Parameters: {"account"=>"73960000000074", "password"=>"[FILTERED]"}
+ETHON: performed EASY effective_url=http://195.14.0.128:8080/PAYMONEY_WALLET/rest/ussd_credit_compte/73960000000074/6047 response_code=500 return_code=ok total_time=0.495643
+  Rendered text template (0.1ms)
+Completed 200 OK in 499ms (Views: 1.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/api/1314a3dfb72826290bbc99c71b510d2b/account/sold/73960000000074/6047" for 127.0.0.1 at 2015-07-01 18:46:32 +0000
+Processing by AccountsController#api_sold as HTML
+  Parameters: {"account"=>"73960000000074", "password"=>"[FILTERED]"}
+ETHON: performed EASY effective_url=http://195.14.0.128:8080/PAYMONEY_WALLET/rest/ussd_credit_compte/73960000000074/6047 response_code=500 return_code=ok total_time=0.5446599999999999
+  Rendered text template (0.1ms)
+Completed 200 OK in 548ms (Views: 1.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/api/1314a3dfb72826290bbc99c71b510d2b/account/sold/73960000000074/6047" for 127.0.0.1 at 2015-07-01 18:46:57 +0000
+Processing by AccountsController#api_sold as HTML
+  Parameters: {"account"=>"73960000000074", "password"=>"[FILTERED]"}
+ETHON: performed EASY effective_url=http://195.14.0.128:8080/PAYMONEY_WALLET/rest/ussd_credit_compte/73960000000074/6047 response_code=500 return_code=ok total_time=2.161899
+  Rendered text template (0.0ms)
+Completed 200 OK in 2165ms (Views: 0.7ms | ActiveRecord: 0.0ms)

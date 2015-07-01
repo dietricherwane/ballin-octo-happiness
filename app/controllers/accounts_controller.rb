@@ -69,14 +69,14 @@ class AccountsController < ApplicationController
     status = "error"
 
     if !account.blank? && !password.blank?
-      request = Typhoeus::Request.new("http://195.14.0.128:8080/PAYMONEY_WALLET/rest/ussd_credit_compte/#{account}/#{transaction_amount}", followlocation: true, method: :get)
+      request = Typhoeus::Request.new("http://195.14.0.128:8080/PAYMONEY_WALLET/rest/ussd_credit_compte/#{account}/#{password}", followlocation: true, method: :get)
 
       request.on_complete do |response|
         if response.success?
           response = (JSON.parse(request.response.body) rescue nil)
           unless response.blank?
-            if response["idStatus"].to_s == "1"
-              status = "1"
+            if response["status"].to_s == "1"
+              status = response["solde"].to_i.to_s
               Log.create(transaction_type: "Solde du compte", account_number: account, response_log: response.to_s, status: true, remote_ip_address: remote_ip_address)
             else
               Log.create(transaction_type: "Solde du compte", account_number: account, error_log: response.to_s, status: false, remote_ip_address: remote_ip_address)
