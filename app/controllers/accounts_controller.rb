@@ -69,13 +69,13 @@ class AccountsController < ApplicationController
     status = "error"
 
     if !account.blank? && !password.blank?
-      request = Typhoeus::Request.new("http://195.14.0.128:8080/PAYMONEY_WALLET/rest/ussd_credit_compte/#{account}/#{password}", followlocation: true, method: :get)
+      request = Typhoeus::Request.new("http://195.14.0.128:8080/PAYMONEY_WALLET/rest/solte_compte/#{account}/#{password}", followlocation: true, method: :get)
 
       request.on_complete do |response|
         if response.success?
           response = (JSON.parse(request.response.body) rescue nil)
           unless response.blank?
-            if response["status"].to_s == "1"
+            if response["compte"] != blank?
               status = response["solde"].to_i.to_s
               Log.create(transaction_type: "Solde du compte", account_number: account, response_log: response.to_s, status: true, remote_ip_address: remote_ip_address)
             else
@@ -101,13 +101,13 @@ class AccountsController < ApplicationController
     status = "error"
 
     if !account.blank? && !password.blank? && is_a_number?(transaction_amount)
-      request = Typhoeus::Request.new("http://195.14.0.128:8080/PAYMONEY_WALLET/DO/2/#{account}/#{password}/#{transaction_amount}", followlocation: true, method: :get)
+      request = Typhoeus::Request.new("http://195.14.0.128:8080/PAYMONEY_WALLET/rest/ussd_debit_compte/#{account}/#{password}/#{transaction_amount}", followlocation: true, method: :get)
 
       request.on_complete do |response|
         if response.success?
           response = (JSON.parse(request.response.body) rescue nil)
           unless response.blank?
-            if response["idStatus"].to_s == "0" && !response["statusName"].blank? && response["statusName"].downcase != "null"
+            if response["idStatus"].to_s == "0"
               status = "1"
               Log.create(transaction_type: "Débit du compte", account_number: account, checkout_amount: transaction_amount, response_log: response.to_s, status: true, remote_ip_address: remote_ip_address)
               # add otp

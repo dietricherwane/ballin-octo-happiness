@@ -266,3 +266,44 @@ Processing by AccountsController#api_sold as HTML
 ETHON: performed EASY effective_url=http://195.14.0.128:8080/PAYMONEY_WALLET/rest/ussd_credit_compte/73960000000074/6047 response_code=500 return_code=ok total_time=2.161899
   Rendered text template (0.0ms)
 Completed 200 OK in 2165ms (Views: 0.7ms | ActiveRecord: 0.0ms)
+
+SyntaxError (/home/dietrich/workshop/PaymoneyWallet/app/controllers/accounts_controller.rb:98: syntax error, unexpected tIDENTIFIER, expecting ']'
+    password = params[:password]
+            ^):
+  app/controllers/accounts_controller.rb:98: syntax error, unexpected tIDENTIFIER, expecting ']'
+
+
+
+
+Started GET "/api/1314a3dfb72826290bbc99c71b510d2b/account/checkout/73960000000074/6047/1000" for 127.0.0.1 at 2015-07-07 08:24:24 +0000
+  [1m[36mActiveRecord::SchemaMigration Load (37.6ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by AccountsController#api_checkout_account as HTML
+  Parameters: {"account"=>"73960000000074", "password"=>"[FILTERED]", "transaction_amount"=>"1000"}
+ETHON: Libcurl initialized
+ETHON: performed EASY effective_url=http://195.14.0.128:8080/PAYMONEY_WALLET/rest/ussd_debit_compte/73960000000074/6047/1000 response_code=404 return_code=ok total_time=0.507161
+  Rendered text template (0.0ms)
+Completed 200 OK in 528ms (Views: 7.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/api/1314a3dfb72826290bbc99c71b510d2b/account/credit/73960000000074/150000" for 127.0.0.1 at 2015-07-08 08:50:47 +0000
+  [1m[36mActiveRecord::SchemaMigration Load (37.6ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by AccountsController#api_credit_account as HTML
+  Parameters: {"account"=>"73960000000074", "transaction_amount"=>"150000"}
+ETHON: Libcurl initialized
+ETHON: performed EASY effective_url=http://195.14.0.128:8080/PAYMONEY_WALLET/rest/ussd_credit_compte/73960000000074/150000 response_code=200 return_code=ok total_time=1.11484
+  [1m[35m (0.7ms)[0m  BEGIN
+  [1m[36mSQL (45.4ms)[0m  [1mINSERT INTO "logs" ("account_number", "created_at", "credit_amount", "remote_ip_address", "response_log", "status", "transaction_type", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["account_number", "73960000000074"], ["created_at", "2015-07-08 08:50:50.036709"], ["credit_amount", "150000"], ["remote_ip_address", "127.0.0.1"], ["response_log", "{\"idStatus\"=>1, \"statusName\"=>nil}"], ["status", "t"], ["transaction_type", "Crédit de compte"], ["updated_at", "2015-07-08 08:50:50.036709"]]
+  [1m[35m (20.2ms)[0m  COMMIT
+  Rendered text template (0.0ms)
+Completed 200 OK in 1354ms (Views: 26.5ms | ActiveRecord: 121.6ms)
+
+
+Started GET "/api/1314a3dfb72826290bbc99c71b510d2b/account/checkout/73960000000074/6047/1000" for 127.0.0.1 at 2015-07-08 08:50:58 +0000
+Processing by AccountsController#api_checkout_account as HTML
+  Parameters: {"account"=>"73960000000074", "password"=>"[FILTERED]", "transaction_amount"=>"1000"}
+ETHON: performed EASY effective_url=http://195.14.0.128:8080/PAYMONEY_WALLET/rest/ussd_debit_compte/73960000000074/6047/1000 response_code=200 return_code=ok total_time=0.179489
+  [1m[36m (0.6ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.9ms)[0m  INSERT INTO "logs" ("account_number", "checkout_amount", "created_at", "error_log", "remote_ip_address", "status", "transaction_type", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"  [["account_number", "73960000000074"], ["checkout_amount", "1000"], ["created_at", "2015-07-08 08:50:58.718729"], ["error_log", "{\"idStatus\"=>3, \"statusName\"=>nil}"], ["remote_ip_address", "127.0.0.1"], ["status", "f"], ["transaction_type", "Débit du compte"], ["updated_at", "2015-07-08 08:50:58.718729"]]
+  [1m[36m (9.1ms)[0m  [1mCOMMIT[0m
+  Rendered text template (0.0ms)
+Completed 200 OK in 198ms (Views: 0.7ms | ActiveRecord: 10.5ms)
