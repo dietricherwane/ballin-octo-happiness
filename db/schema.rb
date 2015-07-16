@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150628201110) do
+ActiveRecord::Schema.define(version: 20150716160557) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -40,6 +40,8 @@ ActiveRecord::Schema.define(version: 20150628201110) do
     t.text     "response_log"
     t.string   "account_number"
     t.string   "remote_ip_address"
+    t.string   "agent"
+    t.string   "sub_agent"
   end
 
 end

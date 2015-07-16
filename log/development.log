@@ -307,3 +307,812 @@ ETHON: performed EASY effective_url=http://195.14.0.128:8080/PAYMONEY_WALLET/res
   [1m[36m (9.1ms)[0m  [1mCOMMIT[0m
   Rendered text template (0.0ms)
 Completed 200 OK in 198ms (Views: 0.7ms | ActiveRecord: 10.5ms)
+
+
+Started GET "/api/1314a3dfb72826290bbc99c71b510d2b/account/credit/73960000000074/150000" for 127.0.0.1 at 2015-07-15 07:26:53 +0000
+  [1m[36mActiveRecord::SchemaMigration Load (34.6ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by AccountsController#api_credit_account as HTML
+  Parameters: {"account"=>"73960000000074", "transaction_amount"=>"150000"}
+ETHON: Libcurl initialized
+ETHON: performed EASY effective_url=http://195.14.0.128:8080/PAYMONEY_WALLET/rest/ussd_credit_compte/73960000000074/150000 response_code=200 return_code=ok total_time=0.596464
+  [1m[35m (0.7ms)[0m  BEGIN
+  [1m[36mSQL (45.8ms)[0m  [1mINSERT INTO "logs" ("account_number", "created_at", "credit_amount", "error_log", "remote_ip_address", "status", "transaction_type", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["account_number", "73960000000074"], ["created_at", "2015-07-15 07:26:55.102258"], ["credit_amount", "150000"], ["error_log", "{\"idStatus\"=>3, \"statusName\"=>nil}"], ["remote_ip_address", "127.0.0.1"], ["status", "f"], ["transaction_type", "Crédit de compte"], ["updated_at", "2015-07-15 07:26:55.102258"]]
+  [1m[35m (20.9ms)[0m  COMMIT
+  Rendered text template (0.0ms)
+Completed 200 OK in 857ms (Views: 27.7ms | ActiveRecord: 122.2ms)
+  [1m[36mActiveRecord::SchemaMigration Load (40.3ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to AddAgentAndSubAgentToLogs (20150716160557)
+  [1m[35m (0.7ms)[0m  BEGIN
+  [1m[36m (34.8ms)[0m  [1mALTER TABLE "logs" ADD COLUMN "agent" character varying(255)[0m
+  [1m[35m (0.9ms)[0m  ALTER TABLE "logs" ADD COLUMN "sub_agent" character varying(255)
+  [1m[36mSQL (0.6ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ($1)[0m  [["version", "20150716160557"]]
+  [1m[35m (14.5ms)[0m  COMMIT
+  [1m[36mActiveRecord::SchemaMigration Load (0.8ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+
+
+Started GET "/api/1314a3dfb72826290bbc99c71b510d2b/UJD447/IK8554/account/sold/54110000000074/9211" for 127.0.0.1 at 2015-07-16 16:13:10 +0000
+  [1m[36mActiveRecord::SchemaMigration Load (1.0ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by AccountsController#api_sold as HTML
+  Parameters: {"agent"=>"UJD447", "sub_agent"=>"IK8554", "account"=>"54110000000074", "password"=>"[FILTERED]"}
+ETHON: Libcurl initialized
+ETHON: performed EASY effective_url=http://195.14.0.128:8080/PAYMONEY_WALLET/rest/solte_compte/54110000000074/9211 response_code=200 return_code=ok total_time=3.57579
+  [1m[35m (0.6ms)[0m  BEGIN
+  [1m[36mSQL (8.1ms)[0m  [1mINSERT INTO "logs" ("account_number", "agent", "created_at", "remote_ip_address", "response_log", "status", "sub_agent", "transaction_type", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["account_number", "54110000000074"], ["agent", "UJD447"], ["created_at", "2015-07-16 16:13:14.725939"], ["remote_ip_address", "127.0.0.1"], ["response_log", "{\"nom\"=>\"a remplir\", \"prenom\"=>\"a remplir\", \"email\"=>\"a remplir\", \"status\"=>nil, \"compte\"=>\"54110000000074\", \"password\"=>nil, \"solde\"=>\"150000.0\"}"], ["status", "t"], ["sub_agent", "IK8554"], ["transaction_type", "Solde du compte"], ["updated_at", "2015-07-16 16:13:14.725939"]]
+  [1m[35m (21.8ms)[0m  COMMIT
+  Rendered text template (0.0ms)
+Completed 200 OK in 3770ms (Views: 23.2ms | ActiveRecord: 38.0ms)
+
+
+Started GET "/api/1314a3dfb72826290bbc99c71b510d2b//IK8554/account/sold/54110000000074/9211" for 127.0.0.1 at 2015-07-16 16:13:27 +0000
+Processing by ErrorsController#routing as HTML
+  Parameters: {"rogue_url"=>"api/1314a3dfb72826290bbc99c71b510d2b/IK8554/account/sold/54110000000074/9211"}
+  Rendered public/404.html (50.2ms)
+Completed 404 Not Found in 79ms (Views: 76.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/api/1314a3dfb72826290bbc99c71b510d2b/HYYDH/IK8554/account/sold/54110000000074/9211" for 127.0.0.1 at 2015-07-16 16:13:34 +0000
+Processing by AccountsController#api_sold as HTML
+  Parameters: {"agent"=>"HYYDH", "sub_agent"=>"IK8554", "account"=>"54110000000074", "password"=>"[FILTERED]"}
+ETHON: performed EASY effective_url=http://195.14.0.128:8080/PAYMONEY_WALLET/rest/solte_compte/54110000000074/9211 response_code=200 return_code=ok total_time=7.673118
+  [1m[36m (0.6ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (1.0ms)[0m  INSERT INTO "logs" ("account_number", "agent", "created_at", "remote_ip_address", "response_log", "status", "sub_agent", "transaction_type", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"  [["account_number", "54110000000074"], ["agent", "HYYDH"], ["created_at", "2015-07-16 16:13:42.168217"], ["remote_ip_address", "127.0.0.1"], ["response_log", "{\"nom\"=>\"a remplir\", \"prenom\"=>\"a remplir\", \"email\"=>\"a remplir\", \"status\"=>nil, \"compte\"=>\"54110000000074\", \"password\"=>nil, \"solde\"=>\"150000.0\"}"], ["status", "t"], ["sub_agent", "IK8554"], ["transaction_type", "Solde du compte"], ["updated_at", "2015-07-16 16:13:42.168217"]]
+  [1m[36m (21.3ms)[0m  [1mCOMMIT[0m
+  Rendered text template (0.0ms)
+Completed 200 OK in 7705ms (Views: 1.1ms | ActiveRecord: 22.9ms)
+
+
+Started GET "/api/1314a3dfb72826290bbc99c71b510d2b/15/13/account/credit/54110000000074/10000" for 127.0.0.1 at 2015-07-16 16:16:48 +0000
+Processing by AccountsController#api_credit_account as HTML
+  Parameters: {"agent"=>"15", "sub_agent"=>"13", "account"=>"54110000000074", "transaction_amount"=>"10000"}
+ETHON: performed EASY effective_url=http://195.14.0.128:8080/PAYMONEY_WALLET/rest/ussd_credit_compte/54110000000074/10000 response_code=200 return_code=ok total_time=1.173021
+  [1m[35m (0.7ms)[0m  BEGIN
+  [1m[36mSQL (0.8ms)[0m  [1mINSERT INTO "logs" ("account_number", "agent", "created_at", "credit_amount", "remote_ip_address", "response_log", "status", "sub_agent", "transaction_type", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING "id"[0m  [["account_number", "54110000000074"], ["agent", "15"], ["created_at", "2015-07-16 16:16:49.392298"], ["credit_amount", "10000"], ["remote_ip_address", "127.0.0.1"], ["response_log", "{\"idStatus\"=>1, \"statusName\"=>nil}"], ["status", "t"], ["sub_agent", "13"], ["transaction_type", "Crédit de compte"], ["updated_at", "2015-07-16 16:16:49.392298"]]
+  [1m[35m (24.3ms)[0m  COMMIT
+  Rendered text template (0.0ms)
+Completed 200 OK in 1298ms (Views: 1.3ms | ActiveRecord: 30.8ms)
+
+
+Started GET "/api/1314a3dfb72826290bbc99c71b510d2b/15/13/account/credit/5411000000007/10000" for 127.0.0.1 at 2015-07-16 16:17:06 +0000
+Processing by AccountsController#api_credit_account as HTML
+  Parameters: {"agent"=>"15", "sub_agent"=>"13", "account"=>"5411000000007", "transaction_amount"=>"10000"}
+ETHON: performed EASY effective_url=http://195.14.0.128:8080/PAYMONEY_WALLET/rest/ussd_credit_compte/5411000000007/10000 response_code=200 return_code=ok total_time=10.492959
+  [1m[36m (0.6ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.9ms)[0m  INSERT INTO "logs" ("account_number", "agent", "created_at", "credit_amount", "error_log", "remote_ip_address", "status", "sub_agent", "transaction_type", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING "id"  [["account_number", "5411000000007"], ["agent", "15"], ["created_at", "2015-07-16 16:17:17.026190"], ["credit_amount", "10000"], ["error_log", "{\"idStatus\"=>3, \"statusName\"=>nil}"], ["remote_ip_address", "127.0.0.1"], ["status", "f"], ["sub_agent", "13"], ["transaction_type", "Crédit de compte"], ["updated_at", "2015-07-16 16:17:17.026190"]]
+  [1m[36m (11.9ms)[0m  [1mCOMMIT[0m
+  Rendered text template (0.0ms)
+Completed 200 OK in 10517ms (Views: 0.6ms | ActiveRecord: 13.3ms)
+
+
+Started GET "/api/1314a3dfb72826290bbc99c71b510d2b/:agent/:sub_agent/account/checkout/5411000000007//9211/1000" for 127.0.0.1 at 2015-07-16 16:24:38 +0000
+Processing by AccountsController#api_checkout_account as HTML
+  Parameters: {"agent"=>":agent", "sub_agent"=>":sub_agent", "account"=>"5411000000007", "password"=>"[FILTERED]", "transaction_amount"=>"1000"}
+ETHON: performed EASY effective_url=http://195.14.0.128:8080/PAYMONEY_WALLET/rest/ussd_debit_compte/5411000000007/9211/1000 response_code=200 return_code=ok total_time=0.597128
+  [1m[35m (0.7ms)[0m  BEGIN
+  [1m[36mSQL (0.9ms)[0m  [1mINSERT INTO "logs" ("account_number", "agent", "checkout_amount", "created_at", "error_log", "remote_ip_address", "status", "sub_agent", "transaction_type", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING "id"[0m  [["account_number", "5411000000007"], ["agent", ":agent"], ["checkout_amount", "1000"], ["created_at", "2015-07-16 16:24:39.463080"], ["error_log", "{\"idStatus\"=>3, \"statusName\"=>nil}"], ["remote_ip_address", "127.0.0.1"], ["status", "f"], ["sub_agent", ":sub_agent"], ["transaction_type", "Débit du compte"], ["updated_at", "2015-07-16 16:24:39.463080"]]
+  [1m[35m (30.7ms)[0m  COMMIT
+  Rendered text template (0.0ms)
+Completed 200 OK in 660ms (Views: 0.8ms | ActiveRecord: 37.9ms)
+
+
+Started GET "/api/1314a3dfb72826290bbc99c71b510d2b/:agent/:sub_agent/account/checkout/5411000000007/9211/1000" for 127.0.0.1 at 2015-07-16 16:24:51 +0000
+Processing by AccountsController#api_checkout_account as HTML
+  Parameters: {"agent"=>":agent", "sub_agent"=>":sub_agent", "account"=>"5411000000007", "password"=>"[FILTERED]", "transaction_amount"=>"1000"}
+ETHON: performed EASY effective_url=http://195.14.0.128:8080/PAYMONEY_WALLET/rest/ussd_debit_compte/5411000000007/9211/1000 response_code=200 return_code=ok total_time=0.283706
+  [1m[36m (0.4ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.9ms)[0m  INSERT INTO "logs" ("account_number", "agent", "checkout_amount", "created_at", "error_log", "remote_ip_address", "status", "sub_agent", "transaction_type", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING "id"  [["account_number", "5411000000007"], ["agent", ":agent"], ["checkout_amount", "1000"], ["created_at", "2015-07-16 16:24:51.478225"], ["error_log", "{\"idStatus\"=>3, \"statusName\"=>nil}"], ["remote_ip_address", "127.0.0.1"], ["status", "f"], ["sub_agent", ":sub_agent"], ["transaction_type", "Débit du compte"], ["updated_at", "2015-07-16 16:24:51.478225"]]
+  [1m[36m (15.8ms)[0m  [1mCOMMIT[0m
+  Rendered text template (0.0ms)
+Completed 200 OK in 309ms (Views: 0.8ms | ActiveRecord: 17.1ms)
+
+
+Started GET "/api/1314a3dfb72826290bbc99c71b510d2b/12/12/account/checkout/54110000000074/9211/1000" for 127.0.0.1 at 2015-07-16 16:25:37 +0000
+Processing by AccountsController#api_checkout_account as HTML
+  Parameters: {"agent"=>"12", "sub_agent"=>"12", "account"=>"54110000000074", "password"=>"[FILTERED]", "transaction_amount"=>"1000"}
+ETHON: performed EASY effective_url=http://195.14.0.128:8080/PAYMONEY_WALLET/rest/ussd_debit_compte/54110000000074/9211/1000 response_code=200 return_code=ok total_time=9.930013
+  [1m[35m (0.6ms)[0m  BEGIN
+  [1m[36mSQL (0.9ms)[0m  [1mINSERT INTO "logs" ("account_number", "agent", "checkout_amount", "created_at", "otp", "remote_ip_address", "response_log", "status", "sub_agent", "transaction_type", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11) RETURNING "id"[0m  [["account_number", "54110000000074"], ["agent", "12"], ["checkout_amount", "1000"], ["created_at", "2015-07-16 16:25:46.975215"], ["otp", "50"], ["remote_ip_address", "127.0.0.1"], ["response_log", "{\"idStatus\"=>0, \"statusName\"=>\"50\"}"], ["status", "t"], ["sub_agent", "12"], ["transaction_type", "Débit du compte"], ["updated_at", "2015-07-16 16:25:46.975215"]]
+  [1m[35m (8.7ms)[0m  COMMIT
+  Rendered text template (0.1ms)
+Completed 200 OK in 9948ms (Views: 0.9ms | ActiveRecord: 10.2ms)
+
+
+Started GET "/api/1314a3dfb72826290bbc99c71b510d2b/12/12/account/checkout/54110000000074/9211/1000" for 127.0.0.1 at 2015-07-16 16:27:37 +0000
+Processing by AccountsController#api_checkout_account as HTML
+  Parameters: {"agent"=>"12", "sub_agent"=>"12", "account"=>"54110000000074", "password"=>"[FILTERED]", "transaction_amount"=>"1000"}
+ETHON: performed EASY effective_url=http://195.14.0.128:8080/PAYMONEY_WALLET/rest/ussd_debit_compte/54110000000074/9211/1000 response_code=200 return_code=ok total_time=12.740762
+  [1m[36m (0.7ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (1.0ms)[0m  INSERT INTO "logs" ("account_number", "agent", "checkout_amount", "created_at", "otp", "remote_ip_address", "response_log", "status", "sub_agent", "transaction_type", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11) RETURNING "id"  [["account_number", "54110000000074"], ["agent", "12"], ["checkout_amount", "1000"], ["created_at", "2015-07-16 16:27:50.268144"], ["otp", "51"], ["remote_ip_address", "127.0.0.1"], ["response_log", "{\"idStatus\"=>0, \"statusName\"=>\"51\"}"], ["status", "t"], ["sub_agent", "12"], ["transaction_type", "Débit du compte"], ["updated_at", "2015-07-16 16:27:50.268144"]]
+  [1m[36m (8.4ms)[0m  [1mCOMMIT[0m
+  Rendered text template (0.0ms)
+Completed 200 OK in 12786ms (Views: 0.7ms | ActiveRecord: 15.6ms)
+
+
+Started GET "/api/1314a3dfb72826290bbc99c71b510d2b/:agent/:sub_agent/account/checkout/validate/50/2408" for 127.0.0.1 at 2015-07-16 16:36:46 +0000
+Processing by AccountsController#api_checkout_account as HTML
+  Parameters: {"agent"=>":agent", "sub_agent"=>":sub_agent", "account"=>"validate", "password"=>"[FILTERED]", "transaction_amount"=>"2408"}
+ETHON: performed EASY effective_url=http://195.14.0.128:8080/PAYMONEY_WALLET/rest/ussd_debit_compte/validate/50/2408 response_code=400 return_code=ok total_time=1.5454240000000001
+  Rendered text template (0.1ms)
+Completed 200 OK in 1549ms (Views: 1.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/api/1314a3dfb72826290bbc99c71b510d2b/12/12/account/checkout/validate/50/2408" for 127.0.0.1 at 2015-07-16 16:37:02 +0000
+Processing by AccountsController#api_checkout_account as HTML
+  Parameters: {"agent"=>"12", "sub_agent"=>"12", "account"=>"validate", "password"=>"[FILTERED]", "transaction_amount"=>"2408"}
+ETHON: performed EASY effective_url=http://195.14.0.128:8080/PAYMONEY_WALLET/rest/ussd_debit_compte/validate/50/2408 response_code=400 return_code=ok total_time=0.402872
+  Rendered text template (0.0ms)
+Completed 200 OK in 406ms (Views: 0.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/api/1314a3dfb72826290bbc99c71b510d2b/12/12/account/checkout/validate/50/2408" for 127.0.0.1 at 2015-07-16 16:38:56 +0000
+Processing by AccountsController#api_checkout_account as HTML
+  Parameters: {"agent"=>"12", "sub_agent"=>"12", "account"=>"validate", "password"=>"[FILTERED]", "transaction_amount"=>"2408"}
+ETHON: performed EASY effective_url=http://195.14.0.128:8080/PAYMONEY_WALLET/rest/ussd_debit_compte/validate/50/2408 response_code=400 return_code=ok total_time=1.012573
+  Rendered text template (0.0ms)
+Completed 200 OK in 1015ms (Views: 0.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/api/1314a3dfb72826290bbc99c71b510d2b/12/12/account/checkout/validate/50/2408" for 127.0.0.1 at 2015-07-16 16:48:11 +0000
+Processing by AccountsController#api_checkout_account as HTML
+  Parameters: {"agent"=>"12", "sub_agent"=>"12", "account"=>"validate", "password"=>"[FILTERED]", "transaction_amount"=>"2408"}
+Redirected to http://0.0.0.0:3000/api/1314a3dfb72826290bbc99c71b510d2b/12/12/account/checkout/validate/50/2408
+Completed 500 Internal Server Error in 1ms
+
+AbstractController::DoubleRenderError (Render and/or redirect were called multiple times in this action. Please note that you may only call render OR redirect, and at most once per action. Also note that neither redirect nor render terminate execution of the action, so if you want to exit an action after redirecting, you need to do something like "redirect_to(...) and return".):
+  app/controllers/accounts_controller.rb:136:in `api_checkout_account'
+
+
+  Rendered /home/dietrich/.rvm/gems/ruby-2.0.0-p195@rails4.0.7/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/_source.erb (1.2ms)
+  Rendered /home/dietrich/.rvm/gems/ruby-2.0.0-p195@rails4.0.7/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.8ms)
+  Rendered /home/dietrich/.rvm/gems/ruby-2.0.0-p195@rails4.0.7/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.2ms)
+  Rendered /home/dietrich/.rvm/gems/ruby-2.0.0-p195@rails4.0.7/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (32.2ms)
+
+
+Started GET "/api/1314a3dfb72826290bbc99c71b510d2b/12/12/account/checkout/validate/50/2408" for 127.0.0.1 at 2015-07-16 16:48:36 +0000
+Processing by AccountsController#api_checkout_account as HTML
+  Parameters: {"agent"=>"12", "sub_agent"=>"12", "account"=>"validate", "password"=>"[FILTERED]", "transaction_amount"=>"2408"}
+Redirected to http://0.0.0.0:3000/api/1314a3dfb72826290bbc99c71b510d2b/12/12/account/checkout/validate/50/2408
+Completed 302 Found in 1ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/api/1314a3dfb72826290bbc99c71b510d2b/12/12/account/checkout/validate/50/2408" for 127.0.0.1 at 2015-07-16 16:48:36 +0000
+Processing by AccountsController#api_checkout_account as HTML
+  Parameters: {"agent"=>"12", "sub_agent"=>"12", "account"=>"validate", "password"=>"[FILTERED]", "transaction_amount"=>"2408"}
+Redirected to http://0.0.0.0:3000/api/1314a3dfb72826290bbc99c71b510d2b/12/12/account/checkout/validate/50/2408
+Completed 302 Found in 1ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/api/1314a3dfb72826290bbc99c71b510d2b/12/12/account/checkout/validate/50/2408" for 127.0.0.1 at 2015-07-16 16:48:36 +0000
+Processing by AccountsController#api_checkout_account as HTML
+  Parameters: {"agent"=>"12", "sub_agent"=>"12", "account"=>"validate", "password"=>"[FILTERED]", "transaction_amount"=>"2408"}
+Redirected to http://0.0.0.0:3000/api/1314a3dfb72826290bbc99c71b510d2b/12/12/account/checkout/validate/50/2408
+Completed 302 Found in 2ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/api/1314a3dfb72826290bbc99c71b510d2b/12/12/account/checkout/validate/50/2408" for 127.0.0.1 at 2015-07-16 16:48:36 +0000
+Processing by AccountsController#api_checkout_account as HTML
+  Parameters: {"agent"=>"12", "sub_agent"=>"12", "account"=>"validate", "password"=>"[FILTERED]", "transaction_amount"=>"2408"}
+Redirected to http://0.0.0.0:3000/api/1314a3dfb72826290bbc99c71b510d2b/12/12/account/checkout/validate/50/2408
+Completed 302 Found in 1ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/api/1314a3dfb72826290bbc99c71b510d2b/12/12/account/checkout/validate/50/2408" for 127.0.0.1 at 2015-07-16 16:48:36 +0000
+Processing by AccountsController#api_checkout_account as HTML
+  Parameters: {"agent"=>"12", "sub_agent"=>"12", "account"=>"validate", "password"=>"[FILTERED]", "transaction_amount"=>"2408"}
+Redirected to http://0.0.0.0:3000/api/1314a3dfb72826290bbc99c71b510d2b/12/12/account/checkout/validate/50/2408
+Completed 302 Found in 1ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/api/1314a3dfb72826290bbc99c71b510d2b/12/12/account/checkout/validate/50/2408" for 127.0.0.1 at 2015-07-16 16:48:36 +0000
+Processing by AccountsController#api_checkout_account as HTML
+  Parameters: {"agent"=>"12", "sub_agent"=>"12", "account"=>"validate", "password"=>"[FILTERED]", "transaction_amount"=>"2408"}
+Redirected to http://0.0.0.0:3000/api/1314a3dfb72826290bbc99c71b510d2b/12/12/account/checkout/validate/50/2408
+Completed 302 Found in 1ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/api/1314a3dfb72826290bbc99c71b510d2b/12/12/account/checkout/validate/50/2408" for 127.0.0.1 at 2015-07-16 16:48:36 +0000
+Processing by AccountsController#api_checkout_account as HTML
+  Parameters: {"agent"=>"12", "sub_agent"=>"12", "account"=>"validate", "password"=>"[FILTERED]", "transaction_amount"=>"2408"}
+Redirected to http://0.0.0.0:3000/api/1314a3dfb72826290bbc99c71b510d2b/12/12/account/checkout/validate/50/2408
+Completed 302 Found in 1ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/api/1314a3dfb72826290bbc99c71b510d2b/12/12/account/checkout/validate/50/2408" for 127.0.0.1 at 2015-07-16 16:48:36 +0000
+Processing by AccountsController#api_checkout_account as HTML
+  Parameters: {"agent"=>"12", "sub_agent"=>"12", "account"=>"validate", "password"=>"[FILTERED]", "transaction_amount"=>"2408"}
+Redirected to http://0.0.0.0:3000/api/1314a3dfb72826290bbc99c71b510d2b/12/12/account/checkout/validate/50/2408
+Completed 302 Found in 1ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/api/1314a3dfb72826290bbc99c71b510d2b/12/12/account/checkout/validate/50/2408" for 127.0.0.1 at 2015-07-16 16:48:36 +0000
+Processing by AccountsController#api_checkout_account as HTML
+  Parameters: {"agent"=>"12", "sub_agent"=>"12", "account"=>"validate", "password"=>"[FILTERED]", "transaction_amount"=>"2408"}
+Redirected to http://0.0.0.0:3000/api/1314a3dfb72826290bbc99c71b510d2b/12/12/account/checkout/validate/50/2408
+Completed 302 Found in 1ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/api/1314a3dfb72826290bbc99c71b510d2b/12/12/account/checkout/validate/50/2408" for 127.0.0.1 at 2015-07-16 16:48:36 +0000
+Processing by AccountsController#api_checkout_account as HTML
+  Parameters: {"agent"=>"12", "sub_agent"=>"12", "account"=>"validate", "password"=>"[FILTERED]", "transaction_amount"=>"2408"}
+Redirected to http://0.0.0.0:3000/api/1314a3dfb72826290bbc99c71b510d2b/12/12/account/checkout/validate/50/2408
+Completed 302 Found in 1ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/api/1314a3dfb72826290bbc99c71b510d2b/12/12/account/checkout/validate/50/2408" for 127.0.0.1 at 2015-07-16 16:48:36 +0000
+Processing by AccountsController#api_checkout_account as HTML
+  Parameters: {"agent"=>"12", "sub_agent"=>"12", "account"=>"validate", "password"=>"[FILTERED]", "transaction_amount"=>"2408"}
+Redirected to http://0.0.0.0:3000/api/1314a3dfb72826290bbc99c71b510d2b/12/12/account/checkout/validate/50/2408
+Completed 302 Found in 1ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/api/1314a3dfb72826290bbc99c71b510d2b/12/12/account/checkout/validate/50/2408" for 127.0.0.1 at 2015-07-16 16:48:36 +0000
+Processing by AccountsController#api_checkout_account as HTML
+  Parameters: {"agent"=>"12", "sub_agent"=>"12", "account"=>"validate", "password"=>"[FILTERED]", "transaction_amount"=>"2408"}
+Redirected to http://0.0.0.0:3000/api/1314a3dfb72826290bbc99c71b510d2b/12/12/account/checkout/validate/50/2408
+Completed 302 Found in 1ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/api/1314a3dfb72826290bbc99c71b510d2b/12/12/account/checkout/validate/50/2408" for 127.0.0.1 at 2015-07-16 16:48:36 +0000
+Processing by AccountsController#api_checkout_account as HTML
+  Parameters: {"agent"=>"12", "sub_agent"=>"12", "account"=>"validate", "password"=>"[FILTERED]", "transaction_amount"=>"2408"}
+Redirected to http://0.0.0.0:3000/api/1314a3dfb72826290bbc99c71b510d2b/12/12/account/checkout/validate/50/2408
+Completed 302 Found in 1ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/api/1314a3dfb72826290bbc99c71b510d2b/12/12/account/checkout/validate/50/2408" for 127.0.0.1 at 2015-07-16 16:48:36 +0000
+Processing by AccountsController#api_checkout_account as HTML
+  Parameters: {"agent"=>"12", "sub_agent"=>"12", "account"=>"validate", "password"=>"[FILTERED]", "transaction_amount"=>"2408"}
+Redirected to http://0.0.0.0:3000/api/1314a3dfb72826290bbc99c71b510d2b/12/12/account/checkout/validate/50/2408
+Completed 302 Found in 1ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/api/1314a3dfb72826290bbc99c71b510d2b/12/12/account/checkout/validate/50/2408" for 127.0.0.1 at 2015-07-16 16:48:36 +0000
+Processing by AccountsController#api_checkout_account as HTML
+  Parameters: {"agent"=>"12", "sub_agent"=>"12", "account"=>"validate", "password"=>"[FILTERED]", "transaction_amount"=>"2408"}
+Redirected to http://0.0.0.0:3000/api/1314a3dfb72826290bbc99c71b510d2b/12/12/account/checkout/validate/50/2408
+Completed 302 Found in 2ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/api/1314a3dfb72826290bbc99c71b510d2b/12/12/account/checkout/validate/50/2408" for 127.0.0.1 at 2015-07-16 16:48:36 +0000
+Processing by AccountsController#api_checkout_account as HTML
+  Parameters: {"agent"=>"12", "sub_agent"=>"12", "account"=>"validate", "password"=>"[FILTERED]", "transaction_amount"=>"2408"}
+Redirected to http://0.0.0.0:3000/api/1314a3dfb72826290bbc99c71b510d2b/12/12/account/checkout/validate/50/2408
+Completed 302 Found in 1ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/api/1314a3dfb72826290bbc99c71b510d2b/12/12/account/checkout/validate/50/2408" for 127.0.0.1 at 2015-07-16 16:48:36 +0000
+Processing by AccountsController#api_checkout_account as HTML
+  Parameters: {"agent"=>"12", "sub_agent"=>"12", "account"=>"validate", "password"=>"[FILTERED]", "transaction_amount"=>"2408"}
+Redirected to http://0.0.0.0:3000/api/1314a3dfb72826290bbc99c71b510d2b/12/12/account/checkout/validate/50/2408
+Completed 302 Found in 1ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/api/1314a3dfb72826290bbc99c71b510d2b/12/12/account/checkout/validate/50/2408" for 127.0.0.1 at 2015-07-16 16:48:36 +0000
+Processing by AccountsController#api_checkout_account as HTML
+  Parameters: {"agent"=>"12", "sub_agent"=>"12", "account"=>"validate", "password"=>"[FILTERED]", "transaction_amount"=>"2408"}
+Redirected to http://0.0.0.0:3000/api/1314a3dfb72826290bbc99c71b510d2b/12/12/account/checkout/validate/50/2408
+Completed 302 Found in 1ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/api/1314a3dfb72826290bbc99c71b510d2b/12/12/account/checkout/validate/50/2408" for 127.0.0.1 at 2015-07-16 16:48:36 +0000
+Processing by AccountsController#api_checkout_account as HTML
+  Parameters: {"agent"=>"12", "sub_agent"=>"12", "account"=>"validate", "password"=>"[FILTERED]", "transaction_amount"=>"2408"}
+Redirected to http://0.0.0.0:3000/api/1314a3dfb72826290bbc99c71b510d2b/12/12/account/checkout/validate/50/2408
+Completed 302 Found in 1ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/api/1314a3dfb72826290bbc99c71b510d2b/12/12/account/checkout/validate/50/2408" for 127.0.0.1 at 2015-07-16 16:48:36 +0000
+Processing by AccountsController#api_checkout_account as HTML
+  Parameters: {"agent"=>"12", "sub_agent"=>"12", "account"=>"validate", "password"=>"[FILTERED]", "transaction_amount"=>"2408"}
+Redirected to http://0.0.0.0:3000/api/1314a3dfb72826290bbc99c71b510d2b/12/12/account/checkout/validate/50/2408
+Completed 302 Found in 1ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/api/1314a3dfb72826290bbc99c71b510d2b/12/12/account/checkout/validate/50/2408" for 127.0.0.1 at 2015-07-16 16:48:36 +0000
+Processing by AccountsController#api_checkout_account as HTML
+  Parameters: {"agent"=>"12", "sub_agent"=>"12", "account"=>"validate", "password"=>"[FILTERED]", "transaction_amount"=>"2408"}
+Redirected to http://0.0.0.0:3000/api/1314a3dfb72826290bbc99c71b510d2b/12/12/account/checkout/validate/50/2408
+Completed 302 Found in 2ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/api/1314a3dfb72826290bbc99c71b510d2b/12/12/account/checkout/validate/50/2408" for 127.0.0.1 at 2015-07-16 16:48:36 +0000
+Processing by AccountsController#api_checkout_account as HTML
+  Parameters: {"agent"=>"12", "sub_agent"=>"12", "account"=>"validate", "password"=>"[FILTERED]", "transaction_amount"=>"2408"}
+Redirected to http://0.0.0.0:3000/api/1314a3dfb72826290bbc99c71b510d2b/12/12/account/checkout/validate/50/2408
+Completed 302 Found in 1ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/api/1314a3dfb72826290bbc99c71b510d2b/12/12/account/checkout/validate/50/2408" for 127.0.0.1 at 2015-07-16 16:48:36 +0000
+Processing by AccountsController#api_checkout_account as HTML
+  Parameters: {"agent"=>"12", "sub_agent"=>"12", "account"=>"validate", "password"=>"[FILTERED]", "transaction_amount"=>"2408"}
+Redirected to http://0.0.0.0:3000/api/1314a3dfb72826290bbc99c71b510d2b/12/12/account/checkout/validate/50/2408
+Completed 302 Found in 2ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/api/1314a3dfb72826290bbc99c71b510d2b/12/12/account/checkout/validate/50/2408" for 127.0.0.1 at 2015-07-16 16:48:36 +0000
+Processing by AccountsController#api_checkout_account as HTML
+  Parameters: {"agent"=>"12", "sub_agent"=>"12", "account"=>"validate", "password"=>"[FILTERED]", "transaction_amount"=>"2408"}
+Redirected to http://0.0.0.0:3000/api/1314a3dfb72826290bbc99c71b510d2b/12/12/account/checkout/validate/50/2408
+Completed 302 Found in 1ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/api/1314a3dfb72826290bbc99c71b510d2b/12/12/account/checkout/validate/50/2408" for 127.0.0.1 at 2015-07-16 16:48:36 +0000
+Processing by AccountsController#api_checkout_account as HTML
+  Parameters: {"agent"=>"12", "sub_agent"=>"12", "account"=>"validate", "password"=>"[FILTERED]", "transaction_amount"=>"2408"}
+Redirected to http://0.0.0.0:3000/api/1314a3dfb72826290bbc99c71b510d2b/12/12/account/checkout/validate/50/2408
+Completed 302 Found in 1ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/api/1314a3dfb72826290bbc99c71b510d2b/12/12/account/checkout/validate/50/2408" for 127.0.0.1 at 2015-07-16 16:48:36 +0000
+Processing by AccountsController#api_checkout_account as HTML
+  Parameters: {"agent"=>"12", "sub_agent"=>"12", "account"=>"validate", "password"=>"[FILTERED]", "transaction_amount"=>"2408"}
+Redirected to http://0.0.0.0:3000/api/1314a3dfb72826290bbc99c71b510d2b/12/12/account/checkout/validate/50/2408
+Completed 302 Found in 1ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/api/1314a3dfb72826290bbc99c71b510d2b/12/12/account/checkout/validate/50/2408" for 127.0.0.1 at 2015-07-16 16:48:36 +0000
+Processing by AccountsController#api_checkout_account as HTML
+  Parameters: {"agent"=>"12", "sub_agent"=>"12", "account"=>"validate", "password"=>"[FILTERED]", "transaction_amount"=>"2408"}
+Redirected to http://0.0.0.0:3000/api/1314a3dfb72826290bbc99c71b510d2b/12/12/account/checkout/validate/50/2408
+Completed 302 Found in 1ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/api/1314a3dfb72826290bbc99c71b510d2b/12/12/account/checkout/validate/50/2408" for 127.0.0.1 at 2015-07-16 16:48:36 +0000
+Processing by AccountsController#api_checkout_account as HTML
+  Parameters: {"agent"=>"12", "sub_agent"=>"12", "account"=>"validate", "password"=>"[FILTERED]", "transaction_amount"=>"2408"}
+Redirected to http://0.0.0.0:3000/api/1314a3dfb72826290bbc99c71b510d2b/12/12/account/checkout/validate/50/2408
+Completed 302 Found in 1ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/api/1314a3dfb72826290bbc99c71b510d2b/12/12/account/checkout/validate/50/2408" for 127.0.0.1 at 2015-07-16 16:48:36 +0000
+Processing by AccountsController#api_checkout_account as HTML
+  Parameters: {"agent"=>"12", "sub_agent"=>"12", "account"=>"validate", "password"=>"[FILTERED]", "transaction_amount"=>"2408"}
+Redirected to http://0.0.0.0:3000/api/1314a3dfb72826290bbc99c71b510d2b/12/12/account/checkout/validate/50/2408
+Completed 302 Found in 1ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/api/1314a3dfb72826290bbc99c71b510d2b/12/12/account/checkout/validate/50/2408" for 127.0.0.1 at 2015-07-16 16:48:36 +0000
+Processing by AccountsController#api_checkout_account as HTML
+  Parameters: {"agent"=>"12", "sub_agent"=>"12", "account"=>"validate", "password"=>"[FILTERED]", "transaction_amount"=>"2408"}
+Redirected to http://0.0.0.0:3000/api/1314a3dfb72826290bbc99c71b510d2b/12/12/account/checkout/validate/50/2408
+Completed 302 Found in 1ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/api/1314a3dfb72826290bbc99c71b510d2b/12/12/account/checkout/validate/50/2408" for 127.0.0.1 at 2015-07-16 16:48:36 +0000
+Processing by AccountsController#api_checkout_account as HTML
+  Parameters: {"agent"=>"12", "sub_agent"=>"12", "account"=>"validate", "password"=>"[FILTERED]", "transaction_amount"=>"2408"}
+Redirected to http://0.0.0.0:3000/api/1314a3dfb72826290bbc99c71b510d2b/12/12/account/checkout/validate/50/2408
+Completed 302 Found in 1ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/api/1314a3dfb72826290bbc99c71b510d2b/12/12/account/checkout/validate/50/2408" for 127.0.0.1 at 2015-07-16 16:48:36 +0000
+Processing by AccountsController#api_checkout_account as HTML
+  Parameters: {"agent"=>"12", "sub_agent"=>"12", "account"=>"validate", "password"=>"[FILTERED]", "transaction_amount"=>"2408"}
+Redirected to http://0.0.0.0:3000/api/1314a3dfb72826290bbc99c71b510d2b/12/12/account/checkout/validate/50/2408
+Completed 302 Found in 1ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/api/1314a3dfb72826290bbc99c71b510d2b/12/12/account/checkout/validate/50/2408" for 127.0.0.1 at 2015-07-16 16:48:36 +0000
+Processing by AccountsController#api_checkout_account as HTML
+  Parameters: {"agent"=>"12", "sub_agent"=>"12", "account"=>"validate", "password"=>"[FILTERED]", "transaction_amount"=>"2408"}
+Redirected to http://0.0.0.0:3000/api/1314a3dfb72826290bbc99c71b510d2b/12/12/account/checkout/validate/50/2408
+Completed 302 Found in 2ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/api/1314a3dfb72826290bbc99c71b510d2b/12/12/account/checkout/validate/50/2408" for 127.0.0.1 at 2015-07-16 16:48:36 +0000
+Processing by AccountsController#api_checkout_account as HTML
+  Parameters: {"agent"=>"12", "sub_agent"=>"12", "account"=>"validate", "password"=>"[FILTERED]", "transaction_amount"=>"2408"}
+Redirected to http://0.0.0.0:3000/api/1314a3dfb72826290bbc99c71b510d2b/12/12/account/checkout/validate/50/2408
+Completed 302 Found in 1ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/api/1314a3dfb72826290bbc99c71b510d2b/12/12/account/checkout/validate/50/2408" for 127.0.0.1 at 2015-07-16 16:48:36 +0000
+Processing by AccountsController#api_checkout_account as HTML
+  Parameters: {"agent"=>"12", "sub_agent"=>"12", "account"=>"validate", "password"=>"[FILTERED]", "transaction_amount"=>"2408"}
+Redirected to http://0.0.0.0:3000/api/1314a3dfb72826290bbc99c71b510d2b/12/12/account/checkout/validate/50/2408
+Completed 302 Found in 2ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/api/1314a3dfb72826290bbc99c71b510d2b/12/12/account/checkout/validate/50/2408" for 127.0.0.1 at 2015-07-16 16:48:36 +0000
+Processing by AccountsController#api_checkout_account as HTML
+  Parameters: {"agent"=>"12", "sub_agent"=>"12", "account"=>"validate", "password"=>"[FILTERED]", "transaction_amount"=>"2408"}
+Redirected to http://0.0.0.0:3000/api/1314a3dfb72826290bbc99c71b510d2b/12/12/account/checkout/validate/50/2408
+Completed 302 Found in 2ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/api/1314a3dfb72826290bbc99c71b510d2b/12/12/account/checkout/validate/50/2408" for 127.0.0.1 at 2015-07-16 16:48:36 +0000
+Processing by AccountsController#api_checkout_account as HTML
+  Parameters: {"agent"=>"12", "sub_agent"=>"12", "account"=>"validate", "password"=>"[FILTERED]", "transaction_amount"=>"2408"}
+Redirected to http://0.0.0.0:3000/api/1314a3dfb72826290bbc99c71b510d2b/12/12/account/checkout/validate/50/2408
+Completed 302 Found in 1ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/api/1314a3dfb72826290bbc99c71b510d2b/12/12/account/checkout/validate/50/2408" for 127.0.0.1 at 2015-07-16 16:48:36 +0000
+Processing by AccountsController#api_checkout_account as HTML
+  Parameters: {"agent"=>"12", "sub_agent"=>"12", "account"=>"validate", "password"=>"[FILTERED]", "transaction_amount"=>"2408"}
+Redirected to http://0.0.0.0:3000/api/1314a3dfb72826290bbc99c71b510d2b/12/12/account/checkout/validate/50/2408
+Completed 302 Found in 1ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/api/1314a3dfb72826290bbc99c71b510d2b/12/12/account/checkout/validate/50/2408" for 127.0.0.1 at 2015-07-16 16:48:36 +0000
+Processing by AccountsController#api_checkout_account as HTML
+  Parameters: {"agent"=>"12", "sub_agent"=>"12", "account"=>"validate", "password"=>"[FILTERED]", "transaction_amount"=>"2408"}
+Redirected to http://0.0.0.0:3000/api/1314a3dfb72826290bbc99c71b510d2b/12/12/account/checkout/validate/50/2408
+Completed 302 Found in 1ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/api/1314a3dfb72826290bbc99c71b510d2b/12/12/account/checkout/validate/50/2408" for 127.0.0.1 at 2015-07-16 16:48:36 +0000
+Processing by AccountsController#api_checkout_account as HTML
+  Parameters: {"agent"=>"12", "sub_agent"=>"12", "account"=>"validate", "password"=>"[FILTERED]", "transaction_amount"=>"2408"}
+Redirected to http://0.0.0.0:3000/api/1314a3dfb72826290bbc99c71b510d2b/12/12/account/checkout/validate/50/2408
+Completed 302 Found in 1ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/api/1314a3dfb72826290bbc99c71b510d2b/12/12/account/checkout/validate/50/2408" for 127.0.0.1 at 2015-07-16 16:48:36 +0000
+Processing by AccountsController#api_checkout_account as HTML
+  Parameters: {"agent"=>"12", "sub_agent"=>"12", "account"=>"validate", "password"=>"[FILTERED]", "transaction_amount"=>"2408"}
+Redirected to http://0.0.0.0:3000/api/1314a3dfb72826290bbc99c71b510d2b/12/12/account/checkout/validate/50/2408
+Completed 302 Found in 1ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/api/1314a3dfb72826290bbc99c71b510d2b/12/12/account/checkout/validate/50/2408" for 127.0.0.1 at 2015-07-16 16:48:36 +0000
+Processing by AccountsController#api_checkout_account as HTML
+  Parameters: {"agent"=>"12", "sub_agent"=>"12", "account"=>"validate", "password"=>"[FILTERED]", "transaction_amount"=>"2408"}
+Redirected to http://0.0.0.0:3000/api/1314a3dfb72826290bbc99c71b510d2b/12/12/account/checkout/validate/50/2408
+Completed 302 Found in 1ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/api/1314a3dfb72826290bbc99c71b510d2b/12/12/account/checkout/validate/50/2408" for 127.0.0.1 at 2015-07-16 16:48:41 +0000
+Processing by AccountsController#api_checkout_account as HTML
+  Parameters: {"agent"=>"12", "sub_agent"=>"12", "account"=>"validate", "password"=>"[FILTERED]", "transaction_amount"=>"2408"}
+Redirected to http://0.0.0.0:3000/api/1314a3dfb72826290bbc99c71b510d2b/12/12/account/checkout/validate/50/2408
+Completed 302 Found in 1ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/api/1314a3dfb72826290bbc99c71b510d2b/12/12/account/checkout/validate/50/2408" for 127.0.0.1 at 2015-07-16 16:48:41 +0000
+Processing by AccountsController#api_checkout_account as HTML
+  Parameters: {"agent"=>"12", "sub_agent"=>"12", "account"=>"validate", "password"=>"[FILTERED]", "transaction_amount"=>"2408"}
+Redirected to http://0.0.0.0:3000/api/1314a3dfb72826290bbc99c71b510d2b/12/12/account/checkout/validate/50/2408
+Completed 302 Found in 1ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/api/1314a3dfb72826290bbc99c71b510d2b/12/12/account/checkout/validate/50/2408" for 127.0.0.1 at 2015-07-16 16:48:41 +0000
+Processing by AccountsController#api_checkout_account as HTML
+  Parameters: {"agent"=>"12", "sub_agent"=>"12", "account"=>"validate", "password"=>"[FILTERED]", "transaction_amount"=>"2408"}
+Redirected to http://0.0.0.0:3000/api/1314a3dfb72826290bbc99c71b510d2b/12/12/account/checkout/validate/50/2408
+Completed 302 Found in 1ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/api/1314a3dfb72826290bbc99c71b510d2b/12/12/account/checkout/validate/50/2408" for 127.0.0.1 at 2015-07-16 16:48:41 +0000
+Processing by AccountsController#api_checkout_account as HTML
+  Parameters: {"agent"=>"12", "sub_agent"=>"12", "account"=>"validate", "password"=>"[FILTERED]", "transaction_amount"=>"2408"}
+Redirected to http://0.0.0.0:3000/api/1314a3dfb72826290bbc99c71b510d2b/12/12/account/checkout/validate/50/2408
+Completed 302 Found in 2ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/api/1314a3dfb72826290bbc99c71b510d2b/12/12/account/checkout/validate/50/2408" for 127.0.0.1 at 2015-07-16 16:48:41 +0000
+Processing by AccountsController#api_checkout_account as HTML
+  Parameters: {"agent"=>"12", "sub_agent"=>"12", "account"=>"validate", "password"=>"[FILTERED]", "transaction_amount"=>"2408"}
+Redirected to http://0.0.0.0:3000/api/1314a3dfb72826290bbc99c71b510d2b/12/12/account/checkout/validate/50/2408
+Completed 302 Found in 1ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/api/1314a3dfb72826290bbc99c71b510d2b/12/12/account/checkout/validate/50/2408" for 127.0.0.1 at 2015-07-16 16:48:41 +0000
+Processing by AccountsController#api_checkout_account as HTML
+  Parameters: {"agent"=>"12", "sub_agent"=>"12", "account"=>"validate", "password"=>"[FILTERED]", "transaction_amount"=>"2408"}
+Redirected to http://0.0.0.0:3000/api/1314a3dfb72826290bbc99c71b510d2b/12/12/account/checkout/validate/50/2408
+Completed 302 Found in 1ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/api/1314a3dfb72826290bbc99c71b510d2b/12/12/account/checkout/validate/50/2408" for 127.0.0.1 at 2015-07-16 16:48:41 +0000
+Processing by AccountsController#api_checkout_account as HTML
+  Parameters: {"agent"=>"12", "sub_agent"=>"12", "account"=>"validate", "password"=>"[FILTERED]", "transaction_amount"=>"2408"}
+Redirected to http://0.0.0.0:3000/api/1314a3dfb72826290bbc99c71b510d2b/12/12/account/checkout/validate/50/2408
+Completed 302 Found in 1ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/api/1314a3dfb72826290bbc99c71b510d2b/12/12/account/checkout/validate/50/2408" for 127.0.0.1 at 2015-07-16 16:48:41 +0000
+Processing by AccountsController#api_checkout_account as HTML
+  Parameters: {"agent"=>"12", "sub_agent"=>"12", "account"=>"validate", "password"=>"[FILTERED]", "transaction_amount"=>"2408"}
+Redirected to http://0.0.0.0:3000/api/1314a3dfb72826290bbc99c71b510d2b/12/12/account/checkout/validate/50/2408
+Completed 302 Found in 1ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/api/1314a3dfb72826290bbc99c71b510d2b/12/12/account/checkout/validate/50/2408" for 127.0.0.1 at 2015-07-16 16:48:41 +0000
+Processing by AccountsController#api_checkout_account as HTML
+  Parameters: {"agent"=>"12", "sub_agent"=>"12", "account"=>"validate", "password"=>"[FILTERED]", "transaction_amount"=>"2408"}
+Redirected to http://0.0.0.0:3000/api/1314a3dfb72826290bbc99c71b510d2b/12/12/account/checkout/validate/50/2408
+Completed 302 Found in 1ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/api/1314a3dfb72826290bbc99c71b510d2b/12/12/account/checkout/validate/50/2408" for 127.0.0.1 at 2015-07-16 16:48:41 +0000
+Processing by AccountsController#api_checkout_account as HTML
+  Parameters: {"agent"=>"12", "sub_agent"=>"12", "account"=>"validate", "password"=>"[FILTERED]", "transaction_amount"=>"2408"}
+Redirected to http://0.0.0.0:3000/api/1314a3dfb72826290bbc99c71b510d2b/12/12/account/checkout/validate/50/2408
+Completed 302 Found in 1ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/api/1314a3dfb72826290bbc99c71b510d2b/12/12/account/checkout/validate/50/2408" for 127.0.0.1 at 2015-07-16 16:48:42 +0000
+Processing by AccountsController#api_checkout_account as HTML
+  Parameters: {"agent"=>"12", "sub_agent"=>"12", "account"=>"validate", "password"=>"[FILTERED]", "transaction_amount"=>"2408"}
+Redirected to http://0.0.0.0:3000/api/1314a3dfb72826290bbc99c71b510d2b/12/12/account/checkout/validate/50/2408
+Completed 302 Found in 1ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/api/1314a3dfb72826290bbc99c71b510d2b/12/12/account/checkout/validate/50/2408" for 127.0.0.1 at 2015-07-16 16:48:42 +0000
+Processing by AccountsController#api_checkout_account as HTML
+  Parameters: {"agent"=>"12", "sub_agent"=>"12", "account"=>"validate", "password"=>"[FILTERED]", "transaction_amount"=>"2408"}
+Redirected to http://0.0.0.0:3000/api/1314a3dfb72826290bbc99c71b510d2b/12/12/account/checkout/validate/50/2408
+Completed 302 Found in 1ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/api/1314a3dfb72826290bbc99c71b510d2b/12/12/account/checkout/validate/50/2408" for 127.0.0.1 at 2015-07-16 16:48:42 +0000
+Processing by AccountsController#api_checkout_account as HTML
+  Parameters: {"agent"=>"12", "sub_agent"=>"12", "account"=>"validate", "password"=>"[FILTERED]", "transaction_amount"=>"2408"}
+Redirected to http://0.0.0.0:3000/api/1314a3dfb72826290bbc99c71b510d2b/12/12/account/checkout/validate/50/2408
+Completed 302 Found in 1ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/api/1314a3dfb72826290bbc99c71b510d2b/12/12/account/checkout/validate/50/2408" for 127.0.0.1 at 2015-07-16 16:48:42 +0000
+Processing by AccountsController#api_checkout_account as HTML
+  Parameters: {"agent"=>"12", "sub_agent"=>"12", "account"=>"validate", "password"=>"[FILTERED]", "transaction_amount"=>"2408"}
+Redirected to http://0.0.0.0:3000/api/1314a3dfb72826290bbc99c71b510d2b/12/12/account/checkout/validate/50/2408
+Completed 302 Found in 1ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/api/1314a3dfb72826290bbc99c71b510d2b/12/12/account/checkout/validate/50/2408" for 127.0.0.1 at 2015-07-16 16:48:42 +0000
+Processing by AccountsController#api_checkout_account as HTML
+  Parameters: {"agent"=>"12", "sub_agent"=>"12", "account"=>"validate", "password"=>"[FILTERED]", "transaction_amount"=>"2408"}
+Redirected to http://0.0.0.0:3000/api/1314a3dfb72826290bbc99c71b510d2b/12/12/account/checkout/validate/50/2408
+Completed 302 Found in 1ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/api/1314a3dfb72826290bbc99c71b510d2b/12/12/account/checkout/validate/50/2408" for 127.0.0.1 at 2015-07-16 16:48:42 +0000
+Processing by AccountsController#api_checkout_account as HTML
+  Parameters: {"agent"=>"12", "sub_agent"=>"12", "account"=>"validate", "password"=>"[FILTERED]", "transaction_amount"=>"2408"}
+Redirected to http://0.0.0.0:3000/api/1314a3dfb72826290bbc99c71b510d2b/12/12/account/checkout/validate/50/2408
+Completed 302 Found in 1ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/api/1314a3dfb72826290bbc99c71b510d2b/12/12/account/checkout/validate/50/2408" for 127.0.0.1 at 2015-07-16 16:48:42 +0000
+Processing by AccountsController#api_checkout_account as HTML
+  Parameters: {"agent"=>"12", "sub_agent"=>"12", "account"=>"validate", "password"=>"[FILTERED]", "transaction_amount"=>"2408"}
+Redirected to http://0.0.0.0:3000/api/1314a3dfb72826290bbc99c71b510d2b/12/12/account/checkout/validate/50/2408
+Completed 302 Found in 2ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/api/1314a3dfb72826290bbc99c71b510d2b/12/12/account/checkout/validate/50/2408" for 127.0.0.1 at 2015-07-16 16:48:42 +0000
+Processing by AccountsController#api_checkout_account as HTML
+  Parameters: {"agent"=>"12", "sub_agent"=>"12", "account"=>"validate", "password"=>"[FILTERED]", "transaction_amount"=>"2408"}
+Redirected to http://0.0.0.0:3000/api/1314a3dfb72826290bbc99c71b510d2b/12/12/account/checkout/validate/50/2408
+Completed 302 Found in 1ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/api/1314a3dfb72826290bbc99c71b510d2b/12/12/account/checkout/validate/50/2408" for 127.0.0.1 at 2015-07-16 16:48:42 +0000
+Processing by AccountsController#api_checkout_account as HTML
+  Parameters: {"agent"=>"12", "sub_agent"=>"12", "account"=>"validate", "password"=>"[FILTERED]", "transaction_amount"=>"2408"}
+Redirected to http://0.0.0.0:3000/api/1314a3dfb72826290bbc99c71b510d2b/12/12/account/checkout/validate/50/2408
+Completed 302 Found in 1ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/api/1314a3dfb72826290bbc99c71b510d2b/12/12/account/checkout/validate/50/2408" for 127.0.0.1 at 2015-07-16 16:48:42 +0000
+Processing by AccountsController#api_checkout_account as HTML
+  Parameters: {"agent"=>"12", "sub_agent"=>"12", "account"=>"validate", "password"=>"[FILTERED]", "transaction_amount"=>"2408"}
+Redirected to http://0.0.0.0:3000/api/1314a3dfb72826290bbc99c71b510d2b/12/12/account/checkout/validate/50/2408
+Completed 302 Found in 1ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/api/1314a3dfb72826290bbc99c71b510d2b/12/12/account/checkout/validate/50/2408" for 127.0.0.1 at 2015-07-16 16:48:42 +0000
+Processing by AccountsController#api_checkout_account as HTML
+  Parameters: {"agent"=>"12", "sub_agent"=>"12", "account"=>"validate", "password"=>"[FILTERED]", "transaction_amount"=>"2408"}
+Redirected to http://0.0.0.0:3000/api/1314a3dfb72826290bbc99c71b510d2b/12/12/account/checkout/validate/50/2408
+Completed 302 Found in 1ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/api/1314a3dfb72826290bbc99c71b510d2b/12/12/account/checkout/validate/50/2408" for 127.0.0.1 at 2015-07-16 16:49:12 +0000
+Processing by AccountsController#api_checkout_account as HTML
+  Parameters: {"agent"=>"12", "sub_agent"=>"12", "account"=>"validate", "password"=>"[FILTERED]", "transaction_amount"=>"2408"}
+Redirected to http://0.0.0.0:3000/api/1314a3dfb72826290bbc99c71b510d2b/12/12/account/checkout/validate/50/2408
+Completed 302 Found in 1ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/api/1314a3dfb72826290bbc99c71b510d2b/12/12/account/checkout/validate/50/2408" for 127.0.0.1 at 2015-07-16 16:49:12 +0000
+Processing by AccountsController#api_checkout_account as HTML
+  Parameters: {"agent"=>"12", "sub_agent"=>"12", "account"=>"validate", "password"=>"[FILTERED]", "transaction_amount"=>"2408"}
+Redirected to http://0.0.0.0:3000/api/1314a3dfb72826290bbc99c71b510d2b/12/12/account/checkout/validate/50/2408
+Completed 302 Found in 1ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/api/1314a3dfb72826290bbc99c71b510d2b/12/12/account/checkout/validate/50/2408" for 127.0.0.1 at 2015-07-16 16:49:12 +0000
+Processing by AccountsController#api_checkout_account as HTML
+  Parameters: {"agent"=>"12", "sub_agent"=>"12", "account"=>"validate", "password"=>"[FILTERED]", "transaction_amount"=>"2408"}
+Redirected to http://0.0.0.0:3000/api/1314a3dfb72826290bbc99c71b510d2b/12/12/account/checkout/validate/50/2408
+Completed 302 Found in 1ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/api/1314a3dfb72826290bbc99c71b510d2b/12/12/account/checkout/validate/50/2408" for 127.0.0.1 at 2015-07-16 16:49:12 +0000
+Processing by AccountsController#api_checkout_account as HTML
+  Parameters: {"agent"=>"12", "sub_agent"=>"12", "account"=>"validate", "password"=>"[FILTERED]", "transaction_amount"=>"2408"}
+Redirected to http://0.0.0.0:3000/api/1314a3dfb72826290bbc99c71b510d2b/12/12/account/checkout/validate/50/2408
+Completed 302 Found in 1ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/api/1314a3dfb72826290bbc99c71b510d2b/12/12/account/checkout/validate/50/2408" for 127.0.0.1 at 2015-07-16 16:49:12 +0000
+Processing by AccountsController#api_checkout_account as HTML
+  Parameters: {"agent"=>"12", "sub_agent"=>"12", "account"=>"validate", "password"=>"[FILTERED]", "transaction_amount"=>"2408"}
+Redirected to http://0.0.0.0:3000/api/1314a3dfb72826290bbc99c71b510d2b/12/12/account/checkout/validate/50/2408
+Completed 302 Found in 1ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/api/1314a3dfb72826290bbc99c71b510d2b/12/12/account/checkout/validate/50/2408" for 127.0.0.1 at 2015-07-16 16:49:12 +0000
+Processing by AccountsController#api_checkout_account as HTML
+  Parameters: {"agent"=>"12", "sub_agent"=>"12", "account"=>"validate", "password"=>"[FILTERED]", "transaction_amount"=>"2408"}
+Redirected to http://0.0.0.0:3000/api/1314a3dfb72826290bbc99c71b510d2b/12/12/account/checkout/validate/50/2408
+Completed 302 Found in 1ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/api/1314a3dfb72826290bbc99c71b510d2b/12/12/account/checkout/validate/50/2408" for 127.0.0.1 at 2015-07-16 16:49:12 +0000
+Processing by AccountsController#api_checkout_account as HTML
+  Parameters: {"agent"=>"12", "sub_agent"=>"12", "account"=>"validate", "password"=>"[FILTERED]", "transaction_amount"=>"2408"}
+Redirected to http://0.0.0.0:3000/api/1314a3dfb72826290bbc99c71b510d2b/12/12/account/checkout/validate/50/2408
+Completed 302 Found in 1ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/api/1314a3dfb72826290bbc99c71b510d2b/12/12/account/checkout/validate/50/2408" for 127.0.0.1 at 2015-07-16 16:49:12 +0000
+Processing by AccountsController#api_checkout_account as HTML
+  Parameters: {"agent"=>"12", "sub_agent"=>"12", "account"=>"validate", "password"=>"[FILTERED]", "transaction_amount"=>"2408"}
+Redirected to http://0.0.0.0:3000/api/1314a3dfb72826290bbc99c71b510d2b/12/12/account/checkout/validate/50/2408
+Completed 302 Found in 2ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/api/1314a3dfb72826290bbc99c71b510d2b/12/12/account/checkout/validate/50/2408" for 127.0.0.1 at 2015-07-16 16:49:12 +0000
+Processing by AccountsController#api_checkout_account as HTML
+  Parameters: {"agent"=>"12", "sub_agent"=>"12", "account"=>"validate", "password"=>"[FILTERED]", "transaction_amount"=>"2408"}
+Redirected to http://0.0.0.0:3000/api/1314a3dfb72826290bbc99c71b510d2b/12/12/account/checkout/validate/50/2408
+Completed 302 Found in 2ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/api/1314a3dfb72826290bbc99c71b510d2b/12/12/account/checkout/validate/50/2408" for 127.0.0.1 at 2015-07-16 16:49:12 +0000
+Processing by AccountsController#api_checkout_account as HTML
+  Parameters: {"agent"=>"12", "sub_agent"=>"12", "account"=>"validate", "password"=>"[FILTERED]", "transaction_amount"=>"2408"}
+Redirected to http://0.0.0.0:3000/api/1314a3dfb72826290bbc99c71b510d2b/12/12/account/checkout/validate/50/2408
+Completed 302 Found in 1ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/api/1314a3dfb72826290bbc99c71b510d2b/12/12/account/checkout/validate/50/2408" for 127.0.0.1 at 2015-07-16 16:49:12 +0000
+Processing by AccountsController#api_checkout_account as HTML
+  Parameters: {"agent"=>"12", "sub_agent"=>"12", "account"=>"validate", "password"=>"[FILTERED]", "transaction_amount"=>"2408"}
+Redirected to http://0.0.0.0:3000/api/1314a3dfb72826290bbc99c71b510d2b/12/12/account/checkout/validate/50/2408
+Completed 302 Found in 1ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/api/1314a3dfb72826290bbc99c71b510d2b/12/12/account/checkout/validate/50/2408" for 127.0.0.1 at 2015-07-16 16:49:12 +0000
+Processing by AccountsController#api_checkout_account as HTML
+  Parameters: {"agent"=>"12", "sub_agent"=>"12", "account"=>"validate", "password"=>"[FILTERED]", "transaction_amount"=>"2408"}
+Redirected to http://0.0.0.0:3000/api/1314a3dfb72826290bbc99c71b510d2b/12/12/account/checkout/validate/50/2408
+Completed 302 Found in 2ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/api/1314a3dfb72826290bbc99c71b510d2b/12/12/account/checkout/validate/50/2408" for 127.0.0.1 at 2015-07-16 16:49:12 +0000
+Processing by AccountsController#api_checkout_account as HTML
+  Parameters: {"agent"=>"12", "sub_agent"=>"12", "account"=>"validate", "password"=>"[FILTERED]", "transaction_amount"=>"2408"}
+Redirected to http://0.0.0.0:3000/api/1314a3dfb72826290bbc99c71b510d2b/12/12/account/checkout/validate/50/2408
+Completed 302 Found in 1ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/api/1314a3dfb72826290bbc99c71b510d2b/12/12/account/checkout/validate/50/2408" for 127.0.0.1 at 2015-07-16 16:49:12 +0000
+Processing by AccountsController#api_checkout_account as HTML
+  Parameters: {"agent"=>"12", "sub_agent"=>"12", "account"=>"validate", "password"=>"[FILTERED]", "transaction_amount"=>"2408"}
+Redirected to http://0.0.0.0:3000/api/1314a3dfb72826290bbc99c71b510d2b/12/12/account/checkout/validate/50/2408
+Completed 302 Found in 1ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/api/1314a3dfb72826290bbc99c71b510d2b/12/12/account/checkout/validate/50/2408" for 127.0.0.1 at 2015-07-16 16:49:12 +0000
+Processing by AccountsController#api_checkout_account as HTML
+  Parameters: {"agent"=>"12", "sub_agent"=>"12", "account"=>"validate", "password"=>"[FILTERED]", "transaction_amount"=>"2408"}
+Redirected to http://0.0.0.0:3000/api/1314a3dfb72826290bbc99c71b510d2b/12/12/account/checkout/validate/50/2408
+Completed 302 Found in 1ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/api/1314a3dfb72826290bbc99c71b510d2b/12/12/account/checkout/validate/50/2408" for 127.0.0.1 at 2015-07-16 16:49:12 +0000
+Processing by AccountsController#api_checkout_account as HTML
+  Parameters: {"agent"=>"12", "sub_agent"=>"12", "account"=>"validate", "password"=>"[FILTERED]", "transaction_amount"=>"2408"}
+Redirected to http://0.0.0.0:3000/api/1314a3dfb72826290bbc99c71b510d2b/12/12/account/checkout/validate/50/2408
+Completed 302 Found in 1ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/api/1314a3dfb72826290bbc99c71b510d2b/12/12/account/checkout/validate/50/2408" for 127.0.0.1 at 2015-07-16 16:49:12 +0000
+Processing by AccountsController#api_checkout_account as HTML
+  Parameters: {"agent"=>"12", "sub_agent"=>"12", "account"=>"validate", "password"=>"[FILTERED]", "transaction_amount"=>"2408"}
+Redirected to http://0.0.0.0:3000/api/1314a3dfb72826290bbc99c71b510d2b/12/12/account/checkout/validate/50/2408
+Completed 302 Found in 1ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/api/1314a3dfb72826290bbc99c71b510d2b/12/12/account/checkout/validate/50/2408" for 127.0.0.1 at 2015-07-16 16:49:12 +0000
+Processing by AccountsController#api_checkout_account as HTML
+  Parameters: {"agent"=>"12", "sub_agent"=>"12", "account"=>"validate", "password"=>"[FILTERED]", "transaction_amount"=>"2408"}
+Redirected to http://0.0.0.0:3000/api/1314a3dfb72826290bbc99c71b510d2b/12/12/account/checkout/validate/50/2408
+Completed 302 Found in 2ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/api/1314a3dfb72826290bbc99c71b510d2b/12/12/account/checkout/validate/50/2408" for 127.0.0.1 at 2015-07-16 16:49:12 +0000
+Processing by AccountsController#api_checkout_account as HTML
+  Parameters: {"agent"=>"12", "sub_agent"=>"12", "account"=>"validate", "password"=>"[FILTERED]", "transaction_amount"=>"2408"}
+Redirected to http://0.0.0.0:3000/api/1314a3dfb72826290bbc99c71b510d2b/12/12/account/checkout/validate/50/2408
+Completed 302 Found in 1ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/api/1314a3dfb72826290bbc99c71b510d2b/12/12/account/checkout/validate/50/2408" for 127.0.0.1 at 2015-07-16 16:49:12 +0000
+Processing by AccountsController#api_checkout_account as HTML
+  Parameters: {"agent"=>"12", "sub_agent"=>"12", "account"=>"validate", "password"=>"[FILTERED]", "transaction_amount"=>"2408"}
+Redirected to http://0.0.0.0:3000/api/1314a3dfb72826290bbc99c71b510d2b/12/12/account/checkout/validate/50/2408
+Completed 302 Found in 1ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/api/1314a3dfb72826290bbc99c71b510d2b/12/12/account/checkout/validate/50/2408" for 127.0.0.1 at 2015-07-16 16:49:12 +0000
+Processing by AccountsController#api_checkout_account as HTML
+  Parameters: {"agent"=>"12", "sub_agent"=>"12", "account"=>"validate", "password"=>"[FILTERED]", "transaction_amount"=>"2408"}
+Redirected to http://0.0.0.0:3000/api/1314a3dfb72826290bbc99c71b510d2b/12/12/account/checkout/validate/50/2408
+Completed 302 Found in 1ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/api/1314a3dfb72826290bbc99c71b510d2b/12/12/account/checkout/validate/50/2408" for 127.0.0.1 at 2015-07-16 16:50:12 +0000
+Processing by AccountsController#api_checkout_account as HTML
+  Parameters: {"agent"=>"12", "sub_agent"=>"12", "account"=>"validate", "password"=>"[FILTERED]", "transaction_amount"=>"2408"}
+ETHON: performed EASY effective_url=http://195.14.0.128:8080/PAYMONEY_WALLET/rest/ussd_debit_compte/validate/50/2408 response_code=400 return_code=ok total_time=0.34466600000000003
+  Rendered text template (0.1ms)
+Completed 200 OK in 348ms (Views: 1.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/api/1314a3dfb72826290bbc99c71b510d2b/12/12/account/checkout_validate/50/2408" for 127.0.0.1 at 2015-07-16 16:50:21 +0000
+Processing by AccountsController#api_validate_checkout as HTML
+  Parameters: {"agent"=>"12", "sub_agent"=>"12", "transaction_id"=>"50", "pin"=>"2408"}
+ETHON: performed EASY effective_url=http://195.14.0.128:8080/PAYMONEY_WALLET/rest/otp_active/2408/50 response_code=200 return_code=ok total_time=0.341406
+  [1m[35m (0.7ms)[0m  BEGIN
+  [1m[36mSQL (0.9ms)[0m  [1mINSERT INTO "logs" ("agent", "created_at", "otp", "pin", "remote_ip_address", "response_log", "status", "sub_agent", "transaction_type", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING "id"[0m  [["agent", "12"], ["created_at", "2015-07-16 16:50:21.778317"], ["otp", "50"], ["pin", "2408"], ["remote_ip_address", "127.0.0.1"], ["response_log", "{\"idOtp\"=>nil, \"otpDate\"=>nil, \"otpPin\"=>nil, \"otpTransactionId\"=>nil, \"otpStatus\"=>true}"], ["status", "t"], ["sub_agent", "12"], ["transaction_type", "Validation de paiement"], ["updated_at", "2015-07-16 16:50:21.778317"]]
+  [1m[35m (16.6ms)[0m  COMMIT
+  Rendered text template (0.0ms)
+Completed 200 OK in 394ms (Views: 0.8ms | ActiveRecord: 23.8ms)
+
+
+Started GET "/api/1314a3dfb72826290bbc99c71b510d2b/12/12/account/checkout_validate/50/240" for 127.0.0.1 at 2015-07-16 16:51:44 +0000
+Processing by AccountsController#api_validate_checkout as HTML
+  Parameters: {"agent"=>"12", "sub_agent"=>"12", "transaction_id"=>"50", "pin"=>"240"}
+ETHON: performed EASY effective_url=http://195.14.0.128:8080/PAYMONEY_WALLET/rest/otp_active/240/50 response_code=200 return_code=ok total_time=0.635806
+  [1m[36m (0.5ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.9ms)[0m  INSERT INTO "logs" ("agent", "created_at", "otp", "pin", "remote_ip_address", "response_log", "status", "sub_agent", "transaction_type", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING "id"  [["agent", "12"], ["created_at", "2015-07-16 16:51:45.359972"], ["otp", "50"], ["pin", "240"], ["remote_ip_address", "127.0.0.1"], ["response_log", "{\"idOtp\"=>nil, \"otpDate\"=>nil, \"otpPin\"=>nil, \"otpTransactionId\"=>nil, \"otpStatus\"=>true}"], ["status", "t"], ["sub_agent", "12"], ["transaction_type", "Validation de paiement"], ["updated_at", "2015-07-16 16:51:45.359972"]]
+  [1m[36m (14.5ms)[0m  [1mCOMMIT[0m
+  Rendered text template (0.0ms)
+Completed 200 OK in 659ms (Views: 0.7ms | ActiveRecord: 16.0ms)
+
+
+Started GET "/api/1314a3dfb72826290bbc99c71b510d2b/12/12/account/checkout_validate/56/240" for 127.0.0.1 at 2015-07-16 16:52:20 +0000
+Processing by AccountsController#api_validate_checkout as HTML
+  Parameters: {"agent"=>"12", "sub_agent"=>"12", "transaction_id"=>"56", "pin"=>"240"}
+ETHON: performed EASY effective_url=http://195.14.0.128:8080/PAYMONEY_WALLET/rest/otp_active/240/56 response_code=200 return_code=ok total_time=0.41325
+  [1m[35m (0.6ms)[0m  BEGIN
+  [1m[36mSQL (0.9ms)[0m  [1mINSERT INTO "logs" ("agent", "created_at", "error_log", "remote_ip_address", "status", "sub_agent", "transaction_type", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["agent", "12"], ["created_at", "2015-07-16 16:52:20.983138"], ["error_log", "{\"idOtp\"=>nil, \"otpDate\"=>nil, \"otpPin\"=>nil, \"otpTransactionId\"=>nil, \"otpStatus\"=>false}"], ["remote_ip_address", "127.0.0.1"], ["status", "f"], ["sub_agent", "12"], ["transaction_type", "Validation de paiement"], ["updated_at", "2015-07-16 16:52:20.983138"]]
+  [1m[35m (58.0ms)[0m  COMMIT
+  Rendered text template (0.0ms)
+Completed 200 OK in 481ms (Views: 0.7ms | ActiveRecord: 59.6ms)
+
+
+Started GET "/api/1314a3dfb72826290bbc99c71b510d2b/12/12/account/checkout_validate/50/240" for 127.0.0.1 at 2015-07-16 16:52:26 +0000
+Processing by AccountsController#api_validate_checkout as HTML
+  Parameters: {"agent"=>"12", "sub_agent"=>"12", "transaction_id"=>"50", "pin"=>"240"}
+ETHON: performed EASY effective_url=http://195.14.0.128:8080/PAYMONEY_WALLET/rest/otp_active/240/50 response_code=200 return_code=ok total_time=0.247971
+  [1m[36m (0.7ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (1.0ms)[0m  INSERT INTO "logs" ("agent", "created_at", "otp", "pin", "remote_ip_address", "response_log", "status", "sub_agent", "transaction_type", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING "id"  [["agent", "12"], ["created_at", "2015-07-16 16:52:26.486406"], ["otp", "50"], ["pin", "240"], ["remote_ip_address", "127.0.0.1"], ["response_log", "{\"idOtp\"=>nil, \"otpDate\"=>nil, \"otpPin\"=>nil, \"otpTransactionId\"=>nil, \"otpStatus\"=>true}"], ["status", "t"], ["sub_agent", "12"], ["transaction_type", "Validation de paiement"], ["updated_at", "2015-07-16 16:52:26.486406"]]
+  [1m[36m (11.2ms)[0m  [1mCOMMIT[0m
+  Rendered text template (0.0ms)
+Completed 200 OK in 269ms (Views: 0.7ms | ActiveRecord: 12.9ms)
+
+
+Started GET "/api/1314a3dfb72826290bbc99c71b510d2b/12/12/account/checkout_validate/50/2" for 127.0.0.1 at 2015-07-16 16:52:31 +0000
+Processing by AccountsController#api_validate_checkout as HTML
+  Parameters: {"agent"=>"12", "sub_agent"=>"12", "transaction_id"=>"50", "pin"=>"2"}
+ETHON: performed EASY effective_url=http://195.14.0.128:8080/PAYMONEY_WALLET/rest/otp_active/2/50 response_code=200 return_code=ok total_time=1.080717
+  [1m[35m (0.7ms)[0m  BEGIN
+  [1m[36mSQL (1.0ms)[0m  [1mINSERT INTO "logs" ("agent", "created_at", "otp", "pin", "remote_ip_address", "response_log", "status", "sub_agent", "transaction_type", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING "id"[0m  [["agent", "12"], ["created_at", "2015-07-16 16:52:33.064794"], ["otp", "50"], ["pin", "2"], ["remote_ip_address", "127.0.0.1"], ["response_log", "{\"idOtp\"=>nil, \"otpDate\"=>nil, \"otpPin\"=>nil, \"otpTransactionId\"=>nil, \"otpStatus\"=>true}"], ["status", "t"], ["sub_agent", "12"], ["transaction_type", "Validation de paiement"], ["updated_at", "2015-07-16 16:52:33.064794"]]
+  [1m[35m (11.0ms)[0m  COMMIT
+  Rendered text template (0.0ms)
+Completed 200 OK in 1100ms (Views: 0.6ms | ActiveRecord: 12.7ms)

@@ -34,6 +34,8 @@ class AccountsController < ApplicationController
   def api_credit_account
     account = params[:account]
     transaction_amount = params[:transaction_amount]
+    agent = params[:agent]
+    sub_agent = params[:sub_agent]
     remote_ip_address = request.remote_ip
     status = "error"
 
@@ -46,12 +48,12 @@ class AccountsController < ApplicationController
           unless response.blank?
             if response["idStatus"].to_s == "1"
               status = "1"
-              Log.create(transaction_type: "Crédit de compte", account_number: account, credit_amount: transaction_amount, response_log: response.to_s, status: true, remote_ip_address: remote_ip_address)
+              Log.create(transaction_type: "Crédit de compte", account_number: account, credit_amount: transaction_amount, response_log: response.to_s, status: true, remote_ip_address: remote_ip_address, agent: agent, sub_agent: sub_agent)
             else
-              Log.create(transaction_type: "Crédit de compte", account_number: account, credit_amount: transaction_amount, error_log: response.to_s, status: false, remote_ip_address: remote_ip_address)
+              Log.create(transaction_type: "Crédit de compte", account_number: account, credit_amount: transaction_amount, error_log: response.to_s, status: false, remote_ip_address: remote_ip_address, agent: agent, sub_agent: sub_agent)
             end
           else
-            Log.create(transaction_type: "Crédit de compte", account_number: account, credit_amount: transaction_amount, error_log: request.response.body, status: false, remote_ip_address: remote_ip_address)
+            Log.create(transaction_type: "Crédit de compte", account_number: account, credit_amount: transaction_amount, error_log: request.response.body, status: false, remote_ip_address: remote_ip_address, agent: agent, sub_agent: sub_agent)
           end
         end
       end
@@ -65,6 +67,8 @@ class AccountsController < ApplicationController
   def api_sold
     account = params[:account]
     password = params[:password]
+    agent = params[:agent]
+    sub_agent = params[:sub_agent]
     remote_ip_address = request.remote_ip
     status = "error"
 
@@ -77,12 +81,12 @@ class AccountsController < ApplicationController
           unless response.blank?
             if response["compte"] != blank?
               status = response["solde"].to_i.to_s
-              Log.create(transaction_type: "Solde du compte", account_number: account, response_log: response.to_s, status: true, remote_ip_address: remote_ip_address)
+              Log.create(transaction_type: "Solde du compte", account_number: account, response_log: response.to_s, status: true, remote_ip_address: remote_ip_address, agent: agent, sub_agent: sub_agent)
             else
-              Log.create(transaction_type: "Solde du compte", account_number: account, error_log: response.to_s, status: false, remote_ip_address: remote_ip_address)
+              Log.create(transaction_type: "Solde du compte", account_number: account, error_log: response.to_s, status: false, remote_ip_address: remote_ip_address, agent: agent, sub_agent: sub_agent)
             end
           else
-            Log.create(transaction_type: "Solde du compte", account_number: account, error_log: request.response.body, status: false, remote_ip_address: remote_ip_address)
+            Log.create(transaction_type: "Solde du compte", account_number: account, error_log: request.response.body, status: false, remote_ip_address: remote_ip_address, agent: agent, sub_agent: sub_agent)
           end
         end
       end
@@ -96,6 +100,8 @@ class AccountsController < ApplicationController
   def api_checkout_account
     account = params[:account]
     password = params[:password]
+    agent = params[:agent]
+    sub_agent = params[:sub_agent]
     transaction_amount = params[:transaction_amount]
     remote_ip_address = request.remote_ip
     status = "error"
@@ -107,15 +113,15 @@ class AccountsController < ApplicationController
         if response.success?
           response = (JSON.parse(request.response.body) rescue nil)
           unless response.blank?
-            if response["idStatus"].to_s == "0"
+            if response["idStatus"].to_s == "0" && !response["statusName"].to_s.blank?
               status = "1"
-              Log.create(transaction_type: "Débit du compte", account_number: account, checkout_amount: transaction_amount, response_log: response.to_s, status: true, remote_ip_address: remote_ip_address)
-              # add otp
+              Log.create(transaction_type: "Débit du compte", account_number: account, checkout_amount: transaction_amount, response_log: response.to_s, status: true, remote_ip_address: remote_ip_address, otp: response["statusName"].to_s, agent: agent, sub_agent: sub_agent)
+              status = response["statusName"].to_s
             else
-              Log.create(transaction_type: "Débit du compte", account_number: account, checkout_amount: transaction_amount, error_log: response.to_s, status: false, remote_ip_address: remote_ip_address)
+              Log.create(transaction_type: "Débit du compte", account_number: account, checkout_amount: transaction_amount, error_log: response.to_s, status: false, remote_ip_address: remote_ip_address, agent: agent, sub_agent: sub_agent)
             end
           else
-            Log.create(transaction_type: "Débit du compte", account_number: account, checkout_amount: transaction_amount, error_log: request.response.body, status: false, remote_ip_address: remote_ip_address)
+            Log.create(transaction_type: "Débit du compte", account_number: account, checkout_amount: transaction_amount, error_log: request.response.body, status: false, remote_ip_address: remote_ip_address, agent: agent, sub_agent: sub_agent)
           end
         end
       end
@@ -129,6 +135,8 @@ class AccountsController < ApplicationController
   def api_validate_checkout
     pin = params[:pin]
     transaction_id = params[:transaction_id]
+    agent = params[:agent]
+    sub_agent = params[:sub_agent]
     remote_ip_address = request.remote_ip
     status = "error"
 
@@ -141,12 +149,12 @@ class AccountsController < ApplicationController
           unless response.blank?
             if response["otpStatus"].to_s == "true"
               status = "1"
-              Log.create(transaction_type: "Validation de paiement", otp: transaction_id, pin: pin, response_log: response.to_s, status: true, remote_ip_address: remote_ip_address)
+              Log.create(transaction_type: "Validation de paiement", otp: transaction_id, pin: pin, response_log: response.to_s, status: true, remote_ip_address: remote_ip_address, agent: agent, sub_agent: sub_agent)
             else
-              Log.create(transaction_type: "Validation de paiement", error_log: response.to_s, status: false, remote_ip_address: remote_ip_address)
+              Log.create(transaction_type: "Validation de paiement", error_log: response.to_s, status: false, remote_ip_address: remote_ip_address, agent: agent, sub_agent: sub_agent)
             end
           else
-            Log.create(transaction_type: "Validation de paiement", error_log: request.response.body, status: false, remote_ip_address: remote_ip_address)
+            Log.create(transaction_type: "Validation de paiement", error_log: request.response.body, status: false, remote_ip_address: remote_ip_address, agent: agent, sub_agent: sub_agent)
           end
         end
       end
