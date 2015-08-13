@@ -1,0 +1,2 @@
+module CertifiedAgentsHelper
+end

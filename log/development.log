@@ -1116,3 +1116,119 @@ ETHON: performed EASY effective_url=http://195.14.0.128:8080/PAYMONEY_WALLET/res
   [1m[35m (11.0ms)[0m  COMMIT
   Rendered text template (0.0ms)
 Completed 200 OK in 1100ms (Views: 0.6ms | ActiveRecord: 12.7ms)
+  [1m[36mActiveRecord::SchemaMigration Load (33.3ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to CreateCertifiedAgents (20150808013022)
+  [1m[35m (0.7ms)[0m  BEGIN
+  [1m[36m (358.6ms)[0m  [1mCREATE TABLE "certified_agents" ("id" serial primary key, "certified_agent_id" character varying(255), "published" boolean, "created_at" timestamp, "updated_at" timestamp) [0m
+  [1m[35mSQL (0.7ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20150808013022"]]
+  [1m[36m (19.6ms)[0m  [1mCOMMIT[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.7ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+
+
+Started GET "/api/86d138798bc43ed59e5207c68e864564/a8aaeb7e98a64b58" for 127.0.0.1 at 2015-08-08 08:19:10 +0000
+  [1m[36mActiveRecord::SchemaMigration Load (36.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by CertifiedAgentsController#create as */*
+  Parameters: {"certified_agent_id"=>"a8aaeb7e98a64b58"}
+  [1m[35m (0.7ms)[0m  BEGIN
+  [1m[36mSQL (23.3ms)[0m  [1mINSERT INTO "certified_agents" ("certified_agent_id", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["certified_agent_id", "a8aaeb7e98a64b58"], ["created_at", "2015-08-08 08:19:11.218759"], ["updated_at", "2015-08-08 08:19:11.218759"]]
+  [1m[35m (21.5ms)[0m  COMMIT
+  Rendered text template (0.0ms)
+Completed 200 OK in 257ms (Views: 30.6ms | ActiveRecord: 100.3ms)
+
+
+Started GET "/api/86d138798bc43ed59e5207c68e864564/d2100059bba9af23" for 127.0.0.1 at 2015-08-08 08:24:24 +0000
+Processing by CertifiedAgentsController#create as */*
+  Parameters: {"certified_agent_id"=>"d2100059bba9af23"}
+  [1m[36m (0.5ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.9ms)[0m  INSERT INTO "certified_agents" ("certified_agent_id", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"  [["certified_agent_id", "d2100059bba9af23"], ["created_at", "2015-08-08 08:24:24.174223"], ["updated_at", "2015-08-08 08:24:24.174223"]]
+  [1m[36m (8.6ms)[0m  [1mCOMMIT[0m
+  Rendered text template (0.0ms)
+Completed 200 OK in 15ms (Views: 0.6ms | ActiveRecord: 9.9ms)
+  [1m[36mActiveRecord::SchemaMigration Load (33.3ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to CreateFeeTypes (20150809092612)
+  [1m[35m (0.6ms)[0m  BEGIN
+  [1m[36m (376.0ms)[0m  [1mCREATE TABLE "fee_types" ("id" serial primary key, "name" character varying(255), "token" character varying(255), "created_at" timestamp, "updated_at" timestamp) [0m
+  [1m[35mSQL (0.8ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20150809092612"]]
+  [1m[36m (11.8ms)[0m  [1mCOMMIT[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.7ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36mActiveRecord::SchemaMigration Load (0.9ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to CreateFees (20150809103245)
+  [1m[35m (0.5ms)[0m  BEGIN
+  [1m[36m (0.5ms)[0m  [1mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.8ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to CreateFees (20150809103347)
+  [1m[35m (0.5ms)[0m  BEGIN
+  [1m[36m (56.0ms)[0m  [1mCREATE TABLE "fees" ("id" serial primary key, "fee_type_id" integer, "min_value" float, "max_value" float, "fee_value" float, "created_at" timestamp, "updated_at" timestamp) [0m
+  [1m[35mSQL (0.8ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20150809103347"]]
+  [1m[36m (10.7ms)[0m  [1mCOMMIT[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.7ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36mFeeType Load (1.6ms)[0m  [1mSELECT  "fee_types".* FROM "fee_types"   ORDER BY "fee_types"."id" ASC LIMIT 1[0m
+  [1m[35mFeeType Load (1.2ms)[0m  SELECT  "fee_types".* FROM "fee_types"   ORDER BY "fee_types"."id" ASC LIMIT 1
+  [1m[36mFeeType Load (1.2ms)[0m  [1mSELECT  "fee_types".* FROM "fee_types"   ORDER BY "fee_types"."id" ASC LIMIT 1[0m
+
+
+Started GET "/api/1314a3dfb72826290bbc99c71b510d2b/fee/d2dff0/50000" for 127.0.0.1 at 2015-08-09 11:26:38 +0000
+  [1m[36mActiveRecord::SchemaMigration Load (1.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by FeesController#cashout as HTML
+  Parameters: {"fee_type_token"=>"d2dff0", "transaction_amount"=>"50000"}
+  [1m[35mFeeType Load (12.4ms)[0m  SELECT  "fee_types".* FROM "fee_types"  WHERE "fee_types"."token" = 'd2dff0' LIMIT 1
+  Rendered text template (0.1ms)
+Completed 200 OK in 123ms (Views: 32.5ms | ActiveRecord: 19.9ms)
+
+
+Started GET "/api/1314a3dfb72826290bbc99c71b510d2b/fee/d2dff0/50000" for 127.0.0.1 at 2015-08-09 11:27:40 +0000
+Processing by FeesController#cashout as HTML
+  Parameters: {"fee_type_token"=>"d2dff0", "transaction_amount"=>"50000"}
+  [1m[36mFeeType Load (0.8ms)[0m  [1mSELECT  "fee_types".* FROM "fee_types"  WHERE "fee_types"."token" = 'd2dff0' LIMIT 1[0m
+  [1m[35mFee Load (1.5ms)[0m  SELECT "fees".* FROM "fees"  WHERE "fees"."fee_type_id" = $1 AND (min_value <= 50000.0 AND max_value >= 50000.0)  [["fee_type_id", 1]]
+Completed 500 Internal Server Error in 82ms
+
+NoMethodError (undefined method `fee_value' for #<Fee::ActiveRecord_AssociationRelation:0x007f948897ed88>):
+  app/controllers/fees_controller.rb:10:in `cashout'
+
+
+  Rendered /home/dietrich/.rvm/gems/ruby-2.0.0-p195@rails4.0.7/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/_source.erb (1.1ms)
+  Rendered /home/dietrich/.rvm/gems/ruby-2.0.0-p195@rails4.0.7/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (3.1ms)
+  Rendered /home/dietrich/.rvm/gems/ruby-2.0.0-p195@rails4.0.7/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.3ms)
+  Rendered /home/dietrich/.rvm/gems/ruby-2.0.0-p195@rails4.0.7/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (91.2ms)
+
+
+Started GET "/api/1314a3dfb72826290bbc99c71b510d2b/fee/d2dff0/50000" for 127.0.0.1 at 2015-08-09 11:27:57 +0000
+Processing by FeesController#cashout as HTML
+  Parameters: {"fee_type_token"=>"d2dff0", "transaction_amount"=>"50000"}
+  [1m[36mFeeType Load (0.7ms)[0m  [1mSELECT  "fee_types".* FROM "fee_types"  WHERE "fee_types"."token" = 'd2dff0' LIMIT 1[0m
+  [1m[35mFee Load (0.9ms)[0m  SELECT  "fees".* FROM "fees"  WHERE "fees"."fee_type_id" = $1 AND (min_value <= 50000.0 AND max_value >= 50000.0)  ORDER BY "fees"."id" ASC LIMIT 1  [["fee_type_id", 1]]
+  Rendered text template (0.0ms)
+Completed 200 OK in 43ms (Views: 0.9ms | ActiveRecord: 11.9ms)
+
+
+Started GET "/api/1314a3dfb72826290bbc99c71b510d2b/fee/d2dff0/150000" for 127.0.0.1 at 2015-08-09 11:28:09 +0000
+Processing by FeesController#cashout as HTML
+  Parameters: {"fee_type_token"=>"d2dff0", "transaction_amount"=>"150000"}
+  [1m[36mFeeType Load (0.8ms)[0m  [1mSELECT  "fee_types".* FROM "fee_types"  WHERE "fee_types"."token" = 'd2dff0' LIMIT 1[0m
+  [1m[35mFee Load (0.7ms)[0m  SELECT  "fees".* FROM "fees"  WHERE "fees"."fee_type_id" = $1 AND (min_value <= 150000.0 AND max_value >= 150000.0)  ORDER BY "fees"."id" ASC LIMIT 1  [["fee_type_id", 1]]
+  Rendered text template (0.0ms)
+Completed 200 OK in 9ms (Views: 0.7ms | ActiveRecord: 1.6ms)
+
+
+Started GET "/api/1314a3dfb72826290bbc99c71b510d2b/fee/d2ff0/150000" for 127.0.0.1 at 2015-08-09 11:28:23 +0000
+Processing by FeesController#cashout as HTML
+  Parameters: {"fee_type_token"=>"d2ff0", "transaction_amount"=>"150000"}
+  [1m[36mFeeType Load (0.6ms)[0m  [1mSELECT  "fee_types".* FROM "fee_types"  WHERE "fee_types"."token" = 'd2ff0' LIMIT 1[0m
+  Rendered text template (0.0ms)
+Completed 200 OK in 3ms (Views: 0.7ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/api/1314a3dfb72826290bbc99c71b510d2b/fee/d2ff0/-150000" for 127.0.0.1 at 2015-08-09 11:32:44 +0000
+Processing by ErrorsController#routing as HTML
+  Parameters: {"rogue_url"=>"api/1314a3dfb72826290bbc99c71b510d2b/fee/d2ff0/-150000"}
+  Rendered public/404.html (0.7ms)
+Completed 404 Not Found in 18ms (Views: 16.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/api/1314a3dfb72826290bbc99c71b510d2b/fee/d2ff0/0" for 127.0.0.1 at 2015-08-09 11:33:31 +0000
+Processing by FeesController#cashout as HTML
+  Parameters: {"fee_type_token"=>"d2ff0", "transaction_amount"=>"0"}
+  [1m[35mFeeType Load (0.5ms)[0m  SELECT  "fee_types".* FROM "fee_types"  WHERE "fee_types"."token" = 'd2ff0' LIMIT 1
+  Rendered text template (0.0ms)
+Completed 200 OK in 15ms (Views: 1.0ms | ActiveRecord: 3.9ms)
