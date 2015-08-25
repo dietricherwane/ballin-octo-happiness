@@ -1,5 +1,7 @@
 class AccountsController < ApplicationController
 
+  @paymoney_wallet_url = (Parameter.first.paymoney_wallet_url rescue "")
+
   def api_create
     msisdn = params[:msisdn]
     remote_ip_address = request.remote_ip
@@ -37,31 +39,64 @@ class AccountsController < ApplicationController
     agent = params[:agent]
     sub_agent = params[:sub_agent]
     remote_ip_address = request.remote_ip
-    status = "error"
+    status = "500"
 
-    if !account.blank? && is_a_number?(transaction_amount)
-      request = Typhoeus::Request.new("http://195.14.0.128:8080/PAYMONEY_WALLET/rest/ussd_credit_compte/#{account}/#{transaction_amount}", followlocation: true, method: :get)
+    account_token = check_account_number(account)
 
-      request.on_complete do |response|
-        if response.success?
-          response = (JSON.parse(request.response.body) rescue nil)
-          unless response.blank?
-            if response["idStatus"].to_s == "1"
-              status = "1"
-              Log.create(transaction_type: "Crédit de compte", account_number: account, credit_amount: transaction_amount, response_log: response.to_s, status: true, remote_ip_address: remote_ip_address, agent: agent, sub_agent: sub_agent)
-            else
-              Log.create(transaction_type: "Crédit de compte", account_number: account, credit_amount: transaction_amount, error_log: response.to_s, status: false, remote_ip_address: remote_ip_address, agent: agent, sub_agent: sub_agent)
+    if account_token.blank?
+      status = "4041"
+    else
+      merchant_pos = CertifiedAgent.find_by_certified_agent_id(params[:agent])
+      if merchant_pos.blank?
+        status = "4042"
+      else
+        if !account.blank? && is_a_number?(transaction_amount)
+          transaction_id = DateTime.now.to_i.to_s
+          request = Typhoeus::Request.new("http://94.247.178.141:8080/PAYMONEY_WALLET/rest/cash_in_operation_pos/TYHHKIRE/#{account_token}/#{merchant_pos.token}/#{transaction_amount}/0/100/#{transaction_id}/null", followlocation: true, method: :get)
+
+          request.on_complete do |response|
+            if response.success?
+              response = (JSON.parse(request.response.body) rescue nil)
+              unless response.blank?
+                if response["idStatus"].to_s == "1"
+                  status = "1"
+                  Log.create(transaction_type: "Crédit de compte", account_number: account, credit_amount: transaction_amount, response_log: response.to_s, status: true, remote_ip_address: remote_ip_address, agent: agent, sub_agent: sub_agent, transaction_id: transaction_id)
+                else
+                  Log.create(transaction_type: "Crédit de compte", account_number: account, credit_amount: transaction_amount, error_log: response.to_s, status: false, remote_ip_address: remote_ip_address, agent: agent, sub_agent: sub_agent, transaction_id: transaction_id)
+                end
+              else
+                Log.create(transaction_type: "Crédit de compte", account_number: account, credit_amount: transaction_amount, error_log: request.response.body, status: false, remote_ip_address: remote_ip_address, agent: agent, sub_agent: sub_agent, transaction_id: transaction_id)
+              end
             end
-          else
-            Log.create(transaction_type: "Crédit de compte", account_number: account, credit_amount: transaction_amount, error_log: request.response.body, status: false, remote_ip_address: remote_ip_address, agent: agent, sub_agent: sub_agent)
           end
-        end
-      end
 
-      request.run
+          request.run
+        end
+
+
+      end
     end
 
     render text: status
+  end
+
+  def check_account_number(account_number)
+    request = Typhoeus::Request.new("http://94.247.178.141:8080/PAYMONEY_WALLET/rest/check2_compte/#{account_number}", followlocation: true, method: :get)
+    token = ""
+
+    request.on_complete do |response|
+      if response.success?
+        token = response.body #rescue ""
+      end
+    end
+
+    request.run
+
+    return token
+  end
+
+  def check_account_number_and_password
+
   end
 
   def api_sold
