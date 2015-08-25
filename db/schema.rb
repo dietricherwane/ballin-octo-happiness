@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150809103347) do
+ActiveRecord::Schema.define(version: 20150824165158) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -31,6 +31,9 @@ ActiveRecord::Schema.define(version: 20150809103347) do
     t.boolean  "published"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "account_number"
+    t.string   "token"
+    t.string   "sub_certified_agent_id"
   end
 
   create_table "fee_types", force: true do |t|
@@ -65,6 +68,13 @@ ActiveRecord::Schema.define(version: 20150809103347) do
     t.string   "remote_ip_address"
     t.string   "agent"
     t.string   "sub_agent"
+    t.string   "transaction_id"
+  end
+
+  create_table "parameters", force: true do |t|
+    t.string   "paymoney_wallet_url"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
 end
