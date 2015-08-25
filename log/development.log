@@ -1232,3 +1232,38 @@ Processing by FeesController#cashout as HTML
   [1m[35mFeeType Load (0.5ms)[0m  SELECT  "fee_types".* FROM "fee_types"  WHERE "fee_types"."token" = 'd2ff0' LIMIT 1
   Rendered text template (0.0ms)
 Completed 200 OK in 15ms (Views: 1.0ms | ActiveRecord: 3.9ms)
+
+
+Started GET "/" for 41.207.25.96 at 2015-08-17 20:12:20 +0200
+  [1m[36mActiveRecord::SchemaMigration Load (0.6ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by ErrorsController#routing as HTML
+  Rendered public/404.html (1.4ms)
+Completed 404 Not Found in 22ms (Views: 12.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 41.207.25.96 at 2015-08-17 20:17:19 +0200
+  [1m[36mActiveRecord::SchemaMigration Load (1.0ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by ErrorsController#routing as HTML
+  Rendered public/404.html (2.1ms)
+Completed 404 Not Found in 38ms (Views: 19.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 41.207.25.96 at 2015-08-17 20:17:22 +0200
+Processing by ErrorsController#routing as HTML
+  Rendered public/404.html (0.1ms)
+Completed 404 Not Found in 3ms (Views: 2.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/api/1314a3dfb72826290bbc99c71b510d2b/fee/d2dff0/3000" for 41.207.25.96 at 2015-08-17 20:19:33 +0200
+Processing by FeesController#cashout as HTML
+  Parameters: {"fee_type_token"=>"d2dff0", "transaction_amount"=>"3000"}
+  [1m[35mFeeType Load (1.4ms)[0m  SELECT  "fee_types".* FROM "fee_types"  WHERE "fee_types"."token" = 'd2dff0' LIMIT 1
+  [1m[36mFee Load (0.9ms)[0m  [1mSELECT  "fees".* FROM "fees"  WHERE "fees"."fee_type_id" = $1 AND (min_value <= 3000.0 AND max_value >= 3000.0)  ORDER BY "fees"."id" ASC LIMIT 1[0m  [["fee_type_id", 1]]
+  Rendered text template (0.1ms)
+Completed 200 OK in 108ms (Views: 2.7ms | ActiveRecord: 9.8ms)
+
+
+Started GET "/" for 85.25.217.228 at 2015-08-25 04:51:13 +0200
+Processing by ErrorsController#routing as HTML
+  Rendered public/404.html (0.2ms)
+Completed 404 Not Found in 67ms (Views: 59.7ms | ActiveRecord: 0.0ms)
