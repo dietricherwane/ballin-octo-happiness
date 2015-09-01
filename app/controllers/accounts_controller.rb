@@ -39,58 +39,50 @@ class AccountsController < ApplicationController
     agent = params[:agent]
     sub_agent = params[:sub_agent]
     remote_ip_address = request.remote_ip
+    response_log = "none"
+    error_log = "none"
     status = "500"
+    transaction_status = false
 
     account_token = check_account_number(account)
 
     if account_token.blank?
       status = "4041"
     else
-      merchant_pos = CertifiedAgent.find_by_certified_agent_id(params[:agent])
+      merchant_pos = CertifiedAgent.where("certified_agent_id = '#{params[:agent]}' AND sub_certified_agent_id IS NULL").first rescue nil
       if merchant_pos.blank?
         status = "4042"
       else
         if !account.blank? && is_a_number?(transaction_amount)
           transaction_id = DateTime.now.to_i.to_s
-          request = Typhoeus::Request.new("http://94.247.178.141:8080/PAYMONEY_WALLET/rest/cash_in_operation_pos/TYHHKIRE/#{account_token}/#{merchant_pos.token}/#{transaction_amount}/0/100/#{transaction_id}/null", followlocation: true, method: :get)
+          response = (RestClient.get "#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/cash_in_operation_pos/TYHHKIRE/#{account_token}/#{merchant_pos.token}/#{transaction_amount}/0/100/#{transaction_id}/null" rescue "")
 
-          request.on_complete do |response|
-            if response.success?
-              response = (JSON.parse(request.response.body) rescue nil)
-              unless response.blank?
-                if response["idStatus"].to_s == "1"
-                  status = "1"
-                  Log.create(transaction_type: "Crédit de compte", account_number: account, credit_amount: transaction_amount, response_log: response.to_s, status: true, remote_ip_address: remote_ip_address, agent: agent, sub_agent: sub_agent, transaction_id: transaction_id)
-                else
-                  Log.create(transaction_type: "Crédit de compte", account_number: account, credit_amount: transaction_amount, error_log: response.to_s, status: false, remote_ip_address: remote_ip_address, agent: agent, sub_agent: sub_agent, transaction_id: transaction_id)
-                end
-              else
-                Log.create(transaction_type: "Crédit de compte", account_number: account, credit_amount: transaction_amount, error_log: request.response.body, status: false, remote_ip_address: remote_ip_address, agent: agent, sub_agent: sub_agent, transaction_id: transaction_id)
-              end
+          unless response.blank?
+            if response.to_s == "good"
+              status = "1"
+              response_log = response.to_s
+              transaction_status = true
+              Log.create(transaction_type: "Crédit de compte", account_number: account, credit_amount: transaction_amount, response_log: response.to_s, status: true, remote_ip_address: remote_ip_address, agent: agent, sub_agent: sub_agent, transaction_id: transaction_id, thumb: 100)
+            else
+              error_log = response.to_s
+              Log.create(transaction_type: "Crédit de compte", account_number: account, credit_amount: transaction_amount, error_log: response.to_s, status: false, remote_ip_address: remote_ip_address, agent: agent, sub_agent: sub_agent, transaction_id: transaction_id, thumb: 100)
             end
+          else
+            error_log = request.response.body
+            Log.create(transaction_type: "Crédit de compte", account_number: account, credit_amount: transaction_amount, error_log: request.response.body, status: false, remote_ip_address: remote_ip_address, agent: agent, sub_agent: sub_agent, transaction_id: transaction_id, thumb: 100)
           end
 
-          request.run
         end
-
-
       end
     end
+
+    Typhoeus.get("#{Parameter.first.hub_front_office_url}/api/367419f5968800cd/paymoney_wallet/store_log", params: { transaction_type: "Crédit de compte", account_number: account, credit_amount: transaction_amount, response_log: response_log, error_log: error_log, status: transaction_status, remote_ip_address: remote_ip_address, agent: agent, sub_agent: sub_agent, transaction_id: transaction_id, thumb: 100 })
 
     render text: status
   end
 
   def check_account_number(account_number)
-    request = Typhoeus::Request.new("http://94.247.178.141:8080/PAYMONEY_WALLET/rest/check2_compte/#{account_number}", followlocation: true, method: :get)
-    token = ""
-
-    request.on_complete do |response|
-      if response.success?
-        token = response.body #rescue ""
-      end
-    end
-
-    request.run
+    token = (RestClient.get "#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/check2_compte/#{account_number}" rescue "")
 
     return token
   end
@@ -106,65 +98,117 @@ class AccountsController < ApplicationController
     sub_agent = params[:sub_agent]
     remote_ip_address = request.remote_ip
     status = "error"
+    response_log = "none"
+    error_log = "none"
+    transaction_status = false
 
-    if !account.blank? && !password.blank?
-      request = Typhoeus::Request.new("http://195.14.0.128:8080/PAYMONEY_WALLET/rest/solte_compte/#{account}/#{password}", followlocation: true, method: :get)
+    merchant_pos = CertifiedAgent.where("certified_agent_id = '#{params[:agent]}' AND sub_certified_agent_id IS NULL").first rescue nil
+    if merchant_pos.blank?
+      status = "error"
+    else
+      if !account.blank? && !password.blank?
+        transaction_id = DateTime.now.to_i.to_s
+        request = Typhoeus::Request.new("#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/solte_compte/#{account}/#{password}", followlocation: true, method: :get)
 
-      request.on_complete do |response|
-        if response.success?
-          response = (JSON.parse(request.response.body) rescue nil)
-          unless response.blank?
-            if response["compte"] != blank?
-              status = response["solde"].to_i.to_s
-              Log.create(transaction_type: "Solde du compte", account_number: account, response_log: response.to_s, status: true, remote_ip_address: remote_ip_address, agent: agent, sub_agent: sub_agent)
+        request.on_complete do |response|
+          if response.success?
+            response = (JSON.parse(request.response.body) rescue nil)
+            unless response.blank?
+              if response["compte"] != blank?
+                status = response["solde"].to_i.to_s
+                response_log = response.to_s
+                transaction_status = true
+                Log.create(transaction_type: "Solde du compte", account_number: account, response_log: response.to_s, status: true, remote_ip_address: remote_ip_address, agent: agent, sub_agent: sub_agent, transaction_id: transaction_id)
+              else
+                error_log = response.to_s
+                Log.create(transaction_type: "Solde du compte", account_number: account, error_log: response.to_s, status: false, remote_ip_address: remote_ip_address, agent: agent, sub_agent: sub_agent, transaction_id: transaction_id)
+              end
             else
-              Log.create(transaction_type: "Solde du compte", account_number: account, error_log: response.to_s, status: false, remote_ip_address: remote_ip_address, agent: agent, sub_agent: sub_agent)
+              error_log = request.response.body
+              Log.create(transaction_type: "Solde du compte", account_number: account, error_log: request.response.body, status: false, remote_ip_address: remote_ip_address, agent: agent, sub_agent: sub_agent, transaction_id: transaction_id)
             end
-          else
-            Log.create(transaction_type: "Solde du compte", account_number: account, error_log: request.response.body, status: false, remote_ip_address: remote_ip_address, agent: agent, sub_agent: sub_agent)
           end
         end
-      end
 
-      request.run
+        request.run
+      end
     end
+
+    Typhoeus.get("#{Parameter.first.hub_front_office_url}/api/367419f5968800cd/paymoney_wallet/store_log", params: { transaction_type: "Solde du compte", account_number: account, response_log: response_log, error_log: error_log, status: transaction_status, remote_ip_address: remote_ip_address, agent: agent, sub_agent: sub_agent, transaction_id: transaction_id })
 
     render text: status
   end
 
   def api_checkout_account
     account = params[:account]
-    password = params[:password]
     agent = params[:agent]
     sub_agent = params[:sub_agent]
     transaction_amount = params[:transaction_amount]
+    fee = params[:fee]
     remote_ip_address = request.remote_ip
-    status = "error"
+    status = "500"
+    response_log = "none"
+    error_log = "none"
+    transaction_status = false
+    otp = ""
 
-    if !account.blank? && !password.blank? && is_a_number?(transaction_amount)
-      request = Typhoeus::Request.new("http://195.14.0.128:8080/PAYMONEY_WALLET/rest/ussd_debit_compte/#{account}/#{password}/#{transaction_amount}", followlocation: true, method: :get)
+    account_token = check_account_number(account)
+    fee = cashout_fee(transaction_amount)
 
-      request.on_complete do |response|
-        if response.success?
-          response = (JSON.parse(request.response.body) rescue nil)
-          unless response.blank?
-            if response["idStatus"].to_s == "0" && !response["statusName"].to_s.blank?
-              status = "1"
-              Log.create(transaction_type: "Débit du compte", account_number: account, checkout_amount: transaction_amount, response_log: response.to_s, status: true, remote_ip_address: remote_ip_address, otp: response["statusName"].to_s, agent: agent, sub_agent: sub_agent)
-              status = response["statusName"].to_s
-            else
-              Log.create(transaction_type: "Débit du compte", account_number: account, checkout_amount: transaction_amount, error_log: response.to_s, status: false, remote_ip_address: remote_ip_address, agent: agent, sub_agent: sub_agent)
+    if account_token.blank?
+      status = '4041'
+    else
+      merchant_pos = CertifiedAgent.where("certified_agent_id = '#{params[:agent]}' AND sub_certified_agent_id IS NULL").first rescue nil
+      if merchant_pos.blank?
+        status = "4042"
+      else
+        if is_a_number?(transaction_amount) && is_a_number?(fee)
+          transaction_id = DateTime.now.to_i.to_s
+          request = Typhoeus::Request.new("#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/cash_out_operation_pos/12345628/#{merchant_pos.token}/#{account_token}/#{transaction_amount}/#{fee}/100/#{transaction_id}/null", followlocation: true, method: :get)
+
+          request.on_complete do |response|
+            if response.success?
+              response = (request.response.body rescue nil)
+              unless response.blank?
+                if !response.blank?
+                  status = "1"
+                  response_log = response
+                  transaction_status = true
+                  otp = response
+                  Log.create(transaction_type: "Débit du compte", account_number: account, checkout_amount: transaction_amount, response_log: response.to_s, status: true, remote_ip_address: remote_ip_address, otp: response, agent: agent, sub_agent: sub_agent, transaction_id: transaction_id, thumb: 100, fee: fee)
+                  status = response
+                else
+                  error_log = response
+                  Log.create(transaction_type: "Débit du compte", account_number: account, checkout_amount: transaction_amount, error_log: response.to_s, status: false, remote_ip_address: remote_ip_address, agent: agent, sub_agent: sub_agent, transaction_id: transaction_id, thumb: 100, fee: fee)
+                end
+              else
+                error_log = response
+                Log.create(transaction_type: "Débit du compte", account_number: account, checkout_amount: transaction_amount, error_log: request.response.body, status: false, remote_ip_address: remote_ip_address, agent: agent, sub_agent: sub_agent, transaction_id: transaction_id, thumb: 100, fee: fee)
+              end
             end
-          else
-            Log.create(transaction_type: "Débit du compte", account_number: account, checkout_amount: transaction_amount, error_log: request.response.body, status: false, remote_ip_address: remote_ip_address, agent: agent, sub_agent: sub_agent)
           end
+
+          request.run
         end
       end
-
-      request.run
     end
 
+    Typhoeus.get("#{Parameter.first.hub_front_office_url}/api/367419f5968800cd/paymoney_wallet/store_log", params: { transaction_type: "Débit du compte", account_number: account, checkout_amount: transaction_amount, response_log: response_log, error_log: error_log, status: transaction_status, remote_ip_address: remote_ip_address, agent: agent, sub_agent: sub_agent, transaction_id: transaction_id, thumb: 100, fee: fee, otp: otp })
+
     render text: status
+  end
+
+  def cashout_fee(ta)
+    fee = "error"
+    fee_type = FeeType.find_by_name("Cash out")
+
+    if fee_type.blank?
+      fee = "token invalide"
+    else
+      fee = fee_type.fees.where("min_value <= #{ta.to_f} AND max_value >= #{ta.to_f}").first.fee_value.to_s
+    end
+
+    return fee
   end
 
   def api_validate_checkout
@@ -173,28 +217,41 @@ class AccountsController < ApplicationController
     agent = params[:agent]
     sub_agent = params[:sub_agent]
     remote_ip_address = request.remote_ip
-    status = "error"
+    status = "500"
+    transaction = Log.find_by_otp(transaction_id)
+    agent_token = CertifiedAgent.find_by_certified_agent_id(agent).token
+    response_log = ""
+    error_log = ""
+    transaction_status = false
 
-    if !pin.blank? && !transaction_id.blank?
-      request = Typhoeus::Request.new("http://195.14.0.128:8080/PAYMONEY_WALLET/rest/otp_active/#{pin}/#{transaction_id}", followlocation: true, method: :get)
+
+    if !pin.blank? && !transaction.blank? && !agent_token.blank?
+      account_token = check_account_number(transaction.account_number)
+      request = Typhoeus::Request.new("#{Parameter.first.paymoney_wallet_url}/rest/otp_active_pos/12345628/#{account_token}/#{agent_token}/#{transaction.checkout_amount}/#{transaction.fee}/#{transaction.thumb}/#{transaction.transaction_id}/null/#{pin}/#{transaction.otp}", followlocation: true, method: :get)
 
       request.on_complete do |response|
         if response.success?
           response = (JSON.parse(request.response.body) rescue nil)
           unless response.blank?
             if response["otpStatus"].to_s == "true"
+              response_log = response.to_s
               status = "1"
-              Log.create(transaction_type: "Validation de paiement", otp: transaction_id, pin: pin, response_log: response.to_s, status: true, remote_ip_address: remote_ip_address, agent: agent, sub_agent: sub_agent)
+              transaction_status = true
+              Log.create(transaction_type: "Validation de paiement", otp: transaction_id, pin: pin, response_log: response, status: true, remote_ip_address: remote_ip_address, agent: agent, sub_agent: sub_agent)
             else
+              error_log = response.to_s
               Log.create(transaction_type: "Validation de paiement", error_log: response.to_s, status: false, remote_ip_address: remote_ip_address, agent: agent, sub_agent: sub_agent)
             end
           else
+            error_log = response.to_s
             Log.create(transaction_type: "Validation de paiement", error_log: request.response.body, status: false, remote_ip_address: remote_ip_address, agent: agent, sub_agent: sub_agent)
           end
         end
       end
 
       request.run
+
+       Typhoeus.get("#{Parameter.first.hub_front_office_url}/api/367419f5968800cd/paymoney_wallet/store_log", params: { transaction_type: "Validation de débit", account_number: transaction.account_number, checkout_amount: transaction.checkout_amount, response_log: response_log, error_log: error_log, status: transaction_status, remote_ip_address: remote_ip_address, agent: agent, sub_agent: sub_agent, transaction_id: transaction.transaction_id, otp: transaction.otp, pin: pin })
     end
 
     render text: status
