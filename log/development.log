@@ -1931,3 +1931,34 @@ ETHON: performed EASY effective_url=http://94.247.178.141:8080/PAYMONEY_WALLET/r
   Rendered text template (0.1ms)
 Completed 200 OK in 1079ms (Views: 1.2ms | ActiveRecord: 21.2ms)
 >>>>>>> 1cc2b5d0cc0364072cf924ea4fedb943038abd33
+  [1m[36mActiveRecord::SchemaMigration Load (1.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to CreateParameters (20150819005716)
+  [1m[35m (0.5ms)[0m  BEGIN
+  [1m[36m (67.4ms)[0m  [1mCREATE TABLE "parameters" ("id" serial primary key, "paymoney_wallet_url" character varying(255), "created_at" timestamp, "updated_at" timestamp) [0m
+  [1m[35mSQL (0.9ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20150819005716"]]
+  [1m[36m (1.1ms)[0m  [1mCOMMIT[0m
+Migrating to AddAccountNumberAndTokenToCertifiedAgents (20150824084244)
+  [1m[35m (0.5ms)[0m  BEGIN
+  [1m[36m (3.6ms)[0m  [1mALTER TABLE "certified_agents" ADD COLUMN "account_number" character varying(255)[0m
+  [1m[35m (0.9ms)[0m  ALTER TABLE "certified_agents" ADD COLUMN "token" character varying(255)
+  [1m[36mSQL (0.6ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ($1)[0m  [["version", "20150824084244"]]
+  [1m[35m (0.9ms)[0m  COMMIT
+Migrating to AddSubCertifiedAgentIdToCertifiedAgents (20150824112120)
+  [1m[36m (0.5ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.8ms)[0m  ALTER TABLE "certified_agents" ADD COLUMN "sub_certified_agent_id" character varying(255)
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ($1)[0m  [["version", "20150824112120"]]
+  [1m[35m (0.7ms)[0m  COMMIT
+Migrating to AddTransactionIdToLogs (20150824165158)
+  [1m[36m (0.4ms)[0m  [1mBEGIN[0m
+  [1m[35m (4.2ms)[0m  ALTER TABLE "logs" ADD COLUMN "transaction_id" character varying(255)
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ($1)[0m  [["version", "20150824165158"]]
+  [1m[35m (0.7ms)[0m  COMMIT
+  [1m[36mActiveRecord::SchemaMigration Load (0.8ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[36mParameter Load (1.5ms)[0m  [1mSELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1[0m
+  [1m[35mParameter Load (1.5ms)[0m  SELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1
+WARNING: Can't mass-assign protected attributes for Parameter: paymoney_url
+
+  [1m[36m (0.7ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (1.5ms)[0m  INSERT INTO "parameters" ("created_at", "updated_at") VALUES ($1, $2) RETURNING "id"  [["created_at", "2015-08-25 10:25:56.210498"], ["updated_at", "2015-08-25 10:25:56.210498"]]
+  [1m[36m (0.9ms)[0m  [1mCOMMIT[0m
+  [1m[35mCertifiedAgent Load (10.2ms)[0m  SELECT  "certified_agents".* FROM "certified_agents"   ORDER BY "certified_agents"."id" DESC LIMIT 1
