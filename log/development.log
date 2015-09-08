@@ -3371,3 +3371,25 @@ ETHON: performed EASY effective_url=http://0.0.0.0:3001/api/367419f5968800cd/pay
   Rendered text template (0.0ms)
 Completed 200 OK in 1461ms (Views: 1.0ms | ActiveRecord: 2.8ms)
 >>>>>>> f86eea2bce56a23d1407f11963156c5a6c1469ac
+  [1m[36mActiveRecord::SchemaMigration Load (0.9ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to AddHubFrontOfficeUrlToParameters (20150831023258)
+  [1m[35m (0.4ms)[0m  BEGIN
+  [1m[36m (91.1ms)[0m  [1mALTER TABLE "parameters" ADD COLUMN "hub_front_office_url" character varying(255)[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20150831023258"]]
+  [1m[36m (8.6ms)[0m  [1mCOMMIT[0m
+Migrating to AddFeeToLogs (20150831024203)
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36m (6.4ms)[0m  [1mALTER TABLE "logs" ADD COLUMN "fee" float[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20150831024203"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+Migrating to AddThumbToLogs (20150831024217)
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (7.6ms)[0m  [1mALTER TABLE "logs" ADD COLUMN "thumb" float[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20150831024217"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.3ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36mParameter Load (8.5ms)[0m  [1mSELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1[0m
+  [1m[35mParameter Load (1.5ms)[0m  SELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1
+  [1m[36m (0.5ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (1.0ms)[0m  UPDATE "parameters" SET "hub_front_office_url" = $1, "updated_at" = $2 WHERE "parameters"."id" = 1  [["hub_front_office_url", "http://pay-money.net"], ["updated_at", "2015-09-01 08:46:06.926388"]]
+  [1m[36m (0.7ms)[0m  [1mCOMMIT[0m
