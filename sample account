@@ -23,3 +23,18 @@ LPkZRPNL
 
 
 mXdQbtZv
+
+http://94.247.178.141:8080/PAYMONEY_WALLET/rest/cash_in_operation_momo/{type_operation}/{compte_tokken_destinataire}/{compte_tokken_source}/{operation_montant}/{frais}/{timbre}/{numeropanier}
+
+
+http://94.247.178.141:8080/PAYMONEY_WALLET/rest/cash_in_operation_momo/tertybgd/UBNTKTff/UkGUKNAa/1000/100/100/114558777
+
+
+#Création de compte mobile money
+http://94.247.178.141:8080/PAYMONEY_WALLET/rest/create_compte/{type_compte}/{nom}/{prenom}/{date}/{email}/{tokken}/{numero}/{codebank}/{codeguichet}/{account_number}/{code_rib}/{pays}
+
+http://94.247.178.141:8080/PAYMONEY_WALLET/rest/create_compte/BouzWuGT/Dietrich/Mensah/12-12-2012/dietricherwane@gmailli.co/1440173018/58908957/HGGDN/KKD47/123456789654/87/Andorre
+
+Compte Mobile Money
+
+{"idCompte":null,"status":{"idStatus":1,"statusName":"ENABLE"},"compteNumero":92960000000039,"comptePassword":"3504","compteMontant":"0","compteNom":"Dietrich","comptePrenom":"Mensah","compteDate":1355266800000,"compteAge":null,"compteEmail":"dietricherwane@gmailli.co","comptePhone":"58908957","compteLibelle":"UkGUKNAa","comptePays":null,"compteCodebank":"HGGDN","compteCodeguichet":"KKD47","compteAccountNumber":"123456789654","compteCodeRib":"87","compteCardNumber":"0","typCompteIdtypCompte":5,"compteParent":null,"compteFils":[]}
