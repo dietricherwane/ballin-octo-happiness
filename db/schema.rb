@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150831024217) do
+ActiveRecord::Schema.define(version: 20150902142514) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -54,7 +54,7 @@ ActiveRecord::Schema.define(version: 20150831024217) do
 
   create_table "logs", force: true do |t|
     t.string   "transaction_type"
-    t.string   "phone_number",      limit: 13
+    t.string   "phone_number",                limit: 13
     t.string   "credit_amount"
     t.string   "checkout_amount"
     t.string   "otp"
@@ -71,6 +71,9 @@ ActiveRecord::Schema.define(version: 20150831024217) do
     t.string   "transaction_id"
     t.float    "fee"
     t.float    "thumb"
+    t.string   "game_account_token"
+    t.string   "account_token"
+    t.string   "mobile_money_account_number"
   end
 
   create_table "parameters", force: true do |t|

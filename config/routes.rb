@@ -17,6 +17,27 @@ Rails.application.routes.draw do
 
   get '/api/1314a3dfb72826290bbc99c71b510d2b/fee/:fee_type_token/:transaction_amount' => 'fees#cashout', :constraints => {:transaction_amount => /(\d+(.\d+)?)/}
 
+  # Ascent
+  get '/api/1314a3dfb72826290bbc99c71b510d2b/:agent/:sub_agent/account/ascent/:transaction_amount' => 'accounts#api_ascent', :constraints => {:transaction_amount => /(\d+(.\d+)?)/}
+
+  # Take bet
+  get '/api/86d138798bc43ed59e5207c68e864564/bet/get/:game_account_token/:account_token/:transaction_amount' => 'accounts#api_get_bet', :constraints => {:transaction_amount => /(\d+(.\d+)?)/}
+
+  # Pay earnings
+  get '/api/86d138798bc43ed59e5207c68e864564/earnings/pay/:game_account_token/:account_token/:transaction_amount' => 'accounts#api_pay_earnings', :constraints => {:transaction_amount => /(\d+(.\d+)?)/}
+
+  # Deposit
+  get '/api/86d138798bc43ed59e5207c68e864564/deposit/:account_token/:transaction_amount' => 'accounts#api_deposit', :constraints => {:transaction_amount => /(\d+(.\d+)?)/}
+
+  # Transfert
+  get '/api/86d138798bc43ed59e5207c68e864564/transfer/:account_token/:transaction_amount' => 'accounts#api_transfer', :constraints => {:transaction_amount => /(\d+(.\d+)?)/}
+
+  # Cashin from mobile money
+  get '/api/86d138798bc43ed59e5207c68e864564/mobile_money/cashin/:mobile_money_account/:account/:transaction_amount/:fee' => 'accounts#cashin_mobile_money', :constraints => {:transaction_amount => /(\d+(.\d+)?)/}
+
+  # Cashout from mobile money
+  get '/api/86d138798bc43ed59e5207c68e864564/mobile_money/cashout/:mobile_money_account/:account/:transaction_amount/:fee' => 'accounts#cashout_mobile_money', :constraints => {:transaction_amount => /(\d+(.\d+)?)/}
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
