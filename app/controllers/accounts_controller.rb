@@ -87,12 +87,8 @@ class AccountsController < ApplicationController
 
   def check_account_number(account_number)
     token = (RestClient.get "#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/check2_compte/#{account_number}" rescue "")
-<<<<<<< HEAD
-=======
-
     print token
 
->>>>>>> cbfc1d51b38825eeef59e92c2395f784adede76b
     return token
   end
 
