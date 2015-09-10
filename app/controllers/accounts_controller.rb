@@ -57,6 +57,7 @@ class AccountsController < ApplicationController
       else
         if !account.blank? && is_a_number?(transaction_amount)
           transaction_id = DateTime.now.to_i.to_s
+          print "#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/cash_in_operation_pos/TYHHKIRE/#{account_token}/#{merchant_pos.token}/#{transaction_amount}/0/100/#{transaction_id}/null"
           response = (RestClient.get "#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/cash_in_operation_pos/TYHHKIRE/#{account_token}/#{merchant_pos.token}/#{transaction_amount}/0/100/#{transaction_id}/null" rescue "")
 
           unless response.blank?
@@ -85,7 +86,6 @@ class AccountsController < ApplicationController
 
   def check_account_number(account_number)
     token = (RestClient.get "#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/check2_compte/#{account_number}" rescue "")
-
     return token
   end
 
