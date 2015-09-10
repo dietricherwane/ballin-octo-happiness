@@ -4101,6 +4101,7 @@ ETHON: performed EASY effective_url=HTTP://94.247.178.141:8080/PAYMONEY_WALLET/r
 ETHON: performed EASY effective_url=http://0.0.0.0:3001/api/367419f5968800cd/paymoney_wallet/store_log?transaction_type=Validation%20de%20d%C3%A9bit&account_number=51680000000021&checkout_amount=1000&response_log=&error_log=%7B%22idOtp%22%3D%3Enil%2C%20%22otpDate%22%3D%3Enil%2C%20%22otpPin%22%3D%3Enil%2C%20%22otpTransactionId%22%3D%3Enil%2C%20%22otpStatus%22%3D%3Efalse%7D&status=false&remote_ip_address=127.0.0.1&agent=2c41a884201d672e&sub_agent=788555&transaction_id=1441808085&otp=580612911441808086674&pin=8032 response_code=0 return_code=couldnt_connect total_time=0.000272
   Rendered text template (0.0ms)
 Completed 200 OK in 2035ms (Views: 1.1ms | ActiveRecord: 100.9ms)
+<<<<<<< HEAD
 >>>>>>> cf27ec2b819b35830cab21ed0fd2e5c305adf1a0
   [1m[36mActiveRecord::SchemaMigration Load (1.0ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
 Migrating to AddAAccountTransferAndBAccountTransferToLogs (20150909083752)
@@ -4148,3 +4149,60 @@ ETHON: Libcurl initialized
 ETHON: performed EASY effective_url=http://pay-money.net/api/367419f5968800cd/paymoney_wallet/store_log?transaction_type=Cr%C3%A9dit%20de%20compte&account_number=38250000000045&credit_amount=200000&response_log=none&error_log=error%2C%20montant%20insuffisant&status=false&remote_ip_address=41.189.48.237&agent=0b32dd2df978071e&sub_agent=db08e9e70be4a4817a&transaction_id=1441907049&thumb=100 response_code=200 return_code=ok total_time=0.066339
   Rendered text template (0.1ms)
 Completed 200 OK in 294ms (Views: 65.9ms | ActiveRecord: 16.5ms)
+=======
+
+
+Started GET "/api/1314a3dfb72826290bbc99c71b510d2b/2c41a884201d672e/788555/account/checkout/51680000000021/1000" for 127.0.0.1 at 2015-09-10 10:48:10 +0000
+  [1m[36mActiveRecord::SchemaMigration Load (34.6ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35mParameter Load (27.5ms)[0m  SELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1
+Processing by AccountsController#api_checkout_account as HTML
+  Parameters: {"agent"=>"2c41a884201d672e", "sub_agent"=>"788555", "account"=>"51680000000021", "transaction_amount"=>"1000"}
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1[0m
+  [1m[35mFeeType Load (38.3ms)[0m  SELECT  "fee_types".* FROM "fee_types"  WHERE "fee_types"."name" = 'Cash out' LIMIT 1
+  [1m[36mFee Load (33.7ms)[0m  [1mSELECT  "fees".* FROM "fees"  WHERE "fees"."fee_type_id" = $1 AND (min_value <= 1000.0 AND max_value >= 1000.0)  ORDER BY "fees"."id" ASC LIMIT 1[0m  [["fee_type_id", 1]]
+  [1m[35mCertifiedAgent Load (37.8ms)[0m  SELECT  "certified_agents".* FROM "certified_agents"  WHERE (certified_agent_id = '2c41a884201d672e' AND sub_certified_agent_id IS NULL)  ORDER BY "certified_agents"."id" ASC LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1[0m
+ETHON: Libcurl initialized
+ETHON: performed EASY effective_url=HTTP://94.247.178.141:8080/PAYMONEY_WALLET/rest/cash_out_operation_pos/12345628/lpPspFQe/UBNTKTff/1000/150.0/100/1441882092/null response_code=200 return_code=ok total_time=3.654382
+  [1m[35m (0.6ms)[0m  BEGIN
+  [1m[36mSQL (50.6ms)[0m  [1mINSERT INTO "logs" ("account_number", "agent", "checkout_amount", "created_at", "fee", "otp", "remote_ip_address", "response_log", "status", "sub_agent", "thumb", "transaction_id", "transaction_type", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14) RETURNING "id"[0m  [["account_number", "51680000000021"], ["agent", "2c41a884201d672e"], ["checkout_amount", "1000"], ["created_at", "2015-09-10 10:48:16.222747"], ["fee", 150.0], ["otp", "867579961441882092897"], ["remote_ip_address", "127.0.0.1"], ["response_log", "867579961441882092897"], ["status", "t"], ["sub_agent", "788555"], ["thumb", 100.0], ["transaction_id", "1441882092"], ["transaction_type", "Débit du compte"], ["updated_at", "2015-09-10 10:48:16.222747"]]
+  [1m[35m (24.6ms)[0m  COMMIT
+  [1m[36mParameter Load (0.9ms)[0m  [1mSELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1[0m
+ETHON: performed EASY effective_url=http://0.0.0.0:3001/api/367419f5968800cd/paymoney_wallet/store_log?transaction_type=D%C3%A9bit%20du%20compte&account_number=51680000000021&checkout_amount=1000&response_log=867579961441882092897&error_log=none&status=true&remote_ip_address=127.0.0.1&agent=2c41a884201d672e&sub_agent=788555&transaction_id=1441882092&thumb=100&fee=150.0&otp=867579961441882092897 response_code=200 return_code=ok total_time=0.975348
+  Rendered text template (0.1ms)
+Completed 200 OK in 5870ms (Views: 29.7ms | ActiveRecord: 207.5ms)
+
+
+Started GET "/api/1314a3dfb72826290bbc99c71b510d2b/2c41a884201d672e/788555/account/checkout_validate/867579961441882092897/0839" for 127.0.0.1 at 2015-09-10 10:48:38 +0000
+Processing by AccountsController#api_validate_checkout as HTML
+  Parameters: {"agent"=>"2c41a884201d672e", "sub_agent"=>"788555", "transaction_id"=>"867579961441882092897", "pin"=>"0839"}
+  [1m[35mLog Load (39.2ms)[0m  SELECT  "logs".* FROM "logs"  WHERE "logs"."otp" = '867579961441882092897' LIMIT 1
+  [1m[36mCertifiedAgent Load (1.1ms)[0m  [1mSELECT  "certified_agents".* FROM "certified_agents"  WHERE "certified_agents"."certified_agent_id" = '2c41a884201d672e' LIMIT 1[0m
+  [1m[35mParameter Load (0.9ms)[0m  SELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1
+  [1m[36mCACHE (0.1ms)[0m  [1mSELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1[0m
+ETHON: performed EASY effective_url=HTTP://94.247.178.141:8080/PAYMONEY_WALLET/rest/otp_active_pos/12345628/UBNTKTff/lpPspFQe/1000/150.0/100.0/1441882092/null/0839/867579961441882092897 response_code=200 return_code=ok total_time=2.110313
+  [1m[35m (0.7ms)[0m  BEGIN
+  [1m[36mSQL (1.1ms)[0m  [1mINSERT INTO "logs" ("agent", "created_at", "otp", "pin", "remote_ip_address", "response_log", "status", "sub_agent", "transaction_type", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING "id"[0m  [["agent", "2c41a884201d672e"], ["created_at", "2015-09-10 10:48:41.226972"], ["otp", "867579961441882092897"], ["pin", "0839"], ["remote_ip_address", "127.0.0.1"], ["response_log", "{\"idOtp\"=>nil, \"otpDate\"=>nil, \"otpPin\"=>nil, \"otpTransactionId\"=>nil, \"otpStatus\"=>true}"], ["status", "t"], ["sub_agent", "788555"], ["transaction_type", "Validation de paiement"], ["updated_at", "2015-09-10 10:48:41.226972"]]
+  [1m[35m (36.7ms)[0m  COMMIT
+  [1m[36mParameter Load (1.0ms)[0m  [1mSELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1[0m
+ETHON: performed EASY effective_url=http://0.0.0.0:3001/api/367419f5968800cd/paymoney_wallet/store_log?transaction_type=Validation%20de%20d%C3%A9bit&account_number=51680000000021&checkout_amount=1000&response_log=%7B%22idOtp%22%3D%3Enil%2C%20%22otpDate%22%3D%3Enil%2C%20%22otpPin%22%3D%3Enil%2C%20%22otpTransactionId%22%3D%3Enil%2C%20%22otpStatus%22%3D%3Etrue%7D&error_log=&status=true&remote_ip_address=127.0.0.1&agent=2c41a884201d672e&sub_agent=788555&transaction_id=1441882092&otp=867579961441882092897&pin=0839 response_code=200 return_code=ok total_time=0.045451
+  Rendered text template (0.0ms)
+Completed 200 OK in 2723ms (Views: 1.1ms | ActiveRecord: 80.7ms)
+
+
+Started GET "/api/1314a3dfb72826290bbc99c71b510d2b/2c41a884201d672e/788555/account/checkout_validate/867579961441882092897/0839" for 127.0.0.1 at 2015-09-10 10:49:18 +0000
+Processing by AccountsController#api_validate_checkout as HTML
+  Parameters: {"agent"=>"2c41a884201d672e", "sub_agent"=>"788555", "transaction_id"=>"867579961441882092897", "pin"=>"0839"}
+  [1m[35mLog Load (1.0ms)[0m  SELECT  "logs".* FROM "logs"  WHERE "logs"."otp" = '867579961441882092897' LIMIT 1
+  [1m[36mCertifiedAgent Load (0.7ms)[0m  [1mSELECT  "certified_agents".* FROM "certified_agents"  WHERE "certified_agents"."certified_agent_id" = '2c41a884201d672e' LIMIT 1[0m
+  [1m[35mParameter Load (0.7ms)[0m  SELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1
+  [1m[36mCACHE (0.1ms)[0m  [1mSELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1[0m
+ETHON: performed EASY effective_url=HTTP://94.247.178.141:8080/PAYMONEY_WALLET/rest/otp_active_pos/12345628/UBNTKTff/lpPspFQe/1000/150.0/100.0/1441882092/null/0839/867579961441882092897 response_code=200 return_code=ok total_time=0.626097
+  [1m[35m (0.7ms)[0m  BEGIN
+  [1m[36mSQL (1.0ms)[0m  [1mINSERT INTO "logs" ("agent", "created_at", "error_log", "remote_ip_address", "status", "sub_agent", "transaction_type", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["agent", "2c41a884201d672e"], ["created_at", "2015-09-10 10:49:19.398568"], ["error_log", "{\"idOtp\"=>nil, \"otpDate\"=>nil, \"otpPin\"=>nil, \"otpTransactionId\"=>nil, \"otpStatus\"=>false}"], ["remote_ip_address", "127.0.0.1"], ["status", "f"], ["sub_agent", "788555"], ["transaction_type", "Validation de paiement"], ["updated_at", "2015-09-10 10:49:19.398568"]]
+  [1m[35m (10.7ms)[0m  COMMIT
+  [1m[36mParameter Load (1.1ms)[0m  [1mSELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1[0m
+ETHON: performed EASY effective_url=http://0.0.0.0:3001/api/367419f5968800cd/paymoney_wallet/store_log?transaction_type=Validation%20de%20d%C3%A9bit&account_number=51680000000021&checkout_amount=1000&response_log=&error_log=%7B%22idOtp%22%3D%3Enil%2C%20%22otpDate%22%3D%3Enil%2C%20%22otpPin%22%3D%3Enil%2C%20%22otpTransactionId%22%3D%3Enil%2C%20%22otpStatus%22%3D%3Efalse%7D&status=false&remote_ip_address=127.0.0.1&agent=2c41a884201d672e&sub_agent=788555&transaction_id=1441882092&otp=867579961441882092897&pin=0839 response_code=200 return_code=ok total_time=0.031883
+  Rendered text template (0.1ms)
+Completed 200 OK in 1334ms (Views: 1.5ms | ActiveRecord: 15.9ms)
+>>>>>>> 56fb1901e5fe0270310137e6aae03c9a09ae379b
