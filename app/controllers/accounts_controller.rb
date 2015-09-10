@@ -43,7 +43,7 @@ class AccountsController < ApplicationController
     remote_ip_address = request.remote_ip
     response_log = "none"
     error_log = "none"
-    status = "|500|"
+    status = "|5000|"
     transaction_status = false
 
     account_token = check_account_number(account)
@@ -100,14 +100,14 @@ class AccountsController < ApplicationController
     agent = params[:agent]
     sub_agent = params[:sub_agent]
     remote_ip_address = request.remote_ip
-    status = "error"
+    status = "|5000|"
     response_log = "none"
     error_log = "none"
     transaction_status = false
 
     merchant_pos = CertifiedAgent.where("certified_agent_id = '#{params[:agent]}' AND sub_certified_agent_id IS NULL").first rescue nil
     if merchant_pos.blank?
-      status = "error"
+      status = "|4042|"
     else
       if !account.blank? && !password.blank?
         transaction_id = DateTime.now.to_i.to_s
@@ -123,6 +123,7 @@ class AccountsController < ApplicationController
                 transaction_status = true
                 Log.create(transaction_type: "Solde du compte", account_number: account, response_log: response.to_s, status: true, remote_ip_address: remote_ip_address, agent: agent, sub_agent: sub_agent, transaction_id: transaction_id)
               else
+                status = "|5001|"
                 error_log = response.to_s
                 Log.create(transaction_type: "Solde du compte", account_number: account, error_log: response.to_s, status: false, remote_ip_address: remote_ip_address, agent: agent, sub_agent: sub_agent, transaction_id: transaction_id)
               end
