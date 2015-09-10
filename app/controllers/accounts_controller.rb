@@ -177,7 +177,7 @@ class AccountsController < ApplicationController
             if response.success?
               response = (request.response.body rescue nil)
               unless response.blank?
-                if !response.blank?
+                if response != "error"
                   status = transaction_id
                   response_log = response.to_s
                   transaction_status = true
