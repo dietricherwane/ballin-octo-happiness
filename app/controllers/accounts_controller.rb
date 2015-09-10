@@ -150,7 +150,7 @@ class AccountsController < ApplicationController
     transaction_amount = params[:transaction_amount]
     fee = params[:fee]
     remote_ip_address = request.remote_ip
-    status = "500"
+    status = "|5000|"
     response_log = "none"
     error_log = "none"
     transaction_status = false
@@ -160,11 +160,11 @@ class AccountsController < ApplicationController
     fee = cashout_fee(transaction_amount)
 
     if account_token.blank?
-      status = '4041'
+      status = '|4041|'
     else
       merchant_pos = CertifiedAgent.where("certified_agent_id = '#{params[:agent]}' AND sub_certified_agent_id IS NULL").first rescue nil
       if merchant_pos.blank?
-        status = "4042"
+        status = "|4042|"
       else
         if is_a_number?(transaction_amount) && is_a_number?(fee)
           transaction_id = DateTime.now.to_i.to_s
@@ -182,6 +182,7 @@ class AccountsController < ApplicationController
                   Log.create(transaction_type: "Débit du compte", account_number: account, checkout_amount: transaction_amount, response_log: response_log, status: true, remote_ip_address: remote_ip_address, otp: response, agent: agent, sub_agent: sub_agent, transaction_id: transaction_id, thumb: 100, fee: fee)
                   status = response
                 else
+                  status = "|5001|"
                   error_log = response.to_s
                   Log.create(transaction_type: "Débit du compte", account_number: account, checkout_amount: transaction_amount, error_log: error_log, status: false, remote_ip_address: remote_ip_address, agent: agent, sub_agent: sub_agent, transaction_id: transaction_id, thumb: 100, fee: fee)
                 end
