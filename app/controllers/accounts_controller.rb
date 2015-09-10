@@ -87,6 +87,12 @@ class AccountsController < ApplicationController
 
   def check_account_number(account_number)
     token = (RestClient.get "#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/check2_compte/#{account_number}" rescue "")
+<<<<<<< HEAD
+=======
+
+    print token
+
+>>>>>>> cbfc1d51b38825eeef59e92c2395f784adede76b
     return token
   end
 
@@ -168,6 +174,7 @@ class AccountsController < ApplicationController
       else
         if is_a_number?(transaction_amount) && is_a_number?(fee)
           transaction_id = DateTime.now.to_i.to_s
+          print "#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/cash_out_operation_pos/12345628/#{merchant_pos.token}/#{account_token}/#{transaction_amount}/#{fee}/100/#{transaction_id}/null"
           request = Typhoeus::Request.new("#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/cash_out_operation_pos/12345628/#{merchant_pos.token}/#{account_token}/#{transaction_amount}/#{fee}/100/#{transaction_id}/null", followlocation: true, method: :get)
 
           request.on_complete do |response|
