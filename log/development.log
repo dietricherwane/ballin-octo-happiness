@@ -3657,3 +3657,16 @@ ETHON: performed EASY effective_url=http://0.0.0.0:3001/api/367419f5968800cd/pay
   Rendered text template (0.1ms)
 Completed 200 OK in 6482ms (Views: 1.5ms | ActiveRecord: 55.3ms)
 >>>>>>> 981a0be030d3b87ce60f7d70e4066c9bda2fff75
+  [1m[36mActiveRecord::SchemaMigration Load (7.6ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to AddGameAccountTokenAndAccountTokenToLogs (20150902015812)
+  [1m[35m (0.7ms)[0m  BEGIN
+  [1m[36m (51.0ms)[0m  [1mALTER TABLE "logs" ADD COLUMN "game_account_token" character varying(255)[0m
+  [1m[35m (0.9ms)[0m  ALTER TABLE "logs" ADD COLUMN "account_token" character varying(255)
+  [1m[36mSQL (0.6ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ($1)[0m  [["version", "20150902015812"]]
+  [1m[35m (6.2ms)[0m  COMMIT
+Migrating to AddMobileMoneyAccountNumberToLogs (20150902142514)
+  [1m[36m (0.5ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.9ms)[0m  ALTER TABLE "logs" ADD COLUMN "mobile_money_account_number" character varying(255)
+  [1m[36mSQL (0.6ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ($1)[0m  [["version", "20150902142514"]]
+  [1m[35m (0.7ms)[0m  COMMIT
+  [1m[36mActiveRecord::SchemaMigration Load (0.6ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
