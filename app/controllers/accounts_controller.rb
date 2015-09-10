@@ -174,18 +174,18 @@ class AccountsController < ApplicationController
               unless response.blank?
                 if !response.blank?
                   status = transaction_id
-                  response_log = response
+                  response_log = response.to_s
                   transaction_status = true
                   otp = response
-                  Log.create(transaction_type: "Débit du compte", account_number: account, checkout_amount: transaction_amount, response_log: response.to_s, status: true, remote_ip_address: remote_ip_address, otp: response, agent: agent, sub_agent: sub_agent, transaction_id: transaction_id, thumb: 100, fee: fee)
+                  Log.create(transaction_type: "Débit du compte", account_number: account, checkout_amount: transaction_amount, response_log: response_log, status: true, remote_ip_address: remote_ip_address, otp: response, agent: agent, sub_agent: sub_agent, transaction_id: transaction_id, thumb: 100, fee: fee)
                   status = response
                 else
-                  error_log = response
-                  Log.create(transaction_type: "Débit du compte", account_number: account, checkout_amount: transaction_amount, error_log: response.to_s, status: false, remote_ip_address: remote_ip_address, agent: agent, sub_agent: sub_agent, transaction_id: transaction_id, thumb: 100, fee: fee)
+                  error_log = response.to_s
+                  Log.create(transaction_type: "Débit du compte", account_number: account, checkout_amount: transaction_amount, error_log: error_log, status: false, remote_ip_address: remote_ip_address, agent: agent, sub_agent: sub_agent, transaction_id: transaction_id, thumb: 100, fee: fee)
                 end
               else
-                error_log = response
-                Log.create(transaction_type: "Débit du compte", account_number: account, checkout_amount: transaction_amount, error_log: request.response.body, status: false, remote_ip_address: remote_ip_address, agent: agent, sub_agent: sub_agent, transaction_id: transaction_id, thumb: 100, fee: fee)
+                error_log = response.to_s
+                Log.create(transaction_type: "Débit du compte", account_number: account, checkout_amount: transaction_amount, error_log: error_log, status: false, remote_ip_address: remote_ip_address, agent: agent, sub_agent: sub_agent, transaction_id: transaction_id, thumb: 100, fee: fee)
               end
             end
           end
@@ -213,6 +213,19 @@ class AccountsController < ApplicationController
     return fee
   end
 
+  def transfer_fee(ta)
+    fee = "error"
+    fee_type = FeeType.find_by_name("Cash out [Transfert]")
+
+    if fee_type.blank?
+      fee = "token invalide"
+    else
+      fee = fee_type.fees.where("min_value <= #{ta.to_f} AND max_value >= #{ta.to_f}").first.fee_value.to_s
+    end
+
+    return fee
+  end
+
   def api_validate_checkout
     pin = params[:pin]
     transaction_id = params[:transaction_id]
@@ -228,7 +241,7 @@ class AccountsController < ApplicationController
 
     if !pin.blank? && !transaction.blank? && !agent_token.blank?
       account_token = check_account_number(transaction.account_number)
-      request = Typhoeus::Request.new("#{Parameter.first.paymoney_wallet_url}/rest/otp_active_pos/12345628/#{account_token}/#{agent_token}/#{transaction.checkout_amount}/#{transaction.fee}/#{transaction.thumb}/#{transaction.transaction_id}/null/#{pin}/#{transaction.otp}", followlocation: true, method: :get)
+      request = Typhoeus::Request.new("#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/otp_active_pos/12345628/#{account_token}/#{agent_token}/#{transaction.checkout_amount}/#{transaction.fee}/#{transaction.thumb}/#{transaction.transaction_id}/null/#{pin}/#{transaction.otp}", followlocation: true, method: :get)
 
       request.on_complete do |response|
         if response.success?
@@ -238,14 +251,14 @@ class AccountsController < ApplicationController
               response_log = response.to_s
               status = "1"
               transaction_status = true
-              Log.create(transaction_type: "Validation de paiement", otp: transaction_id, pin: pin, response_log: response, status: true, remote_ip_address: remote_ip_address, agent: agent, sub_agent: sub_agent)
+              Log.create(transaction_type: "Validation de paiement", otp: transaction_id, pin: pin, response_log: response_log, status: true, remote_ip_address: remote_ip_address, agent: agent, sub_agent: sub_agent)
             else
               error_log = response.to_s
-              Log.create(transaction_type: "Validation de paiement", error_log: response.to_s, status: false, remote_ip_address: remote_ip_address, agent: agent, sub_agent: sub_agent)
+              Log.create(transaction_type: "Validation de paiement", error_log: error_log, status: false, remote_ip_address: remote_ip_address, agent: agent, sub_agent: sub_agent)
             end
           else
             error_log = response.to_s
-            Log.create(transaction_type: "Validation de paiement", error_log: request.response.body, status: false, remote_ip_address: remote_ip_address, agent: agent, sub_agent: sub_agent)
+            Log.create(transaction_type: "Validation de paiement", error_log: error_log, status: false, remote_ip_address: remote_ip_address, agent: agent, sub_agent: sub_agent)
           end
         end
       end
@@ -285,20 +298,58 @@ class AccountsController < ApplicationController
               status = transaction_id
               response_log = response.to_s
               transaction_status = true
-              Log.create(transaction_type: "Remontée de fonds", credit_amount: transaction_amount, response_log: response.to_s, status: true, remote_ip_address: remote_ip_address, agent: agent, sub_agent: sub_agent, transaction_id: transaction_id)
+              Log.create(transaction_type: "Remontée de fonds", credit_amount: transaction_amount, response_log: response_log, status: true, remote_ip_address: remote_ip_address, agent: agent, sub_agent: sub_agent, transaction_id: transaction_id)
             else
               error_log = response.to_s
-              Log.create(transaction_type: "Remontée de fonds", credit_amount: transaction_amount, error_log: response.to_s, status: false, remote_ip_address: remote_ip_address, agent: agent, sub_agent: sub_agent, transaction_id: transaction_id)
+              Log.create(transaction_type: "Remontée de fonds", credit_amount: transaction_amount, error_log: error_log, status: false, remote_ip_address: remote_ip_address, agent: agent, sub_agent: sub_agent, transaction_id: transaction_id)
             end
           else
-            error_log = request.response.body
-            Log.create(transaction_type: "Remontée de fonds", credit_amount: transaction_amount, error_log: request.response.body, status: false, remote_ip_address: remote_ip_address, agent: agent, sub_agent: sub_agent, transaction_id: transaction_id)
+            error_log = response.to_s
+            Log.create(transaction_type: "Remontée de fonds", credit_amount: transaction_amount, error_log: error_log, status: false, remote_ip_address: remote_ip_address, agent: agent, sub_agent: sub_agent, transaction_id: transaction_id)
           end
         end
       end
     end
 
     Typhoeus.get("#{Parameter.first.hub_front_office_url}/api/367419f5968800cd/paymoney_wallet/store_log", params: { transaction_type: "Remontée de fonds", credit_amount: transaction_amount, response_log: response_log, error_log: error_log, status: transaction_status, remote_ip_address: remote_ip_address, agent: agent, sub_agent: sub_agent, transaction_id: transaction_id })
+
+    render text: status
+  end
+
+  def api_transfer
+    transaction_amount = params[:transaction_amount]
+    transaction_transfer_fee = transfer_fee(transaction_amount)
+    a_account_transfer = params[:a_account_token]
+    b_account_transfer = params[:b_account_token]
+    remote_ip_address = request.remote_ip
+    response_log = "none"
+    error_log = "none"
+    status = "500"
+    transaction_status = false
+
+    if is_a_number?(transaction_amount)
+      transaction_id = DateTime.now.to_i.to_s
+      print "#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/cashtransact/85245623/#{a_account_transfer}/#{b_account_transfer}/#{transaction_amount}/#{transaction_transfer_fee}/100/#{transaction_id}"
+      response = (RestClient.get "#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/cashtransact/85245623/#{a_account_transfer}/#{b_account_transfer}/#{transaction_amount}/#{transaction_transfer_fee}/100/#{transaction_id}" rescue "")
+
+      unless response.blank?
+        if response.to_s == "good"
+          status = transaction_id
+          response_log = response.to_s
+          transaction_status = true
+          Log.create(transaction_type: "Transfert de crédit", credit_amount: transaction_amount, response_log: response_log, status: true, remote_ip_address: remote_ip_address, a_account_transfer: a_account_transfer, b_account_transfer: b_account_transfer, transaction_id: transaction_id, fee: transaction_transfer_fee)
+        else
+          error_log = response.to_s
+          Log.create(transaction_type: "Transfert de crédit", credit_amount: transaction_amount, error_log: error_log, status: false, remote_ip_address: remote_ip_address, a_account_transfer: a_account_transfer, b_account_transfer: b_account_transfer, transaction_id: transaction_id, fee: transaction_transfer_fee)
+        end
+      else
+        error_log = response.to_s
+        Log.create(transaction_type: "Transfert de crédit", credit_amount: transaction_amount, error_log: error_log, status: false, remote_ip_address: remote_ip_address, a_account_transfer: a_account_transfer, b_account_transfer: b_account_transfer, transaction_id: transaction_id, fee: transaction_transfer_fee)
+      end
+    end
+
+
+    Typhoeus.get("#{Parameter.first.hub_front_office_url}/api/367419f5968800cd/paymoney_wallet/store_log", params: { transaction_type: "Transfert de crédit", credit_amount: transaction_amount, response_log: response_log, error_log: error_log, status: transaction_status, remote_ip_address: remote_ip_address, a_account_transfer: a_account_transfer, b_account_transfer: b_account_transfer, transaction_id: transaction_id, fee: transaction_transfer_fee.to_i })
 
     render text: status
   end
@@ -322,14 +373,14 @@ class AccountsController < ApplicationController
           status = transaction_id
           response_log = response.to_s
           transaction_status = true
-          Log.create(transaction_type: "Prise de paris", checkout_amount: transaction_amount, response_log: response.to_s, status: true, remote_ip_address: remote_ip_address, transaction_id: transaction_id, game_account_token: game_account_token, account_token: account_token)
+          Log.create(transaction_type: "Prise de paris", checkout_amount: transaction_amount, response_log: response_log, status: true, remote_ip_address: remote_ip_address, transaction_id: transaction_id, game_account_token: game_account_token, account_token: account_token)
         else
           error_log = response.to_s
-          Log.create(transaction_type: "Prise de paris", checkout_amount: transaction_amount, error_log: response.to_s, status: false, remote_ip_address: remote_ip_address, transaction_id: transaction_id, game_account_token: game_account_token, account_token: account_token)
+          Log.create(transaction_type: "Prise de paris", checkout_amount: transaction_amount, error_log: error_log, status: false, remote_ip_address: remote_ip_address, transaction_id: transaction_id, game_account_token: game_account_token, account_token: account_token)
         end
       else
-        error_log = request.response.body
-        Log.create(transaction_type: "Prise de paris", checkout_amount: transaction_amount, error_log: request.response.body, status: false, remote_ip_address: remote_ip_address, transaction_id: transaction_id, game_account_token: game_account_token, account_token: account_token)
+        error_log = response.to_s
+        Log.create(transaction_type: "Prise de paris", checkout_amount: transaction_amount, error_log: error_log, status: false, remote_ip_address: remote_ip_address, transaction_id: transaction_id, game_account_token: game_account_token, account_token: account_token)
       end
     end
 
@@ -357,14 +408,14 @@ class AccountsController < ApplicationController
           status = transaction_id
           response_log = response.to_s
           transaction_status = true
-          Log.create(transaction_type: "Paiement de gains", credit_amount: transaction_amount, response_log: response.to_s, status: true, remote_ip_address: remote_ip_address, transaction_id: transaction_id, game_account_token: game_account_token, account_token: account_token)
+          Log.create(transaction_type: "Paiement de gains", credit_amount: transaction_amount, response_log: response_log, status: true, remote_ip_address: remote_ip_address, transaction_id: transaction_id, game_account_token: game_account_token, account_token: account_token)
         else
           error_log = response.to_s
-          Log.create(transaction_type: "Paiement de gains", credit_amount: transaction_amount, error_log: response.to_s, status: false, remote_ip_address: remote_ip_address, transaction_id: transaction_id, game_account_token: game_account_token, account_token: account_token)
+          Log.create(transaction_type: "Paiement de gains", credit_amount: transaction_amount, error_log: error_log, status: false, remote_ip_address: remote_ip_address, transaction_id: transaction_id, game_account_token: game_account_token, account_token: account_token)
         end
       else
-        error_log = request.response.body
-        Log.create(transaction_type: "Paiement de gains", credit_amount: transaction_amount, error_log: request.response.body, status: false, remote_ip_address: remote_ip_address, transaction_id: transaction_id, game_account_token: game_account_token, account_token: account_token)
+        error_log = response.to_s
+        Log.create(transaction_type: "Paiement de gains", credit_amount: transaction_amount, error_log: error_log, status: false, remote_ip_address: remote_ip_address, transaction_id: transaction_id, game_account_token: game_account_token, account_token: account_token)
       end
     end
 
@@ -391,14 +442,14 @@ class AccountsController < ApplicationController
           status = transaction_id
           response_log = response.to_s
           transaction_status = true
-          Log.create(transaction_type: "Deposit", credit_amount: transaction_amount, response_log: response.to_s, status: true, remote_ip_address: remote_ip_address, transaction_id: transaction_id, account_token: account_token)
+          Log.create(transaction_type: "Deposit", credit_amount: transaction_amount, response_log: response_log, status: true, remote_ip_address: remote_ip_address, transaction_id: transaction_id, account_token: account_token)
         else
           error_log = response.to_s
-          Log.create(transaction_type: "Deposit", credit_amount: transaction_amount, error_log: response.to_s, status: false, remote_ip_address: remote_ip_address, transaction_id: transaction_id, account_token: account_token)
+          Log.create(transaction_type: "Deposit", credit_amount: transaction_amount, error_log: error_log, status: false, remote_ip_address: remote_ip_address, transaction_id: transaction_id, account_token: account_token)
         end
       else
-        error_log = request.response.body
-        Log.create(transaction_type: "Deposit", credit_amount: transaction_amount, error_log: request.response.body, status: false, remote_ip_address: remote_ip_address, transaction_id: transaction_id, account_token: account_token)
+        error_log = response.to_s
+        Log.create(transaction_type: "Deposit", credit_amount: transaction_amount, error_log: error_log, status: false, remote_ip_address: remote_ip_address, transaction_id: transaction_id, account_token: account_token)
       end
     end
 
@@ -431,14 +482,14 @@ class AccountsController < ApplicationController
             status = transaction_id
             response_log = response.to_s
             transaction_status = true
-            Log.create(transaction_type: "Cashin mobile money", credit_amount: transaction_amount, response_log: response.to_s, status: true, remote_ip_address: remote_ip_address, transaction_id: transaction_id, account_number: account, mobile_money_account_number: mobile_money_account)
+            Log.create(transaction_type: "Cashin mobile money", credit_amount: transaction_amount, response_log: response_log, status: true, remote_ip_address: remote_ip_address, transaction_id: transaction_id, account_number: account, mobile_money_account_number: mobile_money_account)
           else
             error_log = response.to_s
-            Log.create(transaction_type: "Cashin mobile money", credit_amount: transaction_amount, error_log: response.to_s, status: false, remote_ip_address: remote_ip_address, transaction_id: transaction_id, account_number: account, mobile_money_account_number: mobile_money_account)
+            Log.create(transaction_type: "Cashin mobile money", credit_amount: transaction_amount, error_log: error_log, status: false, remote_ip_address: remote_ip_address, transaction_id: transaction_id, account_number: account, mobile_money_account_number: mobile_money_account)
           end
         else
-          error_log = request.response.body
-          Log.create(transaction_type: "Cashin mobile money", credit_amount: transaction_amount, error_log: request.response.body, status: false, remote_ip_address: remote_ip_address, transaction_id: transaction_id, account_number: account, mobile_money_account_number: mobile_money_account)
+          error_log = response.to_s
+          Log.create(transaction_type: "Cashin mobile money", credit_amount: transaction_amount, error_log: error_log, status: false, remote_ip_address: remote_ip_address, transaction_id: transaction_id, account_number: account, mobile_money_account_number: mobile_money_account)
         end
       end
     end
@@ -472,14 +523,14 @@ class AccountsController < ApplicationController
             status = transaction_id
             response_log = response.to_s
             transaction_status = true
-            Log.create(transaction_type: "Cashout mobile money", checkout_amount: transaction_amount, response_log: response.to_s, status: true, remote_ip_address: remote_ip_address, transaction_id: transaction_id, account_number: account, mobile_money_account_number: mobile_money_account)
+            Log.create(transaction_type: "Cashout mobile money", checkout_amount: transaction_amount, response_log: response_log, status: true, remote_ip_address: remote_ip_address, transaction_id: transaction_id, account_number: account, mobile_money_account_number: mobile_money_account)
           else
             error_log = response.to_s
-            Log.create(transaction_type: "Cashout mobile money", checkout_amount: transaction_amount, error_log: response.to_s, status: false, remote_ip_address: remote_ip_address, transaction_id: transaction_id, account_number: account, mobile_money_account_number: mobile_money_account)
+            Log.create(transaction_type: "Cashout mobile money", checkout_amount: transaction_amount, error_log: error_log, status: false, remote_ip_address: remote_ip_address, transaction_id: transaction_id, account_number: account, mobile_money_account_number: mobile_money_account)
           end
         else
-          error_log = request.response.body
-          Log.create(transaction_type: "Cashout mobile money", checkout_amount: transaction_amount, error_log: request.response.body, status: false, remote_ip_address: remote_ip_address, transaction_id: transaction_id, account_number: account, mobile_money_account_number: mobile_money_account)
+          error_log = response.to_s
+          Log.create(transaction_type: "Cashout mobile money", checkout_amount: transaction_amount, error_log: error_log, status: false, remote_ip_address: remote_ip_address, transaction_id: transaction_id, account_number: account, mobile_money_account_number: mobile_money_account)
         end
       end
     end

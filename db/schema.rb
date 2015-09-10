@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150902142514) do
+ActiveRecord::Schema.define(version: 20150909083752) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -74,6 +74,8 @@ ActiveRecord::Schema.define(version: 20150902142514) do
     t.string   "game_account_token"
     t.string   "account_token"
     t.string   "mobile_money_account_number"
+    t.string   "a_account_transfer"
+    t.string   "b_account_transfer"
   end
 
   create_table "parameters", force: true do |t|

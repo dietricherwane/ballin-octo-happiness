@@ -30,7 +30,7 @@ Rails.application.routes.draw do
   get '/api/86d138798bc43ed59e5207c68e864564/deposit/:account_token/:transaction_amount' => 'accounts#api_deposit', :constraints => {:transaction_amount => /(\d+(.\d+)?)/}
 
   # Transfert
-  get '/api/86d138798bc43ed59e5207c68e864564/transfer/:account_token/:transaction_amount' => 'accounts#api_transfer', :constraints => {:transaction_amount => /(\d+(.\d+)?)/}
+  get '/api/86d138798bc43ed59e5207c68e864564/account/transfer/:a_account_token/:b_account_token/:transaction_amount' => 'accounts#api_transfer', :constraints => {:transaction_amount => /(\d+(.\d+)?)/}
 
   # Cashin from mobile money
   get '/api/86d138798bc43ed59e5207c68e864564/mobile_money/cashin/:mobile_money_account/:account/:transaction_amount/:fee' => 'accounts#cashin_mobile_money', :constraints => {:transaction_amount => /(\d+(.\d+)?)/}
