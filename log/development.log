@@ -4206,3 +4206,22 @@ ETHON: performed EASY effective_url=http://0.0.0.0:3001/api/367419f5968800cd/pay
   Rendered text template (0.1ms)
 Completed 200 OK in 1334ms (Views: 1.5ms | ActiveRecord: 15.9ms)
 >>>>>>> 56fb1901e5fe0270310137e6aae03c9a09ae379b
+
+
+Started GET "/api/1314a3dfb72826290bbc99c71b510d2b/0b32dd2df978071e/db08e9e70be4a4817a/account/credit/38250000000045/200000" for 41.189.48.237 at 2015-09-10 20:16:35 +0200
+  [1m[36mActiveRecord::SchemaMigration Load (1.0ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35mParameter Load (1.2ms)[0m  SELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1
+Processing by AccountsController#api_credit_account as HTML
+  Parameters: {"agent"=>"0b32dd2df978071e", "sub_agent"=>"db08e9e70be4a4817a", "account"=>"38250000000045", "transaction_amount"=>"200000"}
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1[0m
+  [1m[35mCertifiedAgent Load (1.7ms)[0m  SELECT  "certified_agents".* FROM "certified_agents"  WHERE (certified_agent_id = '0b32dd2df978071e' AND sub_certified_agent_id IS NULL)  ORDER BY "certified_agents"."id" ASC LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1
+  [1m[36m (0.6ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (1.2ms)[0m  INSERT INTO "logs" ("account_number", "agent", "created_at", "credit_amount", "error_log", "remote_ip_address", "status", "sub_agent", "thumb", "transaction_id", "transaction_type", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING "id"  [["account_number", "38250000000045"], ["agent", "0b32dd2df978071e"], ["created_at", "2015-09-10 18:16:37.905925"], ["credit_amount", "200000"], ["error_log", "error, montant insuffisant"], ["remote_ip_address", "41.189.48.237"], ["status", "f"], ["sub_agent", "db08e9e70be4a4817a"], ["thumb", 100.0], ["transaction_id", "1441908997"], ["transaction_type", "Crédit de compte"], ["updated_at", "2015-09-10 18:16:37.905925"]]
+  [1m[36m (0.8ms)[0m  [1mCOMMIT[0m
+  [1m[35mParameter Load (0.6ms)[0m  SELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1
+ETHON: Libcurl initialized
+ETHON: performed EASY effective_url=http://pay-money.net/api/367419f5968800cd/paymoney_wallet/store_log?transaction_type=Cr%C3%A9dit%20de%20compte&account_number=38250000000045&credit_amount=200000&response_log=none&error_log=error%2C%20montant%20insuffisant&status=false&remote_ip_address=41.189.48.237&agent=0b32dd2df978071e&sub_agent=db08e9e70be4a4817a&transaction_id=1441908997&thumb=100 response_code=200 return_code=ok total_time=0.248957
+  Rendered text template (0.1ms)
+Completed 200 OK in 1651ms (Views: 11.6ms | ActiveRecord: 14.4ms)
