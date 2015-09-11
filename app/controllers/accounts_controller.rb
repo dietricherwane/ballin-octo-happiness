@@ -160,7 +160,6 @@ class AccountsController < ApplicationController
 
     account_token = check_account_number(account)
     fee = cashout_fee(transaction_amount)
-    print "Account token: " + account_token
     if account_token.blank?
       status = '|4041|'
     else
@@ -170,7 +169,6 @@ class AccountsController < ApplicationController
       else
         if is_a_number?(transaction_amount) && is_a_number?(fee)
           transaction_id = DateTime.now.to_i.to_s
-          print "#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/cash_out_operation_pos/12345628/#{merchant_pos.token}/#{account_token}/#{transaction_amount}/#{fee}/100/#{transaction_id}/null"
           request = Typhoeus::Request.new("#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/cash_out_operation_pos/12345628/#{merchant_pos.token}/#{account_token}/#{transaction_amount}/#{fee}/100/#{transaction_id}/null", followlocation: true, method: :get)
 
           request.on_complete do |response|
@@ -250,6 +248,7 @@ class AccountsController < ApplicationController
     else
       if !pin.blank? && !transaction.blank?
         account_token = check_account_number(transaction.account_number)
+        print "#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/otp_active_pos/12345628/#{account_token}/#{agent_token}/#{transaction.checkout_amount}/#{transaction.fee}/#{transaction.thumb}/#{transaction.transaction_id}/null/#{pin}/#{transaction.otp}"
         request = Typhoeus::Request.new("#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/otp_active_pos/12345628/#{account_token}/#{agent_token}/#{transaction.checkout_amount}/#{transaction.fee}/#{transaction.thumb}/#{transaction.transaction_id}/null/#{pin}/#{transaction.otp}", followlocation: true, method: :get)
 
         request.on_complete do |response|
