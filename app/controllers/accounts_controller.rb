@@ -287,16 +287,16 @@ class AccountsController < ApplicationController
     remote_ip_address = request.remote_ip
     response_log = "none"
     error_log = "none"
-    status = "500"
+    status = "|5000|"
     transaction_status = false
 
     merchant_pos = CertifiedAgent.where("certified_agent_id = '#{params[:agent]}' AND sub_certified_agent_id IS NULL").first rescue nil
     if merchant_pos.blank?
-      status = "4041"
+      status = "|4041|"
     else
       private_pos = CertifiedAgent.where("sub_certified_agent_id = '#{params[:sub_agent]}' ").first rescue nil
       if private_pos.blank?
-        status = "4042"
+        status = "|4042|"
       else
         if is_a_number?(transaction_amount)
           transaction_id = DateTime.now.to_i.to_s
@@ -309,6 +309,7 @@ class AccountsController < ApplicationController
               transaction_status = true
               Log.create(transaction_type: "Remontée de fonds", credit_amount: transaction_amount, response_log: response_log, status: true, remote_ip_address: remote_ip_address, agent: agent, sub_agent: sub_agent, transaction_id: transaction_id)
             else
+              status = "|5001|"
               error_log = response.to_s
               Log.create(transaction_type: "Remontée de fonds", credit_amount: transaction_amount, error_log: error_log, status: false, remote_ip_address: remote_ip_address, agent: agent, sub_agent: sub_agent, transaction_id: transaction_id)
             end
@@ -333,12 +334,11 @@ class AccountsController < ApplicationController
     remote_ip_address = request.remote_ip
     response_log = "none"
     error_log = "none"
-    status = "500"
+    status = "|5000|"
     transaction_status = false
 
     if is_a_number?(transaction_amount)
       transaction_id = DateTime.now.to_i.to_s
-      print "#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/cashtransact/85245623/#{a_account_transfer}/#{b_account_transfer}/#{transaction_amount}/#{transaction_transfer_fee}/100/#{transaction_id}"
       response = (RestClient.get "#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/cashtransact/85245623/#{a_account_transfer}/#{b_account_transfer}/#{transaction_amount}/#{transaction_transfer_fee}/100/#{transaction_id}" rescue "")
 
       unless response.blank?
@@ -348,6 +348,7 @@ class AccountsController < ApplicationController
           transaction_status = true
           Log.create(transaction_type: "Transfert de crédit", credit_amount: transaction_amount, response_log: response_log, status: true, remote_ip_address: remote_ip_address, a_account_transfer: a_account_transfer, b_account_transfer: b_account_transfer, transaction_id: transaction_id, fee: transaction_transfer_fee)
         else
+          status = "|5001|"
           error_log = response.to_s
           Log.create(transaction_type: "Transfert de crédit", credit_amount: transaction_amount, error_log: error_log, status: false, remote_ip_address: remote_ip_address, a_account_transfer: a_account_transfer, b_account_transfer: b_account_transfer, transaction_id: transaction_id, fee: transaction_transfer_fee)
         end
@@ -370,7 +371,7 @@ class AccountsController < ApplicationController
     remote_ip_address = request.remote_ip
     response_log = "none"
     error_log = "none"
-    status = "500"
+    status = "|5000|"
     transaction_status = false
 
     if is_a_number?(transaction_amount)
@@ -384,6 +385,7 @@ class AccountsController < ApplicationController
           transaction_status = true
           Log.create(transaction_type: "Prise de paris", checkout_amount: transaction_amount, response_log: response_log, status: true, remote_ip_address: remote_ip_address, transaction_id: transaction_id, game_account_token: game_account_token, account_token: account_token)
         else
+          status = "|5001|"
           error_log = response.to_s
           Log.create(transaction_type: "Prise de paris", checkout_amount: transaction_amount, error_log: error_log, status: false, remote_ip_address: remote_ip_address, transaction_id: transaction_id, game_account_token: game_account_token, account_token: account_token)
         end
@@ -405,7 +407,7 @@ class AccountsController < ApplicationController
     remote_ip_address = request.remote_ip
     response_log = "none"
     error_log = "none"
-    status = "500"
+    status = "|5000|"
     transaction_status = false
 
     if is_a_number?(transaction_amount)
@@ -419,6 +421,7 @@ class AccountsController < ApplicationController
           transaction_status = true
           Log.create(transaction_type: "Paiement de gains", credit_amount: transaction_amount, response_log: response_log, status: true, remote_ip_address: remote_ip_address, transaction_id: transaction_id, game_account_token: game_account_token, account_token: account_token)
         else
+          status = "|5001|"
           error_log = response.to_s
           Log.create(transaction_type: "Paiement de gains", credit_amount: transaction_amount, error_log: error_log, status: false, remote_ip_address: remote_ip_address, transaction_id: transaction_id, game_account_token: game_account_token, account_token: account_token)
         end
@@ -439,7 +442,7 @@ class AccountsController < ApplicationController
     remote_ip_address = request.remote_ip
     response_log = "none"
     error_log = "none"
-    status = "500"
+    status = "|5000|"
     transaction_status = false
 
     if is_a_number?(transaction_amount)
@@ -453,6 +456,7 @@ class AccountsController < ApplicationController
           transaction_status = true
           Log.create(transaction_type: "Deposit", credit_amount: transaction_amount, response_log: response_log, status: true, remote_ip_address: remote_ip_address, transaction_id: transaction_id, account_token: account_token)
         else
+          status = "|5001|"
           error_log = response.to_s
           Log.create(transaction_type: "Deposit", credit_amount: transaction_amount, error_log: error_log, status: false, remote_ip_address: remote_ip_address, transaction_id: transaction_id, account_token: account_token)
         end
@@ -475,7 +479,7 @@ class AccountsController < ApplicationController
     remote_ip_address = request.remote_ip
     response_log = "none"
     error_log = "none"
-    status = "500"
+    status = "|5000|"
     transaction_status = false
 
     account_token = check_account_number(account)
@@ -493,6 +497,7 @@ class AccountsController < ApplicationController
             transaction_status = true
             Log.create(transaction_type: "Cashin mobile money", credit_amount: transaction_amount, response_log: response_log, status: true, remote_ip_address: remote_ip_address, transaction_id: transaction_id, account_number: account, mobile_money_account_number: mobile_money_account)
           else
+            status = "|5001|"
             error_log = response.to_s
             Log.create(transaction_type: "Cashin mobile money", credit_amount: transaction_amount, error_log: error_log, status: false, remote_ip_address: remote_ip_address, transaction_id: transaction_id, account_number: account, mobile_money_account_number: mobile_money_account)
           end
@@ -516,7 +521,7 @@ class AccountsController < ApplicationController
     remote_ip_address = request.remote_ip
     response_log = "none"
     error_log = "none"
-    status = "500"
+    status = "|5000|"
     transaction_status = false
 
     account_token = check_account_number(account)
@@ -534,6 +539,7 @@ class AccountsController < ApplicationController
             transaction_status = true
             Log.create(transaction_type: "Cashout mobile money", checkout_amount: transaction_amount, response_log: response_log, status: true, remote_ip_address: remote_ip_address, transaction_id: transaction_id, account_number: account, mobile_money_account_number: mobile_money_account)
           else
+            status = "|5001|"
             error_log = response.to_s
             Log.create(transaction_type: "Cashout mobile money", checkout_amount: transaction_amount, error_log: error_log, status: false, remote_ip_address: remote_ip_address, transaction_id: transaction_id, account_number: account, mobile_money_account_number: mobile_money_account)
           end
