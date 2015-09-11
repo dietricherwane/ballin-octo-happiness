@@ -4635,3 +4635,88 @@ Processing by CertifiedAgentsController#create as HTML
   [1m[35m (0.8ms)[0m  COMMIT
   Rendered text template (0.0ms)
 Completed 200 OK in 67ms (Views: 9.7ms | ActiveRecord: 8.2ms)
+
+
+Started GET "/api/86d13843ed59e5207c68e864564/cash/deposit/ImPqIwjk/15000" for 41.207.16.12 at 2015-09-11 10:20:33 +0200
+  [1m[36mActiveRecord::SchemaMigration Load (1.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by ErrorsController#routing as HTML
+  Parameters: {"rogue_url"=>"api/86d13843ed59e5207c68e864564/cash/deposit/ImPqIwjk/15000"}
+  Rendered public/404.html (2.2ms)
+Completed 404 Not Found in 30ms (Views: 12.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/api/86d13843ed59e5207c68e864564/deposit/ImPqIwjk/15000" for 41.207.16.12 at 2015-09-11 10:20:56 +0200
+  [1m[35mParameter Load (1.4ms)[0m  SELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1
+Processing by AccountsController#api_deposit as HTML
+  Parameters: {"account_token"=>"ImPqIwjk", "transaction_amount"=>"15000"}
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1[0m
+  [1m[35m (0.5ms)[0m  BEGIN
+  [1m[36mSQL (1.1ms)[0m  [1mINSERT INTO "logs" ("account_token", "created_at", "credit_amount", "remote_ip_address", "response_log", "status", "transaction_id", "transaction_type", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["account_token", "ImPqIwjk"], ["created_at", "2015-09-11 08:20:57.334721"], ["credit_amount", "15000"], ["remote_ip_address", "41.207.16.12"], ["response_log", "good"], ["status", "t"], ["transaction_id", "1441959656"], ["transaction_type", "Deposit"], ["updated_at", "2015-09-11 08:20:57.334721"]]
+  [1m[35m (0.7ms)[0m  COMMIT
+  [1m[36mParameter Load (0.7ms)[0m  [1mSELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1[0m
+ETHON: Libcurl initialized
+ETHON: performed EASY effective_url=http://pay-money.net/api/367419f5968800cd/paymoney_wallet/store_log?transaction_type=Deposit&credit_amount=15000&response_log=good&error_log=none&status=true&remote_ip_address=41.207.16.12&transaction_id=1441959656&account_token=ImPqIwjk response_code=200 return_code=ok total_time=0.063061
+  Rendered text template (0.0ms)
+Completed 200 OK in 880ms (Views: 2.3ms | ActiveRecord: 8.3ms)
+
+
+Started GET "/api/86d138798bc43ed59e5207c68e864564/mobile_money/cashout/92960000000039/80620000000038/1000/100" for 41.207.16.12 at 2015-09-11 10:25:22 +0200
+Processing by ErrorsController#routing as HTML
+  Parameters: {"rogue_url"=>"api/86d138798bc43ed59e5207c68e864564/mobile_money/cashout/92960000000039/80620000000038/1000/100"}
+  Rendered public/404.html (0.2ms)
+Completed 404 Not Found in 5ms (Views: 4.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/api/86d138798bc43ed59e5207c664/mobile_money/cashout/92960000000039/80620000000038/1000/100" for 41.207.16.12 at 2015-09-11 10:25:34 +0200
+Processing by ErrorsController#routing as HTML
+  Parameters: {"rogue_url"=>"api/86d138798bc43ed59e5207c664/mobile_money/cashout/92960000000039/80620000000038/1000/100"}
+  Rendered public/404.html (0.1ms)
+Completed 404 Not Found in 4ms (Views: 3.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/api/88bc43ed59e5207c68e864564/mobile_money/cashout/92960000000039/80620000000038/1000/100" for 41.207.16.12 at 2015-09-11 10:25:56 +0200
+Processing by AccountsController#cashout_mobile_money as HTML
+  Parameters: {"mobile_money_account"=>"92960000000039", "account"=>"80620000000038", "transaction_amount"=>"1000", "fee"=>"100"}
+  [1m[35mParameter Load (1.2ms)[0m  SELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1
+  [1m[36mCACHE (0.1ms)[0m  [1mSELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1[0m
+  [1m[35mCACHE (0.1ms)[0m  SELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1
+  [1m[36m (0.6ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (1.1ms)[0m  INSERT INTO "logs" ("account_number", "checkout_amount", "created_at", "error_log", "mobile_money_account_number", "remote_ip_address", "status", "transaction_id", "transaction_type", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING "id"  [["account_number", "80620000000038"], ["checkout_amount", "1000"], ["created_at", "2015-09-11 08:25:56.471973"], ["error_log", "error, montant insuffisant"], ["mobile_money_account_number", "92960000000039"], ["remote_ip_address", "41.207.16.12"], ["status", "f"], ["transaction_id", "1441959956"], ["transaction_type", "Cashout mobile money"], ["updated_at", "2015-09-11 08:25:56.471973"]]
+  [1m[36m (0.8ms)[0m  [1mCOMMIT[0m
+  [1m[35mParameter Load (0.8ms)[0m  SELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1
+ETHON: performed EASY effective_url=http://pay-money.net/api/367419f5968800cd/paymoney_wallet/store_log?transaction_type=Cashout%20mobile%20money&checkout_amount=1000&response_log=none&error_log=error%2C%20montant%20insuffisant&status=false&remote_ip_address=41.207.16.12&transaction_id=1441959956&account_number=80620000000038&mobile_money_account_number=92960000000039 response_code=200 return_code=ok total_time=0.108803
+  Rendered text template (0.0ms)
+Completed 200 OK in 180ms (Views: 1.0ms | ActiveRecord: 4.7ms)
+
+
+Started GET "/api/86d138798bc43ed59e5207c664/mobile_money/cashin/92960000000039/80620000000038/1000/100" for 41.207.16.12 at 2015-09-11 10:28:07 +0200
+Processing by AccountsController#cashin_mobile_money as HTML
+  Parameters: {"mobile_money_account"=>"92960000000039", "account"=>"80620000000038", "transaction_amount"=>"1000", "fee"=>"100"}
+  [1m[36mParameter Load (0.8ms)[0m  [1mSELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1[0m
+  [1m[35m (0.6ms)[0m  BEGIN
+  [1m[36mSQL (0.8ms)[0m  [1mINSERT INTO "logs" ("account_number", "created_at", "credit_amount", "error_log", "mobile_money_account_number", "remote_ip_address", "status", "transaction_id", "transaction_type", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING "id"[0m  [["account_number", "80620000000038"], ["created_at", "2015-09-11 08:28:07.843921"], ["credit_amount", "1000"], ["error_log", "error, montant insuffisant"], ["mobile_money_account_number", "92960000000039"], ["remote_ip_address", "41.207.16.12"], ["status", "f"], ["transaction_id", "1441960087"], ["transaction_type", "Cashin mobile money"], ["updated_at", "2015-09-11 08:28:07.843921"]]
+  [1m[35m (3.3ms)[0m  COMMIT
+  [1m[36mParameter Load (0.9ms)[0m  [1mSELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1[0m
+ETHON: performed EASY effective_url=http://pay-money.net/api/367419f5968800cd/paymoney_wallet/store_log?transaction_type=Cashin%20mobile%20money&credit_amount=1000&response_log=none&error_log=error%2C%20montant%20insuffisant&status=false&remote_ip_address=41.207.16.12&transaction_id=1441960087&account_number=80620000000038&mobile_money_account_number=92960000000039 response_code=200 return_code=ok total_time=0.067386
+  Rendered text template (0.1ms)
+Completed 200 OK in 138ms (Views: 1.0ms | ActiveRecord: 6.5ms)
+
+
+Started GET "/api/88bc43ed59e5207c68e864564/mobile_money/cashout/92960000000039/80620000000038/1000/100" for 41.207.16.12 at 2015-09-11 10:46:29 +0200
+  [1m[36mActiveRecord::SchemaMigration Load (0.6ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35mParameter Load (0.7ms)[0m  SELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1
+Processing by AccountsController#cashout_mobile_money as HTML
+  Parameters: {"mobile_money_account"=>"92960000000039", "account"=>"80620000000038", "transaction_amount"=>"1000", "fee"=>"100"}
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1[0m
+  [1m[35mCACHE (0.1ms)[0m  SELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1[0m
+  [1m[35m (0.6ms)[0m  BEGIN
+  [1m[36mSQL (1.2ms)[0m  [1mINSERT INTO "logs" ("account_number", "checkout_amount", "created_at", "error_log", "mobile_money_account_number", "remote_ip_address", "status", "transaction_id", "transaction_type", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING "id"[0m  [["account_number", "80620000000038"], ["checkout_amount", "1000"], ["created_at", "2015-09-11 08:46:29.790490"], ["error_log", "error, montant insuffisant"], ["mobile_money_account_number", "92960000000039"], ["remote_ip_address", "41.207.16.12"], ["status", "f"], ["transaction_id", "1441961189"], ["transaction_type", "Cashout mobile money"], ["updated_at", "2015-09-11 08:46:29.790490"]]
+  [1m[35m (0.7ms)[0m  COMMIT
+  [1m[36mParameter Load (0.7ms)[0m  [1mSELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1[0m
+ETHON: Libcurl initialized
+ETHON: performed EASY effective_url=http://pay-money.net/api/367419f5968800cd/paymoney_wallet/store_log?transaction_type=Cashout%20mobile%20money&checkout_amount=1000&response_log=none&error_log=error%2C%20montant%20insuffisant&status=false&remote_ip_address=41.207.16.12&transaction_id=1441961189&account_number=80620000000038&mobile_money_account_number=92960000000039 response_code=200 return_code=ok total_time=0.160618
+  Rendered text template (0.1ms)
+Completed 200 OK in 599ms (Views: 65.9ms | ActiveRecord: 8.7ms)
