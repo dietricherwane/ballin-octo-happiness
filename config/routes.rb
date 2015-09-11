@@ -27,7 +27,7 @@ Rails.application.routes.draw do
   get '/api/86d138798bc43ed59e5207c68e864564/earnings/pay/:game_account_token/:account_token/:transaction_amount' => 'accounts#api_pay_earnings', :constraints => {:transaction_amount => /(\d+(.\d+)?)/}
 
   # Deposit
-  get '/api/86d138798bc43ed59e5207c68e864564/deposit/:account_token/:transaction_amount' => 'accounts#api_deposit', :constraints => {:transaction_amount => /(\d+(.\d+)?)/}
+  get '/api/86d138798bc43ed59e5207c68e864564/cash/deposit/:account_token/:transaction_amount' => 'accounts#api_deposit', :constraints => {:transaction_amount => /(\d+(.\d+)?)/}
 
   # Transfert
   get '/api/86d138798bc43ed59e5207c68e864564/account/transfer/:a_account_token/:b_account_token/:transaction_amount' => 'accounts#api_transfer', :constraints => {:transaction_amount => /(\d+(.\d+)?)/}
