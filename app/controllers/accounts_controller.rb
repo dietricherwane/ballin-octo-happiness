@@ -244,7 +244,7 @@ class AccountsController < ApplicationController
     transaction_status = false
 
     if agent_token.blank?
-      status = "|4041|"
+      status = "|4042|"
     else
       if !pin.blank? && !transaction.blank?
         account_token = check_account_number(transaction.account_number)
@@ -292,11 +292,11 @@ class AccountsController < ApplicationController
 
     merchant_pos = CertifiedAgent.where("certified_agent_id = '#{params[:agent]}' AND sub_certified_agent_id IS NULL").first rescue nil
     if merchant_pos.blank?
-      status = "|4041|"
+      status = "|4042|"
     else
       private_pos = CertifiedAgent.where("sub_certified_agent_id = '#{params[:sub_agent]}' ").first rescue nil
       if private_pos.blank?
-        status = "|4042|"
+        status = "|4041|"
       else
         if is_a_number?(transaction_amount)
           transaction_id = DateTime.now.to_i.to_s
