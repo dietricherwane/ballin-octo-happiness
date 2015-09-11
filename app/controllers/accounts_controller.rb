@@ -160,7 +160,7 @@ class AccountsController < ApplicationController
 
     account_token = check_account_number(account)
     fee = cashout_fee(transaction_amount)
-
+    print "Account token: " + account_token
     if account_token.blank?
       status = '|4041|'
     else
@@ -258,7 +258,7 @@ class AccountsController < ApplicationController
             unless response.blank?
               if response["otpStatus"].to_s == "true"
                 response_log = response.to_s
-                status = "1"
+                status = transaction_id
                 transaction_status = true
                 Log.create(transaction_type: "Validation de paiement", otp: transaction_id, pin: pin, response_log: response_log, status: true, remote_ip_address: remote_ip_address, agent: agent, sub_agent: sub_agent)
               else
@@ -275,7 +275,7 @@ class AccountsController < ApplicationController
 
         request.run
       end
-       Typhoeus.get("#{Parameter.first.hub_front_office_url}/api/367419f5968800cd/paymoney_wallet/store_log", params: { transaction_type: "Validation de débit", account_number: transaction.account_number, checkout_amount: transaction.checkout_amount, response_log: response_log, error_log: error_log, status: transaction_status, remote_ip_address: remote_ip_address, agent: agent, sub_agent: sub_agent, transaction_id: transaction.transaction_id, otp: transaction.otp, pin: pin })
+       Typhoeus.get("#{Parameter.first.hub_front_office_url}/api/367419f5968800cd/paymoney_wallet/store_log", params: { transaction_type: "Validation de débit", account_number: (transaction.account_number rescue nil), checkout_amount: transaction.checkout_amount, response_log: response_log, error_log: error_log, status: transaction_status, remote_ip_address: remote_ip_address, agent: agent, sub_agent: sub_agent, transaction_id: transaction.transaction_id, otp: transaction.otp, pin: pin })
     end
 
     render text: status
