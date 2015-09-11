@@ -4468,3 +4468,31 @@ NoMethodError (undefined method `checkout_amount' for nil:NilClass):
   Rendered /usr/local/rvm/gems/ruby-2.0.0-p195@rails4.0.7/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (3.7ms)
   Rendered /usr/local/rvm/gems/ruby-2.0.0-p195@rails4.0.7/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (2.2ms)
   Rendered /usr/local/rvm/gems/ruby-2.0.0-p195@rails4.0.7/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (36.8ms)
+
+
+Started GET "/api/1314a3dfb72826290bbc99c71b510d2b/0b32dd2df978071e/db08e9e70be4a4817/account/checkout_validate/867579961441882092897/0839" for 41.207.16.12 at 2015-09-11 09:41:46 +0200
+  [1m[36mActiveRecord::SchemaMigration Load (1.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35mParameter Load (1.5ms)[0m  SELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1
+Processing by AccountsController#api_validate_checkout as HTML
+  Parameters: {"agent"=>"0b32dd2df978071e", "sub_agent"=>"db08e9e70be4a4817", "transaction_id"=>"867579961441882092897", "pin"=>"0839"}
+  [1m[36mLog Load (2.9ms)[0m  [1mSELECT  "logs".* FROM "logs"  WHERE "logs"."otp" = '867579961441882092897' LIMIT 1[0m
+  [1m[35mCertifiedAgent Load (1.5ms)[0m  SELECT  "certified_agents".* FROM "certified_agents"  WHERE "certified_agents"."certified_agent_id" = '0b32dd2df978071e' LIMIT 1
+  [1m[36mCACHE (0.1ms)[0m  [1mSELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1[0m
+ETHON: Libcurl initialized
+ETHON: performed EASY effective_url=http://pay-money.net/api/367419f5968800cd/paymoney_wallet/store_log?transaction_type=Validation%20de%20d%C3%A9bit&account_number=&checkout_amount=&response_log=&error_log=&status=false&remote_ip_address=41.207.16.12&agent=0b32dd2df978071e&sub_agent=db08e9e70be4a4817&transaction_id=&otp=&pin=0839 response_code=200 return_code=ok total_time=0.063111
+  Rendered text template (0.1ms)
+Completed 200 OK in 149ms (Views: 9.7ms | ActiveRecord: 15.9ms)
+
+
+Started GET "/api/1314a3dfb72826290bbc99c71b510d2b/0b32dd2df978071e/db08e9e70be4a4817/account/checkout_validate/867579961441882092897/0839" for 41.207.16.12 at 2015-09-11 09:46:17 +0200
+  [1m[36mActiveRecord::SchemaMigration Load (0.8ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35mParameter Load (1.3ms)[0m  SELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1
+Processing by AccountsController#api_validate_checkout as HTML
+  Parameters: {"agent"=>"0b32dd2df978071e", "sub_agent"=>"db08e9e70be4a4817", "transaction_id"=>"867579961441882092897", "pin"=>"0839"}
+  [1m[36mLog Load (2.1ms)[0m  [1mSELECT  "logs".* FROM "logs"  WHERE "logs"."otp" = '867579961441882092897' LIMIT 1[0m
+  [1m[35mCertifiedAgent Load (1.0ms)[0m  SELECT  "certified_agents".* FROM "certified_agents"  WHERE "certified_agents"."certified_agent_id" = '0b32dd2df978071e' LIMIT 1
+  [1m[36mCACHE (0.1ms)[0m  [1mSELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1[0m
+ETHON: Libcurl initialized
+ETHON: performed EASY effective_url=http://pay-money.net/api/367419f5968800cd/paymoney_wallet/store_log?transaction_type=Validation%20de%20d%C3%A9bit&account_number=&checkout_amount=&response_log=&error_log=&status=false&remote_ip_address=41.207.16.12&agent=0b32dd2df978071e&sub_agent=db08e9e70be4a4817&transaction_id=&otp=&pin=0839 response_code=200 return_code=ok total_time=0.040425
+  Rendered text template (0.0ms)
+Completed 200 OK in 124ms (Views: 10.3ms | ActiveRecord: 12.2ms)
