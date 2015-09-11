@@ -275,7 +275,7 @@ class AccountsController < ApplicationController
 
         request.run
       end
-       Typhoeus.get("#{Parameter.first.hub_front_office_url}/api/367419f5968800cd/paymoney_wallet/store_log", params: { transaction_type: "Validation de débit", account_number: (transaction.account_number rescue nil), checkout_amount: transaction.checkout_amount, response_log: response_log, error_log: error_log, status: transaction_status, remote_ip_address: remote_ip_address, agent: agent, sub_agent: sub_agent, transaction_id: transaction.transaction_id, otp: transaction.otp, pin: pin })
+       Typhoeus.get("#{Parameter.first.hub_front_office_url}/api/367419f5968800cd/paymoney_wallet/store_log", params: { transaction_type: "Validation de débit", account_number: (transaction.account_number rescue nil), checkout_amount: (transaction.checkout_amount rescue nil), response_log: response_log, error_log: error_log, status: transaction_status, remote_ip_address: remote_ip_address, agent: agent, sub_agent: sub_agent, transaction_id: (transaction.transaction_id rescue nil), otp: (transaction.otp rescue nil), pin: pin })
     end
 
     render text: status
