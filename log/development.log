@@ -13779,3 +13779,65 @@ Processing by AccountsController#api_checkout_account as HTML
   Rendered text template (0.0ms)
 Filter chain halted as :create_or_update_wari_sub_agent rendered or redirected
 Completed 200 OK in 1ms (Views: 0.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/api/1314a3dfb72826290bbc99c71b510d2b/684239a94ca63639/76a0ea28994928f4bb/account/checkout/21080000000003/1000" for 41.207.3.132 at 2015-09-28 19:59:26 +0200
+  [1m[35mParameter Load (0.8ms)[0m  SELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1
+Processing by AccountsController#api_checkout_account as HTML
+  Parameters: {"agent"=>"684239a94ca63639", "sub_agent"=>"76a0ea28994928f4bb", "account"=>"21080000000003", "transaction_amount"=>"1000"}
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1[0m
+  [1m[35mFeeType Load (1.6ms)[0m  SELECT  "fee_types".* FROM "fee_types"  WHERE "fee_types"."name" = 'Cash out' LIMIT 1
+  [1m[36mFee Load (1.4ms)[0m  [1mSELECT  "fees".* FROM "fees"  WHERE "fees"."fee_type_id" = $1 AND (min_value <= 1000.0 AND max_value >= 1000.0)  ORDER BY "fees"."id" ASC LIMIT 1[0m  [["fee_type_id", 1]]
+  [1m[35mCertifiedAgent Load (0.9ms)[0m  SELECT  "certified_agents".* FROM "certified_agents"  WHERE (certified_agent_id = '684239a94ca63639' AND sub_certified_agent_id IS NULL)  ORDER BY "certified_agents"."id" ASC LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1[0m
+ETHON: performed EASY effective_url=HTTP://94.247.178.141:8080/PAYMONEY_WALLET/rest/cash_out_operation_pos/12345628/hmukOSDH/tIpfhHmK/1000/150.0/100/12936ff0d6c2faa1e7e51efe6f19c163651d5e6b/null response_code=200 return_code=ok total_time=6.065759
+  [1m[35m (0.7ms)[0m  BEGIN
+  [1m[36mSQL (1.1ms)[0m  [1mINSERT INTO "logs" ("account_number", "agent", "checkout_amount", "created_at", "error_log", "fee", "remote_ip_address", "status", "sub_agent", "thumb", "transaction_id", "transaction_type", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13) RETURNING "id"[0m  [["account_number", "21080000000003"], ["agent", "684239a94ca63639"], ["checkout_amount", "1000"], ["created_at", "2015-09-28 17:59:33.714128"], ["error_log", ""], ["fee", 150.0], ["remote_ip_address", "41.207.3.132"], ["status", "f"], ["sub_agent", "76a0ea28994928f4bb"], ["thumb", 100.0], ["transaction_id", "12936ff0d6c2faa1e7e51efe6f19c163651d5e6b"], ["transaction_type", "Débit du compte"], ["updated_at", "2015-09-28 17:59:33.714128"]]
+  [1m[35m (0.9ms)[0m  COMMIT
+  [1m[36mParameter Load (1.0ms)[0m  [1mSELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1[0m
+ETHON: performed EASY effective_url=http://pay-money.net/api/367419f5968800cd/paymoney_wallet/store_log?transaction_type=D%C3%A9bit%20du%20compte&account_number=21080000000003&checkout_amount=1000&response_log=none&error_log=&status=false&remote_ip_address=41.207.3.132&agent=684239a94ca63639&sub_agent=76a0ea28994928f4bb&transaction_id=12936ff0d6c2faa1e7e51efe6f19c163651d5e6b&thumb=100&fee=150.0&otp= response_code=200 return_code=ok total_time=0.069969
+  Rendered text template (0.1ms)
+Completed 200 OK in 6753ms (Views: 1.6ms | ActiveRecord: 31.5ms)
+  [1m[36mLog Load (2.1ms)[0m  [1mSELECT  "logs".* FROM "logs"   ORDER BY "logs"."id" DESC LIMIT 1[0m
+
+
+Started GET "/api/1314a3dfb72826290bbc99c71b510d2b/684239a94ca63639/76a0ea28994928f4bb/account/checkout/21080000000003/1000" for 41.207.3.132 at 2015-09-28 20:02:38 +0200
+  [1m[36mActiveRecord::SchemaMigration Load (1.6ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35mParameter Load (2.3ms)[0m  SELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1
+Processing by AccountsController#api_checkout_account as HTML
+  Parameters: {"agent"=>"684239a94ca63639", "sub_agent"=>"76a0ea28994928f4bb", "account"=>"21080000000003", "transaction_amount"=>"1000"}
+  [1m[36mCACHE (0.1ms)[0m  [1mSELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1[0m
+  [1m[35mFeeType Load (0.9ms)[0m  SELECT  "fee_types".* FROM "fee_types"  WHERE "fee_types"."name" = 'Cash out' LIMIT 1
+  [1m[36mFee Load (1.0ms)[0m  [1mSELECT  "fees".* FROM "fees"  WHERE "fees"."fee_type_id" = $1 AND (min_value <= 1000.0 AND max_value >= 1000.0)  ORDER BY "fees"."id" ASC LIMIT 1[0m  [["fee_type_id", 1]]
+  [1m[35mCertifiedAgent Load (1.1ms)[0m  SELECT  "certified_agents".* FROM "certified_agents"  WHERE (certified_agent_id = '684239a94ca63639' AND sub_certified_agent_id IS NULL)  ORDER BY "certified_agents"."id" ASC LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1[0m
+ETHON: Libcurl initialized
+ETHON: performed EASY effective_url=HTTP://94.247.178.141:8080/PAYMONEY_WALLET/rest/cash_out_operation_pos/12345628/hmukOSDH/tIpfhHmK/1000/150.0/100/93857cdbeb9deccef027f2278138425f49480538/null response_code=200 return_code=ok total_time=2.72526
+  [1m[35m (0.7ms)[0m  BEGIN
+  [1m[36mSQL (1.5ms)[0m  [1mINSERT INTO "logs" ("account_number", "agent", "checkout_amount", "created_at", "error_log", "fee", "remote_ip_address", "status", "sub_agent", "thumb", "transaction_id", "transaction_type", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13) RETURNING "id"[0m  [["account_number", "21080000000003"], ["agent", "684239a94ca63639"], ["checkout_amount", "1000"], ["created_at", "2015-09-28 18:02:42.340938"], ["error_log", ""], ["fee", 150.0], ["remote_ip_address", "41.207.3.132"], ["status", "f"], ["sub_agent", "76a0ea28994928f4bb"], ["thumb", 100.0], ["transaction_id", "93857cdbeb9deccef027f2278138425f49480538"], ["transaction_type", "Débit du compte"], ["updated_at", "2015-09-28 18:02:42.340938"]]
+  [1m[35m (0.8ms)[0m  COMMIT
+  [1m[36mParameter Load (1.0ms)[0m  [1mSELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1[0m
+ETHON: performed EASY effective_url=http://pay-money.net/api/367419f5968800cd/paymoney_wallet/store_log?transaction_type=D%C3%A9bit%20du%20compte&account_number=21080000000003&checkout_amount=1000&response_log=none&error_log=&status=false&remote_ip_address=41.207.3.132&agent=684239a94ca63639&sub_agent=76a0ea28994928f4bb&transaction_id=93857cdbeb9deccef027f2278138425f49480538&thumb=100&fee=150.0&otp= response_code=200 return_code=ok total_time=0.041111
+  Rendered text template (0.1ms)
+Completed 200 OK in 3046ms (Views: 13.9ms | ActiveRecord: 22.6ms)
+
+
+Started GET "/api/1314a3dfb72826290bbc99c71b510d2b/684239a94ca63639/76a0ea28994928f4bb/account/checkout/21080000000003/1000" for 41.207.3.132 at 2015-09-28 20:08:52 +0200
+  [1m[36mActiveRecord::SchemaMigration Load (1.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35mParameter Load (1.2ms)[0m  SELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1
+Processing by AccountsController#api_checkout_account as HTML
+  Parameters: {"agent"=>"684239a94ca63639", "sub_agent"=>"76a0ea28994928f4bb", "account"=>"21080000000003", "transaction_amount"=>"1000"}
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1[0m
+  [1m[35mFeeType Load (1.3ms)[0m  SELECT  "fee_types".* FROM "fee_types"  WHERE "fee_types"."name" = 'Cash out' LIMIT 1
+  [1m[36mFee Load (1.0ms)[0m  [1mSELECT  "fees".* FROM "fees"  WHERE "fees"."fee_type_id" = $1 AND (min_value <= 1000.0 AND max_value >= 1000.0)  ORDER BY "fees"."id" ASC LIMIT 1[0m  [["fee_type_id", 1]]
+  [1m[35mCertifiedAgent Load (1.1ms)[0m  SELECT  "certified_agents".* FROM "certified_agents"  WHERE (certified_agent_id = '684239a94ca63639' AND sub_certified_agent_id IS NULL)  ORDER BY "certified_agents"."id" ASC LIMIT 1
+  [1m[36mCACHE (0.1ms)[0m  [1mSELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1[0m
+ETHON: Libcurl initialized
+ETHON: performed EASY effective_url=HTTP://94.247.178.141:8080/PAYMONEY_WALLET/rest/cash_out_operation_pos/12345628/hmukOSDH/tIpfhHmK/1000/150.0/100/338fb91bb52e27a42c4f66aefc0365f41909aae9/null response_code=200 return_code=ok total_time=1.4922659999999999
+  [1m[35m (0.7ms)[0m  BEGIN
+  [1m[36mSQL (6.3ms)[0m  [1mINSERT INTO "logs" ("account_number", "agent", "checkout_amount", "created_at", "fee", "otp", "pin", "remote_ip_address", "response_log", "status", "sub_agent", "thumb", "transaction_id", "transaction_type", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15) RETURNING "id"[0m  [["account_number", "21080000000003"], ["agent", "684239a94ca63639"], ["checkout_amount", "1000"], ["created_at", "2015-09-28 18:08:54.977985"], ["fee", 150.0], ["otp", "730680361443463733390"], ["pin", "6645"], ["remote_ip_address", "41.207.3.132"], ["response_log", "{\"idOtp\"=>1, \"otpDate\"=>nil, \"otpPin\"=>\"6645\", \"otpTransactionId\"=>\"730680361443463733390\", \"otpStatus\"=>nil}"], ["status", "t"], ["sub_agent", "76a0ea28994928f4bb"], ["thumb", 100.0], ["transaction_id", "338fb91bb52e27a42c4f66aefc0365f41909aae9"], ["transaction_type", "Débit du compte"], ["updated_at", "2015-09-28 18:08:54.977985"]]
+  [1m[35m (0.9ms)[0m  COMMIT
+  [1m[36mParameter Load (0.8ms)[0m  [1mSELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1[0m
+ETHON: performed EASY effective_url=http://pay-money.net/api/367419f5968800cd/paymoney_wallet/store_log?transaction_type=D%C3%A9bit%20du%20compte&account_number=21080000000003&checkout_amount=1000&response_log=%7B%22idOtp%22%3D%3E1%2C%20%22otpDate%22%3D%3Enil%2C%20%22otpPin%22%3D%3E%226645%22%2C%20%22otpTransactionId%22%3D%3E%22730680361443463733390%22%2C%20%22otpStatus%22%3D%3Enil%7D&error_log=none&status=true&remote_ip_address=41.207.3.132&agent=684239a94ca63639&sub_agent=76a0ea28994928f4bb&transaction_id=338fb91bb52e27a42c4f66aefc0365f41909aae9&thumb=100&fee=150.0&otp%5BidOtp%5D=1&otp%5BotpDate%5D=&otp%5BotpPin%5D=6645&otp%5BotpTransactionId%5D=730680361443463733390&otp%5BotpStatus%5D= response_code=500 return_code=ok total_time=0.296094
+  Rendered text template (0.1ms)
+Completed 200 OK in 2066ms (Views: 11.5ms | ActiveRecord: 29.6ms)
