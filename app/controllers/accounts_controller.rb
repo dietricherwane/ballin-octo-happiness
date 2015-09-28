@@ -65,10 +65,10 @@ class AccountsController < ApplicationController
 
           unless response.blank?
             if response["otpPin"] != "null"
-              status = transaction_id + '|' + response["otpTransactionId"] + '|' + response["otpPin"]
+              status = transaction_id + '|' + response["otpTransactionId"].to_s + '|' + response["otpPin"].to_s
               response_log = response.to_s
               transaction_status = true
-              Log.create(transaction_type: "Crédit de compte", account_number: account, credit_amount: transaction_amount, response_log: response.to_s, status: true, remote_ip_address: remote_ip_address, agent: agent, sub_agent: sub_agent, transaction_id: transaction_id, thumb: 100, otp: response["otpTransactionId"], pin: response["otpPin"])
+              Log.create(transaction_type: "Crédit de compte", account_number: account, credit_amount: transaction_amount, response_log: response.to_s, status: true, remote_ip_address: remote_ip_address, agent: agent, sub_agent: sub_agent, transaction_id: transaction_id, thumb: 100, otp: response["otpTransactionId"].to_s, pin: response["otpPin"].to_s)
             else
               status = "|5001|"
               error_log = response.to_s
@@ -182,11 +182,11 @@ class AccountsController < ApplicationController
               unless response.blank?
                 #if response != "error" && response != "error, montant insuffisant"
                 if response["otpPin"] != "null"
-                  status = transaction_id
+                  status = transaction_id + '|' + response["otpTransactionId"].to_s + '|' + response["otpPin"].to_s
                   response_log = response.to_s
                   transaction_status = true
                   otp = response
-                  Log.create(transaction_type: "Débit du compte", account_number: account, checkout_amount: transaction_amount, response_log: response_log, status: true, remote_ip_address: remote_ip_address, otp: response["otpTransactionId"], pin: response["otpPin"], agent: agent, sub_agent: sub_agent, transaction_id: transaction_id, thumb: 100, fee: fee)
+                  Log.create(transaction_type: "Débit du compte", account_number: account, checkout_amount: transaction_amount, response_log: response_log, status: true, remote_ip_address: remote_ip_address, otp: response["otpTransactionId"].to_s, pin: response["otpPin"].to_s, agent: agent, sub_agent: sub_agent, transaction_id: transaction_id, thumb: 100, fee: fee)
                   status = response
                 else
                   status = "|5001|"
