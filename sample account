@@ -1,28 +1,50 @@
-54110000000074
+# Création de pos marchand
+http://94.247.178.141:8080/PAYMONEY_WALLET/rest/create_compte/OTpPcVxO/Dietrich/Mensah/12-12-2012/dietricherwane@gmailli.co/1440173018/58908957/HGGDN/KKD47/123456789654/87/Andorre
 
-9211
-
-
-63000000000002
-
-768919314
+{"idCompte":null,"status":{"idStatus":1,"statusName":"ENABLE"},"compteNumero":72730000000016,"comptePassword":"8696","compteMontant":"0","compteNom":"Dietrich","comptePrenom":"Mensah","compteDate":1355266800000,"compteAge":null,"compteEmail":"dietricherwane@gmailli.co","comptePhone":"58908957","compteLibelle":"fhXUcJYP","comptePays":null,"compteCodebank":"HGGDN","compteCodeguichet":"KKD47","compteAccountNumber":"123456789654","compteCodeRib":"87","compteCardNumber":"0","typCompteIdtypCompte":1,"compteParent":null,"compteFils":[]}
 
 
-27240000000031
+# Création de pos particulier
+http://94.247.178.141:8080/PAYMONEY_WALLET/rest/create_compte_pariculier/jVUdVQBK/Dietrich/Mensah/12-12-2012/dietricherwane@gmaillii.co/1440173018/58908957/nulll/nulll/nullllllllll/nu/123456789654/Andorre
 
-cCjHLEFf
+{"idCompte":null,"status":{"idStatus":1,"statusName":"ENABLE"},"compteNumero":12950000000017,"comptePassword":"1613","compteMontant":"0","compteNom":"Dietrich","comptePrenom":"Mensah","compteDate":1355266800000,"compteAge":null,"compteEmail":"dietricherwane@gmaillii.co","comptePhone":"58908957","compteLibelle":"ijrMTyaY","comptePays":null,"compteCodebank":"nulll","compteCodeguichet":"nulll","compteAccountNumber":"nullllllllll","compteCodeRib":"nu","compteCardNumber":"0","typCompteIdtypCompte":2,"compteParent":null,"compteFils":[]}
 
-
-40180000000014
-
-yUQzjHPr
-
-92860000000013
-0017
-LPkZRPNL
+{"idCompte":null,"status":{"idStatus":1,"statusName":"ENABLE"},"compteNumero":14220000000019,"comptePassword":"0485","compteMontant":"0","compteNom":"Dietrich","comptePrenom":"Mensah","compteDate":1355266800000,"compteAge":null,"compteEmail":"dietricherwane@gmailliii.co","comptePhone":"58908957","compteLibelle":"ctPKJjUz","comptePays":null,"compteCodebank":"nulll","compteCodeguichet":"nulll","compteAccountNumber":"nullllllllll","compteCodeRib":"nu","compteCardNumber":"0","typCompteIdtypCompte":2,"compteParent":null,"compteFils":[]}
 
 
-mXdQbtZv
+
+
+
+# Crédit de compte
+http://195.14.0.128:9587/api/1314a3dfb72826290bbc99c71b510d2b/f57f0becbab72c87/d407daa6828e363e80/account/checkout/35380000000023/1000
+
+# Débit de compte wari
+http://195.14.0.128:9587/api/c99c71b510d2b/f57f0becbab72c87/d407daa6828e363e808/58908957/1/account/checkout/35380000000023/1000
+
+
+################### Sample accounts ###################
+# Pos marchand
+Account number: 82730000000021
+Certified agent id: f57f0becbab72c87
+Password: 5037
+Token: Fyihcbyb
+
+# Pos particulier
+Account number: 18180000000022
+Sub Certified agent id: d407daa6828e363e80
+Password: 2718
+Token: ImuIuYXE
+
+# Pos particulier
+Account number: 35380000000023
+Sub Certified agent id: ccf0a9429bf92a27ae
+Password: 8412
+Token: IfBzotRG
+
+
+
+################### Sample accounts ###################
+
 
 http://94.247.178.141:8080/PAYMONEY_WALLET/rest/cash_in_operation_momo/{type_operation}/{compte_tokken_destinataire}/{compte_tokken_source}/{operation_montant}/{frais}/{timbre}/{numeropanier}
 

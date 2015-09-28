@@ -4044,3 +4044,414 @@ ETHON: performed EASY effective_url=HTTP://94.247.178.141:8080/PAYMONEY_WALLET/r
 ETHON: performed EASY effective_url=http://0.0.0.0:3001/api/367419f5968800cd/paymoney_wallet/store_log?transaction_type=Validation%20de%20d%C3%A9bit&account_number=51680000000021&checkout_amount=1000&response_log=&error_log=%7B%22idOtp%22%3D%3Enil%2C%20%22otpDate%22%3D%3Enil%2C%20%22otpPin%22%3D%3Enil%2C%20%22otpTransactionId%22%3D%3Enil%2C%20%22otpStatus%22%3D%3Efalse%7D&status=false&remote_ip_address=127.0.0.1&agent=2c41a884201d672e&sub_agent=788555&transaction_id=1441882092&otp=867579961441882092897&pin=0839 response_code=200 return_code=ok total_time=0.031883
   Rendered text template (0.1ms)
 Completed 200 OK in 1334ms (Views: 1.5ms | ActiveRecord: 15.9ms)
+  [1m[36mActiveRecord::SchemaMigration Load (40.5ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to AddWariSubAgentIdToCertifiedAgents (20150922084304)
+  [1m[35m (0.5ms)[0m  BEGIN
+  [1m[36m (34.5ms)[0m  [1mALTER TABLE "certified_agents" ADD COLUMN "wari_sub_agent_id" character varying(255)[0m
+  [1m[35mSQL (0.9ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20150922084304"]]
+  [1m[36m (10.5ms)[0m  [1mCOMMIT[0m
+  [1m[35mActiveRecord::SchemaMigration Load (1.0ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+
+
+Started GET "/api/86d138798bc43ed59e5207c68e864564/f57f0becbab72c87//82730000000021/Fyihcbyb" for 127.0.0.1 at 2015-09-22 09:15:11 +0000
+  [1m[36mActiveRecord::SchemaMigration Load (1.5ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by CertifiedAgentsController#create as */*
+  Parameters: {"certified_agent_id"=>"f57f0becbab72c87", "account_number"=>"82730000000021", "token"=>"Fyihcbyb"}
+  [1m[35m (0.5ms)[0m  BEGIN
+  [1m[36mSQL (39.6ms)[0m  [1mINSERT INTO "certified_agents" ("account_number", "certified_agent_id", "created_at", "token", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["account_number", "82730000000021"], ["certified_agent_id", "f57f0becbab72c87"], ["created_at", "2015-09-22 09:15:12.349877"], ["token", "Fyihcbyb"], ["updated_at", "2015-09-22 09:15:12.349877"]]
+  [1m[35m (27.0ms)[0m  COMMIT
+  Rendered text template (0.1ms)
+Completed 200 OK in 163ms (Views: 21.8ms | ActiveRecord: 73.4ms)
+
+
+Started GET "/api/86d138798bc43ed59e5207c68e864564/f57f0becbab72c87/d407daa6828e363e80/18180000000022/ImuIuYXE" for 127.0.0.1 at 2015-09-22 09:20:01 +0000
+Processing by CertifiedAgentsController#create as */*
+  Parameters: {"certified_agent_id"=>"f57f0becbab72c87", "sub_certified_agent_id"=>"d407daa6828e363e80", "account_number"=>"18180000000022", "token"=>"ImuIuYXE"}
+  [1m[36m (0.6ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (1.0ms)[0m  INSERT INTO "certified_agents" ("account_number", "certified_agent_id", "created_at", "sub_certified_agent_id", "token", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["account_number", "18180000000022"], ["certified_agent_id", "f57f0becbab72c87"], ["created_at", "2015-09-22 09:20:01.047933"], ["sub_certified_agent_id", "d407daa6828e363e80"], ["token", "ImuIuYXE"], ["updated_at", "2015-09-22 09:20:01.047933"]]
+  [1m[36m (11.7ms)[0m  [1mCOMMIT[0m
+  Rendered text template (0.0ms)
+Completed 200 OK in 18ms (Views: 0.8ms | ActiveRecord: 13.2ms)
+
+
+Started GET "/api/86d138798bc43ed59e5207c68e864564/f57f0becbab72c87/ccf0a9429bf92a27ae/35380000000023/IfBzotRG" for 127.0.0.1 at 2015-09-22 09:20:28 +0000
+Processing by CertifiedAgentsController#create as */*
+  Parameters: {"certified_agent_id"=>"f57f0becbab72c87", "sub_certified_agent_id"=>"ccf0a9429bf92a27ae", "account_number"=>"35380000000023", "token"=>"IfBzotRG"}
+  [1m[35m (0.6ms)[0m  BEGIN
+  [1m[36mSQL (0.9ms)[0m  [1mINSERT INTO "certified_agents" ("account_number", "certified_agent_id", "created_at", "sub_certified_agent_id", "token", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["account_number", "35380000000023"], ["certified_agent_id", "f57f0becbab72c87"], ["created_at", "2015-09-22 09:20:28.233847"], ["sub_certified_agent_id", "ccf0a9429bf92a27ae"], ["token", "IfBzotRG"], ["updated_at", "2015-09-22 09:20:28.233847"]]
+  [1m[35m (4.8ms)[0m  COMMIT
+  Rendered text template (0.0ms)
+Completed 200 OK in 10ms (Views: 0.4ms | ActiveRecord: 6.3ms)
+
+
+Started GET "/api/1314a3dfb72826290bbc99c71b510d2b/f57f0becbab72c87/d407daa6828e363e80/account/checkout/35380000000023/1000" for 127.0.0.1 at 2015-09-22 09:22:52 +0000
+  [1m[36mParameter Load (2.1ms)[0m  [1mSELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1[0m
+Processing by AccountsController#api_checkout_account as HTML
+  Parameters: {"agent"=>"f57f0becbab72c87", "sub_agent"=>"d407daa6828e363e80", "account"=>"35380000000023", "transaction_amount"=>"1000"}
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1
+  [1m[36mFeeType Load (37.3ms)[0m  [1mSELECT  "fee_types".* FROM "fee_types"  WHERE "fee_types"."name" = 'Cash out' LIMIT 1[0m
+  [1m[35mFee Load (32.3ms)[0m  SELECT  "fees".* FROM "fees"  WHERE "fees"."fee_type_id" = $1 AND (min_value <= 1000.0 AND max_value >= 1000.0)  ORDER BY "fees"."id" ASC LIMIT 1  [["fee_type_id", 1]]
+  [1m[36mCertifiedAgent Load (1.7ms)[0m  [1mSELECT  "certified_agents".* FROM "certified_agents"  WHERE (certified_agent_id = 'f57f0becbab72c87' AND sub_certified_agent_id IS NULL)  ORDER BY "certified_agents"."id" ASC LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1
+ETHON: Libcurl initialized
+ETHON: performed EASY effective_url=HTTP://94.247.178.141:8080/PAYMONEY_WALLET/rest/cash_out_operation_pos/12345628/Fyihcbyb/IfBzotRG/1000/150.0/100/4efec697049c34a216f979fdf079639ce446420b/null response_code=200 return_code=ok total_time=0.629081
+  [1m[36m (0.6ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (48.4ms)[0m  INSERT INTO "logs" ("account_number", "agent", "checkout_amount", "created_at", "fee", "otp", "remote_ip_address", "response_log", "status", "sub_agent", "thumb", "transaction_id", "transaction_type", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14) RETURNING "id"  [["account_number", "35380000000023"], ["agent", "f57f0becbab72c87"], ["checkout_amount", "1000"], ["created_at", "2015-09-22 09:22:53.380581"], ["fee", 150.0], ["otp", "error, montant insuffisant"], ["remote_ip_address", "127.0.0.1"], ["response_log", "error, montant insuffisant"], ["status", "t"], ["sub_agent", "d407daa6828e363e80"], ["thumb", 100.0], ["transaction_id", "4efec697049c34a216f979fdf079639ce446420b"], ["transaction_type", "Débit du compte"], ["updated_at", "2015-09-22 09:22:53.380581"]]
+  [1m[36m (23.6ms)[0m  [1mCOMMIT[0m
+  [1m[35mParameter Load (0.9ms)[0m  SELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1
+ETHON: performed EASY effective_url=http://0.0.0.0:3001/api/367419f5968800cd/paymoney_wallet/store_log?transaction_type=D%C3%A9bit%20du%20compte&account_number=35380000000023&checkout_amount=1000&response_log=error%2C%20montant%20insuffisant&error_log=none&status=true&remote_ip_address=127.0.0.1&agent=f57f0becbab72c87&sub_agent=d407daa6828e363e80&transaction_id=4efec697049c34a216f979fdf079639ce446420b&thumb=100&fee=150.0&otp=error%2C%20montant%20insuffisant response_code=200 return_code=ok total_time=0.167613
+  Rendered text template (0.1ms)
+Completed 200 OK in 1505ms (Views: 1.4ms | ActiveRecord: 161.4ms)
+
+
+Started GET "/api/1314a3dfb72826290bbc99c71b510d2b/f57f0becbab72c87/d407daa6828e363e80/account/checkout/35380000000023/1000" for 127.0.0.1 at 2015-09-22 09:23:50 +0000
+  [1m[36mParameter Load (0.7ms)[0m  [1mSELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1[0m
+Processing by AccountsController#api_checkout_account as HTML
+  Parameters: {"agent"=>"f57f0becbab72c87", "sub_agent"=>"d407daa6828e363e80", "account"=>"35380000000023", "transaction_amount"=>"1000"}
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1
+  [1m[36mFeeType Load (0.9ms)[0m  [1mSELECT  "fee_types".* FROM "fee_types"  WHERE "fee_types"."name" = 'Cash out' LIMIT 1[0m
+  [1m[35mFee Load (0.9ms)[0m  SELECT  "fees".* FROM "fees"  WHERE "fees"."fee_type_id" = $1 AND (min_value <= 1000.0 AND max_value >= 1000.0)  ORDER BY "fees"."id" ASC LIMIT 1  [["fee_type_id", 1]]
+  [1m[36mCertifiedAgent Load (1.2ms)[0m  [1mSELECT  "certified_agents".* FROM "certified_agents"  WHERE (certified_agent_id = 'f57f0becbab72c87' AND sub_certified_agent_id IS NULL)  ORDER BY "certified_agents"."id" ASC LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1
+ETHON: performed EASY effective_url=HTTP://94.247.178.141:8080/PAYMONEY_WALLET/rest/cash_out_operation_pos/12345628/Fyihcbyb/IfBzotRG/1000/150.0/100/d349f766352579c999eacba27cbacf3af963f787/null response_code=200 return_code=ok total_time=0.30138600000000004
+  [1m[36m (0.7ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.9ms)[0m  INSERT INTO "logs" ("account_number", "agent", "checkout_amount", "created_at", "error_log", "fee", "remote_ip_address", "status", "sub_agent", "thumb", "transaction_id", "transaction_type", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13) RETURNING "id"  [["account_number", "35380000000023"], ["agent", "f57f0becbab72c87"], ["checkout_amount", "1000"], ["created_at", "2015-09-22 09:23:50.987898"], ["error_log", "error, montant insuffisant"], ["fee", 150.0], ["remote_ip_address", "127.0.0.1"], ["status", "f"], ["sub_agent", "d407daa6828e363e80"], ["thumb", 100.0], ["transaction_id", "d349f766352579c999eacba27cbacf3af963f787"], ["transaction_type", "Débit du compte"], ["updated_at", "2015-09-22 09:23:50.987898"]]
+  [1m[36m (10.0ms)[0m  [1mCOMMIT[0m
+  [1m[35mParameter Load (0.8ms)[0m  SELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1
+ETHON: performed EASY effective_url=http://0.0.0.0:3001/api/367419f5968800cd/paymoney_wallet/store_log?transaction_type=D%C3%A9bit%20du%20compte&account_number=35380000000023&checkout_amount=1000&response_log=none&error_log=error%2C%20montant%20insuffisant&status=false&remote_ip_address=127.0.0.1&agent=f57f0becbab72c87&sub_agent=d407daa6828e363e80&transaction_id=d349f766352579c999eacba27cbacf3af963f787&thumb=100&fee=150.0&otp= response_code=200 return_code=ok total_time=0.032368
+  Rendered text template (0.0ms)
+Completed 200 OK in 796ms (Views: 0.9ms | ActiveRecord: 34.7ms)
+
+
+Started GET "/api/1314a3dfb72826290bbc99c71b510d2b/f57f0becbab72c87/d407daa6828e363e80/account/checkout/35380000000023/1000" for 127.0.0.1 at 2015-09-22 09:26:53 +0000
+  [1m[36mParameter Load (1.0ms)[0m  [1mSELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1[0m
+Processing by AccountsController#api_checkout_account as HTML
+  Parameters: {"agent"=>"f57f0becbab72c87", "sub_agent"=>"d407daa6828e363e80", "account"=>"35380000000023", "transaction_amount"=>"1000"}
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1
+  [1m[36mFeeType Load (1.0ms)[0m  [1mSELECT  "fee_types".* FROM "fee_types"  WHERE "fee_types"."name" = 'Cash out' LIMIT 1[0m
+  [1m[35mFee Load (0.9ms)[0m  SELECT  "fees".* FROM "fees"  WHERE "fees"."fee_type_id" = $1 AND (min_value <= 1000.0 AND max_value >= 1000.0)  ORDER BY "fees"."id" ASC LIMIT 1  [["fee_type_id", 1]]
+  [1m[36mCertifiedAgent Load (1.0ms)[0m  [1mSELECT  "certified_agents".* FROM "certified_agents"  WHERE (certified_agent_id = 'f57f0becbab72c87' AND sub_certified_agent_id IS NULL)  ORDER BY "certified_agents"."id" ASC LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1
+ETHON: performed EASY effective_url=HTTP://94.247.178.141:8080/PAYMONEY_WALLET/rest/cash_out_operation_pos/12345628/Fyihcbyb/IfBzotRG/1000/150.0/100/d28ebdf9849ce0b5ae4720cbf774f31f834b05dd/null response_code=200 return_code=ok total_time=0.355503
+  [1m[36m (0.7ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (1.1ms)[0m  INSERT INTO "logs" ("account_number", "agent", "checkout_amount", "created_at", "error_log", "fee", "remote_ip_address", "status", "sub_agent", "thumb", "transaction_id", "transaction_type", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13) RETURNING "id"  [["account_number", "35380000000023"], ["agent", "f57f0becbab72c87"], ["checkout_amount", "1000"], ["created_at", "2015-09-22 09:26:55.161758"], ["error_log", "error, montant insuffisant"], ["fee", 150.0], ["remote_ip_address", "127.0.0.1"], ["status", "f"], ["sub_agent", "d407daa6828e363e80"], ["thumb", 100.0], ["transaction_id", "d28ebdf9849ce0b5ae4720cbf774f31f834b05dd"], ["transaction_type", "Débit du compte"], ["updated_at", "2015-09-22 09:26:55.161758"]]
+  [1m[36m (18.1ms)[0m  [1mCOMMIT[0m
+  [1m[35mParameter Load (1.0ms)[0m  SELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1
+ETHON: performed EASY effective_url=http://0.0.0.0:3001/api/367419f5968800cd/paymoney_wallet/store_log?transaction_type=D%C3%A9bit%20du%20compte&account_number=35380000000023&checkout_amount=1000&response_log=none&error_log=error%2C%20montant%20insuffisant&status=false&remote_ip_address=127.0.0.1&agent=f57f0becbab72c87&sub_agent=d407daa6828e363e80&transaction_id=d28ebdf9849ce0b5ae4720cbf774f31f834b05dd&thumb=100&fee=150.0&otp= response_code=200 return_code=ok total_time=0.031052
+  Rendered text template (0.1ms)
+Completed 200 OK in 1335ms (Views: 1.3ms | ActiveRecord: 41.5ms)
+
+
+Started GET "/api/1314a3dfb72826290bbc99c71b510d2b/f57f0becbab72c87/d407daa6828e363e80/account/checkout/35380000000023/1000" for 127.0.0.1 at 2015-09-22 09:27:27 +0000
+  [1m[36mParameter Load (0.8ms)[0m  [1mSELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1[0m
+Processing by AccountsController#api_checkout_account as HTML
+  Parameters: {"agent"=>"f57f0becbab72c87", "sub_agent"=>"d407daa6828e363e80", "account"=>"35380000000023", "transaction_amount"=>"1000"}
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1
+  [1m[36mFeeType Load (0.9ms)[0m  [1mSELECT  "fee_types".* FROM "fee_types"  WHERE "fee_types"."name" = 'Cash out' LIMIT 1[0m
+  [1m[35mFee Load (1.1ms)[0m  SELECT  "fees".* FROM "fees"  WHERE "fees"."fee_type_id" = $1 AND (min_value <= 1000.0 AND max_value >= 1000.0)  ORDER BY "fees"."id" ASC LIMIT 1  [["fee_type_id", 1]]
+  [1m[36mCertifiedAgent Load (1.4ms)[0m  [1mSELECT  "certified_agents".* FROM "certified_agents"  WHERE (certified_agent_id = 'f57f0becbab72c87' AND sub_certified_agent_id IS NULL)  ORDER BY "certified_agents"."id" ASC LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1
+ETHON: performed EASY effective_url=HTTP://94.247.178.141:8080/PAYMONEY_WALLET/rest/cash_out_operation_pos/12345628/Fyihcbyb/IfBzotRG/1000/150.0/100/ecc082c7e51d75407294c7e2a390a2026bdd5c3e/null response_code=200 return_code=ok total_time=0.385609
+  [1m[36m (0.4ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.7ms)[0m  INSERT INTO "logs" ("account_number", "agent", "checkout_amount", "created_at", "error_log", "fee", "remote_ip_address", "status", "sub_agent", "thumb", "transaction_id", "transaction_type", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13) RETURNING "id"  [["account_number", "35380000000023"], ["agent", "f57f0becbab72c87"], ["checkout_amount", "1000"], ["created_at", "2015-09-22 09:27:28.394865"], ["error_log", "error, montant insuffisant"], ["fee", 150.0], ["remote_ip_address", "127.0.0.1"], ["status", "f"], ["sub_agent", "d407daa6828e363e80"], ["thumb", 100.0], ["transaction_id", "ecc082c7e51d75407294c7e2a390a2026bdd5c3e"], ["transaction_type", "Débit du compte"], ["updated_at", "2015-09-22 09:27:28.394865"]]
+  [1m[36m (9.0ms)[0m  [1mCOMMIT[0m
+  [1m[35mParameter Load (0.8ms)[0m  SELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1
+ETHON: performed EASY effective_url=http://0.0.0.0:3001/api/367419f5968800cd/paymoney_wallet/store_log?transaction_type=D%C3%A9bit%20du%20compte&account_number=35380000000023&checkout_amount=1000&response_log=none&error_log=error%2C%20montant%20insuffisant&status=false&remote_ip_address=127.0.0.1&agent=f57f0becbab72c87&sub_agent=d407daa6828e363e80&transaction_id=ecc082c7e51d75407294c7e2a390a2026bdd5c3e&thumb=100&fee=150.0&otp= response_code=200 return_code=ok total_time=0.033362
+  Rendered text template (0.1ms)
+Completed 200 OK in 1158ms (Views: 1.5ms | ActiveRecord: 34.0ms)
+
+
+Started GET "/api/c99c71b510d2b/f57f0becbab72c87/d407daa6828e363e808/58908957/1/account/checkout/35380000000023/1000" for 127.0.0.1 at 2015-09-22 09:39:07 +0000
+  [1m[36mParameter Load (0.7ms)[0m  [1mSELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1[0m
+Processing by AccountsController#api_checkout_account as HTML
+  Parameters: {"agent"=>"f57f0becbab72c87", "wari_sub_agent_id"=>"d407daa6828e363e808", "phone_number"=>"58908957", "status"=>"1", "account"=>"35380000000023", "transaction_amount"=>"1000"}
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1
+  [1m[36mFeeType Load (0.9ms)[0m  [1mSELECT  "fee_types".* FROM "fee_types"  WHERE "fee_types"."name" = 'Cash out' LIMIT 1[0m
+  [1m[35mFee Load (1.1ms)[0m  SELECT  "fees".* FROM "fees"  WHERE "fees"."fee_type_id" = $1 AND (min_value <= 1000.0 AND max_value >= 1000.0)  ORDER BY "fees"."id" ASC LIMIT 1  [["fee_type_id", 1]]
+  [1m[36mCertifiedAgent Load (0.9ms)[0m  [1mSELECT  "certified_agents".* FROM "certified_agents"  WHERE (certified_agent_id = 'f57f0becbab72c87' AND sub_certified_agent_id IS NULL)  ORDER BY "certified_agents"."id" ASC LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1
+ETHON: performed EASY effective_url=HTTP://94.247.178.141:8080/PAYMONEY_WALLET/rest/cash_out_operation_pos/12345628/Fyihcbyb/IfBzotRG/1000/150.0/100/1f65040581919c35b94d9f239fc0b4d7544c4d91/null response_code=200 return_code=ok total_time=0.364309
+  [1m[36m (0.5ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.9ms)[0m  INSERT INTO "logs" ("account_number", "agent", "checkout_amount", "created_at", "error_log", "fee", "remote_ip_address", "status", "thumb", "transaction_id", "transaction_type", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING "id"  [["account_number", "35380000000023"], ["agent", "f57f0becbab72c87"], ["checkout_amount", "1000"], ["created_at", "2015-09-22 09:39:08.699871"], ["error_log", "error, montant insuffisant"], ["fee", 150.0], ["remote_ip_address", "127.0.0.1"], ["status", "f"], ["thumb", 100.0], ["transaction_id", "1f65040581919c35b94d9f239fc0b4d7544c4d91"], ["transaction_type", "Débit du compte"], ["updated_at", "2015-09-22 09:39:08.699871"]]
+  [1m[36m (19.1ms)[0m  [1mCOMMIT[0m
+  [1m[35mParameter Load (0.9ms)[0m  SELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1
+ETHON: performed EASY effective_url=http://0.0.0.0:3001/api/367419f5968800cd/paymoney_wallet/store_log?transaction_type=D%C3%A9bit%20du%20compte&account_number=35380000000023&checkout_amount=1000&response_log=none&error_log=error%2C%20montant%20insuffisant&status=false&remote_ip_address=127.0.0.1&agent=f57f0becbab72c87&sub_agent=&transaction_id=1f65040581919c35b94d9f239fc0b4d7544c4d91&thumb=100&fee=150.0&otp= response_code=200 return_code=ok total_time=0.031743999999999994
+  Rendered text template (0.1ms)
+Completed 200 OK in 887ms (Views: 1.9ms | ActiveRecord: 44.5ms)
+
+
+Started GET "/api/c99c71b510d2b/f57f0becbab72c87/d407daa6828e363e808/58908957/1/account/checkout/35380000000023/1000" for 127.0.0.1 at 2015-09-22 09:39:45 +0000
+  [1m[36mParameter Load (0.9ms)[0m  [1mSELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1[0m
+Processing by AccountsController#api_checkout_account as HTML
+  Parameters: {"agent"=>"f57f0becbab72c87", "wari_sub_agent_id"=>"d407daa6828e363e808", "phone_number"=>"58908957", "status"=>"1", "account"=>"35380000000023", "transaction_amount"=>"1000"}
+Completed 500 Internal Server Error in 9ms
+
+NoMethodError (undefined method `find_by_wari_sub_certified_agent_id' for #<Class:0x0000000316dd68>):
+  app/controllers/accounts_controller.rb:630:in `check_wari_private_pos_existence'
+  app/controllers/accounts_controller.rb:598:in `create_or_update_wari_sub_agent'
+
+
+  Rendered /home/dietrich/.rvm/gems/ruby-2.0.0-p195@rails4.0.7/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/_source.erb (1.2ms)
+  Rendered /home/dietrich/.rvm/gems/ruby-2.0.0-p195@rails4.0.7/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.9ms)
+  Rendered /home/dietrich/.rvm/gems/ruby-2.0.0-p195@rails4.0.7/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.2ms)
+  Rendered /home/dietrich/.rvm/gems/ruby-2.0.0-p195@rails4.0.7/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (37.9ms)
+
+
+Started GET "/api/c99c71b510d2b/f57f0becbab72c87/d407daa6828e363e808/58908957/1/account/checkout/35380000000023/1000" for 127.0.0.1 at 2015-09-22 09:40:26 +0000
+  [1m[35mParameter Load (0.7ms)[0m  SELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1
+Processing by AccountsController#api_checkout_account as HTML
+  Parameters: {"agent"=>"f57f0becbab72c87", "wari_sub_agent_id"=>"d407daa6828e363e808", "phone_number"=>"58908957", "status"=>"1", "account"=>"35380000000023", "transaction_amount"=>"1000"}
+  [1m[36mCertifiedAgent Load (1.1ms)[0m  [1mSELECT  "certified_agents".* FROM "certified_agents"  WHERE "certified_agents"."wari_sub_agent_id" = 'd407daa6828e363e808' LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1
+ETHON: performed EASY effective_url=http://0.0.0.0:3001/api/wari/create_private_pos?phone_number=58908957&wari_sub_certified_agent_id=d407daa6828e363e808 response_code=200 return_code=ok total_time=3.3591860000000002
+  [1m[36mCACHE (0.1ms)[0m  [1mSELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1[0m
+  [1m[35mFeeType Load (0.8ms)[0m  SELECT  "fee_types".* FROM "fee_types"  WHERE "fee_types"."name" = 'Cash out' LIMIT 1
+  [1m[36mFee Load (0.8ms)[0m  [1mSELECT  "fees".* FROM "fees"  WHERE "fees"."fee_type_id" = $1 AND (min_value <= 1000.0 AND max_value >= 1000.0)  ORDER BY "fees"."id" ASC LIMIT 1[0m  [["fee_type_id", 1]]
+  [1m[35mCertifiedAgent Load (1.1ms)[0m  SELECT  "certified_agents".* FROM "certified_agents"  WHERE (certified_agent_id = 'f57f0becbab72c87' AND sub_certified_agent_id IS NULL)  ORDER BY "certified_agents"."id" ASC LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1[0m
+ETHON: performed EASY effective_url=HTTP://94.247.178.141:8080/PAYMONEY_WALLET/rest/cash_out_operation_pos/12345628/Fyihcbyb/IfBzotRG/1000/150.0/100/c28759613485e1175c3adc2e5c282b5b08394e7f/null response_code=200 return_code=ok total_time=0.3465
+  [1m[35m (0.6ms)[0m  BEGIN
+  [1m[36mSQL (0.9ms)[0m  [1mINSERT INTO "logs" ("account_number", "agent", "checkout_amount", "created_at", "error_log", "fee", "remote_ip_address", "status", "thumb", "transaction_id", "transaction_type", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING "id"[0m  [["account_number", "35380000000023"], ["agent", "f57f0becbab72c87"], ["checkout_amount", "1000"], ["created_at", "2015-09-22 09:40:30.355887"], ["error_log", "error, montant insuffisant"], ["fee", 150.0], ["remote_ip_address", "127.0.0.1"], ["status", "f"], ["thumb", 100.0], ["transaction_id", "c28759613485e1175c3adc2e5c282b5b08394e7f"], ["transaction_type", "Débit du compte"], ["updated_at", "2015-09-22 09:40:30.355887"]]
+  [1m[35m (10.2ms)[0m  COMMIT
+  [1m[36mParameter Load (0.9ms)[0m  [1mSELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1[0m
+ETHON: performed EASY effective_url=http://0.0.0.0:3001/api/367419f5968800cd/paymoney_wallet/store_log?transaction_type=D%C3%A9bit%20du%20compte&account_number=35380000000023&checkout_amount=1000&response_log=none&error_log=error%2C%20montant%20insuffisant&status=false&remote_ip_address=127.0.0.1&agent=f57f0becbab72c87&sub_agent=&transaction_id=c28759613485e1175c3adc2e5c282b5b08394e7f&thumb=100&fee=150.0&otp= response_code=200 return_code=ok total_time=0.032869
+  Rendered text template (0.0ms)
+Completed 200 OK in 4251ms (Views: 0.9ms | ActiveRecord: 34.7ms)
+
+
+Started GET "/api/c99c71b510d2b/f57f0becbab72c87/d407daa6828e363e8089/58908957/1/account/checkout/35380000000023/1000" for 127.0.0.1 at 2015-09-22 09:59:12 +0000
+Processing by AccountsController#api_checkout_account as HTML
+  Parameters: {"agent"=>"f57f0becbab72c87", "wari_sub_agent_id"=>"d407daa6828e363e8089", "phone_number"=>"58908957", "status"=>"1", "account"=>"35380000000023", "transaction_amount"=>"1000"}
+  [1m[35mCertifiedAgent Load (0.9ms)[0m  SELECT  "certified_agents".* FROM "certified_agents"  WHERE "certified_agents"."wari_sub_agent_id" = 'd407daa6828e363e8089' LIMIT 1
+  [1m[36mParameter Load (0.7ms)[0m  [1mSELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1[0m
+
+
+Started GET "/api/c99c71b510d2b/f57f0becbab72c87/d407daa6828e363e808/58908957/1/account/checkout/35380000000023/1000" for 127.0.0.1 at 2015-09-22 10:07:34 +0000
+  [1m[36mActiveRecord::SchemaMigration Load (1.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35mParameter Load (1.9ms)[0m  SELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1
+Processing by AccountsController#api_checkout_account as HTML
+  Parameters: {"agent"=>"f57f0becbab72c87", "wari_sub_agent_id"=>"d407daa6828e363e808", "phone_number"=>"58908957", "status"=>"1", "account"=>"35380000000023", "transaction_amount"=>"1000"}
+  [1m[36mCertifiedAgent Load (2.1ms)[0m  [1mSELECT  "certified_agents".* FROM "certified_agents"  WHERE "certified_agents"."wari_sub_agent_id" = 'd407daa6828e363e808' LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1
+ETHON: Libcurl initialized
+ETHON: performed EASY effective_url=http://0.0.0.0:3001/api/wari/create_private_pos?phone_number=58908957&wari_sub_certified_agent_id=d407daa6828e363e808 response_code=500 return_code=ok total_time=3.410975
+  Rendered text template (0.1ms)
+Filter chain halted as :create_or_update_wari_sub_agent rendered or redirected
+Completed 200 OK in 3451ms (Views: 9.3ms | ActiveRecord: 7.9ms)
+
+
+Started GET "/api/c99c71b510d2b/f57f0becbab72c87/d407daa6828e363e808/58908957/1/account/checkout/35380000000023/1000" for 127.0.0.1 at 2015-09-22 10:09:33 +0000
+Processing by AccountsController#api_checkout_account as HTML
+  Parameters: {"agent"=>"f57f0becbab72c87", "wari_sub_agent_id"=>"d407daa6828e363e808", "phone_number"=>"58908957", "status"=>"1", "account"=>"35380000000023", "transaction_amount"=>"1000"}
+  [1m[36mCertifiedAgent Load (0.8ms)[0m  [1mSELECT  "certified_agents".* FROM "certified_agents"  WHERE "certified_agents"."wari_sub_agent_id" = 'd407daa6828e363e808' LIMIT 1[0m
+  [1m[35mParameter Load (0.7ms)[0m  SELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1
+ETHON: performed EASY effective_url=http://0.0.0.0:3001/api/wari/create_private_pos?phone_number=58908957&wari_sub_certified_agent_id=d407daa6828e363e808 response_code=200 return_code=ok total_time=124.3549
+  Rendered text template (0.1ms)
+Filter chain halted as :create_or_update_wari_sub_agent rendered or redirected
+Completed 200 OK in 124363ms (Views: 1.2ms | ActiveRecord: 1.5ms)
+
+
+Started GET "/api/86d138798bc43ed59e5207c68e864564/92305fc3bb2d66f2/b7f50bb0fee4679564/88710000000030/LpBOULsE" for 127.0.0.1 at 2015-09-22 10:11:37 +0000
+Processing by CertifiedAgentsController#create as XML
+  Parameters: {"certified_agent_id"=>"92305fc3bb2d66f2", "sub_certified_agent_id"=>"b7f50bb0fee4679564", "account_number"=>"88710000000030", "token"=>"LpBOULsE"}
+  [1m[36m (0.5ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.9ms)[0m  INSERT INTO "certified_agents" ("account_number", "certified_agent_id", "created_at", "sub_certified_agent_id", "token", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["account_number", "88710000000030"], ["certified_agent_id", "92305fc3bb2d66f2"], ["created_at", "2015-09-22 10:11:37.412312"], ["sub_certified_agent_id", "b7f50bb0fee4679564"], ["token", "LpBOULsE"], ["updated_at", "2015-09-22 10:11:37.412312"]]
+  [1m[36m (33.1ms)[0m  [1mCOMMIT[0m
+  Rendered text template (0.1ms)
+Completed 200 OK in 65ms (Views: 1.7ms | ActiveRecord: 35.2ms)
+
+
+Started GET "/api/86d138798bc43ed59e5207c68e864564/92305fc3bb2d66f2/b7f50bb0fee4679564/88710000000030/LpBOULsE" for 127.0.0.1 at 2015-09-22 10:11:37 +0000
+Processing by CertifiedAgentsController#create as XML
+  Parameters: {"certified_agent_id"=>"92305fc3bb2d66f2", "sub_certified_agent_id"=>"b7f50bb0fee4679564", "account_number"=>"88710000000030", "token"=>"LpBOULsE"}
+  [1m[35m (0.5ms)[0m  BEGIN
+  [1m[36mSQL (0.7ms)[0m  [1mINSERT INTO "certified_agents" ("account_number", "certified_agent_id", "created_at", "sub_certified_agent_id", "token", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["account_number", "88710000000030"], ["certified_agent_id", "92305fc3bb2d66f2"], ["created_at", "2015-09-22 10:11:37.467937"], ["sub_certified_agent_id", "b7f50bb0fee4679564"], ["token", "LpBOULsE"], ["updated_at", "2015-09-22 10:11:37.467937"]]
+  [1m[35m (18.1ms)[0m  COMMIT
+  Rendered text template (0.0ms)
+Completed 200 OK in 25ms (Views: 0.9ms | ActiveRecord: 19.4ms)
+
+
+Started GET "/api/c99c71b510d2b/f57f0becbab72c87/d407daa6828e363e808988/58908957/1/account/checkout/35380000000023/1000" for 127.0.0.1 at 2015-09-22 10:19:14 +0000
+Processing by AccountsController#api_checkout_account as HTML
+  Parameters: {"agent"=>"f57f0becbab72c87", "wari_sub_agent_id"=>"d407daa6828e363e808988", "phone_number"=>"58908957", "status"=>"1", "account"=>"35380000000023", "transaction_amount"=>"1000"}
+  [1m[36mCertifiedAgent Load (1.1ms)[0m  [1mSELECT  "certified_agents".* FROM "certified_agents"  WHERE "certified_agents"."wari_sub_agent_id" = 'd407daa6828e363e808988' LIMIT 1[0m
+  [1m[35mParameter Load (0.7ms)[0m  SELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1
+ETHON: performed EASY effective_url=http://0.0.0.0:3001/api/wari/create_private_pos?phone_number=58908957&wari_sub_certified_agent_id=d407daa6828e363e808988 response_code=200 return_code=ok total_time=123.690838
+  Rendered text template (0.0ms)
+Filter chain halted as :create_or_update_wari_sub_agent rendered or redirected
+Completed 200 OK in 123700ms (Views: 1.0ms | ActiveRecord: 1.9ms)
+
+
+Started GET "/api/86d138798bc43ed59e5207c68e864564/92305fc3bb2d66f2/5b03919163d15cd347/28490000000032/cjMcNROH" for 127.0.0.1 at 2015-09-22 10:21:18 +0000
+Processing by CertifiedAgentsController#create as XML
+  Parameters: {"certified_agent_id"=>"92305fc3bb2d66f2", "sub_certified_agent_id"=>"5b03919163d15cd347", "account_number"=>"28490000000032", "token"=>"cjMcNROH"}
+  [1m[36m (0.6ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (1.0ms)[0m  INSERT INTO "certified_agents" ("account_number", "certified_agent_id", "created_at", "sub_certified_agent_id", "token", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["account_number", "28490000000032"], ["certified_agent_id", "92305fc3bb2d66f2"], ["created_at", "2015-09-22 10:21:18.463257"], ["sub_certified_agent_id", "5b03919163d15cd347"], ["token", "cjMcNROH"], ["updated_at", "2015-09-22 10:21:18.463257"]]
+  [1m[36m (12.8ms)[0m  [1mCOMMIT[0m
+  Rendered text template (0.0ms)
+Completed 200 OK in 19ms (Views: 0.8ms | ActiveRecord: 14.4ms)
+
+
+Started GET "/api/86d138798bc43ed59e5207c68e864564/92305fc3bb2d66f2/5b03919163d15cd347/28490000000032/cjMcNROH" for 127.0.0.1 at 2015-09-22 10:21:18 +0000
+Processing by CertifiedAgentsController#create as XML
+  Parameters: {"certified_agent_id"=>"92305fc3bb2d66f2", "sub_certified_agent_id"=>"5b03919163d15cd347", "account_number"=>"28490000000032", "token"=>"cjMcNROH"}
+  [1m[35m (0.6ms)[0m  BEGIN
+  [1m[36mSQL (0.8ms)[0m  [1mINSERT INTO "certified_agents" ("account_number", "certified_agent_id", "created_at", "sub_certified_agent_id", "token", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["account_number", "28490000000032"], ["certified_agent_id", "92305fc3bb2d66f2"], ["created_at", "2015-09-22 10:21:18.492942"], ["sub_certified_agent_id", "5b03919163d15cd347"], ["token", "cjMcNROH"], ["updated_at", "2015-09-22 10:21:18.492942"]]
+  [1m[35m (37.9ms)[0m  COMMIT
+  Rendered text template (0.0ms)
+Completed 200 OK in 44ms (Views: 0.9ms | ActiveRecord: 39.3ms)
+
+
+Started GET "/api/c99c71b510d2b/f57f0becbab72c87/d407daa6828e363e808988/58908957/1/account/checkout/35380000000023/1000" for 127.0.0.1 at 2015-09-22 10:26:47 +0000
+Processing by AccountsController#api_checkout_account as HTML
+  Parameters: {"agent"=>"f57f0becbab72c87", "wari_sub_agent_id"=>"d407daa6828e363e808988", "phone_number"=>"58908957", "status"=>"1", "account"=>"35380000000023", "transaction_amount"=>"1000"}
+  [1m[36mCertifiedAgent Load (0.8ms)[0m  [1mSELECT  "certified_agents".* FROM "certified_agents"  WHERE "certified_agents"."wari_sub_agent_id" = 'd407daa6828e363e808988' LIMIT 1[0m
+  [1m[35mParameter Load (0.7ms)[0m  SELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1
+ETHON: performed EASY effective_url=http://0.0.0.0:3001/api/wari/create_private_pos?phone_number=58908957&wari_sub_certified_agent_id=d407daa6828e363e808988 response_code=200 return_code=ok total_time=125.246269
+  Rendered text template (0.0ms)
+Filter chain halted as :create_or_update_wari_sub_agent rendered or redirected
+Completed 200 OK in 125253ms (Views: 1.0ms | ActiveRecord: 1.5ms)
+
+
+Started GET "/api/86d138798bc43ed59e5207c68e864564/92305fc3bb2d66f2/4921ecb8915dd98f35/99980000000034/QFKDRFfF" for 127.0.0.1 at 2015-09-22 10:28:52 +0000
+Processing by CertifiedAgentsController#create as XML
+  Parameters: {"certified_agent_id"=>"92305fc3bb2d66f2", "sub_certified_agent_id"=>"4921ecb8915dd98f35", "account_number"=>"99980000000034", "token"=>"QFKDRFfF"}
+  [1m[36m (0.4ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.8ms)[0m  INSERT INTO "certified_agents" ("account_number", "certified_agent_id", "created_at", "sub_certified_agent_id", "token", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["account_number", "99980000000034"], ["certified_agent_id", "92305fc3bb2d66f2"], ["created_at", "2015-09-22 10:28:52.773165"], ["sub_certified_agent_id", "4921ecb8915dd98f35"], ["token", "QFKDRFfF"], ["updated_at", "2015-09-22 10:28:52.773165"]]
+  [1m[36m (2.2ms)[0m  [1mCOMMIT[0m
+  Rendered text template (0.0ms)
+Completed 200 OK in 8ms (Views: 0.8ms | ActiveRecord: 3.5ms)
+
+
+Started GET "/api/86d138798bc43ed59e5207c68e864564/92305fc3bb2d66f2/4921ecb8915dd98f35/99980000000034/QFKDRFfF" for 127.0.0.1 at 2015-09-22 10:28:52 +0000
+Processing by CertifiedAgentsController#create as XML
+  Parameters: {"certified_agent_id"=>"92305fc3bb2d66f2", "sub_certified_agent_id"=>"4921ecb8915dd98f35", "account_number"=>"99980000000034", "token"=>"QFKDRFfF"}
+  [1m[35m (0.4ms)[0m  BEGIN
+  [1m[36mSQL (0.7ms)[0m  [1mINSERT INTO "certified_agents" ("account_number", "certified_agent_id", "created_at", "sub_certified_agent_id", "token", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["account_number", "99980000000034"], ["certified_agent_id", "92305fc3bb2d66f2"], ["created_at", "2015-09-22 10:28:52.789291"], ["sub_certified_agent_id", "4921ecb8915dd98f35"], ["token", "QFKDRFfF"], ["updated_at", "2015-09-22 10:28:52.789291"]]
+  [1m[35m (51.1ms)[0m  COMMIT
+  Rendered text template (0.0ms)
+Completed 200 OK in 57ms (Views: 0.9ms | ActiveRecord: 52.2ms)
+
+
+Started GET "/api/c99c71b510d2b/f57f0becbab72c87/d407daa6828e363e808988/58908957/1/account/checkout/35380000000023/1000" for 127.0.0.1 at 2015-09-22 10:37:53 +0000
+  [1m[36mParameter Load (0.8ms)[0m  [1mSELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1[0m
+Processing by AccountsController#api_checkout_account as HTML
+  Parameters: {"agent"=>"f57f0becbab72c87", "wari_sub_agent_id"=>"d407daa6828e363e808988", "phone_number"=>"58908957", "status"=>"1", "account"=>"35380000000023", "transaction_amount"=>"1000"}
+  [1m[35mCertifiedAgent Load (0.9ms)[0m  SELECT  "certified_agents".* FROM "certified_agents"  WHERE "certified_agents"."wari_sub_agent_id" = 'd407daa6828e363e808988' LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1[0m
+ETHON: performed EASY effective_url=http://0.0.0.0:3001/api/wari/create_private_pos?phone_number=58908957&wari_sub_certified_agent_id=d407daa6828e363e808988 response_code=200 return_code=ok total_time=123.402368
+  Rendered text template (0.1ms)
+Filter chain halted as :create_or_update_wari_sub_agent rendered or redirected
+Completed 200 OK in 123480ms (Views: 1.7ms | ActiveRecord: 8.1ms)
+
+
+Started GET "/api/86d138798bc43ed59e5207c68e864564/92305fc3bb2d66f2/3015369fc9fa0e0998/d407daa6828e363e808988/17820000000036/WzocMJxy" for 127.0.0.1 at 2015-09-22 10:39:57 +0000
+Processing by CertifiedAgentsController#create as XML
+  Parameters: {"certified_agent_id"=>"92305fc3bb2d66f2", "sub_certified_agent_id"=>"3015369fc9fa0e0998", "wari_sub_agent_id"=>"d407daa6828e363e808988", "account_number"=>"17820000000036", "token"=>"WzocMJxy"}
+  [1m[35m (0.6ms)[0m  BEGIN
+  [1m[36mSQL (1.2ms)[0m  [1mINSERT INTO "certified_agents" ("account_number", "certified_agent_id", "created_at", "sub_certified_agent_id", "token", "updated_at", "wari_sub_agent_id") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["account_number", "17820000000036"], ["certified_agent_id", "92305fc3bb2d66f2"], ["created_at", "2015-09-22 10:39:57.260734"], ["sub_certified_agent_id", "3015369fc9fa0e0998"], ["token", "WzocMJxy"], ["updated_at", "2015-09-22 10:39:57.260734"], ["wari_sub_agent_id", "d407daa6828e363e808988"]]
+  [1m[35m (26.5ms)[0m  COMMIT
+  Rendered text template (0.0ms)
+Completed 200 OK in 48ms (Views: 0.8ms | ActiveRecord: 28.3ms)
+
+
+Started GET "/api/86d138798bc43ed59e5207c68e864564/92305fc3bb2d66f2/3015369fc9fa0e0998/d407daa6828e363e808988/17820000000036/WzocMJxy" for 127.0.0.1 at 2015-09-22 10:39:57 +0000
+Processing by CertifiedAgentsController#create as XML
+  Parameters: {"certified_agent_id"=>"92305fc3bb2d66f2", "sub_certified_agent_id"=>"3015369fc9fa0e0998", "wari_sub_agent_id"=>"d407daa6828e363e808988", "account_number"=>"17820000000036", "token"=>"WzocMJxy"}
+  [1m[36m (0.4ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.6ms)[0m  INSERT INTO "certified_agents" ("account_number", "certified_agent_id", "created_at", "sub_certified_agent_id", "token", "updated_at", "wari_sub_agent_id") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"  [["account_number", "17820000000036"], ["certified_agent_id", "92305fc3bb2d66f2"], ["created_at", "2015-09-22 10:39:57.303343"], ["sub_certified_agent_id", "3015369fc9fa0e0998"], ["token", "WzocMJxy"], ["updated_at", "2015-09-22 10:39:57.303343"], ["wari_sub_agent_id", "d407daa6828e363e808988"]]
+  [1m[36m (29.3ms)[0m  [1mCOMMIT[0m
+  Rendered text template (0.0ms)
+Completed 200 OK in 35ms (Views: 0.4ms | ActiveRecord: 30.4ms)
+
+
+Started GET "/api/c99c71b510d2b/f57f0becbab72c87/d407daa6828e363e808988/58908957/1/account/checkout/35380000000023/1000" for 127.0.0.1 at 2015-09-22 10:42:58 +0000
+Processing by AccountsController#api_checkout_account as HTML
+  Parameters: {"agent"=>"f57f0becbab72c87", "wari_sub_agent_id"=>"d407daa6828e363e808988", "phone_number"=>"58908957", "status"=>"1", "account"=>"35380000000023", "transaction_amount"=>"1000"}
+  [1m[35mCertifiedAgent Load (1.0ms)[0m  SELECT  "certified_agents".* FROM "certified_agents"  WHERE "certified_agents"."wari_sub_agent_id" = 'd407daa6828e363e808988' LIMIT 1
+  Rendered text template (0.0ms)
+Filter chain halted as :create_or_update_wari_sub_agent rendered or redirected
+Completed 200 OK in 5ms (Views: 0.7ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/api/c99c71b510d2b/f57f0becbab72c87/d407daa6828e363e808988/58908957/1/account/checkout/35380000000023/1000" for 127.0.0.1 at 2015-09-22 10:43:04 +0000
+Processing by AccountsController#api_checkout_account as HTML
+  Parameters: {"agent"=>"f57f0becbab72c87", "wari_sub_agent_id"=>"d407daa6828e363e808988", "phone_number"=>"58908957", "status"=>"1", "account"=>"35380000000023", "transaction_amount"=>"1000"}
+  [1m[36mCertifiedAgent Load (0.8ms)[0m  [1mSELECT  "certified_agents".* FROM "certified_agents"  WHERE "certified_agents"."wari_sub_agent_id" = 'd407daa6828e363e808988' LIMIT 1[0m
+  Rendered text template (0.0ms)
+Filter chain halted as :create_or_update_wari_sub_agent rendered or redirected
+Completed 200 OK in 3ms (Views: 0.6ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/api/c99c71b510d2b/f57f0becbab72c87/d407daa6828e363e8089889/58908957/1/account/checkout/35380000000023/1000" for 127.0.0.1 at 2015-09-22 10:43:08 +0000
+Processing by AccountsController#api_checkout_account as HTML
+  Parameters: {"agent"=>"f57f0becbab72c87", "wari_sub_agent_id"=>"d407daa6828e363e8089889", "phone_number"=>"58908957", "status"=>"1", "account"=>"35380000000023", "transaction_amount"=>"1000"}
+  [1m[35mCertifiedAgent Load (0.8ms)[0m  SELECT  "certified_agents".* FROM "certified_agents"  WHERE "certified_agents"."wari_sub_agent_id" = 'd407daa6828e363e8089889' LIMIT 1
+  [1m[36mParameter Load (0.8ms)[0m  [1mSELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1[0m
+ETHON: performed EASY effective_url=http://0.0.0.0:3001/api/wari/create_private_pos?phone_number=58908957&wari_sub_certified_agent_id=d407daa6828e363e8089889 response_code=200 return_code=ok total_time=3.317952
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1
+  [1m[36mFeeType Load (1.4ms)[0m  [1mSELECT  "fee_types".* FROM "fee_types"  WHERE "fee_types"."name" = 'Cash out' LIMIT 1[0m
+  [1m[35mFee Load (1.0ms)[0m  SELECT  "fees".* FROM "fees"  WHERE "fees"."fee_type_id" = $1 AND (min_value <= 1000.0 AND max_value >= 1000.0)  ORDER BY "fees"."id" ASC LIMIT 1  [["fee_type_id", 1]]
+  [1m[36mCertifiedAgent Load (1.1ms)[0m  [1mSELECT  "certified_agents".* FROM "certified_agents"  WHERE (certified_agent_id = 'f57f0becbab72c87' AND sub_certified_agent_id IS NULL)  ORDER BY "certified_agents"."id" ASC LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1
+ETHON: performed EASY effective_url=HTTP://94.247.178.141:8080/PAYMONEY_WALLET/rest/cash_out_operation_pos/12345628/Fyihcbyb/IfBzotRG/1000/150.0/100/d77b9a48753098429c349886bfd734a3ce623548/null response_code=200 return_code=ok total_time=0.596824
+  [1m[36m (0.7ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (1.1ms)[0m  INSERT INTO "logs" ("account_number", "agent", "checkout_amount", "created_at", "error_log", "fee", "remote_ip_address", "status", "thumb", "transaction_id", "transaction_type", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING "id"  [["account_number", "35380000000023"], ["agent", "f57f0becbab72c87"], ["checkout_amount", "1000"], ["created_at", "2015-09-22 10:43:13.937392"], ["error_log", "error, montant insuffisant"], ["fee", 150.0], ["remote_ip_address", "127.0.0.1"], ["status", "f"], ["thumb", 100.0], ["transaction_id", "d77b9a48753098429c349886bfd734a3ce623548"], ["transaction_type", "Débit du compte"], ["updated_at", "2015-09-22 10:43:13.937392"]]
+  [1m[36m (33.6ms)[0m  [1mCOMMIT[0m
+  [1m[35mParameter Load (1.0ms)[0m  SELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1
+ETHON: performed EASY effective_url=http://0.0.0.0:3001/api/367419f5968800cd/paymoney_wallet/store_log?transaction_type=D%C3%A9bit%20du%20compte&account_number=35380000000023&checkout_amount=1000&response_log=none&error_log=error%2C%20montant%20insuffisant&status=false&remote_ip_address=127.0.0.1&agent=f57f0becbab72c87&sub_agent=&transaction_id=d77b9a48753098429c349886bfd734a3ce623548&thumb=100&fee=150.0&otp= response_code=200 return_code=ok total_time=0.07625
+  Rendered text template (0.0ms)
+Completed 200 OK in 5058ms (Views: 1.1ms | ActiveRecord: 58.1ms)
+
+
+Started GET "/api/c99c71b510d2b/f57f0becbab72c87/d407daa6828e363e8089889/58908957/1/account/checkout/35380000000023/1000" for 127.0.0.1 at 2015-09-22 10:58:21 +0000
+  [1m[36mParameter Load (0.9ms)[0m  [1mSELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1[0m
+Processing by AccountsController#api_checkout_account as HTML
+  Parameters: {"agent"=>"f57f0becbab72c87", "wari_sub_agent_id"=>"d407daa6828e363e8089889", "phone_number"=>"58908957", "status"=>"1", "account"=>"35380000000023", "transaction_amount"=>"1000"}
+  [1m[35mCertifiedAgent Load (0.9ms)[0m  SELECT  "certified_agents".* FROM "certified_agents"  WHERE "certified_agents"."wari_sub_agent_id" = 'd407daa6828e363e8089889' LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1[0m
+ETHON: performed EASY effective_url=http://0.0.0.0:3001/api/wari/create_private_pos?phone_number=58908957&wari_sub_certified_agent_id=d407daa6828e363e8089889 response_code=200 return_code=ok total_time=2.887077
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1
+  [1m[36mFeeType Load (0.7ms)[0m  [1mSELECT  "fee_types".* FROM "fee_types"  WHERE "fee_types"."name" = 'Cash out' LIMIT 1[0m
+  [1m[35mFee Load (1.0ms)[0m  SELECT  "fees".* FROM "fees"  WHERE "fees"."fee_type_id" = $1 AND (min_value <= 1000.0 AND max_value >= 1000.0)  ORDER BY "fees"."id" ASC LIMIT 1  [["fee_type_id", 1]]
+  [1m[36mCertifiedAgent Load (1.3ms)[0m  [1mSELECT  "certified_agents".* FROM "certified_agents"  WHERE (certified_agent_id = 'f57f0becbab72c87' AND sub_certified_agent_id IS NULL)  ORDER BY "certified_agents"."id" ASC LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1
+ETHON: performed EASY effective_url=HTTP://94.247.178.141:8080/PAYMONEY_WALLET/rest/cash_out_operation_pos/12345628/Fyihcbyb/IfBzotRG/1000/150.0/100/e10299b08553071562fad1ea46efeca2743cf883/null response_code=200 return_code=ok total_time=0.562505
+  [1m[36m (0.6ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (1.0ms)[0m  INSERT INTO "logs" ("account_number", "agent", "checkout_amount", "created_at", "error_log", "fee", "remote_ip_address", "status", "thumb", "transaction_id", "transaction_type", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING "id"  [["account_number", "35380000000023"], ["agent", "f57f0becbab72c87"], ["checkout_amount", "1000"], ["created_at", "2015-09-22 10:58:25.946657"], ["error_log", "error, montant insuffisant"], ["fee", 150.0], ["remote_ip_address", "127.0.0.1"], ["status", "f"], ["thumb", 100.0], ["transaction_id", "e10299b08553071562fad1ea46efeca2743cf883"], ["transaction_type", "Débit du compte"], ["updated_at", "2015-09-22 10:58:25.946657"]]
+  [1m[36m (12.8ms)[0m  [1mCOMMIT[0m
+  [1m[35mParameter Load (0.8ms)[0m  SELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1
+ETHON: performed EASY effective_url=http://0.0.0.0:3001/api/367419f5968800cd/paymoney_wallet/store_log?transaction_type=D%C3%A9bit%20du%20compte&account_number=35380000000023&checkout_amount=1000&response_log=none&error_log=error%2C%20montant%20insuffisant&status=false&remote_ip_address=127.0.0.1&agent=f57f0becbab72c87&sub_agent=&transaction_id=e10299b08553071562fad1ea46efeca2743cf883&thumb=100&fee=150.0&otp= response_code=200 return_code=ok total_time=0.067601
+  Rendered text template (0.0ms)
+Completed 200 OK in 4168ms (Views: 0.8ms | ActiveRecord: 38.6ms)
+
+
+Started GET "/api/c99c71b510d2b/f57f0becbab72c87/d407daa6828e363e8089889/58908957/1/account/checkout/35380000000023/1000" for 127.0.0.1 at 2015-09-22 11:34:23 +0000
+Processing by AccountsController#api_checkout_account as HTML
+  Parameters: {"agent"=>"f57f0becbab72c87", "wari_sub_agent_id"=>"d407daa6828e363e8089889", "phone_number"=>"58908957", "status"=>"1", "account"=>"35380000000023", "transaction_amount"=>"1000"}
+  [1m[36mCertifiedAgent Load (0.9ms)[0m  [1mSELECT  "certified_agents".* FROM "certified_agents"  WHERE "certified_agents"."wari_sub_agent_id" = 'd407daa6828e363e8089889' LIMIT 1[0m
+  [1m[35mParameter Load (0.7ms)[0m  SELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1
+ETHON: performed EASY effective_url=http://0.0.0.0:3001/api/wari/create_private_pos?phone_number=58908957&wari_sub_certified_agent_id=d407daa6828e363e8089889 response_code=200 return_code=ok total_time=124.058666
+  Rendered text template (0.0ms)
+Filter chain halted as :create_or_update_wari_sub_agent rendered or redirected
+Completed 200 OK in 124067ms (Views: 1.0ms | ActiveRecord: 1.6ms)
+
+
+Started GET "/api/86d138798bc43ed59e5207c68e864564/92305fc3bb2d66f2/bf7eff10e4a96e8a8a/d407daa6828e363e8089889/77200000000044/szbnpocc" for 127.0.0.1 at 2015-09-22 11:36:27 +0000
+Processing by CertifiedAgentsController#create as XML
+  Parameters: {"certified_agent_id"=>"92305fc3bb2d66f2", "sub_certified_agent_id"=>"bf7eff10e4a96e8a8a", "wari_sub_agent_id"=>"d407daa6828e363e8089889", "account_number"=>"77200000000044", "token"=>"szbnpocc"}
+  [1m[36m (0.4ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.9ms)[0m  INSERT INTO "certified_agents" ("account_number", "certified_agent_id", "created_at", "sub_certified_agent_id", "token", "updated_at", "wari_sub_agent_id") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"  [["account_number", "77200000000044"], ["certified_agent_id", "92305fc3bb2d66f2"], ["created_at", "2015-09-22 11:36:27.578256"], ["sub_certified_agent_id", "bf7eff10e4a96e8a8a"], ["token", "szbnpocc"], ["updated_at", "2015-09-22 11:36:27.578256"], ["wari_sub_agent_id", "d407daa6828e363e8089889"]]
+  [1m[36m (32.8ms)[0m  [1mCOMMIT[0m
+  Rendered text template (0.1ms)
+Completed 200 OK in 40ms (Views: 1.2ms | ActiveRecord: 34.1ms)
+
+
+Started GET "/api/86d138798bc43ed59e5207c68e864564/92305fc3bb2d66f2/bf7eff10e4a96e8a8a/d407daa6828e363e8089889/77200000000044/szbnpocc" for 127.0.0.1 at 2015-09-22 11:36:27 +0000
+Processing by CertifiedAgentsController#create as XML
+  Parameters: {"certified_agent_id"=>"92305fc3bb2d66f2", "sub_certified_agent_id"=>"bf7eff10e4a96e8a8a", "wari_sub_agent_id"=>"d407daa6828e363e8089889", "account_number"=>"77200000000044", "token"=>"szbnpocc"}
+  [1m[35m (0.6ms)[0m  BEGIN
+  [1m[36mSQL (0.8ms)[0m  [1mINSERT INTO "certified_agents" ("account_number", "certified_agent_id", "created_at", "sub_certified_agent_id", "token", "updated_at", "wari_sub_agent_id") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["account_number", "77200000000044"], ["certified_agent_id", "92305fc3bb2d66f2"], ["created_at", "2015-09-22 11:36:27.628082"], ["sub_certified_agent_id", "bf7eff10e4a96e8a8a"], ["token", "szbnpocc"], ["updated_at", "2015-09-22 11:36:27.628082"], ["wari_sub_agent_id", "d407daa6828e363e8089889"]]
+  [1m[35m (32.9ms)[0m  COMMIT
+  Rendered text template (0.0ms)
+Completed 200 OK in 41ms (Views: 0.8ms | ActiveRecord: 34.3ms)

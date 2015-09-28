@@ -2,6 +2,8 @@ class AccountsController < ApplicationController
 
   #before_filter :check_agent_and_sub_agent_relationship, only: [:api_ascent, :api_validate_checkout, :api_credit_account, :api_sold, :api_checkout_account]
 
+  before_filter :create_or_update_wari_sub_agent, only: [:api_checkout_account]
+
   @paymoney_wallet_url = (Parameter.first.paymoney_wallet_url rescue "")
 
   def api_create
@@ -56,15 +58,17 @@ class AccountsController < ApplicationController
         status = "|4042|"
       else
         if !account.blank? && is_a_number?(transaction_amount)
-          transaction_id = DateTime.now.to_i.to_s
+          transaction_id = Digest::SHA1.hexdigest([DateTime.now.iso8601(6), rand].join)
           response = (RestClient.get "#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/cash_in_operation_pos/TYHHKIRE/#{account_token}/#{merchant_pos.token}/#{transaction_amount}/0/100/#{transaction_id}/null" rescue "")
 
+          response = (JSON.parse(response.to_s) rescue nil)
+
           unless response.blank?
-            if response.to_s == "good"
-              status = transaction_id
+            if response["otpPin"] != "null"
+              status = transaction_id + '|' + response["otpTransactionId"] + '|' + response["otpPin"]
               response_log = response.to_s
               transaction_status = true
-              Log.create(transaction_type: "Crédit de compte", account_number: account, credit_amount: transaction_amount, response_log: response.to_s, status: true, remote_ip_address: remote_ip_address, agent: agent, sub_agent: sub_agent, transaction_id: transaction_id, thumb: 100)
+              Log.create(transaction_type: "Crédit de compte", account_number: account, credit_amount: transaction_amount, response_log: response.to_s, status: true, remote_ip_address: remote_ip_address, agent: agent, sub_agent: sub_agent, transaction_id: transaction_id, thumb: 100, otp: response["otpTransactionId"], pin: response["otpPin"])
             else
               status = "|5001|"
               error_log = response.to_s
@@ -112,7 +116,7 @@ class AccountsController < ApplicationController
       status = "|4042|"
     else
       if !account.blank? && !password.blank?
-        transaction_id = DateTime.now.to_i.to_s
+        transaction_id = Digest::SHA1.hexdigest([DateTime.now.iso8601(6), rand].join)
         request = Typhoeus::Request.new("#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/solte_compte/#{account}/#{password}", followlocation: true, method: :get)
 
         request.on_complete do |response|
@@ -168,19 +172,21 @@ class AccountsController < ApplicationController
         status = "|4042|"
       else
         if is_a_number?(transaction_amount) && is_a_number?(fee)
-          transaction_id = DateTime.now.to_i.to_s
+          transaction_id = Digest::SHA1.hexdigest([DateTime.now.iso8601(6), rand].join)
           request = Typhoeus::Request.new("#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/cash_out_operation_pos/12345628/#{merchant_pos.token}/#{account_token}/#{transaction_amount}/#{fee}/100/#{transaction_id}/null", followlocation: true, method: :get)
 
           request.on_complete do |response|
             if response.success?
-              response = (request.response.body rescue nil)
+              #response = (request.response.body rescue nil)
+              response = (JSON.parse(response.to_s) rescue nil)
               unless response.blank?
-                if response != "error"
+                #if response != "error" && response != "error, montant insuffisant"
+                if response["otpPin"] != "null"
                   status = transaction_id
                   response_log = response.to_s
                   transaction_status = true
                   otp = response
-                  Log.create(transaction_type: "Débit du compte", account_number: account, checkout_amount: transaction_amount, response_log: response_log, status: true, remote_ip_address: remote_ip_address, otp: response, agent: agent, sub_agent: sub_agent, transaction_id: transaction_id, thumb: 100, fee: fee)
+                  Log.create(transaction_type: "Débit du compte", account_number: account, checkout_amount: transaction_amount, response_log: response_log, status: true, remote_ip_address: remote_ip_address, otp: response["otpTransactionId"], pin: response["otpPin"], agent: agent, sub_agent: sub_agent, transaction_id: transaction_id, thumb: 100, fee: fee)
                   status = response
                 else
                   status = "|5001|"
@@ -257,7 +263,7 @@ class AccountsController < ApplicationController
             unless response.blank?
               if response["otpStatus"].to_s == "true"
                 response_log = response.to_s
-                status = transaction_id
+                status = Digest::SHA1.hexdigest([DateTime.now.iso8601(6), rand].join)
                 transaction_status = true
                 Log.create(transaction_type: "Validation de paiement", otp: transaction_id, pin: pin, response_log: response_log, status: true, remote_ip_address: remote_ip_address, agent: agent, sub_agent: sub_agent)
               else
@@ -299,7 +305,7 @@ class AccountsController < ApplicationController
         status = "|4041|"
       else
         if is_a_number?(transaction_amount)
-          transaction_id = DateTime.now.to_i.to_s
+          transaction_id = Digest::SHA1.hexdigest([DateTime.now.iso8601(6), rand].join)
           response = (RestClient.get "#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/Remonte/78945612/#{merchant_pos.token}/#{private_pos.token}/#{transaction_amount}/0/0/#{transaction_id}/null" rescue "")
 
           unless response.blank?
@@ -338,7 +344,7 @@ class AccountsController < ApplicationController
     transaction_status = false
 
     if is_a_number?(transaction_amount)
-      transaction_id = DateTime.now.to_i.to_s
+      transaction_id = Digest::SHA1.hexdigest([DateTime.now.iso8601(6), rand].join)
       response = (RestClient.get "#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/cashtransact/85245623/#{a_account_transfer}/#{b_account_transfer}/#{transaction_amount}/#{transaction_transfer_fee}/100/#{transaction_id}" rescue "")
 
       unless response.blank?
@@ -375,7 +381,7 @@ class AccountsController < ApplicationController
     transaction_status = false
 
     if is_a_number?(transaction_amount)
-      transaction_id = DateTime.now.to_i.to_s
+      transaction_id = Digest::SHA1.hexdigest([DateTime.now.iso8601(6), rand].join)
       response = (RestClient.get "#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/prise_paris/96325874/#{game_account_token}/#{account_token}/#{transaction_amount}/0/0/#{transaction_id}" rescue "")
 
       unless response.blank?
@@ -411,7 +417,7 @@ class AccountsController < ApplicationController
     transaction_status = false
 
     if is_a_number?(transaction_amount)
-      transaction_id = DateTime.now.to_i.to_s
+      transaction_id = Digest::SHA1.hexdigest([DateTime.now.iso8601(6), rand].join)
       response = (RestClient.get "#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/paiement_gain/74125895/#{account_token}/#{game_account_token}/#{transaction_amount}/0/0/#{transaction_id} " rescue "")
 
       unless response.blank?
@@ -446,7 +452,7 @@ class AccountsController < ApplicationController
     transaction_status = false
 
     if is_a_number?(transaction_amount)
-      transaction_id = DateTime.now.to_i.to_s
+      transaction_id = Digest::SHA1.hexdigest([DateTime.now.iso8601(6), rand].join)
       response = (RestClient.get "#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/cash_in_pos/53740905/#{account_token}/#{transaction_amount}/#{transaction_id}" rescue "")
 
       unless response.blank?
@@ -487,7 +493,7 @@ class AccountsController < ApplicationController
 
     if !account_token.blank? && !mobile_money_token.blank?
       if is_a_number?(transaction_amount)
-        transaction_id = DateTime.now.to_i.to_s
+        transaction_id = Digest::SHA1.hexdigest([DateTime.now.iso8601(6), rand].join)
         response = (RestClient.get "#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/cash_in_operation_momo/tertybgd/#{account_token}/#{mobile_money_token}/#{transaction_amount}/#{fee}/100/#{transaction_id}" rescue "")
 
         unless response.blank?
@@ -529,7 +535,7 @@ class AccountsController < ApplicationController
 
     if !account_token.blank? && !mobile_money_token.blank?
       if is_a_number?(transaction_amount)
-        transaction_id = DateTime.now.to_i.to_s
+        transaction_id = Digest::SHA1.hexdigest([DateTime.now.iso8601(6), rand].join)
         response = (RestClient.get "#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/cash_out_operation_momo/14725836/#{account_token}/#{mobile_money_token}/#{transaction_amount}/#{fee}/100/#{transaction_id}" rescue "")
 
         unless response.blank?
@@ -580,4 +586,55 @@ class AccountsController < ApplicationController
     return msisdn_status
   end
 
+
+  def create_or_update_wari_sub_agent
+    status = params[:status]
+    phone_number = params[:phone_number]
+    wari_sub_agent_id = params[:wari_sub_agent_id]
+    request_response = '0'
+
+    # Old pos, nothing to do
+    if status == '0'
+
+    else
+      # New pos, create it
+      if status == '1'
+        if check_wari_private_pos_existence(params[:wari_sub_agent_id])
+          request = Typhoeus::Request.new("#{Parameter.first.hub_front_office_url}/api/wari/create_private_pos", params: {phone_number: params[:phone_number], wari_sub_certified_agent_id: params[:wari_sub_agent_id]}, followlocation: true, method: :get)
+
+          request.on_complete do |response|
+            if response.success?
+              if response.body == '1'
+
+              else
+                render text: '|5001|'
+              end
+            else
+              render text: '|5000|'
+            end
+          end
+
+          request.run
+        else
+          render text: '|6001|'
+        end
+      else
+        # Old pos, update phone number
+        if status == '2'
+
+        else
+          render text: '|6000|'
+        end
+      end
+    end
+  end
+
+  # Before creating a new private pos, we make sure it does not exist
+  def check_wari_private_pos_existence(wari_pos_id)
+    if CertifiedAgent.find_by_wari_sub_agent_id(wari_pos_id).blank?
+      return true
+    else
+      return false
+    end
+  end
 end
