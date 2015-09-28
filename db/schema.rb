@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150909083752) do
+ActiveRecord::Schema.define(version: 20150922084304) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,6 +34,7 @@ ActiveRecord::Schema.define(version: 20150909083752) do
     t.string   "account_number"
     t.string   "token"
     t.string   "sub_certified_agent_id"
+    t.string   "wari_sub_agent_id"
   end
 
   create_table "fee_types", force: true do |t|

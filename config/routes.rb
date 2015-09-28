@@ -8,12 +8,22 @@ Rails.application.routes.draw do
 
   #get '/api/1314a3dfb72826290bbc99c71b510d2b/account/create/:msisdn' => 'accounts#api_create'
   get '/api/1314a3dfb72826290bbc99c71b510d2b/:agent/:sub_agent/account/credit/:account/:transaction_amount' => 'accounts#api_credit_account', :constraints => {:transaction_amount => /(\d+(.\d+)?)/}
+
+  # Wari
+  get '/api/b1a02cc2e4a70953aa49d93/:agent/:wari_sub_agent_id/:phone_number/:status/account/credit/:account/:transaction_amount' => 'accounts#api_credit_account', :constraints => {:transaction_amount => /(\d+(.\d+)?)/}
+
   get '/api/1314a3dfb72826290bbc99c71b510d2b/:agent/:sub_agent/account/checkout/:account/:transaction_amount' => 'accounts#api_checkout_account', :constraints => {:transaction_amount => /(\d+(.\d+)?)/}
+
+  # Wari
+  get '/api/c99c71b510d2b/:agent/:wari_sub_agent_id/:phone_number/:status/account/checkout/:account/:transaction_amount' => 'accounts#api_checkout_account', :constraints => {:transaction_amount => /(\d+(.\d+)?)/}
+
   get '/api/1314a3dfb72826290bbc99c71b510d2b/:agent/:sub_agent/account/sold/:account/:password' => 'accounts#api_sold'
   get '/api/1314a3dfb72826290bbc99c71b510d2b/:agent/:sub_agent/account/checkout_validate/:transaction_id/:pin' => 'accounts#api_validate_checkout'
 
   get '/api/86d138798bc43ed59e5207c68e864564/:certified_agent_id/:account_number/:token' => 'certified_agents#create'
   get '/api/86d138798bc43ed59e5207c68e864564/:certified_agent_id/:sub_certified_agent_id/:account_number/:token' => 'certified_agents#create'
+
+  get '/api/86d138798bc43ed59e5207c68e864564/:certified_agent_id/:sub_certified_agent_id/:wari_sub_agent_id/:account_number/:token' => 'certified_agents#create'
 
   get '/api/1314a3dfb72826290bbc99c71b510d2b/fee/:fee_type_token/:transaction_amount' => 'fees#cashout', :constraints => {:transaction_amount => /(\d+(.\d+)?)/}
 
