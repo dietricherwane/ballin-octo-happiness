@@ -2,7 +2,7 @@ class AccountsController < ApplicationController
 
   #before_filter :check_agent_and_sub_agent_relationship, only: [:api_ascent, :api_validate_checkout, :api_credit_account, :api_sold, :api_checkout_account]
 
-  before_filter :create_or_update_wari_sub_agent, only: [:api_checkout_account]
+  #before_filter :create_or_update_wari_sub_agent, only: [:api_checkout_account]
 
   @paymoney_wallet_url = (Parameter.first.paymoney_wallet_url rescue "")
 
