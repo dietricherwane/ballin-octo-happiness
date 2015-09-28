@@ -178,7 +178,7 @@ class AccountsController < ApplicationController
           request.on_complete do |response|
             if response.success?
               #response = (request.response.body rescue nil)
-              response = (JSON.parse(response.to_s) rescue nil)
+              response = (JSON.parse(response.body.to_s) rescue nil)
               unless response.blank?
                 #if response != "error" && response != "error, montant insuffisant"
                 if response["otpPin"] != "null" && !response["otpPin"].blank?
