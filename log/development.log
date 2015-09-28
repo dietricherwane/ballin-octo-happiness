@@ -13302,3 +13302,22 @@ TypeError (no implicit conversion of nil into String):
   Rendered /usr/local/rvm/gems/ruby-2.0.0-p195@rails4.0.7/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.3ms)
   Rendered /usr/local/rvm/gems/ruby-2.0.0-p195@rails4.0.7/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.1ms)
   Rendered /usr/local/rvm/gems/ruby-2.0.0-p195@rails4.0.7/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (17.5ms)
+
+
+Started GET "/api/1314a3dfb72826290bbc99c71b510d2b/0b32dd2df978071e/db08e9e70be4a4817a/account/credit/6510000000046/1006" for 41.202.94.174 at 2015-09-28 15:05:41 +0200
+  [1m[35mParameter Load (0.4ms)[0m  SELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1
+Processing by AccountsController#api_credit_account as HTML
+  Parameters: {"agent"=>"0b32dd2df978071e", "sub_agent"=>"db08e9e70be4a4817a", "account"=>"6510000000046", "transaction_amount"=>"1006"}
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1[0m
+  [1m[35mCertifiedAgent Load (0.4ms)[0m  SELECT  "certified_agents".* FROM "certified_agents"  WHERE (certified_agent_id = '0b32dd2df978071e' AND sub_certified_agent_id IS NULL)  ORDER BY "certified_agents"."id" ASC LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1[0m
+  [1m[35m (0.4ms)[0m  BEGIN
+  [1m[36mSQL (4.3ms)[0m  [1mINSERT INTO "logs" ("account_number", "agent", "created_at", "credit_amount", "otp", "pin", "remote_ip_address", "response_log", "status", "sub_agent", "thumb", "transaction_id", "transaction_type", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14) RETURNING "id"[0m  [["account_number", "6510000000046"], ["agent", "0b32dd2df978071e"], ["created_at", "2015-09-28 13:05:41.900007"], ["credit_amount", "1006"], ["otp", "Error"], ["pin", ""], ["remote_ip_address", "41.202.94.174"], ["response_log", "{\"idOtp\"=>0, \"otpDate\"=>nil, \"otpPin\"=>nil, \"otpTransactionId\"=>\"Error\", \"otpStatus\"=>nil}"], ["status", "t"], ["sub_agent", "db08e9e70be4a4817a"], ["thumb", 100.0], ["transaction_id", "43a3c74b356deb0e87bc21562a4cce74748bc27f"], ["transaction_type", "Crédit de compte"], ["updated_at", "2015-09-28 13:05:41.900007"]]
+  [1m[35m (0.5ms)[0m  COMMIT
+  [1m[36mParameter Load (0.5ms)[0m  [1mSELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1[0m
+ETHON: Libcurl initialized
+ETHON: performed EASY effective_url=http://pay-money.net/api/367419f5968800cd/paymoney_wallet/store_log?transaction_type=Cr%C3%A9dit%20de%20compte&account_number=6510000000046&credit_amount=1006&response_log=%7B%22idOtp%22%3D%3E0%2C%20%22otpDate%22%3D%3Enil%2C%20%22otpPin%22%3D%3Enil%2C%20%22otpTransactionId%22%3D%3E%22Error%22%2C%20%22otpStatus%22%3D%3Enil%7D&error_log=none&status=true&remote_ip_address=41.202.94.174&agent=0b32dd2df978071e&sub_agent=db08e9e70be4a4817a&transaction_id=43a3c74b356deb0e87bc21562a4cce74748bc27f&thumb=100 response_code=200 return_code=ok total_time=0.362741
+  Rendered text template (0.0ms)
+Completed 200 OK in 493ms (Views: 12.8ms | ActiveRecord: 11.1ms)
+  [1m[36mLog Load (1.1ms)[0m  [1mSELECT  "logs".* FROM "logs"   ORDER BY "logs"."id" DESC LIMIT 1[0m
+  [1m[35mLog Load (1.6ms)[0m  SELECT  "logs".* FROM "logs"   ORDER BY "logs"."id" DESC LIMIT 1
