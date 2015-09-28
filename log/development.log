@@ -13252,3 +13252,53 @@ Processing by CertifiedAgentsController#create as XML
   Rendered text template (0.0ms)
 Completed 200 OK in 41ms (Views: 0.8ms | ActiveRecord: 34.3ms)
 >>>>>>> e572199b6952cf12070a56bbf29c0fe08ecdcd25
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to AddWariSubAgentIdToCertifiedAgents (20150922084304)
+  [1m[35m (0.4ms)[0m  BEGIN
+  [1m[36m (57.3ms)[0m  [1mALTER TABLE "certified_agents" ADD COLUMN "wari_sub_agent_id" character varying(255)[0m
+  [1m[35mSQL (3.4ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20150922084304"]]
+  [1m[36m (0.7ms)[0m  [1mCOMMIT[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.4ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+
+
+Started GET "/api/1314a3dfb72826290bbc99c71b510d2b/0b32dd2df978071e/db08e9e70be4a4817a/account/credit/6510000000046/1006" for 41.202.94.174 at 2015-09-28 15:00:12 +0200
+  [1m[36mActiveRecord::SchemaMigration Load (0.9ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+
+SyntaxError (/var/www/html/PaymoneyWallet/app/controllers/accounts_controller.rb:61: syntax error, unexpected <<
+<<<<<<< HEAD
+  ^
+/var/www/html/PaymoneyWallet/app/controllers/accounts_controller.rb:64: syntax error, unexpected ===, expecting keyword_end
+=======
+   ^
+/var/www/html/PaymoneyWallet/app/controllers/accounts_controller.rb:66: syntax error, unexpected >>, expecting keyword_end
+>>>>>>> e572199b6952cf12070a56bbf29c0fe08ecdcd25
+  ^):
+  app/controllers/accounts_controller.rb:61: syntax error, unexpected <<
+  app/controllers/accounts_controller.rb:64: syntax error, unexpected ===, expecting keyword_end
+  app/controllers/accounts_controller.rb:66: syntax error, unexpected >>, expecting keyword_end
+
+
+  Rendered /usr/local/rvm/gems/ruby-2.0.0-p195@rails4.0.7/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/_source.erb (1.2ms)
+  Rendered /usr/local/rvm/gems/ruby-2.0.0-p195@rails4.0.7/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.0ms)
+  Rendered /usr/local/rvm/gems/ruby-2.0.0-p195@rails4.0.7/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (22.5ms)
+  Rendered /usr/local/rvm/gems/ruby-2.0.0-p195@rails4.0.7/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (60.9ms)
+
+
+Started GET "/api/1314a3dfb72826290bbc99c71b510d2b/0b32dd2df978071e/db08e9e70be4a4817a/account/credit/6510000000046/1006" for 41.202.94.174 at 2015-09-28 15:01:49 +0200
+  [1m[35mParameter Load (0.8ms)[0m  SELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1
+Processing by AccountsController#api_credit_account as HTML
+  Parameters: {"agent"=>"0b32dd2df978071e", "sub_agent"=>"db08e9e70be4a4817a", "account"=>"6510000000046", "transaction_amount"=>"1006"}
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1[0m
+  [1m[35mCertifiedAgent Load (1.0ms)[0m  SELECT  "certified_agents".* FROM "certified_agents"  WHERE (certified_agent_id = '0b32dd2df978071e' AND sub_certified_agent_id IS NULL)  ORDER BY "certified_agents"."id" ASC LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1[0m
+Completed 500 Internal Server Error in 54ms
+
+TypeError (no implicit conversion of nil into String):
+  app/controllers/accounts_controller.rb:68:in `+'
+  app/controllers/accounts_controller.rb:68:in `api_credit_account'
+
+
+  Rendered /usr/local/rvm/gems/ruby-2.0.0-p195@rails4.0.7/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/_source.erb (0.8ms)
+  Rendered /usr/local/rvm/gems/ruby-2.0.0-p195@rails4.0.7/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.3ms)
+  Rendered /usr/local/rvm/gems/ruby-2.0.0-p195@rails4.0.7/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.1ms)
+  Rendered /usr/local/rvm/gems/ruby-2.0.0-p195@rails4.0.7/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (17.5ms)

@@ -58,19 +58,14 @@ class AccountsController < ApplicationController
         status = "|4042|"
       else
         if !account.blank? && is_a_number?(transaction_amount)
-<<<<<<< HEAD
-          transaction_id = DateTime.now.to_i.to_s
-          print "#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/cash_in_operation_pos/TYHHKIRE/#{account_token}/#{merchant_pos.token}/#{transaction_amount}/0/100/#{transaction_id}/null"
-=======
           transaction_id = Digest::SHA1.hexdigest([DateTime.now.iso8601(6), rand].join)
->>>>>>> e572199b6952cf12070a56bbf29c0fe08ecdcd25
           response = (RestClient.get "#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/cash_in_operation_pos/TYHHKIRE/#{account_token}/#{merchant_pos.token}/#{transaction_amount}/0/100/#{transaction_id}/null" rescue "")
 
           response = (JSON.parse(response.to_s) rescue nil)
 
           unless response.blank?
             if response["otpPin"] != "null"
-              status = transaction_id + '|' + response["otpTransactionId"] + '|' + response["otpPin"]
+              status = transaction_id + '|' + response["otpTransactionId"].to_s + '|' + response["otpPin"].to_s
               response_log = response.to_s
               transaction_status = true
               Log.create(transaction_type: "Crédit de compte", account_number: account, credit_amount: transaction_amount, response_log: response.to_s, status: true, remote_ip_address: remote_ip_address, agent: agent, sub_agent: sub_agent, transaction_id: transaction_id, thumb: 100, otp: response["otpTransactionId"], pin: response["otpPin"])
