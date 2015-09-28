@@ -187,7 +187,6 @@ class AccountsController < ApplicationController
                   transaction_status = true
                   otp = response
                   Log.create(transaction_type: "Débit du compte", account_number: account, checkout_amount: transaction_amount, response_log: response_log, status: true, remote_ip_address: remote_ip_address, otp: response["otpTransactionId"].to_s, pin: response["otpPin"].to_s, agent: agent, sub_agent: sub_agent, transaction_id: transaction_id, thumb: 100, fee: fee)
-                  status = response
                 else
                   status = "|5001|"
                   error_log = response.to_s
