@@ -20,6 +20,8 @@ Rails.application.routes.draw do
   get '/api/1314a3dfb72826290bbc99c71b510d2b/:agent/:sub_agent/account/sold/:account/:password' => 'accounts#api_sold'
   get '/api/1314a3dfb72826290bbc99c71b510d2b/:agent/:sub_agent/account/checkout_validate/:transaction_id/:pin' => 'accounts#api_validate_checkout'
 
+  get '/api/1314a3dfb72826290bbc99/:agent/:sub_agent/account/credit_validate/:transaction_id/:pin' => 'accounts#api_validate_credit'
+
   get '/api/86d138798bc43ed59e5207c68e864564/:certified_agent_id/:account_number/:token' => 'certified_agents#create'
   get '/api/86d138798bc43ed59e5207c68e864564/:certified_agent_id/:sub_certified_agent_id/:account_number/:token' => 'certified_agents#create'
 
