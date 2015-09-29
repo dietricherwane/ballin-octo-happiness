@@ -181,7 +181,7 @@ class AccountsController < ApplicationController
               unless response.blank?
                 #if response != "error" && response != "error, montant insuffisant"
                 if response["otpPin"] != "null" && !response["otpPin"].blank?
-                  status = transaction_id + '|' + response["otpTransactionId"].to_s + '|' + response["otpPin"].to_s
+                  status = transaction_id + '|' + response["otpTransactionId"].to_s #+ '|' + response["otpPin"].to_s
                   response_log = response.to_s
                   transaction_status = true
                   otp = response
@@ -234,6 +234,56 @@ class AccountsController < ApplicationController
     return fee
   end
 
+  def api_validate_credit
+    pin = params[:pin]
+    transaction_id = params[:transaction_id]
+    agent = params[:agent]
+    sub_agent = params[:sub_agent]
+    remote_ip_address = request.remote_ip
+    status = "|5000|"
+    transaction = Log.find_by_otp(transaction_id)
+    agent_token = CertifiedAgent.find_by_certified_agent_id(agent).token
+    response_log = ""
+    error_log = ""
+    transaction_status = false
+
+    if agent_token.blank?
+      status = "|4042|"
+    else
+      if !pin.blank? && !transaction.blank?
+        account_token = check_account_number(transaction.account_number)
+        print "#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/otp_active_pos/TYHHKIRE/#{account_token}/#{agent_token}/#{transaction.checkout_amount}/#{transaction.fee}/#{transaction.thumb}/#{transaction.transaction_id}/null/#{pin}/#{transaction.otp}"
+        request = Typhoeus::Request.new("#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/otp_active_pos/TYHHKIRE/#{account_token}/#{agent_token}/#{transaction.checkout_amount}/#{transaction.fee}/#{transaction.thumb}/#{transaction.transaction_id}/null/#{pin}/#{transaction.otp}", followlocation: true, method: :get)
+
+        request.on_complete do |response|
+          if response.success?
+            response = (JSON.parse(request.response.body) rescue nil)
+            unless response.blank?
+              if response["otpStatus"].to_s == "true"
+                response_log = response.to_s
+                status = Digest::SHA1.hexdigest([DateTime.now.iso8601(6), rand].join)
+                transaction_status = true
+                Log.create(transaction_type: "Validation de crédit", otp: transaction_id, pin: pin, response_log: response_log, status: true, remote_ip_address: remote_ip_address, agent: agent, sub_agent: sub_agent)
+              else
+                status = "|5001|"
+                error_log = response.to_s
+                Log.create(transaction_type: "Validation de crédit", error_log: error_log, status: false, remote_ip_address: remote_ip_address, agent: agent, sub_agent: sub_agent)
+              end
+            else
+              error_log = response.to_s
+              Log.create(transaction_type: "Validation de crédit", error_log: error_log, status: false, remote_ip_address: remote_ip_address, agent: agent, sub_agent: sub_agent)
+            end
+          end
+        end
+
+        request.run
+      end
+       Typhoeus.get("#{Parameter.first.hub_front_office_url}/api/367419f5968800cd/paymoney_wallet/store_log", params: { transaction_type: "Validation de crédit", account_number: (transaction.account_number rescue nil), credit_amount: (transaction.credit_amount rescue nil), response_log: response_log, error_log: error_log, status: transaction_status, remote_ip_address: remote_ip_address, agent: agent, sub_agent: sub_agent, transaction_id: (transaction.transaction_id rescue nil), otp: (transaction.otp rescue nil), pin: pin })
+    end
+
+    render text: status
+  end
+
   def api_validate_checkout
     pin = params[:pin]
     transaction_id = params[:transaction_id]
@@ -252,7 +302,7 @@ class AccountsController < ApplicationController
     else
       if !pin.blank? && !transaction.blank?
         account_token = check_account_number(transaction.account_number)
-        print "#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/otp_active_pos/12345628/#{account_token}/#{agent_token}/#{transaction.checkout_amount}/#{transaction.fee}/#{transaction.thumb}/#{transaction.transaction_id}/null/#{pin}/#{transaction.otp}"
+        print "#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/otp_active_pos/12345628/#{agent_token}/#{account_token}/#{transaction.checkout_amount}/#{transaction.fee}/#{transaction.thumb}/#{transaction.transaction_id}/null/#{pin}/#{transaction.otp}"
         request = Typhoeus::Request.new("#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/otp_active_pos/12345628/#{account_token}/#{agent_token}/#{transaction.checkout_amount}/#{transaction.fee}/#{transaction.thumb}/#{transaction.transaction_id}/null/#{pin}/#{transaction.otp}", followlocation: true, method: :get)
 
         request.on_complete do |response|
