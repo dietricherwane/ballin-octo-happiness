@@ -253,7 +253,7 @@ class AccountsController < ApplicationController
       if !pin.blank? && !transaction.blank?
         account_token = check_account_number(transaction.account_number)
         print "#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/otp_active_pos/TYHHKIRE/#{account_token}/#{agent_token}/#{transaction.checkout_amount}/#{transaction.fee}/#{transaction.thumb}/#{transaction.transaction_id}/null/#{pin}/#{transaction.otp}"
-        request = Typhoeus::Request.new("#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/otp_active_pos/TYHHKIRE/#{account_token}/#{agent_token}/#{transaction.checkout_amount}/#{transaction.fee}/#{transaction.thumb}/#{transaction.transaction_id}/null/#{pin}/#{transaction.otp}", followlocation: true, method: :get)
+        request = Typhoeus::Request.new("#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/otp_active_pos/TYHHKIRE/#{account_token}/#{agent_token}/#{transaction.credit_amount}/0/#{transaction.thumb}/#{transaction.transaction_id}/null/#{pin}/#{transaction.otp}", followlocation: true, method: :get)
 
         request.on_complete do |response|
           if response.success?
@@ -303,7 +303,7 @@ class AccountsController < ApplicationController
       if !pin.blank? && !transaction.blank?
         account_token = check_account_number(transaction.account_number)
         print "#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/otp_active_pos/12345628/#{agent_token}/#{account_token}/#{transaction.checkout_amount}/#{transaction.fee}/#{transaction.thumb}/#{transaction.transaction_id}/null/#{pin}/#{transaction.otp}"
-        request = Typhoeus::Request.new("#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/otp_active_pos/12345628/#{account_token}/#{agent_token}/#{transaction.checkout_amount}/#{transaction.fee}/#{transaction.thumb}/#{transaction.transaction_id}/null/#{pin}/#{transaction.otp}", followlocation: true, method: :get)
+        request = Typhoeus::Request.new("#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/otp_active_pos/12345628/#{agent_token}/#{account_token}/#{transaction.checkout_amount}/#{transaction.fee}/#{transaction.thumb}/#{transaction.transaction_id}/null/#{pin}/#{transaction.otp}", followlocation: true, method: :get)
 
         request.on_complete do |response|
           if response.success?
