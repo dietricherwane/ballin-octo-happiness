@@ -50,6 +50,10 @@ Rails.application.routes.draw do
   # Cashout from mobile money
   get '/api/88bc43ed59e5207c68e864564/mobile_money/cashout/:mobile_money_account/:account/:transaction_amount/:fee' => 'accounts#cashout_mobile_money', :constraints => {:transaction_amount => /(\d+(.\d+)?)/}
 
+  # Displaying logs
+  get '/logs/derniere_requete_vers_la_bombe' => 'bomb_logs#last_request'
+  get '/logs/derniere_reponse_de_la_bombe' => 'bomb_logs#last_return'
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
