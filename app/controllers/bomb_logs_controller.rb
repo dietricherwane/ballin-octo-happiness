@@ -5,7 +5,7 @@ class BombLogsController < ApplicationController
   end
 
   def last_return
-    render text: (Log.last.inspect rescue "Error While Displaying °-°")
+    render text: "Notification d'erreur: " + (Log.last.error_response rescue "Error While Displaying °�") +  " | Notification de succès :" + (Log.last.response_log rescue "Error While Displaying °-°")
   end
 
 end

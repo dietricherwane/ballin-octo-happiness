@@ -21496,3 +21496,438 @@ Migrating to CreateBombLogs (20151006110645)
   [1m[36m (14.4ms)[0m  [1mCOMMIT[0m
   [1m[35mActiveRecord::SchemaMigration Load (1.0ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
 >>>>>>> 71a3887632ed5cc37dfecfd3d403bfd68c730900
+  [1m[36mActiveRecord::SchemaMigration Load (66.6ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to CreateBombLogs (20151006110645)
+  [1m[35m (0.5ms)[0m  BEGIN
+  [1m[36m (72.4ms)[0m  [1mCREATE TABLE "bomb_logs" ("id" serial primary key, "sent_url" text, "created_at" timestamp, "updated_at" timestamp) [0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20151006110645"]]
+  [1m[36m (1.0ms)[0m  [1mCOMMIT[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.6ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+
+
+Started GET "/logs/derniere_reponse_de_la_bombe" for 41.207.3.42 at 2015-10-06 13:31:40 +0200
+  [1m[36mActiveRecord::SchemaMigration Load (1.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by BombLogsController#last_return as HTML
+  [1m[35mLog Load (1.8ms)[0m  SELECT  "logs".* FROM "logs"   ORDER BY "logs"."id" DESC LIMIT 1
+  Rendered text template (0.1ms)
+Completed 200 OK in 108ms (Views: 29.8ms | ActiveRecord: 7.4ms)
+
+
+Started GET "/logs/derniere_requete_vers_la_bombe" for 41.207.3.42 at 2015-10-06 13:32:20 +0200
+Processing by BombLogsController#last_request as HTML
+Completed 500 Internal Server Error in 3ms
+
+SyntaxError (/var/www/html/PaymoneyWallet/app/models/bomb_log.rb:3: syntax error, unexpected ':', expecting keyword_end
+  attr_accessible: sent_url
+                  ^):
+  app/models/bomb_log.rb:3: syntax error, unexpected ':', expecting keyword_end
+  app/controllers/bomb_logs_controller.rb:4:in `last_request'
+
+
+  Rendered /usr/local/rvm/gems/ruby-2.0.0-p195@rails4.0.7/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/_source.erb (2.4ms)
+  Rendered /usr/local/rvm/gems/ruby-2.0.0-p195@rails4.0.7/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.9ms)
+  Rendered /usr/local/rvm/gems/ruby-2.0.0-p195@rails4.0.7/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (2.5ms)
+  Rendered /usr/local/rvm/gems/ruby-2.0.0-p195@rails4.0.7/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (53.2ms)
+
+
+Started GET "/api/1314a3dfb72826290bbc99c71b510d2b/032385c6b35d17ca/43f64df840f652b542/account/sold/21080000000003/8064" for 41.189.40.193 at 2015-10-06 13:32:47 +0200
+  [1m[36mParameter Load (1.6ms)[0m  [1mSELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1[0m
+Processing by AccountsController#api_sold as HTML
+  Parameters: {"agent"=>"032385c6b35d17ca", "sub_agent"=>"43f64df840f652b542", "account"=>"21080000000003", "password"=>"[FILTERED]"}
+  [1m[35mCertifiedAgent Load (2.6ms)[0m  SELECT  "certified_agents".* FROM "certified_agents"  WHERE (certified_agent_id = '032385c6b35d17ca' AND sub_certified_agent_id IS NULL)  ORDER BY "certified_agents"."id" ASC LIMIT 1
+Completed 500 Internal Server Error in 111ms
+
+SyntaxError (/var/www/html/PaymoneyWallet/app/models/bomb_log.rb:3: syntax error, unexpected ':', expecting keyword_end
+  attr_accessible: sent_url
+                  ^):
+  app/models/bomb_log.rb:3: syntax error, unexpected ':', expecting keyword_end
+  app/controllers/accounts_controller.rb:120:in `api_sold'
+
+
+  Rendered /usr/local/rvm/gems/ruby-2.0.0-p195@rails4.0.7/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/_source.erb (2.0ms)
+  Rendered /usr/local/rvm/gems/ruby-2.0.0-p195@rails4.0.7/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.3ms)
+  Rendered /usr/local/rvm/gems/ruby-2.0.0-p195@rails4.0.7/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.6ms)
+  Rendered /usr/local/rvm/gems/ruby-2.0.0-p195@rails4.0.7/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (34.0ms)
+
+
+Started GET "/api/1314a3dfb72826290bbc99c71b510d2b/032385c6b35d17ca/43f64df840f652b542/account/sold/21080000000003/8064" for 41.189.40.193 at 2015-10-06 13:32:51 +0200
+Processing by AccountsController#api_sold as HTML
+  Parameters: {"agent"=>"032385c6b35d17ca", "sub_agent"=>"43f64df840f652b542", "account"=>"21080000000003", "password"=>"[FILTERED]"}
+  [1m[36mCertifiedAgent Load (1.1ms)[0m  [1mSELECT  "certified_agents".* FROM "certified_agents"  WHERE (certified_agent_id = '032385c6b35d17ca' AND sub_certified_agent_id IS NULL)  ORDER BY "certified_agents"."id" ASC LIMIT 1[0m
+Completed 500 Internal Server Error in 7ms
+
+SyntaxError (/var/www/html/PaymoneyWallet/app/models/bomb_log.rb:3: syntax error, unexpected ':', expecting keyword_end
+  attr_accessible: sent_url
+                  ^):
+  app/models/bomb_log.rb:3: syntax error, unexpected ':', expecting keyword_end
+  app/controllers/accounts_controller.rb:120:in `api_sold'
+
+
+  Rendered /usr/local/rvm/gems/ruby-2.0.0-p195@rails4.0.7/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/_source.erb (1.3ms)
+  Rendered /usr/local/rvm/gems/ruby-2.0.0-p195@rails4.0.7/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.3ms)
+  Rendered /usr/local/rvm/gems/ruby-2.0.0-p195@rails4.0.7/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.7ms)
+  Rendered /usr/local/rvm/gems/ruby-2.0.0-p195@rails4.0.7/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (28.5ms)
+
+
+Started GET "/api/1314a3dfb72826290bbc99c71b510d2b/032385c6b35d17ca/43f64df840f652b542/account/sold/21080000000003/8064" for 41.189.40.193 at 2015-10-06 13:32:54 +0200
+Processing by AccountsController#api_sold as HTML
+  Parameters: {"agent"=>"032385c6b35d17ca", "sub_agent"=>"43f64df840f652b542", "account"=>"21080000000003", "password"=>"[FILTERED]"}
+  [1m[35mCertifiedAgent Load (1.1ms)[0m  SELECT  "certified_agents".* FROM "certified_agents"  WHERE (certified_agent_id = '032385c6b35d17ca' AND sub_certified_agent_id IS NULL)  ORDER BY "certified_agents"."id" ASC LIMIT 1
+Completed 500 Internal Server Error in 7ms
+
+SyntaxError (/var/www/html/PaymoneyWallet/app/models/bomb_log.rb:3: syntax error, unexpected ':', expecting keyword_end
+  attr_accessible: sent_url
+                  ^):
+  app/models/bomb_log.rb:3: syntax error, unexpected ':', expecting keyword_end
+  app/controllers/accounts_controller.rb:120:in `api_sold'
+
+
+  Rendered /usr/local/rvm/gems/ruby-2.0.0-p195@rails4.0.7/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/_source.erb (1.6ms)
+  Rendered /usr/local/rvm/gems/ruby-2.0.0-p195@rails4.0.7/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.8ms)
+  Rendered /usr/local/rvm/gems/ruby-2.0.0-p195@rails4.0.7/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (2.3ms)
+  Rendered /usr/local/rvm/gems/ruby-2.0.0-p195@rails4.0.7/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (34.5ms)
+
+
+Started GET "/api/1314a3dfb72826290bbc99c71b510d2b/032385c6b35d17ca/43f64df840f652b542/account/sold/21080000000003/8064" for 41.189.40.193 at 2015-10-06 13:32:58 +0200
+Processing by AccountsController#api_sold as HTML
+  Parameters: {"agent"=>"032385c6b35d17ca", "sub_agent"=>"43f64df840f652b542", "account"=>"21080000000003", "password"=>"[FILTERED]"}
+  [1m[36mCertifiedAgent Load (0.7ms)[0m  [1mSELECT  "certified_agents".* FROM "certified_agents"  WHERE (certified_agent_id = '032385c6b35d17ca' AND sub_certified_agent_id IS NULL)  ORDER BY "certified_agents"."id" ASC LIMIT 1[0m
+Completed 500 Internal Server Error in 3ms
+
+SyntaxError (/var/www/html/PaymoneyWallet/app/models/bomb_log.rb:3: syntax error, unexpected ':', expecting keyword_end
+  attr_accessible: sent_url
+                  ^):
+  app/models/bomb_log.rb:3: syntax error, unexpected ':', expecting keyword_end
+  app/controllers/accounts_controller.rb:120:in `api_sold'
+
+
+  Rendered /usr/local/rvm/gems/ruby-2.0.0-p195@rails4.0.7/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/_source.erb (0.7ms)
+  Rendered /usr/local/rvm/gems/ruby-2.0.0-p195@rails4.0.7/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.5ms)
+  Rendered /usr/local/rvm/gems/ruby-2.0.0-p195@rails4.0.7/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.3ms)
+  Rendered /usr/local/rvm/gems/ruby-2.0.0-p195@rails4.0.7/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (20.3ms)
+
+
+Started GET "/logs/derniere_requete_vers_la_bombe" for 41.207.3.42 at 2015-10-06 13:33:14 +0200
+Processing by BombLogsController#last_request as HTML
+  [1m[35mBombLog Load (1.1ms)[0m  SELECT  "bomb_logs".* FROM "bomb_logs"   ORDER BY "bomb_logs"."id" DESC LIMIT 1
+  Rendered text template (0.0ms)
+Completed 200 OK in 11ms (Views: 1.2ms | ActiveRecord: 4.0ms)
+
+
+Started GET "/api/1314a3dfb72826290bbc99c71b510d2b/0b32dd2df978071e/db08e9e70be4a4817/account/checkout/38250000000045/500" for 41.207.3.42 at 2015-10-06 13:33:26 +0200
+  [1m[36mParameter Load (0.6ms)[0m  [1mSELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1[0m
+Processing by AccountsController#api_checkout_account as HTML
+  Parameters: {"agent"=>"0b32dd2df978071e", "sub_agent"=>"db08e9e70be4a4817", "account"=>"38250000000045", "transaction_amount"=>"500"}
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1
+  [1m[36mFeeType Load (1.4ms)[0m  [1mSELECT  "fee_types".* FROM "fee_types"  WHERE "fee_types"."name" = 'Cash out' LIMIT 1[0m
+  [1m[35mFee Load (0.9ms)[0m  SELECT  "fees".* FROM "fees"  WHERE "fees"."fee_type_id" = $1 AND (min_value <= 500.0 AND max_value >= 500.0)  ORDER BY "fees"."id" ASC LIMIT 1  [["fee_type_id", 1]]
+  [1m[36mCertifiedAgent Load (1.0ms)[0m  [1mSELECT  "certified_agents".* FROM "certified_agents"  WHERE (certified_agent_id = '0b32dd2df978071e' AND sub_certified_agent_id IS NULL)  ORDER BY "certified_agents"."id" ASC LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1
+  [1m[36m (0.4ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (1.1ms)[0m  INSERT INTO "bomb_logs" ("created_at", "sent_url", "updated_at") VALUES ($1, $2, $3) RETURNING "id"  [["created_at", "2015-10-06 11:33:27.060410"], ["sent_url", "94.247.178.141:8080/PAYMONEY_WALLET/rest/cash_out_operation_pos/12345628/ImPqIwjk/null/500/150.0/0/baf4f54ed67472a3276b95f65de1e4f2193fc57c/null"], ["updated_at", "2015-10-06 11:33:27.060410"]]
+  [1m[36m (0.7ms)[0m  [1mCOMMIT[0m
+  [1m[35mParameter Load (0.6ms)[0m  SELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1
+ETHON: Libcurl initialized
+ETHON: performed EASY effective_url=HTTP://94.247.178.141:8080/PAYMONEY_WALLET/rest/cash_out_operation_pos/12345628/ImPqIwjk/null/500/150.0/0/baf4f54ed67472a3276b95f65de1e4f2193fc57c/null response_code=200 return_code=ok total_time=0.026259
+  [1m[36m (0.4ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (1.0ms)[0m  INSERT INTO "logs" ("account_number", "agent", "checkout_amount", "created_at", "error_log", "fee", "remote_ip_address", "status", "sub_agent", "thumb", "transaction_id", "transaction_type", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13) RETURNING "id"  [["account_number", "38250000000045"], ["agent", "0b32dd2df978071e"], ["checkout_amount", "500"], ["created_at", "2015-10-06 11:33:27.186353"], ["error_log", "{\"idOtp\"=>0, \"otpDate\"=>nil, \"otpPin\"=>nil, \"otpTransactionId\"=>\"Error\", \"otpStatus\"=>nil, \"tokken\"=>nil}"], ["fee", 150.0], ["remote_ip_address", "41.207.3.42"], ["status", "f"], ["sub_agent", "db08e9e70be4a4817"], ["thumb", 100.0], ["transaction_id", "baf4f54ed67472a3276b95f65de1e4f2193fc57c"], ["transaction_type", "Débit du compte"], ["updated_at", "2015-10-06 11:33:27.186353"]]
+  [1m[36m (0.6ms)[0m  [1mCOMMIT[0m
+  [1m[35mParameter Load (0.7ms)[0m  SELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1
+ETHON: performed EASY effective_url=http://pay-money.net/api/367419f5968800cd/paymoney_wallet/store_log?transaction_type=D%C3%A9bit%20du%20compte&account_number=38250000000045&checkout_amount=500&response_log=none&error_log=%7B%22idOtp%22%3D%3E0%2C%20%22otpDate%22%3D%3Enil%2C%20%22otpPin%22%3D%3Enil%2C%20%22otpTransactionId%22%3D%3E%22Error%22%2C%20%22otpStatus%22%3D%3Enil%2C%20%22tokken%22%3D%3Enil%7D&status=false&remote_ip_address=41.207.3.42&agent=0b32dd2df978071e&sub_agent=db08e9e70be4a4817&transaction_id=baf4f54ed67472a3276b95f65de1e4f2193fc57c&thumb=100&fee=150.0&otp= response_code=200 return_code=ok total_time=0.1012
+  Rendered text template (0.1ms)
+Completed 200 OK in 621ms (Views: 1.1ms | ActiveRecord: 27.8ms)
+
+
+Started GET "/logs/derniere_requete_vers_la_bombe" for 41.207.3.42 at 2015-10-06 13:33:31 +0200
+Processing by BombLogsController#last_request as HTML
+  [1m[36mBombLog Load (1.1ms)[0m  [1mSELECT  "bomb_logs".* FROM "bomb_logs"   ORDER BY "bomb_logs"."id" DESC LIMIT 1[0m
+  Rendered text template (0.0ms)
+Completed 200 OK in 4ms (Views: 0.7ms | ActiveRecord: 1.1ms)
+
+
+Started GET "/api/1314a3dfb72826290bbc99c71b510d2b/032385c6b35d17ca/43f64df840f652b542/account/sold/21080000000003/8064" for 41.189.40.193 at 2015-10-06 13:33:40 +0200
+Processing by AccountsController#api_sold as HTML
+  Parameters: {"agent"=>"032385c6b35d17ca", "sub_agent"=>"43f64df840f652b542", "account"=>"21080000000003", "password"=>"[FILTERED]"}
+  [1m[35mCertifiedAgent Load (1.1ms)[0m  SELECT  "certified_agents".* FROM "certified_agents"  WHERE (certified_agent_id = '032385c6b35d17ca' AND sub_certified_agent_id IS NULL)  ORDER BY "certified_agents"."id" ASC LIMIT 1
+  [1m[36mParameter Load (0.8ms)[0m  [1mSELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1[0m
+  [1m[35m (0.4ms)[0m  BEGIN
+  [1m[36mSQL (0.7ms)[0m  [1mINSERT INTO "bomb_logs" ("created_at", "sent_url", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["created_at", "2015-10-06 11:33:40.749702"], ["sent_url", "94.247.178.141:8080/PAYMONEY_WALLET/rest/solte_compte/21080000000003/8064"], ["updated_at", "2015-10-06 11:33:40.749702"]]
+  [1m[35m (0.7ms)[0m  COMMIT
+  [1m[36mParameter Load (0.7ms)[0m  [1mSELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1[0m
+ETHON: performed EASY effective_url=HTTP://94.247.178.141:8080/PAYMONEY_WALLET/rest/solte_compte/21080000000003/8064 response_code=200 return_code=ok total_time=0.402263
+  [1m[35m (0.6ms)[0m  BEGIN
+  [1m[36mSQL (0.7ms)[0m  [1mINSERT INTO "logs" ("account_number", "agent", "created_at", "remote_ip_address", "response_log", "status", "sub_agent", "transaction_id", "transaction_type", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING "id"[0m  [["account_number", "21080000000003"], ["agent", "032385c6b35d17ca"], ["created_at", "2015-10-06 11:33:41.161002"], ["remote_ip_address", "41.189.40.193"], ["response_log", "{\"nom\"=>\"Malick\", \"prenom\"=>\"Traore\", \"email\"=>\"malick.traore@ngser.com\", \"status\"=>nil, \"compte\"=>\"21080000000003\", \"password\"=>nil, \"solde\"=>\"1046500.0\"}"], ["status", "t"], ["sub_agent", "43f64df840f652b542"], ["transaction_id", "ff0816f9efb9fa3a595907e3128acb029bc0aa4e"], ["transaction_type", "Solde du compte"], ["updated_at", "2015-10-06 11:33:41.161002"]]
+  [1m[35m (0.6ms)[0m  COMMIT
+  [1m[36mParameter Load (0.6ms)[0m  [1mSELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1[0m
+ETHON: performed EASY effective_url=http://pay-money.net/api/367419f5968800cd/paymoney_wallet/store_log?transaction_type=Solde%20du%20compte&account_number=21080000000003&response_log=%7B%22nom%22%3D%3E%22Malick%22%2C%20%22prenom%22%3D%3E%22Traore%22%2C%20%22email%22%3D%3E%22malick.traore%40ngser.com%22%2C%20%22status%22%3D%3Enil%2C%20%22compte%22%3D%3E%2221080000000003%22%2C%20%22password%22%3D%3Enil%2C%20%22solde%22%3D%3E%221046500.0%22%7D&error_log=none&status=true&remote_ip_address=41.189.40.193&agent=032385c6b35d17ca&sub_agent=43f64df840f652b542&transaction_id=ff0816f9efb9fa3a595907e3128acb029bc0aa4e response_code=200 return_code=ok total_time=0.032564
+  Rendered text template (0.0ms)
+Completed 200 OK in 457ms (Views: 0.6ms | ActiveRecord: 6.9ms)
+
+
+Started GET "/logs/derniere_reponse_de_la_bombe" for 41.207.3.42 at 2015-10-06 13:33:55 +0200
+Processing by BombLogsController#last_return as HTML
+  [1m[35mLog Load (1.0ms)[0m  SELECT  "logs".* FROM "logs"   ORDER BY "logs"."id" DESC LIMIT 1
+  Rendered text template (0.0ms)
+Completed 200 OK in 4ms (Views: 0.5ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/api/1314a3dfb72826290bbc99c71b510d2b/032385c6b35d17ca/43f64df840f652b542/account/credit/21080000000003/1000" for 41.189.40.193 at 2015-10-06 13:35:03 +0200
+Processing by AccountsController#api_credit_account as HTML
+  Parameters: {"agent"=>"032385c6b35d17ca", "sub_agent"=>"43f64df840f652b542", "account"=>"21080000000003", "transaction_amount"=>"1000"}
+  [1m[36mParameter Load (1.1ms)[0m  [1mSELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1[0m
+  [1m[35mCertifiedAgent Load (1.6ms)[0m  SELECT  "certified_agents".* FROM "certified_agents"  WHERE (certified_agent_id = '032385c6b35d17ca' AND sub_certified_agent_id IS NULL)  ORDER BY "certified_agents"."id" ASC LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1[0m
+  [1m[35m (0.5ms)[0m  BEGIN
+  [1m[36mSQL (0.9ms)[0m  [1mINSERT INTO "bomb_logs" ("created_at", "sent_url", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["created_at", "2015-10-06 11:35:03.530748"], ["sent_url", "94.247.178.141:8080/PAYMONEY_WALLET/rest/cash_in_operation_pos/TYHHKIRE/tIpfhHmK/FZiZWFTB/900.0/0/100/785669c88ab0a868ce08711086810e6a6b735ca3/null"], ["updated_at", "2015-10-06 11:35:03.530748"]]
+  [1m[35m (0.8ms)[0m  COMMIT
+  [1m[36mParameter Load (0.9ms)[0m  [1mSELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1[0m
+  [1m[35m (0.4ms)[0m  BEGIN
+  [1m[36mSQL (0.6ms)[0m  [1mINSERT INTO "logs" ("account_number", "agent", "created_at", "credit_amount", "otp", "pin", "remote_ip_address", "response_log", "status", "sub_agent", "thumb", "transaction_id", "transaction_type", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14) RETURNING "id"[0m  [["account_number", "21080000000003"], ["agent", "032385c6b35d17ca"], ["created_at", "2015-10-06 11:35:08.660313"], ["credit_amount", "1000"], ["otp", "446473731444131303569"], ["pin", "3024"], ["remote_ip_address", "41.189.40.193"], ["response_log", "{\"idOtp\"=>1, \"otpDate\"=>nil, \"otpPin\"=>\"3024\", \"otpTransactionId\"=>\"446473731444131303569\", \"otpStatus\"=>nil, \"tokken\"=>nil}"], ["status", "t"], ["sub_agent", "43f64df840f652b542"], ["thumb", 100.0], ["transaction_id", "785669c88ab0a868ce08711086810e6a6b735ca3"], ["transaction_type", "Crédit de compte"], ["updated_at", "2015-10-06 11:35:08.660313"]]
+  [1m[35m (0.5ms)[0m  COMMIT
+  [1m[36mParameter Load (0.4ms)[0m  [1mSELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1[0m
+ETHON: performed EASY effective_url=http://pay-money.net/api/367419f5968800cd/paymoney_wallet/store_log?transaction_type=Cr%C3%A9dit%20de%20compte&account_number=21080000000003&credit_amount=1000&response_log=%7B%22idOtp%22%3D%3E1%2C%20%22otpDate%22%3D%3Enil%2C%20%22otpPin%22%3D%3E%223024%22%2C%20%22otpTransactionId%22%3D%3E%22446473731444131303569%22%2C%20%22otpStatus%22%3D%3Enil%2C%20%22tokken%22%3D%3Enil%7D&error_log=none&status=true&remote_ip_address=41.189.40.193&agent=032385c6b35d17ca&sub_agent=43f64df840f652b542&transaction_id=785669c88ab0a868ce08711086810e6a6b735ca3&thumb=100 response_code=200 return_code=ok total_time=0.036514
+  Rendered text template (0.0ms)
+Completed 200 OK in 5201ms (Views: 0.8ms | ActiveRecord: 7.8ms)
+
+
+Started GET "/api/1314a3dfb72826290bbc99/032385c6b35d17ca/43f64df840f652b542/account/credit_validate/446473731444131303569/3024" for 41.189.40.193 at 2015-10-06 13:36:48 +0200
+Processing by AccountsController#api_validate_credit as HTML
+  Parameters: {"agent"=>"032385c6b35d17ca", "sub_agent"=>"43f64df840f652b542", "transaction_id"=>"446473731444131303569", "pin"=>"3024"}
+  [1m[35mLog Load (1.8ms)[0m  SELECT  "logs".* FROM "logs"  WHERE "logs"."otp" = '446473731444131303569' LIMIT 1
+  [1m[36mCertifiedAgent Load (0.8ms)[0m  [1mSELECT  "certified_agents".* FROM "certified_agents"  WHERE "certified_agents"."certified_agent_id" = '032385c6b35d17ca' LIMIT 1[0m
+  [1m[35mParameter Load (0.7ms)[0m  SELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1[0m
+  [1m[35m (0.5ms)[0m  BEGIN
+  [1m[36mSQL (0.8ms)[0m  [1mINSERT INTO "bomb_logs" ("created_at", "sent_url", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["created_at", "2015-10-06 11:36:48.990475"], ["sent_url", "94.247.178.141:8080/PAYMONEY_WALLET/rest/otp_active_pos/TYHHKIRE/tIpfhHmK/FZiZWFTB/1000/0/100.0/785669c88ab0a868ce08711086810e6a6b735ca3/null/3024/446473731444131303569"], ["updated_at", "2015-10-06 11:36:48.990475"]]
+  [1m[35m (0.9ms)[0m  COMMIT
+  [1m[36mParameter Load (0.9ms)[0m  [1mSELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1[0m
+ETHON: performed EASY effective_url=HTTP://94.247.178.141:8080/PAYMONEY_WALLET/rest/otp_active_pos/TYHHKIRE/tIpfhHmK/FZiZWFTB/1000/0/100.0/785669c88ab0a868ce08711086810e6a6b735ca3/null/3024/446473731444131303569 response_code=200 return_code=ok total_time=0.222396
+  [1m[35m (0.7ms)[0m  BEGIN
+  [1m[36mSQL (1.0ms)[0m  [1mINSERT INTO "logs" ("agent", "created_at", "otp", "pin", "remote_ip_address", "response_log", "status", "sub_agent", "transaction_type", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING "id"[0m  [["agent", "032385c6b35d17ca"], ["created_at", "2015-10-06 11:36:49.222031"], ["otp", "446473731444131303569"], ["pin", "3024"], ["remote_ip_address", "41.189.40.193"], ["response_log", "{\"idOtp\"=>nil, \"otpDate\"=>nil, \"otpPin\"=>nil, \"otpTransactionId\"=>nil, \"otpStatus\"=>true, \"tokken\"=>nil}"], ["status", "t"], ["sub_agent", "43f64df840f652b542"], ["transaction_type", "Validation de crédit"], ["updated_at", "2015-10-06 11:36:49.222031"]]
+  [1m[35m (0.7ms)[0m  COMMIT
+  [1m[36mParameter Load (0.8ms)[0m  [1mSELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1[0m
+ETHON: performed EASY effective_url=http://pay-money.net/api/367419f5968800cd/paymoney_wallet/store_log?transaction_type=Validation%20de%20cr%C3%A9dit&account_number=21080000000003&credit_amount=1000&response_log=%7B%22idOtp%22%3D%3Enil%2C%20%22otpDate%22%3D%3Enil%2C%20%22otpPin%22%3D%3Enil%2C%20%22otpTransactionId%22%3D%3Enil%2C%20%22otpStatus%22%3D%3Etrue%2C%20%22tokken%22%3D%3Enil%7D&error_log=&status=true&remote_ip_address=41.189.40.193&agent=032385c6b35d17ca&sub_agent=43f64df840f652b542&transaction_id=785669c88ab0a868ce08711086810e6a6b735ca3&otp=446473731444131303569&pin=3024 response_code=200 return_code=ok total_time=0.042182
+  Rendered text template (0.1ms)
+Completed 200 OK in 311ms (Views: 1.3ms | ActiveRecord: 9.5ms)
+
+
+Started GET "/api/1314a3dfb72826290bbc99c71b510d2b/032385c6b35d17ca/43f64df840f652b542/account/sold/21080000000003/8064" for 41.189.40.193 at 2015-10-06 13:37:42 +0200
+Processing by AccountsController#api_sold as HTML
+  Parameters: {"agent"=>"032385c6b35d17ca", "sub_agent"=>"43f64df840f652b542", "account"=>"21080000000003", "password"=>"[FILTERED]"}
+  [1m[35mCertifiedAgent Load (1.3ms)[0m  SELECT  "certified_agents".* FROM "certified_agents"  WHERE (certified_agent_id = '032385c6b35d17ca' AND sub_certified_agent_id IS NULL)  ORDER BY "certified_agents"."id" ASC LIMIT 1
+  [1m[36mParameter Load (0.8ms)[0m  [1mSELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1[0m
+  [1m[35m (0.5ms)[0m  BEGIN
+  [1m[36mSQL (0.7ms)[0m  [1mINSERT INTO "bomb_logs" ("created_at", "sent_url", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["created_at", "2015-10-06 11:37:42.465606"], ["sent_url", "94.247.178.141:8080/PAYMONEY_WALLET/rest/solte_compte/21080000000003/8064"], ["updated_at", "2015-10-06 11:37:42.465606"]]
+  [1m[35m (0.7ms)[0m  COMMIT
+  [1m[36mParameter Load (0.7ms)[0m  [1mSELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1[0m
+ETHON: performed EASY effective_url=HTTP://94.247.178.141:8080/PAYMONEY_WALLET/rest/solte_compte/21080000000003/8064 response_code=200 return_code=ok total_time=0.33933100000000005
+  [1m[35m (0.8ms)[0m  BEGIN
+  [1m[36mSQL (1.5ms)[0m  [1mINSERT INTO "logs" ("account_number", "agent", "created_at", "remote_ip_address", "response_log", "status", "sub_agent", "transaction_id", "transaction_type", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING "id"[0m  [["account_number", "21080000000003"], ["agent", "032385c6b35d17ca"], ["created_at", "2015-10-06 11:37:42.814644"], ["remote_ip_address", "41.189.40.193"], ["response_log", "{\"nom\"=>\"Malick\", \"prenom\"=>\"Traore\", \"email\"=>\"malick.traore@ngser.com\", \"status\"=>nil, \"compte\"=>\"21080000000003\", \"password\"=>nil, \"solde\"=>\"1047500.0\"}"], ["status", "t"], ["sub_agent", "43f64df840f652b542"], ["transaction_id", "46cde2f62f11f22ec3d2f2f197eaf758fe204533"], ["transaction_type", "Solde du compte"], ["updated_at", "2015-10-06 11:37:42.814644"]]
+  [1m[35m (0.8ms)[0m  COMMIT
+  [1m[36mParameter Load (1.0ms)[0m  [1mSELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1[0m
+ETHON: performed EASY effective_url=http://pay-money.net/api/367419f5968800cd/paymoney_wallet/store_log?transaction_type=Solde%20du%20compte&account_number=21080000000003&response_log=%7B%22nom%22%3D%3E%22Malick%22%2C%20%22prenom%22%3D%3E%22Traore%22%2C%20%22email%22%3D%3E%22malick.traore%40ngser.com%22%2C%20%22status%22%3D%3Enil%2C%20%22compte%22%3D%3E%2221080000000003%22%2C%20%22password%22%3D%3Enil%2C%20%22solde%22%3D%3E%221047500.0%22%7D&error_log=none&status=true&remote_ip_address=41.189.40.193&agent=032385c6b35d17ca&sub_agent=43f64df840f652b542&transaction_id=46cde2f62f11f22ec3d2f2f197eaf758fe204533 response_code=200 return_code=ok total_time=0.035591
+  Rendered text template (0.0ms)
+Completed 200 OK in 401ms (Views: 0.7ms | ActiveRecord: 8.7ms)
+
+
+Started GET "/api/1314a3dfb72826290bbc99c71b510d2b/032385c6b35d17ca/43f64df840f652b542/account/checkout/21080000000003/1000" for 41.189.40.193 at 2015-10-06 13:39:11 +0200
+  [1m[35mParameter Load (0.4ms)[0m  SELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1
+Processing by AccountsController#api_checkout_account as HTML
+  Parameters: {"agent"=>"032385c6b35d17ca", "sub_agent"=>"43f64df840f652b542", "account"=>"21080000000003", "transaction_amount"=>"1000"}
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1[0m
+  [1m[35mFeeType Load (0.6ms)[0m  SELECT  "fee_types".* FROM "fee_types"  WHERE "fee_types"."name" = 'Cash out' LIMIT 1
+  [1m[36mFee Load (0.5ms)[0m  [1mSELECT  "fees".* FROM "fees"  WHERE "fees"."fee_type_id" = $1 AND (min_value <= 1000.0 AND max_value >= 1000.0)  ORDER BY "fees"."id" ASC LIMIT 1[0m  [["fee_type_id", 1]]
+  [1m[35mCertifiedAgent Load (0.6ms)[0m  SELECT  "certified_agents".* FROM "certified_agents"  WHERE (certified_agent_id = '032385c6b35d17ca' AND sub_certified_agent_id IS NULL)  ORDER BY "certified_agents"."id" ASC LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1[0m
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "bomb_logs" ("created_at", "sent_url", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["created_at", "2015-10-06 11:39:12.143584"], ["sent_url", "94.247.178.141:8080/PAYMONEY_WALLET/rest/cash_out_operation_pos/12345628/FZiZWFTB/tIpfhHmK/1000/150.0/0/ea3d589b6f597370c8f2197d154ed35fab704437/null"], ["updated_at", "2015-10-06 11:39:12.143584"]]
+  [1m[35m (0.5ms)[0m  COMMIT
+  [1m[36mParameter Load (0.5ms)[0m  [1mSELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1[0m
+ETHON: performed EASY effective_url=HTTP://94.247.178.141:8080/PAYMONEY_WALLET/rest/cash_out_operation_pos/12345628/FZiZWFTB/tIpfhHmK/1000/150.0/0/ea3d589b6f597370c8f2197d154ed35fab704437/null response_code=200 return_code=ok total_time=2.505123
+  [1m[35m (0.8ms)[0m  BEGIN
+  [1m[36mSQL (1.7ms)[0m  [1mINSERT INTO "logs" ("account_number", "agent", "checkout_amount", "created_at", "fee", "otp", "pin", "remote_ip_address", "response_log", "status", "sub_agent", "thumb", "transaction_id", "transaction_type", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15) RETURNING "id"[0m  [["account_number", "21080000000003"], ["agent", "032385c6b35d17ca"], ["checkout_amount", "1000"], ["created_at", "2015-10-06 11:39:14.703280"], ["fee", 150.0], ["otp", "742293251444131552175"], ["pin", "0311"], ["remote_ip_address", "41.189.40.193"], ["response_log", "{\"idOtp\"=>1, \"otpDate\"=>nil, \"otpPin\"=>\"0311\", \"otpTransactionId\"=>\"742293251444131552175\", \"otpStatus\"=>nil, \"tokken\"=>nil}"], ["status", "t"], ["sub_agent", "43f64df840f652b542"], ["thumb", 100.0], ["transaction_id", "ea3d589b6f597370c8f2197d154ed35fab704437"], ["transaction_type", "Débit du compte"], ["updated_at", "2015-10-06 11:39:14.703280"]]
+  [1m[35m (0.8ms)[0m  COMMIT
+  [1m[36mParameter Load (0.8ms)[0m  [1mSELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1[0m
+ETHON: performed EASY effective_url=http://pay-money.net/api/367419f5968800cd/paymoney_wallet/store_log?transaction_type=D%C3%A9bit%20du%20compte&account_number=21080000000003&checkout_amount=1000&response_log=%7B%22idOtp%22%3D%3E1%2C%20%22otpDate%22%3D%3Enil%2C%20%22otpPin%22%3D%3E%220311%22%2C%20%22otpTransactionId%22%3D%3E%22742293251444131552175%22%2C%20%22otpStatus%22%3D%3Enil%2C%20%22tokken%22%3D%3Enil%7D&error_log=none&status=true&remote_ip_address=41.189.40.193&agent=032385c6b35d17ca&sub_agent=43f64df840f652b542&transaction_id=ea3d589b6f597370c8f2197d154ed35fab704437&thumb=100&fee=150.0&otp%5BidOtp%5D=1&otp%5BotpDate%5D=&otp%5BotpPin%5D=0311&otp%5BotpTransactionId%5D=742293251444131552175&otp%5BotpStatus%5D=&otp%5Btokken%5D= response_code=500 return_code=ok total_time=0.081579
+  Rendered text template (0.1ms)
+Completed 200 OK in 2778ms (Views: 1.4ms | ActiveRecord: 26.4ms)
+
+
+Started GET "/api/1314a3dfb72826290bbc99c71b510d2b/032385c6b35d17ca/43f64df840f652b542/account/checkout_validate/903181321444072170835/7354" for 41.189.40.193 at 2015-10-06 13:41:43 +0200
+  [1m[35mParameter Load (0.5ms)[0m  SELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1
+Processing by AccountsController#api_validate_checkout as HTML
+  Parameters: {"agent"=>"032385c6b35d17ca", "sub_agent"=>"43f64df840f652b542", "transaction_id"=>"903181321444072170835", "pin"=>"7354"}
+  [1m[36mLog Load (1.0ms)[0m  [1mSELECT  "logs".* FROM "logs"  WHERE "logs"."otp" = '903181321444072170835' LIMIT 1[0m
+  [1m[35mCertifiedAgent Load (0.6ms)[0m  SELECT  "certified_agents".* FROM "certified_agents"  WHERE "certified_agents"."certified_agent_id" = '032385c6b35d17ca' LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1
+  [1m[36m (0.4ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "bomb_logs" ("created_at", "sent_url", "updated_at") VALUES ($1, $2, $3) RETURNING "id"  [["created_at", "2015-10-06 11:41:43.746888"], ["sent_url", "94.247.178.141:8080/PAYMONEY_WALLET/rest/otp_active_pos/12345628/FZiZWFTB/tIpfhHmK/1000/150.0/100.0/161531548731d2c75d8e6357c9c31426a336c306/null/7354/903181321444072170835"], ["updated_at", "2015-10-06 11:41:43.746888"]]
+  [1m[36m (0.6ms)[0m  [1mCOMMIT[0m
+  [1m[35mParameter Load (0.6ms)[0m  SELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1
+ETHON: performed EASY effective_url=HTTP://94.247.178.141:8080/PAYMONEY_WALLET/rest/otp_active_pos/12345628/FZiZWFTB/tIpfhHmK/1000/150.0/100.0/161531548731d2c75d8e6357c9c31426a336c306/null/7354/903181321444072170835 response_code=200 return_code=ok total_time=0.015432
+  [1m[36m (0.5ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (1.1ms)[0m  INSERT INTO "logs" ("agent", "created_at", "error_log", "remote_ip_address", "status", "sub_agent", "transaction_type", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"  [["agent", "032385c6b35d17ca"], ["created_at", "2015-10-06 11:41:43.769668"], ["error_log", "{\"idOtp\"=>nil, \"otpDate\"=>nil, \"otpPin\"=>nil, \"otpTransactionId\"=>nil, \"otpStatus\"=>false, \"tokken\"=>nil}"], ["remote_ip_address", "41.189.40.193"], ["status", "f"], ["sub_agent", "43f64df840f652b542"], ["transaction_type", "Validation de paiement"], ["updated_at", "2015-10-06 11:41:43.769668"]]
+  [1m[36m (0.6ms)[0m  [1mCOMMIT[0m
+  [1m[35mParameter Load (0.6ms)[0m  SELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1
+ETHON: performed EASY effective_url=http://pay-money.net/api/367419f5968800cd/paymoney_wallet/store_log?transaction_type=Validation%20de%20d%C3%A9bit&account_number=21080000000003&checkout_amount=1000&response_log=&error_log=%7B%22idOtp%22%3D%3Enil%2C%20%22otpDate%22%3D%3Enil%2C%20%22otpPin%22%3D%3Enil%2C%20%22otpTransactionId%22%3D%3Enil%2C%20%22otpStatus%22%3D%3Efalse%2C%20%22tokken%22%3D%3Enil%7D&status=false&remote_ip_address=41.189.40.193&agent=032385c6b35d17ca&sub_agent=43f64df840f652b542&transaction_id=161531548731d2c75d8e6357c9c31426a336c306&otp=903181321444072170835&pin=7354 response_code=200 return_code=ok total_time=0.041044
+  Rendered text template (0.0ms)
+Completed 200 OK in 205ms (Views: 1.0ms | ActiveRecord: 16.6ms)
+
+
+Started GET "/api/1314a3dfb72826290bbc99c71b510d2b/032385c6b35d17ca/43f64df840f652b542/account/checkout_validate/903181321444072170835/7354" for 41.189.40.193 at 2015-10-06 13:41:43 +0200
+Processing by AccountsController#api_validate_checkout as HTML
+  Parameters: {"agent"=>"032385c6b35d17ca", "sub_agent"=>"43f64df840f652b542", "transaction_id"=>"903181321444072170835", "pin"=>"7354"}
+  [1m[36mLog Load (0.9ms)[0m  [1mSELECT  "logs".* FROM "logs"  WHERE "logs"."otp" = '903181321444072170835' LIMIT 1[0m
+  [1m[35mCertifiedAgent Load (0.5ms)[0m  SELECT  "certified_agents".* FROM "certified_agents"  WHERE "certified_agents"."certified_agent_id" = '032385c6b35d17ca' LIMIT 1
+  [1m[36mParameter Load (0.6ms)[0m  [1mSELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1
+  [1m[36m (0.3ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "bomb_logs" ("created_at", "sent_url", "updated_at") VALUES ($1, $2, $3) RETURNING "id"  [["created_at", "2015-10-06 11:41:43.851429"], ["sent_url", "94.247.178.141:8080/PAYMONEY_WALLET/rest/otp_active_pos/12345628/FZiZWFTB/tIpfhHmK/1000/150.0/100.0/161531548731d2c75d8e6357c9c31426a336c306/null/7354/903181321444072170835"], ["updated_at", "2015-10-06 11:41:43.851429"]]
+  [1m[36m (0.6ms)[0m  [1mCOMMIT[0m
+  [1m[35mParameter Load (0.5ms)[0m  SELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1
+ETHON: performed EASY effective_url=HTTP://94.247.178.141:8080/PAYMONEY_WALLET/rest/otp_active_pos/12345628/FZiZWFTB/tIpfhHmK/1000/150.0/100.0/161531548731d2c75d8e6357c9c31426a336c306/null/7354/903181321444072170835 response_code=200 return_code=ok total_time=0.017783
+  [1m[36m (0.4ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.6ms)[0m  INSERT INTO "logs" ("agent", "created_at", "error_log", "remote_ip_address", "status", "sub_agent", "transaction_type", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"  [["agent", "032385c6b35d17ca"], ["created_at", "2015-10-06 11:41:43.875035"], ["error_log", "{\"idOtp\"=>nil, \"otpDate\"=>nil, \"otpPin\"=>nil, \"otpTransactionId\"=>nil, \"otpStatus\"=>false, \"tokken\"=>nil}"], ["remote_ip_address", "41.189.40.193"], ["status", "f"], ["sub_agent", "43f64df840f652b542"], ["transaction_type", "Validation de paiement"], ["updated_at", "2015-10-06 11:41:43.875035"]]
+  [1m[36m (0.5ms)[0m  [1mCOMMIT[0m
+  [1m[35mParameter Load (0.5ms)[0m  SELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1
+ETHON: performed EASY effective_url=http://pay-money.net/api/367419f5968800cd/paymoney_wallet/store_log?transaction_type=Validation%20de%20d%C3%A9bit&account_number=21080000000003&checkout_amount=1000&response_log=&error_log=%7B%22idOtp%22%3D%3Enil%2C%20%22otpDate%22%3D%3Enil%2C%20%22otpPin%22%3D%3Enil%2C%20%22otpTransactionId%22%3D%3Enil%2C%20%22otpStatus%22%3D%3Efalse%2C%20%22tokken%22%3D%3Enil%7D&status=false&remote_ip_address=41.189.40.193&agent=032385c6b35d17ca&sub_agent=43f64df840f652b542&transaction_id=161531548731d2c75d8e6357c9c31426a336c306&otp=903181321444072170835&pin=7354 response_code=200 return_code=ok total_time=0.028338
+  Rendered text template (0.0ms)
+Completed 200 OK in 82ms (Views: 0.9ms | ActiveRecord: 5.9ms)
+
+
+Started GET "/logs/derniere_reponse_de_la_bombe" for 41.207.3.42 at 2015-10-06 13:42:28 +0200
+
+SyntaxError (/var/www/html/PaymoneyWallet/app/controllers/bomb_logs_controller.rb:8: invalid multibyte char (UTF-8)
+/var/www/html/PaymoneyWallet/app/controllers/bomb_logs_controller.rb:8: syntax error, unexpected tIDENTIFIER, expecting keyword_do or '{' or '('
+...ng °�") +  " | Notification de succès :" + (Log.last.respo...
+...                               ^
+/var/www/html/PaymoneyWallet/app/controllers/bomb_logs_controller.rb:8: syntax error, unexpected tCONSTANT, expecting ')'
+...last.response_log rescue "Error While Displaying °-°")
+...                               ^
+/var/www/html/PaymoneyWallet/app/controllers/bomb_logs_controller.rb:8: syntax error, unexpected tSTRING_BEG, expecting keyword_do or '{' or '('
+... "Error While Displaying °-°")
+...                               ^
+/var/www/html/PaymoneyWallet/app/controllers/bomb_logs_controller.rb:8: unterminated string meets end of file):
+  app/controllers/bomb_logs_controller.rb:8: invalid multibyte char (UTF-8)
+  app/controllers/bomb_logs_controller.rb:8: syntax error, unexpected tIDENTIFIER, expecting keyword_do or '{' or '('
+  app/controllers/bomb_logs_controller.rb:8: syntax error, unexpected tCONSTANT, expecting ')'
+  app/controllers/bomb_logs_controller.rb:8: syntax error, unexpected tSTRING_BEG, expecting keyword_do or '{' or '('
+  app/controllers/bomb_logs_controller.rb:8: unterminated string meets end of file
+
+
+  Rendered /usr/local/rvm/gems/ruby-2.0.0-p195@rails4.0.7/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/_source.erb (4.6ms)
+  Rendered /usr/local/rvm/gems/ruby-2.0.0-p195@rails4.0.7/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (9.9ms)
+
+
+Started GET "/logs/derniere_reponse_de_la_bombe" for 41.207.3.42 at 2015-10-06 13:42:34 +0200
+
+SyntaxError (/var/www/html/PaymoneyWallet/app/controllers/bomb_logs_controller.rb:8: invalid multibyte char (UTF-8)
+/var/www/html/PaymoneyWallet/app/controllers/bomb_logs_controller.rb:8: syntax error, unexpected tIDENTIFIER, expecting keyword_do or '{' or '('
+...ng °�") +  " | Notification de succès :" + (Log.last.respo...
+...                               ^
+/var/www/html/PaymoneyWallet/app/controllers/bomb_logs_controller.rb:8: syntax error, unexpected tCONSTANT, expecting ')'
+...last.response_log rescue "Error While Displaying °-°")
+...                               ^
+/var/www/html/PaymoneyWallet/app/controllers/bomb_logs_controller.rb:8: syntax error, unexpected tSTRING_BEG, expecting keyword_do or '{' or '('
+... "Error While Displaying °-°")
+...                               ^
+/var/www/html/PaymoneyWallet/app/controllers/bomb_logs_controller.rb:8: unterminated string meets end of file):
+  app/controllers/bomb_logs_controller.rb:8: invalid multibyte char (UTF-8)
+  app/controllers/bomb_logs_controller.rb:8: syntax error, unexpected tIDENTIFIER, expecting keyword_do or '{' or '('
+  app/controllers/bomb_logs_controller.rb:8: syntax error, unexpected tCONSTANT, expecting ')'
+  app/controllers/bomb_logs_controller.rb:8: syntax error, unexpected tSTRING_BEG, expecting keyword_do or '{' or '('
+  app/controllers/bomb_logs_controller.rb:8: unterminated string meets end of file
+
+
+  Rendered /usr/local/rvm/gems/ruby-2.0.0-p195@rails4.0.7/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/_source.erb (7.7ms)
+  Rendered /usr/local/rvm/gems/ruby-2.0.0-p195@rails4.0.7/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (16.1ms)
+
+
+Started GET "/api/1314a3dfb72826290bbc99c71b510d2b/032385c6b35d17ca/43f64df840f652b542/account/checkout_validate/742293251444131552175/0311" for 41.189.40.193 at 2015-10-06 13:42:39 +0200
+  [1m[36mParameter Load (0.8ms)[0m  [1mSELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1[0m
+Processing by AccountsController#api_validate_checkout as HTML
+  Parameters: {"agent"=>"032385c6b35d17ca", "sub_agent"=>"43f64df840f652b542", "transaction_id"=>"742293251444131552175", "pin"=>"0311"}
+  [1m[35mLog Load (1.8ms)[0m  SELECT  "logs".* FROM "logs"  WHERE "logs"."otp" = '742293251444131552175' LIMIT 1
+  [1m[36mCertifiedAgent Load (0.8ms)[0m  [1mSELECT  "certified_agents".* FROM "certified_agents"  WHERE "certified_agents"."certified_agent_id" = '032385c6b35d17ca' LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1
+  [1m[36mCACHE (0.1ms)[0m  [1mSELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1[0m
+  [1m[35m (0.6ms)[0m  BEGIN
+  [1m[36mSQL (0.8ms)[0m  [1mINSERT INTO "bomb_logs" ("created_at", "sent_url", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["created_at", "2015-10-06 11:42:39.865251"], ["sent_url", "94.247.178.141:8080/PAYMONEY_WALLET/rest/otp_active_pos/12345628/FZiZWFTB/tIpfhHmK/1000/150.0/100.0/ea3d589b6f597370c8f2197d154ed35fab704437/null/0311/742293251444131552175"], ["updated_at", "2015-10-06 11:42:39.865251"]]
+  [1m[35m (0.8ms)[0m  COMMIT
+  [1m[36mParameter Load (0.9ms)[0m  [1mSELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1[0m
+ETHON: performed EASY effective_url=HTTP://94.247.178.141:8080/PAYMONEY_WALLET/rest/otp_active_pos/12345628/FZiZWFTB/tIpfhHmK/1000/150.0/100.0/ea3d589b6f597370c8f2197d154ed35fab704437/null/0311/742293251444131552175 response_code=200 return_code=ok total_time=0.272549
+  [1m[35m (0.7ms)[0m  BEGIN
+  [1m[36mSQL (1.0ms)[0m  [1mINSERT INTO "logs" ("agent", "created_at", "otp", "pin", "remote_ip_address", "response_log", "status", "sub_agent", "transaction_type", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING "id"[0m  [["agent", "032385c6b35d17ca"], ["created_at", "2015-10-06 11:42:40.151191"], ["otp", "742293251444131552175"], ["pin", "0311"], ["remote_ip_address", "41.189.40.193"], ["response_log", "{\"idOtp\"=>nil, \"otpDate\"=>nil, \"otpPin\"=>nil, \"otpTransactionId\"=>nil, \"otpStatus\"=>true, \"tokken\"=>nil}"], ["status", "t"], ["sub_agent", "43f64df840f652b542"], ["transaction_type", "Validation de paiement"], ["updated_at", "2015-10-06 11:42:40.151191"]]
+  [1m[35m (0.8ms)[0m  COMMIT
+  [1m[36mParameter Load (1.0ms)[0m  [1mSELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1[0m
+ETHON: performed EASY effective_url=http://pay-money.net/api/367419f5968800cd/paymoney_wallet/store_log?transaction_type=Validation%20de%20d%C3%A9bit&account_number=21080000000003&checkout_amount=1000&response_log=%7B%22idOtp%22%3D%3Enil%2C%20%22otpDate%22%3D%3Enil%2C%20%22otpPin%22%3D%3Enil%2C%20%22otpTransactionId%22%3D%3Enil%2C%20%22otpStatus%22%3D%3Etrue%2C%20%22tokken%22%3D%3Enil%7D&error_log=&status=true&remote_ip_address=41.189.40.193&agent=032385c6b35d17ca&sub_agent=43f64df840f652b542&transaction_id=ea3d589b6f597370c8f2197d154ed35fab704437&otp=742293251444131552175&pin=0311 response_code=200 return_code=ok total_time=0.032801
+  Rendered text template (0.1ms)
+Completed 200 OK in 450ms (Views: 2.1ms | ActiveRecord: 28.2ms)
+
+
+Started GET "/logs/derniere_reponse_de_la_bombe" for 41.207.3.42 at 2015-10-06 13:43:10 +0200
+
+SyntaxError (/var/www/html/PaymoneyWallet/app/controllers/bomb_logs_controller.rb:8: invalid multibyte char (UTF-8)
+/var/www/html/PaymoneyWallet/app/controllers/bomb_logs_controller.rb:8: syntax error, unexpected tIDENTIFIER, expecting keyword_do or '{' or '('
+...ng °�") +  " | Notification de succès :" + (Log.last.respo...
+...                               ^
+/var/www/html/PaymoneyWallet/app/controllers/bomb_logs_controller.rb:8: syntax error, unexpected tCONSTANT, expecting ')'
+...last.response_log rescue "Error While Displaying °-°")
+...                               ^
+/var/www/html/PaymoneyWallet/app/controllers/bomb_logs_controller.rb:8: syntax error, unexpected tSTRING_BEG, expecting keyword_do or '{' or '('
+... "Error While Displaying °-°")
+...                               ^
+/var/www/html/PaymoneyWallet/app/controllers/bomb_logs_controller.rb:8: unterminated string meets end of file):
+  app/controllers/bomb_logs_controller.rb:8: invalid multibyte char (UTF-8)
+  app/controllers/bomb_logs_controller.rb:8: syntax error, unexpected tIDENTIFIER, expecting keyword_do or '{' or '('
+  app/controllers/bomb_logs_controller.rb:8: syntax error, unexpected tCONSTANT, expecting ')'
+  app/controllers/bomb_logs_controller.rb:8: syntax error, unexpected tSTRING_BEG, expecting keyword_do or '{' or '('
+  app/controllers/bomb_logs_controller.rb:8: unterminated string meets end of file
+
+
+  Rendered /usr/local/rvm/gems/ruby-2.0.0-p195@rails4.0.7/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/_source.erb (10.0ms)
+  Rendered /usr/local/rvm/gems/ruby-2.0.0-p195@rails4.0.7/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (21.1ms)
+
+
+Started GET "/logs/derniere_requete_vers_la_bombe" for 41.207.3.42 at 2015-10-06 13:43:18 +0200
+
+SyntaxError (/var/www/html/PaymoneyWallet/app/controllers/bomb_logs_controller.rb:8: invalid multibyte char (UTF-8)
+/var/www/html/PaymoneyWallet/app/controllers/bomb_logs_controller.rb:8: syntax error, unexpected tIDENTIFIER, expecting keyword_do or '{' or '('
+...ng °�") +  " | Notification de succès :" + (Log.last.respo...
+...                               ^
+/var/www/html/PaymoneyWallet/app/controllers/bomb_logs_controller.rb:8: syntax error, unexpected tCONSTANT, expecting ')'
+...last.response_log rescue "Error While Displaying °-°")
+...                               ^
+/var/www/html/PaymoneyWallet/app/controllers/bomb_logs_controller.rb:8: syntax error, unexpected tSTRING_BEG, expecting keyword_do or '{' or '('
+... "Error While Displaying °-°")
+...                               ^
+/var/www/html/PaymoneyWallet/app/controllers/bomb_logs_controller.rb:8: unterminated string meets end of file):
+  app/controllers/bomb_logs_controller.rb:8: invalid multibyte char (UTF-8)
+  app/controllers/bomb_logs_controller.rb:8: syntax error, unexpected tIDENTIFIER, expecting keyword_do or '{' or '('
+  app/controllers/bomb_logs_controller.rb:8: syntax error, unexpected tCONSTANT, expecting ')'
+  app/controllers/bomb_logs_controller.rb:8: syntax error, unexpected tSTRING_BEG, expecting keyword_do or '{' or '('
+  app/controllers/bomb_logs_controller.rb:8: unterminated string meets end of file
+
+
+  Rendered /usr/local/rvm/gems/ruby-2.0.0-p195@rails4.0.7/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/_source.erb (9.4ms)
+  Rendered /usr/local/rvm/gems/ruby-2.0.0-p195@rails4.0.7/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (18.9ms)
+
+
+Started GET "/api/1314a3dfb72826290bbc99c71b510d2b/032385c6b35d17ca/43f64df840f652b542/account/sold/21080000000003/8064" for 41.189.40.193 at 2015-10-06 13:43:19 +0200
+Processing by AccountsController#api_sold as HTML
+  Parameters: {"agent"=>"032385c6b35d17ca", "sub_agent"=>"43f64df840f652b542", "account"=>"21080000000003", "password"=>"[FILTERED]"}
+  [1m[35mCertifiedAgent Load (0.9ms)[0m  SELECT  "certified_agents".* FROM "certified_agents"  WHERE (certified_agent_id = '032385c6b35d17ca' AND sub_certified_agent_id IS NULL)  ORDER BY "certified_agents"."id" ASC LIMIT 1
+  [1m[36mParameter Load (0.5ms)[0m  [1mSELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1[0m
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "bomb_logs" ("created_at", "sent_url", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["created_at", "2015-10-06 11:43:19.147424"], ["sent_url", "94.247.178.141:8080/PAYMONEY_WALLET/rest/solte_compte/21080000000003/8064"], ["updated_at", "2015-10-06 11:43:19.147424"]]
+  [1m[35m (0.6ms)[0m  COMMIT
+  [1m[36mParameter Load (0.6ms)[0m  [1mSELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1[0m
+ETHON: performed EASY effective_url=HTTP://94.247.178.141:8080/PAYMONEY_WALLET/rest/solte_compte/21080000000003/8064 response_code=200 return_code=ok total_time=0.305077
+  [1m[35m (0.4ms)[0m  BEGIN
+  [1m[36mSQL (8.0ms)[0m  [1mINSERT INTO "logs" ("account_number", "agent", "created_at", "remote_ip_address", "response_log", "status", "sub_agent", "transaction_id", "transaction_type", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING "id"[0m  [["account_number", "21080000000003"], ["agent", "032385c6b35d17ca"], ["created_at", "2015-10-06 11:43:19.459739"], ["remote_ip_address", "41.189.40.193"], ["response_log", "{\"nom\"=>\"Malick\", \"prenom\"=>\"Traore\", \"email\"=>\"malick.traore@ngser.com\", \"status\"=>nil, \"compte\"=>\"21080000000003\", \"password\"=>nil, \"solde\"=>\"1046250.0\"}"], ["status", "t"], ["sub_agent", "43f64df840f652b542"], ["transaction_id", "20bdf2846ed5917aff4fd60e24fdd302bf88f935"], ["transaction_type", "Solde du compte"], ["updated_at", "2015-10-06 11:43:19.459739"]]
+  [1m[35m (0.4ms)[0m  COMMIT
+  [1m[36mParameter Load (0.5ms)[0m  [1mSELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1[0m
+ETHON: performed EASY effective_url=http://pay-money.net/api/367419f5968800cd/paymoney_wallet/store_log?transaction_type=Solde%20du%20compte&account_number=21080000000003&response_log=%7B%22nom%22%3D%3E%22Malick%22%2C%20%22prenom%22%3D%3E%22Traore%22%2C%20%22email%22%3D%3E%22malick.traore%40ngser.com%22%2C%20%22status%22%3D%3Enil%2C%20%22compte%22%3D%3E%2221080000000003%22%2C%20%22password%22%3D%3Enil%2C%20%22solde%22%3D%3E%221046250.0%22%7D&error_log=none&status=true&remote_ip_address=41.189.40.193&agent=032385c6b35d17ca&sub_agent=43f64df840f652b542&transaction_id=20bdf2846ed5917aff4fd60e24fdd302bf88f935 response_code=200 return_code=ok total_time=0.037076
+  Rendered text template (0.0ms)
+Completed 200 OK in 369ms (Views: 0.8ms | ActiveRecord: 12.6ms)
