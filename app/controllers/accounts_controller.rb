@@ -59,6 +59,7 @@ class AccountsController < ApplicationController
       else
         if !account.blank? && is_a_number?(transaction_amount)
           transaction_id = Digest::SHA1.hexdigest([DateTime.now.iso8601(6), rand].join)
+          BombLog.create(sent_url: "#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/cash_in_operation_pos/TYHHKIRE/#{account_token}/#{merchant_pos.token}/#{transaction_amount.to_f - 100}/0/100/#{transaction_id}/null")
           response = (RestClient.get "#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/cash_in_operation_pos/TYHHKIRE/#{account_token}/#{merchant_pos.token}/#{transaction_amount.to_f - 100}/0/100/#{transaction_id}/null" rescue "")
 
           response = (JSON.parse(response.to_s) rescue nil)
@@ -116,6 +117,7 @@ class AccountsController < ApplicationController
     else
       if !account.blank? && !password.blank?
         transaction_id = Digest::SHA1.hexdigest([DateTime.now.iso8601(6), rand].join)
+        BombLog.create(sent_url: "#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/solte_compte/#{account}/#{password}")
         request = Typhoeus::Request.new("#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/solte_compte/#{account}/#{password}", followlocation: true, method: :get)
 
         request.on_complete do |response|
@@ -172,6 +174,7 @@ class AccountsController < ApplicationController
       else
         if is_a_number?(transaction_amount) && is_a_number?(fee)
           transaction_id = Digest::SHA1.hexdigest([DateTime.now.iso8601(6), rand].join)
+          BombLog.create(sent_url: "#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/cash_out_operation_pos/12345628/#{merchant_pos.token}/#{account_token}/#{transaction_amount}/#{fee}/0/#{transaction_id}/null")
           request = Typhoeus::Request.new("#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/cash_out_operation_pos/12345628/#{merchant_pos.token}/#{account_token}/#{transaction_amount}/#{fee}/0/#{transaction_id}/null", followlocation: true, method: :get)
 
           request.on_complete do |response|
@@ -252,7 +255,7 @@ class AccountsController < ApplicationController
     else
       if !pin.blank? && !transaction.blank?
         account_token = check_account_number(transaction.account_number)
-        print "#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/otp_active_pos/TYHHKIRE/#{account_token}/#{agent_token}/#{transaction.checkout_amount}/#{transaction.fee}/#{transaction.thumb}/#{transaction.transaction_id}/null/#{pin}/#{transaction.otp}"
+        BombLog.create(sent_url: "#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/otp_active_pos/TYHHKIRE/#{account_token}/#{agent_token}/#{transaction.credit_amount}/0/#{transaction.thumb}/#{transaction.transaction_id}/null/#{pin}/#{transaction.otp}")
         request = Typhoeus::Request.new("#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/otp_active_pos/TYHHKIRE/#{account_token}/#{agent_token}/#{transaction.credit_amount}/0/#{transaction.thumb}/#{transaction.transaction_id}/null/#{pin}/#{transaction.otp}", followlocation: true, method: :get)
 
         request.on_complete do |response|
@@ -302,7 +305,7 @@ class AccountsController < ApplicationController
     else
       if !pin.blank? && !transaction.blank?
         account_token = check_account_number(transaction.account_number)
-        print "#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/otp_active_pos/12345628/#{agent_token}/#{account_token}/#{transaction.checkout_amount}/#{transaction.fee}/#{transaction.thumb}/#{transaction.transaction_id}/null/#{pin}/#{transaction.otp}"
+        BombLog.create(sent_url: "#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/otp_active_pos/12345628/#{agent_token}/#{account_token}/#{transaction.checkout_amount}/#{transaction.fee}/#{transaction.thumb}/#{transaction.transaction_id}/null/#{pin}/#{transaction.otp}")
         request = Typhoeus::Request.new("#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/otp_active_pos/12345628/#{agent_token}/#{account_token}/#{transaction.checkout_amount}/#{transaction.fee}/#{transaction.thumb}/#{transaction.transaction_id}/null/#{pin}/#{transaction.otp}", followlocation: true, method: :get)
 
         request.on_complete do |response|
@@ -354,6 +357,7 @@ class AccountsController < ApplicationController
       else
         if is_a_number?(transaction_amount)
           transaction_id = Digest::SHA1.hexdigest([DateTime.now.iso8601(6), rand].join)
+          BombLog.create(sent_url: "#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/Remonte/78945612/#{merchant_pos.token}/#{private_pos.token}/#{transaction_amount}/0/0/#{transaction_id}/null")
           response = (RestClient.get "#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/Remonte/78945612/#{merchant_pos.token}/#{private_pos.token}/#{transaction_amount}/0/0/#{transaction_id}/null" rescue "")
 
           unless response.blank?
@@ -393,6 +397,7 @@ class AccountsController < ApplicationController
 
     if is_a_number?(transaction_amount)
       transaction_id = Digest::SHA1.hexdigest([DateTime.now.iso8601(6), rand].join)
+      BombLog.create(sent_url: "#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/cashtransact/85245623/#{a_account_transfer}/#{b_account_transfer}/#{transaction_amount}/#{transaction_transfer_fee}/100/#{transaction_id}")
       response = (RestClient.get "#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/cashtransact/85245623/#{a_account_transfer}/#{b_account_transfer}/#{transaction_amount}/#{transaction_transfer_fee}/100/#{transaction_id}" rescue "")
 
       unless response.blank?
@@ -430,6 +435,7 @@ class AccountsController < ApplicationController
 
     if is_a_number?(transaction_amount)
       transaction_id = Digest::SHA1.hexdigest([DateTime.now.iso8601(6), rand].join)
+      BombLog.create(sent_url: "#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/prise_paris/96325874/#{game_account_token}/#{account_token}/#{transaction_amount}/0/0/#{transaction_id}")
       response = (RestClient.get "#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/prise_paris/96325874/#{game_account_token}/#{account_token}/#{transaction_amount}/0/0/#{transaction_id}" rescue "")
 
       unless response.blank?
@@ -466,7 +472,8 @@ class AccountsController < ApplicationController
 
     if is_a_number?(transaction_amount)
       transaction_id = Digest::SHA1.hexdigest([DateTime.now.iso8601(6), rand].join)
-      response = (RestClient.get "#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/paiement_gain/74125895/#{account_token}/#{game_account_token}/#{transaction_amount}/0/0/#{transaction_id} " rescue "")
+      BombLog.create(sent_url: "#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/paiement_gain/74125895/#{account_token}/#{game_account_token}/#{transaction_amount}/0/0/#{transaction_id}")
+      response = (RestClient.get "#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/paiement_gain/74125895/#{account_token}/#{game_account_token}/#{transaction_amount}/0/0/#{transaction_id}" rescue "")
 
       unless response.blank?
         if response.to_s == "good"
@@ -501,6 +508,7 @@ class AccountsController < ApplicationController
 
     if is_a_number?(transaction_amount)
       transaction_id = Digest::SHA1.hexdigest([DateTime.now.iso8601(6), rand].join)
+      BombLog.create(sent_url: "#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/cash_in_pos/53740905/#{account_token}/#{transaction_amount}/#{transaction_id}")
       response = (RestClient.get "#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/cash_in_pos/53740905/#{account_token}/#{transaction_amount}/#{transaction_id}" rescue "")
 
       unless response.blank?
@@ -542,6 +550,7 @@ class AccountsController < ApplicationController
     if !account_token.blank? && !mobile_money_token.blank?
       if is_a_number?(transaction_amount)
         transaction_id = Digest::SHA1.hexdigest([DateTime.now.iso8601(6), rand].join)
+        BombLog.create(sent_url: "#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/cash_in_operation_momo/tertybgd/#{account_token}/#{mobile_money_token}/#{transaction_amount}/#{fee}/100/#{transaction_id}")
         response = (RestClient.get "#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/cash_in_operation_momo/tertybgd/#{account_token}/#{mobile_money_token}/#{transaction_amount}/#{fee}/100/#{transaction_id}" rescue "")
 
         unless response.blank?
@@ -584,6 +593,7 @@ class AccountsController < ApplicationController
     if !account_token.blank? && !mobile_money_token.blank?
       if is_a_number?(transaction_amount)
         transaction_id = Digest::SHA1.hexdigest([DateTime.now.iso8601(6), rand].join)
+        BombLog.create(sent_url: "#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/cash_out_operation_momo/14725836/#{account_token}/#{mobile_money_token}/#{transaction_amount}/#{fee}/100/#{transaction_id}")
         response = (RestClient.get "#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/cash_out_operation_momo/14725836/#{account_token}/#{mobile_money_token}/#{transaction_amount}/#{fee}/100/#{transaction_id}" rescue "")
 
         unless response.blank?

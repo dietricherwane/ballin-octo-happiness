@@ -21435,3 +21435,25 @@ ETHON: performed EASY effective_url=http://pay-money.net/api/367419f5968800cd/pa
   Rendered text template (0.0ms)
 Completed 200 OK in 1876ms (Views: 1.3ms | ActiveRecord: 7.5ms)
 >>>>>>> 2401fad7d8e8490abac9a2ee5800a297336943bc
+  [1m[36mActiveRecord::SchemaMigration Load (33.9ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to CreateBombLogs (20151006110645)
+  [1m[35m (0.7ms)[0m  BEGIN
+  [1m[36m (351.1ms)[0m  [1mCREATE TABLE "bomb_logs" ("id" serial primary key, "sent_url" character varying(255), "created_at" timestamp, "updated_at" timestamp) [0m
+  [1m[35mSQL (0.8ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20151006110645"]]
+  [1m[36m (17.5ms)[0m  [1mCOMMIT[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.6ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36mActiveRecord::SchemaMigration Load (1.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.8ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+Migrating to CreateBombLogs (20151006110645)
+  [1m[36m (0.5ms)[0m  [1mBEGIN[0m
+  [1m[35m (45.4ms)[0m  DROP TABLE "bomb_logs"
+  [1m[36mSQL (1.5ms)[0m  [1mDELETE FROM "schema_migrations" WHERE "schema_migrations"."version" = '20151006110645'[0m
+  [1m[35m (20.9ms)[0m  COMMIT
+  [1m[36mActiveRecord::SchemaMigration Load (0.9ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to CreateBombLogs (20151006110645)
+  [1m[35m (0.6ms)[0m  BEGIN
+  [1m[36m (121.5ms)[0m  [1mCREATE TABLE "bomb_logs" ("id" serial primary key, "sent_url" text, "created_at" timestamp, "updated_at" timestamp) [0m
+  [1m[35mSQL (0.6ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20151006110645"]]
+  [1m[36m (14.4ms)[0m  [1mCOMMIT[0m
+  [1m[35mActiveRecord::SchemaMigration Load (1.0ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
