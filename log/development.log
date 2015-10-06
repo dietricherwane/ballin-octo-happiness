@@ -21931,3 +21931,27 @@ ETHON: performed EASY effective_url=HTTP://94.247.178.141:8080/PAYMONEY_WALLET/r
 ETHON: performed EASY effective_url=http://pay-money.net/api/367419f5968800cd/paymoney_wallet/store_log?transaction_type=Solde%20du%20compte&account_number=21080000000003&response_log=%7B%22nom%22%3D%3E%22Malick%22%2C%20%22prenom%22%3D%3E%22Traore%22%2C%20%22email%22%3D%3E%22malick.traore%40ngser.com%22%2C%20%22status%22%3D%3Enil%2C%20%22compte%22%3D%3E%2221080000000003%22%2C%20%22password%22%3D%3Enil%2C%20%22solde%22%3D%3E%221046250.0%22%7D&error_log=none&status=true&remote_ip_address=41.189.40.193&agent=032385c6b35d17ca&sub_agent=43f64df840f652b542&transaction_id=20bdf2846ed5917aff4fd60e24fdd302bf88f935 response_code=200 return_code=ok total_time=0.037076
   Rendered text template (0.0ms)
 Completed 200 OK in 369ms (Views: 0.8ms | ActiveRecord: 12.6ms)
+
+
+Started GET "/logs/derniere_requete_vers_la_bombe" for 41.207.3.42 at 2015-10-06 13:47:46 +0200
+  [1m[36mActiveRecord::SchemaMigration Load (1.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by BombLogsController#last_request as HTML
+  [1m[35mBombLog Load (1.2ms)[0m  SELECT  "bomb_logs".* FROM "bomb_logs"   ORDER BY "bomb_logs"."id" DESC LIMIT 1
+  Rendered text template (0.0ms)
+Completed 200 OK in 43ms (Views: 8.5ms | ActiveRecord: 6.1ms)
+
+
+Started GET "/logs/derniere_reponse_de_la_bombe" for 41.207.3.42 at 2015-10-06 13:48:03 +0200
+Processing by BombLogsController#last_return as HTML
+  [1m[36mLog Load (2.7ms)[0m  [1mSELECT  "logs".* FROM "logs"   ORDER BY "logs"."id" DESC LIMIT 1[0m
+Completed 500 Internal Server Error in 68ms
+
+TypeError (no implicit conversion of nil into String):
+  app/controllers/bomb_logs_controller.rb:8:in `+'
+  app/controllers/bomb_logs_controller.rb:8:in `last_return'
+
+
+  Rendered /usr/local/rvm/gems/ruby-2.0.0-p195@rails4.0.7/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/_source.erb (1.7ms)
+  Rendered /usr/local/rvm/gems/ruby-2.0.0-p195@rails4.0.7/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.6ms)
+  Rendered /usr/local/rvm/gems/ruby-2.0.0-p195@rails4.0.7/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.9ms)
+  Rendered /usr/local/rvm/gems/ruby-2.0.0-p195@rails4.0.7/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (38.2ms)
