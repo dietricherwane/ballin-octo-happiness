@@ -59,7 +59,7 @@ class AccountsController < ApplicationController
       else
         if !account.blank? && is_a_number?(transaction_amount)
           transaction_id = Digest::SHA1.hexdigest([DateTime.now.iso8601(6), rand].join)
-          response = (RestClient.get "#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/cash_in_operation_pos/TYHHKIRE/#{account_token}/#{merchant_pos.token}/#{transaction_amount}/0/100/#{transaction_id}/null" rescue "")
+          response = (RestClient.get "#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/cash_in_operation_pos/TYHHKIRE/#{account_token}/#{merchant_pos.token}/#{transaction_amount.to_f - 100}/0/100/#{transaction_id}/null" rescue "")
 
           response = (JSON.parse(response.to_s) rescue nil)
 
@@ -172,7 +172,7 @@ class AccountsController < ApplicationController
       else
         if is_a_number?(transaction_amount) && is_a_number?(fee)
           transaction_id = Digest::SHA1.hexdigest([DateTime.now.iso8601(6), rand].join)
-          request = Typhoeus::Request.new("#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/cash_out_operation_pos/12345628/#{merchant_pos.token}/#{account_token}/#{transaction_amount}/#{fee}/100/#{transaction_id}/null", followlocation: true, method: :get)
+          request = Typhoeus::Request.new("#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/cash_out_operation_pos/12345628/#{merchant_pos.token}/#{account_token}/#{transaction_amount}/#{fee}/0/#{transaction_id}/null", followlocation: true, method: :get)
 
           request.on_complete do |response|
             if response.success?
