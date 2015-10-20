@@ -499,32 +499,38 @@ class AccountsController < ApplicationController
 
   def api_deposit
     transaction_amount = params[:transaction_amount]
-    account_token = params[:account_token]
+    account_number = params[:account_number]
     remote_ip_address = request.remote_ip
     response_log = "none"
     error_log = "none"
     status = "|5000|"
     transaction_status = false
 
-    if is_a_number?(transaction_amount)
-      transaction_id = Digest::SHA1.hexdigest([DateTime.now.iso8601(6), rand].join)
-      BombLog.create(sent_url: "#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/cash_in_pos/53740905/#{account_token}/#{transaction_amount}/#{transaction_id}")
-      response = (RestClient.get "#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/cash_in_pos/53740905/#{account_token}/#{transaction_amount}/#{transaction_id}" rescue "")
+    account_token = check_account_number(account_number)
 
-      unless response.blank?
-        if response.to_s == "good"
-          status = transaction_id
-          response_log = response.to_s
-          transaction_status = true
-          Log.create(transaction_type: "Deposit", credit_amount: transaction_amount, response_log: response_log, status: true, remote_ip_address: remote_ip_address, transaction_id: transaction_id, account_token: account_token)
+    if account_token.blank?
+      status = "|4041|"
+    else
+      if is_a_number?(transaction_amount)
+        transaction_id = Digest::SHA1.hexdigest([DateTime.now.iso8601(6), rand].join)
+        BombLog.create(sent_url: "#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/cash_in_pos/53740905/#{account_token}/#{transaction_amount}/#{transaction_id}")
+        response = (RestClient.get "#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/cash_in_pos/53740905/#{account_token}/#{transaction_amount}/#{transaction_id}" rescue "")
+
+        unless response.blank?
+          if response.to_s == "good"
+            status = transaction_id
+            response_log = response.to_s
+            transaction_status = true
+            Log.create(transaction_type: "Deposit", credit_amount: transaction_amount, response_log: response_log, status: true, remote_ip_address: remote_ip_address, transaction_id: transaction_id, account_token: account_token)
+          else
+            status = "|5001|"
+            error_log = response.to_s
+            Log.create(transaction_type: "Deposit", credit_amount: transaction_amount, error_log: error_log, status: false, remote_ip_address: remote_ip_address, transaction_id: transaction_id, account_token: account_token)
+          end
         else
-          status = "|5001|"
           error_log = response.to_s
           Log.create(transaction_type: "Deposit", credit_amount: transaction_amount, error_log: error_log, status: false, remote_ip_address: remote_ip_address, transaction_id: transaction_id, account_token: account_token)
         end
-      else
-        error_log = response.to_s
-        Log.create(transaction_type: "Deposit", credit_amount: transaction_amount, error_log: error_log, status: false, remote_ip_address: remote_ip_address, transaction_id: transaction_id, account_token: account_token)
       end
     end
 
