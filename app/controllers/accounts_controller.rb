@@ -184,7 +184,7 @@ class AccountsController < ApplicationController
               unless response.blank?
                 #if response != "error" && response != "error, montant insuffisant"
                 if response["otpPin"] != "null" && !response["otpPin"].blank?
-                  status = transaction_id + '|' + response["otpTransactionId"].to_s + '|' + response["otpPin"].to_s
+                  status = transaction_id + '|' + response["otpTransactionId"].to_s #+ '|' + response["otpPin"].to_s
                   response_log = response.to_s
                   transaction_status = true
                   otp = response
