@@ -21457,3 +21457,490 @@ Migrating to CreateBombLogs (20151006110645)
   [1m[35mSQL (0.6ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20151006110645"]]
   [1m[36m (14.4ms)[0m  [1mCOMMIT[0m
   [1m[35mActiveRecord::SchemaMigration Load (1.0ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+
+
+Started GET "/api/86d138798bc43ed59e5207c684564/bet/get/LhSpwtyN/jjuikk/200" for 127.0.0.1 at 2015-11-01 13:21:21 +0000
+  [1m[36mActiveRecord::SchemaMigration Load (38.3ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35mParameter Load (38.2ms)[0m  SELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1
+Processing by AccountsController#api_get_bet as */*
+  Parameters: {"game_account_token"=>"LhSpwtyN", "account_token"=>"jjuikk", "transaction_amount"=>"200"}
+  [1m[36mCACHE (0.1ms)[0m  [1mSELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1[0m
+  [1m[35m (0.6ms)[0m  BEGIN
+  [1m[36mSQL (21.1ms)[0m  [1mINSERT INTO "bomb_logs" ("created_at", "sent_url", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["created_at", "2015-11-01 13:21:22.825204"], ["sent_url", "94.247.178.141:8080/PAYMONEY_WALLET/rest/prise_paris/96325874/LhSpwtyN/jjuikk/200/0/0/fb1216cc1a1ee052a8bdf54d7d79889effa12e6f"], ["updated_at", "2015-11-01 13:21:22.825204"]]
+  [1m[35m (23.3ms)[0m  COMMIT
+  [1m[36mParameter Load (1.0ms)[0m  [1mSELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1[0m
+  [1m[35m (0.6ms)[0m  BEGIN
+  [1m[36mSQL (40.5ms)[0m  [1mINSERT INTO "logs" ("account_token", "checkout_amount", "created_at", "error_log", "game_account_token", "remote_ip_address", "status", "transaction_id", "transaction_type", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING "id"[0m  [["account_token", "jjuikk"], ["checkout_amount", "200"], ["created_at", "2015-11-01 13:21:26.619771"], ["error_log", ""], ["game_account_token", "LhSpwtyN"], ["remote_ip_address", "127.0.0.1"], ["status", "f"], ["transaction_id", "fb1216cc1a1ee052a8bdf54d7d79889effa12e6f"], ["transaction_type", "Prise de paris"], ["updated_at", "2015-11-01 13:21:26.619771"]]
+  [1m[35m (22.0ms)[0m  COMMIT
+  [1m[36mParameter Load (0.8ms)[0m  [1mSELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1[0m
+ETHON: Libcurl initialized
+
+
+Started GET "/api/86d138798bc43ed59e5207c684564/bet/get/LVNbmiDN/rKQNyFfn/15000" for 127.0.0.1 at 2015-11-27 08:03:03 +0000
+  [1m[36mActiveRecord::SchemaMigration Load (35.3ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+
+SyntaxError (/home/dietrich/workshop/PaymoneyWallet/app/controllers/accounts_controller.rb:441: no .<digit> floating literal anymore; put 0 before dot
+      94.247.178.141:8080/PAYMONEY_WALLET/...
+             ^
+/home/dietrich/workshop/PaymoneyWallet/app/controllers/accounts_controller.rb:441: syntax error, unexpected tFLOAT, expecting '('
+      94.247.178.141:8080/PAYMONEY_WALLET/rest/pr...
+                    ^
+/home/dietrich/workshop/PaymoneyWallet/app/controllers/accounts_controller.rb:441: syntax error, unexpected '}', expecting =>
+...st/prise_paris/{type_operation}/{type_de_jeux}/{compte_clien...
+...                               ^):
+  app/controllers/accounts_controller.rb:441: no .<digit> floating literal anymore; put 0 before dot
+  app/controllers/accounts_controller.rb:441: syntax error, unexpected tFLOAT, expecting '('
+  app/controllers/accounts_controller.rb:441: syntax error, unexpected '}', expecting =>
+
+
+  Rendered /home/dietrich/.rvm/gems/ruby-2.0.0-p195@rails4.0.7/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/_source.erb (1.0ms)
+  Rendered /home/dietrich/.rvm/gems/ruby-2.0.0-p195@rails4.0.7/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.5ms)
+  Rendered /home/dietrich/.rvm/gems/ruby-2.0.0-p195@rails4.0.7/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (22.1ms)
+  Rendered /home/dietrich/.rvm/gems/ruby-2.0.0-p195@rails4.0.7/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (47.5ms)
+
+
+Started GET "/api/86d138798bc43ed59e5207c684564/bet/get/LVNbmiDN/rKQNyFfn/15000" for 127.0.0.1 at 2015-11-27 08:03:16 +0000
+  [1m[35mParameter Load (37.6ms)[0m  SELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1
+Processing by AccountsController#api_get_bet as HTML
+  Parameters: {"game_account_token"=>"LVNbmiDN", "account_token"=>"rKQNyFfn", "transaction_amount"=>"15000"}
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1[0m
+  [1m[35m (0.6ms)[0m  BEGIN
+  [1m[36mSQL (43.7ms)[0m  [1mINSERT INTO "bomb_logs" ("created_at", "sent_url", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["created_at", "2015-11-27 08:03:17.245603"], ["sent_url", "94.247.178.141:8080/PAYMONEY_WALLET/rest/prise_paris/96325874/LVNbmiDN/rKQNyFfn/15000/0/0/9044ac0a9424a2a1782caf2f0f95f040c0e0b0ac"], ["updated_at", "2015-11-27 08:03:17.245603"]]
+  [1m[35m (18.1ms)[0m  COMMIT
+  [1m[36mParameter Load (0.9ms)[0m  [1mSELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1[0m
+  [1m[35m (0.5ms)[0m  BEGIN
+  [1m[36mSQL (46.1ms)[0m  [1mINSERT INTO "logs" ("account_token", "checkout_amount", "created_at", "error_log", "game_account_token", "remote_ip_address", "status", "transaction_id", "transaction_type", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING "id"[0m  [["account_token", "rKQNyFfn"], ["checkout_amount", "15000"], ["created_at", "2015-11-27 08:03:17.850283"], ["error_log", ""], ["game_account_token", "LVNbmiDN"], ["remote_ip_address", "127.0.0.1"], ["status", "f"], ["transaction_id", "9044ac0a9424a2a1782caf2f0f95f040c0e0b0ac"], ["transaction_type", "Prise de paris"], ["updated_at", "2015-11-27 08:03:17.850283"]]
+  [1m[35m (50.2ms)[0m  COMMIT
+  [1m[36mParameter Load (1.0ms)[0m  [1mSELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1[0m
+ETHON: Libcurl initialized
+ETHON: performed EASY effective_url=http://0.0.0.0:3001/api/367419f5968800cd/paymoney_wallet/store_log?transaction_type=Prise%20de%20paris&checkout_amount=15000&response_log=none&error_log=&status=false&remote_ip_address=127.0.0.1&transaction_id=9044ac0a9424a2a1782caf2f0f95f040c0e0b0ac&game_account_token=LVNbmiDN&account_token=rKQNyFfn response_code=0 return_code=couldnt_connect total_time=0.000184
+  Rendered text template (0.0ms)
+Completed 200 OK in 761ms (Views: 14.1ms | ActiveRecord: 171.1ms)
+
+
+Started GET "/api/86d138798bc43ed59e5207c684564/bet/get/LVNbmiDN/rKQNyFfn/15000" for 127.0.0.1 at 2015-11-27 08:08:05 +0000
+Processing by ErrorsController#routing as HTML
+  Parameters: {"rogue_url"=>"api/86d138798bc43ed59e5207c684564/bet/get/LVNbmiDN/rKQNyFfn/15000"}
+  Rendered public/404.html (0.5ms)
+Completed 404 Not Found in 16ms (Views: 15.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/api/86d138798bc43ed59e5207c684564/bet/get/LVNbmiDN/rKQNyFfn/3415/15000" for 127.0.0.1 at 2015-11-27 08:08:43 +0000
+  [1m[35mParameter Load (0.6ms)[0m  SELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1
+Processing by AccountsController#api_get_bet as HTML
+  Parameters: {"game_account_token"=>"LVNbmiDN", "account_token"=>"rKQNyFfn", "password"=>"[FILTERED]", "transaction_amount"=>"15000"}
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1[0m
+  [1m[35m (0.6ms)[0m  BEGIN
+  [1m[36mSQL (0.8ms)[0m  [1mINSERT INTO "bomb_logs" ("created_at", "sent_url", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["created_at", "2015-11-27 08:08:43.580262"], ["sent_url", "94.247.178.141:8080/PAYMONEY_WALLET/rest/prise_paris/96325874/LVNbmiDN/rKQNyFfn/15000/0/0/1000256db7765bb86ed7913a6b81fd629184d1fc/3415"], ["updated_at", "2015-11-27 08:08:43.580262"]]
+  [1m[35m (50.9ms)[0m  COMMIT
+  [1m[36mParameter Load (1.1ms)[0m  [1mSELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1[0m
+  [1m[35m (0.7ms)[0m  BEGIN
+  [1m[36mSQL (1.0ms)[0m  [1mINSERT INTO "logs" ("account_token", "checkout_amount", "created_at", "game_account_token", "remote_ip_address", "response_log", "status", "transaction_id", "transaction_type", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING "id"[0m  [["account_token", "rKQNyFfn"], ["checkout_amount", "15000"], ["created_at", "2015-11-27 08:08:44.217487"], ["game_account_token", "LVNbmiDN"], ["remote_ip_address", "127.0.0.1"], ["response_log", "good"], ["status", "t"], ["transaction_id", "1000256db7765bb86ed7913a6b81fd629184d1fc"], ["transaction_type", "Prise de paris"], ["updated_at", "2015-11-27 08:08:44.217487"]]
+  [1m[35m (13.9ms)[0m  COMMIT
+  [1m[36mParameter Load (0.7ms)[0m  [1mSELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1[0m
+ETHON: performed EASY effective_url=http://0.0.0.0:3001/api/367419f5968800cd/paymoney_wallet/store_log?transaction_type=Prise%20de%20paris&checkout_amount=15000&response_log=good&error_log=none&status=true&remote_ip_address=127.0.0.1&transaction_id=1000256db7765bb86ed7913a6b81fd629184d1fc&game_account_token=LVNbmiDN&account_token=rKQNyFfn response_code=0 return_code=couldnt_connect total_time=0.000162
+  Rendered text template (0.0ms)
+Completed 200 OK in 674ms (Views: 1.5ms | ActiveRecord: 79.1ms)
+
+
+Started GET "/api/06331525768e6a95680c8bb0dcf55/bet/validate/1000256db7765bb86ed7913a6b81fd629184d1fc" for 127.0.0.1 at 2015-11-27 08:35:42 +0000
+  [1m[35mParameter Load (0.8ms)[0m  SELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1
+Processing by AccountsController#api_validate_bet as HTML
+  Parameters: {"transaction_id"=>"1000256db7765bb86ed7913a6b81fd629184d1fc"}
+  [1m[36mLog Load (28.4ms)[0m  [1mSELECT  "logs".* FROM "logs"  WHERE "logs"."transaction_id" = '1000256db7765bb86ed7913a6b81fd629184d1fc' LIMIT 1[0m
+Completed 500 Internal Server Error in 138ms
+
+NoMethodError (undefined method `transaction_amount' for #<Log:0x0000000312e1b8>):
+  app/controllers/accounts_controller.rb:474:in `api_validate_bet'
+
+
+  Rendered /home/dietrich/.rvm/gems/ruby-2.0.0-p195@rails4.0.7/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/_source.erb (0.9ms)
+  Rendered /home/dietrich/.rvm/gems/ruby-2.0.0-p195@rails4.0.7/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.2ms)
+  Rendered /home/dietrich/.rvm/gems/ruby-2.0.0-p195@rails4.0.7/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.9ms)
+  Rendered /home/dietrich/.rvm/gems/ruby-2.0.0-p195@rails4.0.7/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (15.6ms)
+
+
+Started GET "/api/06331525768e6a95680c8bb0dcf55/bet/validate/1000256db7765bb86ed7913a6b81fd629184d1fc" for 127.0.0.1 at 2015-11-27 08:36:17 +0000
+  [1m[35mParameter Load (0.7ms)[0m  SELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1
+Processing by AccountsController#api_validate_bet as HTML
+  Parameters: {"transaction_id"=>"1000256db7765bb86ed7913a6b81fd629184d1fc"}
+  [1m[36mLog Load (1.7ms)[0m  [1mSELECT  "logs".* FROM "logs"  WHERE "logs"."transaction_id" = '1000256db7765bb86ed7913a6b81fd629184d1fc' LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1
+  [1m[36m (0.6ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.9ms)[0m  INSERT INTO "bomb_logs" ("created_at", "sent_url", "updated_at") VALUES ($1, $2, $3) RETURNING "id"  [["created_at", "2015-11-27 08:36:17.946408"], ["sent_url", "94.247.178.141:8080/PAYMONEY_WALLET/rest/valide_paris/96325874/LVNbmiDN/15000/0/0/1000256db7765bb86ed7913a6b81fd629184d1fc"], ["updated_at", "2015-11-27 08:36:17.946408"]]
+  [1m[36m (10.8ms)[0m  [1mCOMMIT[0m
+  [1m[35mParameter Load (1.0ms)[0m  SELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1
+  [1m[36m (0.7ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (1.1ms)[0m  INSERT INTO "logs" ("checkout_amount", "created_at", "game_account_token", "remote_ip_address", "response_log", "status", "transaction_id", "transaction_type", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"  [["checkout_amount", "15000"], ["created_at", "2015-11-27 08:36:19.078789"], ["game_account_token", "LVNbmiDN"], ["remote_ip_address", "127.0.0.1"], ["response_log", "good"], ["status", "t"], ["transaction_id", "1000256db7765bb86ed7913a6b81fd629184d1fc"], ["transaction_type", "Validation de paris"], ["updated_at", "2015-11-27 08:36:19.078789"]]
+  [1m[36m (20.5ms)[0m  [1mCOMMIT[0m
+  [1m[35mParameter Load (1.3ms)[0m  SELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1
+ETHON: performed EASY effective_url=http://0.0.0.0:3001/api/367419f5968800cd/paymoney_wallet/store_log?transaction_type=Validation%20de%20paris&checkout_amount=15000&response_log=good&error_log=none&status=true&remote_ip_address=127.0.0.1&transaction_id=1000256db7765bb86ed7913a6b81fd629184d1fc&game_account_token=LVNbmiDN response_code=0 return_code=couldnt_connect total_time=0.000165
+  Rendered text template (0.1ms)
+Completed 200 OK in 1213ms (Views: 1.4ms | ActiveRecord: 48.0ms)
+
+
+Started GET "/api/06331525768e6a95680c8bb0dcf55/bet/validate/1000256db7765bb86ed7913a6b81fd629184d1fc" for 127.0.0.1 at 2015-11-27 08:39:11 +0000
+
+SyntaxError (/home/dietrich/workshop/PaymoneyWallet/app/controllers/accounts_controller.rb:465: syntax error, unexpected tIDENTIFIER, expecting ')'
+... params[:transaction_id]) recue nil)
+...                               ^):
+  app/controllers/accounts_controller.rb:465: syntax error, unexpected tIDENTIFIER, expecting ')'
+
+
+  Rendered /home/dietrich/.rvm/gems/ruby-2.0.0-p195@rails4.0.7/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/_source.erb (0.7ms)
+  Rendered /home/dietrich/.rvm/gems/ruby-2.0.0-p195@rails4.0.7/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.2ms)
+  Rendered /home/dietrich/.rvm/gems/ruby-2.0.0-p195@rails4.0.7/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.4ms)
+  Rendered /home/dietrich/.rvm/gems/ruby-2.0.0-p195@rails4.0.7/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (15.3ms)
+
+
+Started GET "/api/06331525768e6a95680c8bb0dcf55/bet/validate/1000256db7765bb86ed7913a6b81fd629184d1fc" for 127.0.0.1 at 2015-11-27 08:39:35 +0000
+  [1m[36mParameter Load (1.1ms)[0m  [1mSELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1[0m
+Processing by AccountsController#api_validate_bet as HTML
+  Parameters: {"transaction_id"=>"1000256db7765bb86ed7913a6b81fd629184d1fc"}
+  [1m[35mLog Load (1.0ms)[0m  SELECT "logs".* FROM "logs"  WHERE "logs"."transaction_type" = 'Prise de paris' AND "logs"."transaction_id" = '1000256db7765bb86ed7913a6b81fd629184d1fc'
+Completed 500 Internal Server Error in 34ms
+
+NoMethodError (undefined method `checkout_amount' for #<Log::ActiveRecord_Relation:0x007fa3d0d4b428>):
+  app/controllers/accounts_controller.rb:474:in `api_validate_bet'
+
+
+  Rendered /home/dietrich/.rvm/gems/ruby-2.0.0-p195@rails4.0.7/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/_source.erb (0.7ms)
+  Rendered /home/dietrich/.rvm/gems/ruby-2.0.0-p195@rails4.0.7/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.8ms)
+  Rendered /home/dietrich/.rvm/gems/ruby-2.0.0-p195@rails4.0.7/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.2ms)
+  Rendered /home/dietrich/.rvm/gems/ruby-2.0.0-p195@rails4.0.7/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (16.7ms)
+
+
+Started GET "/api/06331525768e6a95680c8bb0dcf55/bet/validate/1000256db7765bb86ed7913a6b81fd629184d1fc" for 127.0.0.1 at 2015-11-27 08:39:47 +0000
+  [1m[36mParameter Load (0.8ms)[0m  [1mSELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1[0m
+Processing by AccountsController#api_validate_bet as HTML
+  Parameters: {"transaction_id"=>"1000256db7765bb86ed7913a6b81fd629184d1fc"}
+  [1m[35mLog Load (1.3ms)[0m  SELECT  "logs".* FROM "logs"  WHERE "logs"."transaction_type" = 'Prise de paris' AND "logs"."transaction_id" = '1000256db7765bb86ed7913a6b81fd629184d1fc'  ORDER BY "logs"."id" ASC LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1[0m
+  [1m[35m (0.5ms)[0m  BEGIN
+  [1m[36mSQL (0.8ms)[0m  [1mINSERT INTO "bomb_logs" ("created_at", "sent_url", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["created_at", "2015-11-27 08:39:47.565295"], ["sent_url", "94.247.178.141:8080/PAYMONEY_WALLET/rest/valide_paris/96325874/LVNbmiDN/15000/0/0/1000256db7765bb86ed7913a6b81fd629184d1fc"], ["updated_at", "2015-11-27 08:39:47.565295"]]
+  [1m[35m (19.2ms)[0m  COMMIT
+  [1m[36mParameter Load (0.9ms)[0m  [1mSELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1[0m
+  [1m[35m (0.6ms)[0m  BEGIN
+  [1m[36mSQL (1.1ms)[0m  [1mINSERT INTO "logs" ("checkout_amount", "created_at", "game_account_token", "remote_ip_address", "response_log", "status", "transaction_id", "transaction_type", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["checkout_amount", "15000"], ["created_at", "2015-11-27 08:39:48.402048"], ["game_account_token", "LVNbmiDN"], ["remote_ip_address", "127.0.0.1"], ["response_log", "good"], ["status", "t"], ["transaction_id", "1000256db7765bb86ed7913a6b81fd629184d1fc"], ["transaction_type", "Validation de paris"], ["updated_at", "2015-11-27 08:39:48.402048"]]
+  [1m[35m (3.3ms)[0m  COMMIT
+  [1m[36mParameter Load (0.9ms)[0m  [1mSELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1[0m
+ETHON: performed EASY effective_url=http://0.0.0.0:3001/api/367419f5968800cd/paymoney_wallet/store_log?transaction_type=Validation%20de%20paris&checkout_amount=15000&response_log=good&error_log=none&status=true&remote_ip_address=127.0.0.1&transaction_id=1000256db7765bb86ed7913a6b81fd629184d1fc&game_account_token=LVNbmiDN response_code=0 return_code=couldnt_connect total_time=0.000195
+  Rendered text template (0.1ms)
+Completed 200 OK in 895ms (Views: 1.4ms | ActiveRecord: 38.8ms)
+
+
+Started GET "/api/35959d477b5ffc06dc673befbe5b4/bet/validate/1000256db7765bb86ed7913a6b81fd629184d1fc" for 127.0.0.1 at 2015-11-27 08:55:42 +0000
+  [1m[35mParameter Load (0.8ms)[0m  SELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1
+Processing by AccountsController#api_payback_bet as HTML
+  Parameters: {"transaction_id"=>"1000256db7765bb86ed7913a6b81fd629184d1fc"}
+  [1m[36mLog Load (1.3ms)[0m  [1mSELECT  "logs".* FROM "logs"  WHERE "logs"."transaction_type" = 'Remboursement de paris' AND "logs"."transaction_id" = '1000256db7765bb86ed7913a6b81fd629184d1fc' AND "logs"."status" = 't'  ORDER BY "logs"."id" ASC LIMIT 1[0m
+Completed 500 Internal Server Error in 13ms
+
+NoMethodError (undefined method `checkout_amount' for nil:NilClass):
+  app/controllers/accounts_controller.rb:513:in `api_payback_bet'
+
+
+  Rendered /home/dietrich/.rvm/gems/ruby-2.0.0-p195@rails4.0.7/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/_source.erb (1.3ms)
+  Rendered /home/dietrich/.rvm/gems/ruby-2.0.0-p195@rails4.0.7/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.2ms)
+  Rendered /home/dietrich/.rvm/gems/ruby-2.0.0-p195@rails4.0.7/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.0ms)
+  Rendered /home/dietrich/.rvm/gems/ruby-2.0.0-p195@rails4.0.7/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (16.1ms)
+  [1m[36mActiveRecord::SchemaMigration Load (1.0ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to AddFieldsToLogs (20151127085934)
+  [1m[35m (0.5ms)[0m  BEGIN
+  [1m[36m (23.3ms)[0m  [1mALTER TABLE "logs" ADD COLUMN "bet_placed" boolean[0m
+  [1m[35m (10.7ms)[0m  ALTER TABLE "logs" ADD COLUMN "bet_placed_at" timestamp
+  [1m[36m (0.7ms)[0m  [1mALTER TABLE "logs" ADD COLUMN "bet_validated" boolean[0m
+  [1m[35m (0.7ms)[0m  ALTER TABLE "logs" ADD COLUMN "bet_validated_at" timestamp
+  [1m[36m (0.8ms)[0m  [1mALTER TABLE "logs" ADD COLUMN "bet_paid_back" boolean[0m
+  [1m[35m (0.7ms)[0m  ALTER TABLE "logs" ADD COLUMN "bet_paid_back_at" timestamp
+  [1m[36mSQL (0.7ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ($1)[0m  [["version", "20151127085934"]]
+  [1m[35m (11.2ms)[0m  COMMIT
+  [1m[36mActiveRecord::SchemaMigration Load (0.7ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+
+
+Started GET "/api/86d138798bc43ed59e5207c684564/bet/get/LVNbmiDN/rKQNyFfn/3415/15000" for 127.0.0.1 at 2015-11-27 09:04:55 +0000
+  [1m[35mActiveRecord::SchemaMigration Load (0.8ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36mParameter Load (1.0ms)[0m  [1mSELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1[0m
+Processing by AccountsController#api_get_bet as HTML
+  Parameters: {"game_account_token"=>"LVNbmiDN", "account_token"=>"rKQNyFfn", "password"=>"[FILTERED]", "transaction_amount"=>"15000"}
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1
+  [1m[36m (0.5ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.8ms)[0m  INSERT INTO "bomb_logs" ("created_at", "sent_url", "updated_at") VALUES ($1, $2, $3) RETURNING "id"  [["created_at", "2015-11-27 09:04:55.856286"], ["sent_url", "94.247.178.141:8080/PAYMONEY_WALLET/rest/prise_paris/96325874/LVNbmiDN/rKQNyFfn/15000/0/0/223cea90ccb46a714d54cf8271dd4498f71915bc/3415"], ["updated_at", "2015-11-27 09:04:55.856286"]]
+  [1m[36m (26.2ms)[0m  [1mCOMMIT[0m
+  [1m[35mParameter Load (1.0ms)[0m  SELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1
+  [1m[36m (0.7ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (11.6ms)[0m  INSERT INTO "logs" ("account_token", "bet_placed", "bet_placed_at", "checkout_amount", "created_at", "game_account_token", "remote_ip_address", "response_log", "status", "transaction_id", "transaction_type", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING "id"  [["account_token", "rKQNyFfn"], ["bet_placed", "t"], ["bet_placed_at", "2015-11-27 09:04:56.213979"], ["checkout_amount", "15000"], ["created_at", "2015-11-27 09:04:56.305323"], ["game_account_token", "LVNbmiDN"], ["remote_ip_address", "127.0.0.1"], ["response_log", "good"], ["status", "t"], ["transaction_id", "223cea90ccb46a714d54cf8271dd4498f71915bc"], ["transaction_type", "Prise de paris"], ["updated_at", "2015-11-27 09:04:56.305323"]]
+  [1m[36m (22.8ms)[0m  [1mCOMMIT[0m
+  [1m[35mParameter Load (0.8ms)[0m  SELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1
+ETHON: performed EASY effective_url=http://0.0.0.0:3001/api/367419f5968800cd/paymoney_wallet/store_log?transaction_type=Prise%20de%20paris&checkout_amount=15000&response_log=good&error_log=none&status=true&remote_ip_address=127.0.0.1&transaction_id=223cea90ccb46a714d54cf8271dd4498f71915bc&game_account_token=LVNbmiDN&account_token=rKQNyFfn response_code=0 return_code=couldnt_connect total_time=0.000143
+  Rendered text template (0.0ms)
+Completed 200 OK in 506ms (Views: 1.1ms | ActiveRecord: 74.3ms)
+
+
+Started GET "/api/06331525768e6a95680c8bb0dcf55/bet/validate/223cea90ccb46a714d54cf8271dd4498f71915bc" for 127.0.0.1 at 2015-11-27 09:07:20 +0000
+Processing by AccountsController#api_validate_bet as HTML
+  Parameters: {"transaction_id"=>"223cea90ccb46a714d54cf8271dd4498f71915bc"}
+  [1m[36mLog Load (1.6ms)[0m  [1mSELECT  "logs".* FROM "logs"  WHERE "logs"."transaction_id" = '223cea90ccb46a714d54cf8271dd4498f71915bc' LIMIT 1[0m
+  [1m[35mParameter Load (1.1ms)[0m  SELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1
+  [1m[36m (0.4ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.7ms)[0m  INSERT INTO "bomb_logs" ("created_at", "sent_url", "updated_at") VALUES ($1, $2, $3) RETURNING "id"  [["created_at", "2015-11-27 09:07:20.221258"], ["sent_url", "94.247.178.141:8080/PAYMONEY_WALLET/rest/valide_paris/96325874/LVNbmiDN/15000/0/0/223cea90ccb46a714d54cf8271dd4498f71915bc"], ["updated_at", "2015-11-27 09:07:20.221258"]]
+  [1m[36m (61.5ms)[0m  [1mCOMMIT[0m
+  [1m[35mParameter Load (0.9ms)[0m  SELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1
+  [1m[36m (0.6ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.9ms)[0m  INSERT INTO "logs" ("bet_validated", "bet_validated_at", "checkout_amount", "created_at", "game_account_token", "remote_ip_address", "response_log", "transaction_id", "transaction_type", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING "id"  [["bet_validated", "t"], ["bet_validated_at", "2015-11-27 09:07:21.486747"], ["checkout_amount", "15000"], ["created_at", "2015-11-27 09:07:21.488659"], ["game_account_token", "LVNbmiDN"], ["remote_ip_address", "127.0.0.1"], ["response_log", "good"], ["transaction_id", "223cea90ccb46a714d54cf8271dd4498f71915bc"], ["transaction_type", "Validation de paris"], ["updated_at", "2015-11-27 09:07:21.488659"]]
+  [1m[36m (31.2ms)[0m  [1mCOMMIT[0m
+  [1m[35mParameter Load (1.0ms)[0m  SELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1
+ETHON: performed EASY effective_url=http://0.0.0.0:3001/api/367419f5968800cd/paymoney_wallet/store_log?transaction_type=Validation%20de%20paris&checkout_amount=15000&response_log=good&error_log=none&status=true&remote_ip_address=127.0.0.1&transaction_id=223cea90ccb46a714d54cf8271dd4498f71915bc&game_account_token=LVNbmiDN response_code=0 return_code=couldnt_connect total_time=0.000159
+  Rendered text template (0.0ms)
+Completed 200 OK in 1318ms (Views: 1.0ms | ActiveRecord: 100.1ms)
+
+
+Started GET "/api/35959d477b5ffc06dc673befbe5b4/bet/payback/223cea90ccb46a714d54cf8271dd4498f71915bc" for 127.0.0.1 at 2015-11-27 09:08:02 +0000
+Processing by ErrorsController#routing as HTML
+  Parameters: {"rogue_url"=>"api/35959d477b5ffc06dc673befbe5b4/bet/payback/223cea90ccb46a714d54cf8271dd4498f71915bc"}
+  Rendered public/404.html (0.1ms)
+Completed 404 Not Found in 5ms (Views: 3.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/api/35959d477b5ffc06dc673befbe5b4/bet/payback/223cea90ccb46a714d54cf8271dd4498f71915bc" for 127.0.0.1 at 2015-11-27 09:08:20 +0000
+  [1m[36mParameter Load (0.7ms)[0m  [1mSELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1[0m
+Processing by AccountsController#api_payback_bet as HTML
+  Parameters: {"transaction_id"=>"223cea90ccb46a714d54cf8271dd4498f71915bc"}
+  [1m[35mLog Load (0.7ms)[0m  SELECT  "logs".* FROM "logs"  WHERE "logs"."bet_placed" = 't' AND "logs"."bet_validated" IS NULL AND "logs"."transaction_id" = '223cea90ccb46a714d54cf8271dd4498f71915bc'  ORDER BY "logs"."id" ASC LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1[0m
+ETHON: performed EASY effective_url=http://0.0.0.0:3001/api/367419f5968800cd/paymoney_wallet/store_log?transaction_type=Remboursement%20de%20paris&checkout_amount=&response_log=none&error_log=none&status=false&remote_ip_address=127.0.0.1&transaction_id=&account_token= response_code=0 return_code=couldnt_connect total_time=0.00012
+  Rendered text template (0.0ms)
+Completed 200 OK in 37ms (Views: 0.7ms | ActiveRecord: 3.7ms)
+
+
+Started GET "/api/86d138798bc43ed59e5207c684564/bet/get/LVNbmiDN/rKQNyFfn/3415/15000" for 127.0.0.1 at 2015-11-27 09:14:48 +0000
+
+SyntaxError (/home/dietrich/workshop/PaymoneyWallet/app/controllers/accounts_controller.rb:490: syntax error, unexpected tLABEL
+...og: error_logremote_ip_address: remote_ip_address)
+...                               ^
+/home/dietrich/workshop/PaymoneyWallet/app/controllers/accounts_controller.rb:494: syntax error, unexpected tLABEL
+...og: error_logremote_ip_address: remote_ip_address)
+...                               ^
+/home/dietrich/workshop/PaymoneyWallet/app/controllers/accounts_controller.rb:783: syntax error, unexpected end-of-input, expecting keyword_end):
+  app/controllers/accounts_controller.rb:490: syntax error, unexpected tLABEL
+  app/controllers/accounts_controller.rb:494: syntax error, unexpected tLABEL
+  app/controllers/accounts_controller.rb:783: syntax error, unexpected end-of-input, expecting keyword_end
+
+
+  Rendered /home/dietrich/.rvm/gems/ruby-2.0.0-p195@rails4.0.7/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/_source.erb (0.9ms)
+  Rendered /home/dietrich/.rvm/gems/ruby-2.0.0-p195@rails4.0.7/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.1ms)
+  Rendered /home/dietrich/.rvm/gems/ruby-2.0.0-p195@rails4.0.7/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.4ms)
+  Rendered /home/dietrich/.rvm/gems/ruby-2.0.0-p195@rails4.0.7/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (15.9ms)
+
+
+Started GET "/api/86d138798bc43ed59e5207c684564/bet/get/LVNbmiDN/rKQNyFfn/3415/15000" for 127.0.0.1 at 2015-11-27 09:15:20 +0000
+  [1m[35mParameter Load (1.2ms)[0m  SELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1
+Processing by AccountsController#api_get_bet as HTML
+  Parameters: {"game_account_token"=>"LVNbmiDN", "account_token"=>"rKQNyFfn", "password"=>"[FILTERED]", "transaction_amount"=>"15000"}
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1[0m
+  [1m[35m (0.5ms)[0m  BEGIN
+  [1m[36mSQL (0.9ms)[0m  [1mINSERT INTO "bomb_logs" ("created_at", "sent_url", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["created_at", "2015-11-27 09:15:20.200068"], ["sent_url", "94.247.178.141:8080/PAYMONEY_WALLET/rest/prise_paris/96325874/LVNbmiDN/rKQNyFfn/15000/0/0/efbbefe7a3ec3d3b05108b93685c2cd21b377beb/3415"], ["updated_at", "2015-11-27 09:15:20.200068"]]
+  [1m[35m (8.7ms)[0m  COMMIT
+  [1m[36mParameter Load (0.8ms)[0m  [1mSELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1[0m
+  [1m[35m (0.7ms)[0m  BEGIN
+  [1m[36mSQL (1.0ms)[0m  [1mINSERT INTO "logs" ("account_token", "bet_placed", "bet_placed_at", "checkout_amount", "created_at", "game_account_token", "remote_ip_address", "response_log", "status", "transaction_id", "transaction_type", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING "id"[0m  [["account_token", "rKQNyFfn"], ["bet_placed", "t"], ["bet_placed_at", "2015-11-27 09:15:20.545552"], ["checkout_amount", "15000"], ["created_at", "2015-11-27 09:15:20.580963"], ["game_account_token", "LVNbmiDN"], ["remote_ip_address", "127.0.0.1"], ["response_log", "good"], ["status", "t"], ["transaction_id", "efbbefe7a3ec3d3b05108b93685c2cd21b377beb"], ["transaction_type", "Prise de paris"], ["updated_at", "2015-11-27 09:15:20.580963"]]
+  [1m[35m (61.2ms)[0m  COMMIT
+  [1m[36mParameter Load (0.9ms)[0m  [1mSELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1[0m
+ETHON: performed EASY effective_url=http://0.0.0.0:3001/api/367419f5968800cd/paymoney_wallet/store_log?transaction_type=Prise%20de%20paris&checkout_amount=15000&response_log=good&error_log=none&status=true&remote_ip_address=127.0.0.1&transaction_id=efbbefe7a3ec3d3b05108b93685c2cd21b377beb&game_account_token=LVNbmiDN&account_token=rKQNyFfn response_code=0 return_code=couldnt_connect total_time=0.000168
+  Rendered text template (0.0ms)
+Completed 200 OK in 464ms (Views: 1.1ms | ActiveRecord: 85.0ms)
+
+
+Started GET "/api/06331525768e6a95680c8bb0dcf55/bet/validate/efbbefe7a3ec3d3b05108b93685c2cd21b377beb" for 127.0.0.1 at 2015-11-27 09:15:54 +0000
+Processing by AccountsController#api_validate_bet as HTML
+  Parameters: {"transaction_id"=>"efbbefe7a3ec3d3b05108b93685c2cd21b377beb"}
+  [1m[35mLog Load (1.1ms)[0m  SELECT  "logs".* FROM "logs"  WHERE "logs"."transaction_id" = 'efbbefe7a3ec3d3b05108b93685c2cd21b377beb' LIMIT 1
+  [1m[36mParameter Load (0.7ms)[0m  [1mSELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1[0m
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "bomb_logs" ("created_at", "sent_url", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["created_at", "2015-11-27 09:15:54.665086"], ["sent_url", "94.247.178.141:8080/PAYMONEY_WALLET/rest/valide_paris/96325874/LVNbmiDN/15000/0/0/efbbefe7a3ec3d3b05108b93685c2cd21b377beb"], ["updated_at", "2015-11-27 09:15:54.665086"]]
+  [1m[35m (23.4ms)[0m  COMMIT
+  [1m[36mParameter Load (0.7ms)[0m  [1mSELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1[0m
+  [1m[35m (0.6ms)[0m  BEGIN
+  [1m[36mSQL (1.0ms)[0m  [1mUPDATE "logs" SET "bet_validated" = $1, "bet_validated_at" = $2, "error_log" = $3, "transaction_type" = $4, "updated_at" = $5 WHERE "logs"."id" = 133[0m  [["bet_validated", "f"], ["bet_validated_at", "2015-11-27 09:15:55.694967"], ["error_log", ""], ["transaction_type", "Validation de paris"], ["updated_at", "2015-11-27 09:15:55.697080"]]
+  [1m[35m (9.8ms)[0m  COMMIT
+  [1m[36mParameter Load (1.0ms)[0m  [1mSELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1[0m
+ETHON: performed EASY effective_url=http://0.0.0.0:3001/api/367419f5968800cd/paymoney_wallet/store_log?transaction_type=Validation%20de%20paris&checkout_amount=15000&response_log=none&error_log=&status=false&remote_ip_address=127.0.0.1&transaction_id=efbbefe7a3ec3d3b05108b93685c2cd21b377beb&game_account_token=LVNbmiDN response_code=0 return_code=couldnt_connect total_time=0.000166
+  Rendered text template (0.0ms)
+Completed 200 OK in 1061ms (Views: 1.1ms | ActiveRecord: 39.2ms)
+
+
+Started GET "/api/06331525768e6a95680c8bb0dcf55/bet/validate/efbbefe7a3ec3d3b05108b93685c2cd21b377beb" for 127.0.0.1 at 2015-11-27 09:17:19 +0000
+Processing by AccountsController#api_validate_bet as HTML
+  Parameters: {"transaction_id"=>"efbbefe7a3ec3d3b05108b93685c2cd21b377beb"}
+  [1m[35mLog Load (1.6ms)[0m  SELECT  "logs".* FROM "logs"  WHERE "logs"."transaction_id" = 'efbbefe7a3ec3d3b05108b93685c2cd21b377beb' LIMIT 1
+  [1m[36mParameter Load (0.8ms)[0m  [1mSELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1[0m
+  [1m[35m (0.4ms)[0m  BEGIN
+  [1m[36mSQL (0.6ms)[0m  [1mINSERT INTO "bomb_logs" ("created_at", "sent_url", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["created_at", "2015-11-27 09:17:19.957416"], ["sent_url", "94.247.178.141:8080/PAYMONEY_WALLET/rest/valide_paris/96325874/LVNbmiDN/15000/0/0/efbbefe7a3ec3d3b05108b93685c2cd21b377beb"], ["updated_at", "2015-11-27 09:17:19.957416"]]
+  [1m[35m (12.4ms)[0m  COMMIT
+  [1m[36mParameter Load (0.7ms)[0m  [1mSELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1[0m
+  [1m[35m (0.6ms)[0m  BEGIN
+  [1m[36mSQL (1.1ms)[0m  [1mUPDATE "logs" SET "bet_validated" = $1, "bet_validated_at" = $2, "updated_at" = $3 WHERE "logs"."id" = 133[0m  [["bet_validated", "t"], ["bet_validated_at", "2015-11-27 09:17:20.421831"], ["updated_at", "2015-11-27 09:17:20.424611"]]
+  [1m[35m (9.5ms)[0m  COMMIT
+  [1m[36mParameter Load (1.0ms)[0m  [1mSELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1[0m
+ETHON: performed EASY effective_url=http://0.0.0.0:3001/api/367419f5968800cd/paymoney_wallet/store_log?transaction_type=Validation%20de%20paris&checkout_amount=15000&response_log=good&error_log=none&status=true&remote_ip_address=127.0.0.1&transaction_id=efbbefe7a3ec3d3b05108b93685c2cd21b377beb&game_account_token=LVNbmiDN response_code=0 return_code=couldnt_connect total_time=0.00018
+  Rendered text template (0.0ms)
+Completed 200 OK in 495ms (Views: 1.0ms | ActiveRecord: 28.6ms)
+
+
+Started GET "/api/86d138798bc43ed59e5207c684564/bet/get/LVNbmiDN/rKQNyFfn/3415/15000" for 127.0.0.1 at 2015-11-27 13:35:19 +0000
+Processing by AccountsController#api_get_bet as HTML
+  Parameters: {"game_account_token"=>"LVNbmiDN", "account_token"=>"rKQNyFfn", "password"=>"[FILTERED]", "transaction_amount"=>"15000"}
+  [1m[35mParameter Load (1.0ms)[0m  SELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1
+  [1m[36m (0.4ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.7ms)[0m  INSERT INTO "bomb_logs" ("created_at", "sent_url", "updated_at") VALUES ($1, $2, $3) RETURNING "id"  [["created_at", "2015-11-27 13:35:19.015755"], ["sent_url", "94.247.178.141:8080/PAYMONEY_WALLET/rest/prise_paris/96325874/LVNbmiDN/rKQNyFfn/15000/0/0/e930c34f2340cb43bae59186cfaf656bdcd85a75/3415"], ["updated_at", "2015-11-27 13:35:19.015755"]]
+  [1m[36m (63.7ms)[0m  [1mCOMMIT[0m
+  [1m[35mParameter Load (0.8ms)[0m  SELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1
+  [1m[36m (0.6ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (1.1ms)[0m  INSERT INTO "logs" ("account_token", "bet_placed", "bet_placed_at", "checkout_amount", "created_at", "game_account_token", "remote_ip_address", "response_log", "status", "transaction_id", "transaction_type", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING "id"  [["account_token", "rKQNyFfn"], ["bet_placed", "t"], ["bet_placed_at", "2015-11-27 13:35:19.967824"], ["checkout_amount", "15000"], ["created_at", "2015-11-27 13:35:19.970483"], ["game_account_token", "LVNbmiDN"], ["remote_ip_address", "127.0.0.1"], ["response_log", "good"], ["status", "t"], ["transaction_id", "e930c34f2340cb43bae59186cfaf656bdcd85a75"], ["transaction_type", "Prise de paris"], ["updated_at", "2015-11-27 13:35:19.970483"]]
+  [1m[36m (17.9ms)[0m  [1mCOMMIT[0m
+  [1m[35mParameter Load (0.8ms)[0m  SELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1
+ETHON: performed EASY effective_url=http://0.0.0.0:3001/api/367419f5968800cd/paymoney_wallet/store_log?transaction_type=Prise%20de%20paris&checkout_amount=15000&response_log=good&error_log=none&status=true&remote_ip_address=127.0.0.1&transaction_id=e930c34f2340cb43bae59186cfaf656bdcd85a75&game_account_token=LVNbmiDN&account_token=rKQNyFfn response_code=0 return_code=couldnt_connect total_time=0.000168
+  Rendered text template (0.0ms)
+Completed 200 OK in 986ms (Views: 1.0ms | ActiveRecord: 86.9ms)
+
+
+Started GET "/api/86d138798bc43ed59e5207c684564/bet/get/LVNbmiDN/rKQNyFfn/3415/15000" for 127.0.0.1 at 2015-11-27 14:26:26 +0000
+Processing by AccountsController#api_get_bet as HTML
+  Parameters: {"game_account_token"=>"LVNbmiDN", "account_token"=>"rKQNyFfn", "password"=>"[FILTERED]", "transaction_amount"=>"15000"}
+  [1m[36mParameter Load (0.7ms)[0m  [1mSELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1[0m
+  [1m[35m (0.4ms)[0m  BEGIN
+  [1m[36mSQL (0.6ms)[0m  [1mINSERT INTO "bomb_logs" ("created_at", "sent_url", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["created_at", "2015-11-27 14:26:26.489111"], ["sent_url", "94.247.178.141:8080/PAYMONEY_WALLET/rest/prise_paris/96325874/LVNbmiDN/rKQNyFfn/15000/0/0/a02cad8b164b11453bf11ce1158e648af1328097/3415"], ["updated_at", "2015-11-27 14:26:26.489111"]]
+  [1m[35m (10.7ms)[0m  COMMIT
+  [1m[36mParameter Load (0.6ms)[0m  [1mSELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1[0m
+  [1m[35m (0.6ms)[0m  BEGIN
+  [1m[36mSQL (1.2ms)[0m  [1mINSERT INTO "logs" ("account_token", "bet_placed", "bet_placed_at", "checkout_amount", "created_at", "game_account_token", "remote_ip_address", "response_log", "status", "transaction_id", "transaction_type", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING "id"[0m  [["account_token", "rKQNyFfn"], ["bet_placed", "t"], ["bet_placed_at", "2015-11-27 14:26:27.562943"], ["checkout_amount", "15000"], ["created_at", "2015-11-27 14:26:27.565529"], ["game_account_token", "LVNbmiDN"], ["remote_ip_address", "127.0.0.1"], ["response_log", "good"], ["status", "t"], ["transaction_id", "a02cad8b164b11453bf11ce1158e648af1328097"], ["transaction_type", "Prise de paris"], ["updated_at", "2015-11-27 14:26:27.565529"]]
+  [1m[35m (43.1ms)[0m  COMMIT
+  [1m[36mParameter Load (1.0ms)[0m  [1mSELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1[0m
+ETHON: performed EASY effective_url=http://0.0.0.0:3001/api/367419f5968800cd/paymoney_wallet/store_log?transaction_type=Prise%20de%20paris&checkout_amount=15000&response_log=good&error_log=none&status=true&remote_ip_address=127.0.0.1&transaction_id=a02cad8b164b11453bf11ce1158e648af1328097&game_account_token=LVNbmiDN&account_token=rKQNyFfn response_code=0 return_code=couldnt_connect total_time=0.000119
+  Rendered text template (0.0ms)
+Completed 200 OK in 1132ms (Views: 0.6ms | ActiveRecord: 58.9ms)
+
+
+Started GET "/api/06331525768e6a95680c8bb0dcf55/bet/validate/a02cad8b164b11453bf11ce1158e648af1328097" for 127.0.0.1 at 2015-11-27 14:26:39 +0000
+Processing by AccountsController#api_validate_bet as HTML
+  Parameters: {"transaction_id"=>"a02cad8b164b11453bf11ce1158e648af1328097"}
+  [1m[35mLog Load (1.1ms)[0m  SELECT  "logs".* FROM "logs"  WHERE "logs"."transaction_id" = 'a02cad8b164b11453bf11ce1158e648af1328097' LIMIT 1
+  [1m[36mParameter Load (1.8ms)[0m  [1mSELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1[0m
+  [1m[35m (0.4ms)[0m  BEGIN
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "bomb_logs" ("created_at", "sent_url", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["created_at", "2015-11-27 14:26:39.164254"], ["sent_url", "94.247.178.141:8080/PAYMONEY_WALLET/rest/valide_paris/96325874/LVNbmiDN/15000/0/0/a02cad8b164b11453bf11ce1158e648af1328097"], ["updated_at", "2015-11-27 14:26:39.164254"]]
+  [1m[35m (24.9ms)[0m  COMMIT
+  [1m[36mParameter Load (0.8ms)[0m  [1mSELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1[0m
+  [1m[35m (0.6ms)[0m  BEGIN
+  [1m[36mSQL (1.1ms)[0m  [1mUPDATE "logs" SET "bet_validated" = $1, "bet_validated_at" = $2, "transaction_type" = $3, "updated_at" = $4 WHERE "logs"."id" = 135[0m  [["bet_validated", "t"], ["bet_validated_at", "2015-11-27 14:26:40.197990"], ["transaction_type", "Validation de paris"], ["updated_at", "2015-11-27 14:26:40.200454"]]
+  [1m[35m (8.2ms)[0m  COMMIT
+  [1m[36mParameter Load (1.0ms)[0m  [1mSELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1[0m
+ETHON: performed EASY effective_url=http://0.0.0.0:3001/api/367419f5968800cd/paymoney_wallet/store_log?transaction_type=Validation%20de%20paris&checkout_amount=15000&response_log=good&error_log=none&status=true&remote_ip_address=127.0.0.1&transaction_id=a02cad8b164b11453bf11ce1158e648af1328097&game_account_token=LVNbmiDN response_code=0 return_code=couldnt_connect total_time=0.000157
+  Rendered text template (0.0ms)
+Completed 200 OK in 1064ms (Views: 1.2ms | ActiveRecord: 40.5ms)
+
+
+Started GET "/api/35959d477b5ffc06dc673befbe5b4/bet/payback/a02cad8b164b11453bf11ce1158e648af1328097" for 127.0.0.1 at 2015-11-27 14:27:03 +0000
+Processing by AccountsController#api_payback_bet as HTML
+  Parameters: {"transaction_id"=>"a02cad8b164b11453bf11ce1158e648af1328097"}
+  [1m[35mLog Load (1.5ms)[0m  SELECT  "logs".* FROM "logs"  WHERE "logs"."bet_placed" = 't' AND "logs"."bet_validated" IS NULL AND "logs"."transaction_id" = 'a02cad8b164b11453bf11ce1158e648af1328097'  ORDER BY "logs"."id" ASC LIMIT 1
+Completed 500 Internal Server Error in 6ms
+
+NoMethodError (undefined method `checkout_amount' for nil:NilClass):
+  app/controllers/accounts_controller.rb:513:in `api_payback_bet'
+
+
+  Rendered /home/dietrich/.rvm/gems/ruby-2.0.0-p195@rails4.0.7/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/_source.erb (0.8ms)
+  Rendered /home/dietrich/.rvm/gems/ruby-2.0.0-p195@rails4.0.7/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.1ms)
+  Rendered /home/dietrich/.rvm/gems/ruby-2.0.0-p195@rails4.0.7/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.9ms)
+  Rendered /home/dietrich/.rvm/gems/ruby-2.0.0-p195@rails4.0.7/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (15.2ms)
+
+
+Started GET "/api/86d138798bc43ed59e5207c684564/bet/get/LVNbmiDN/rKQNyFfn/3415/15000" for 127.0.0.1 at 2015-11-27 14:28:40 +0000
+  [1m[36mParameter Load (0.5ms)[0m  [1mSELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1[0m
+Processing by AccountsController#api_get_bet as HTML
+  Parameters: {"game_account_token"=>"LVNbmiDN", "account_token"=>"rKQNyFfn", "password"=>"[FILTERED]", "transaction_amount"=>"15000"}
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1
+  [1m[36m (0.4ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.7ms)[0m  INSERT INTO "bomb_logs" ("created_at", "sent_url", "updated_at") VALUES ($1, $2, $3) RETURNING "id"  [["created_at", "2015-11-27 14:28:40.759239"], ["sent_url", "94.247.178.141:8080/PAYMONEY_WALLET/rest/prise_paris/96325874/LVNbmiDN/rKQNyFfn/15000/0/0/30f928aac1a569f064f4ea1f7e3c39e769337691/3415"], ["updated_at", "2015-11-27 14:28:40.759239"]]
+  [1m[36m (9.3ms)[0m  [1mCOMMIT[0m
+  [1m[35mParameter Load (1.0ms)[0m  SELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1
+  [1m[36m (0.5ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.8ms)[0m  INSERT INTO "logs" ("account_token", "bet_placed", "bet_placed_at", "checkout_amount", "created_at", "game_account_token", "remote_ip_address", "response_log", "status", "transaction_id", "transaction_type", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING "id"  [["account_token", "rKQNyFfn"], ["bet_placed", "t"], ["bet_placed_at", "2015-11-27 14:28:41.788055"], ["checkout_amount", "15000"], ["created_at", "2015-11-27 14:28:41.884365"], ["game_account_token", "LVNbmiDN"], ["remote_ip_address", "127.0.0.1"], ["response_log", "good"], ["status", "t"], ["transaction_id", "30f928aac1a569f064f4ea1f7e3c39e769337691"], ["transaction_type", "Prise de paris"], ["updated_at", "2015-11-27 14:28:41.884365"]]
+  [1m[36m (6.3ms)[0m  [1mCOMMIT[0m
+  [1m[35mParameter Load (0.8ms)[0m  SELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1
+ETHON: performed EASY effective_url=http://0.0.0.0:3001/api/367419f5968800cd/paymoney_wallet/store_log?transaction_type=Prise%20de%20paris&checkout_amount=15000&response_log=good&error_log=none&status=true&remote_ip_address=127.0.0.1&transaction_id=30f928aac1a569f064f4ea1f7e3c39e769337691&game_account_token=LVNbmiDN&account_token=rKQNyFfn response_code=0 return_code=couldnt_connect total_time=0.000173
+  Rendered text template (0.1ms)
+Completed 200 OK in 1154ms (Views: 1.4ms | ActiveRecord: 29.2ms)
+
+
+Started GET "/api/35959d477b5ffc06dc673befbe5b4/bet/payback/30f928aac1a569f064f4ea1f7e3c39e769337691" for 127.0.0.1 at 2015-11-27 14:28:49 +0000
+Processing by AccountsController#api_payback_bet as HTML
+  Parameters: {"transaction_id"=>"30f928aac1a569f064f4ea1f7e3c39e769337691"}
+  [1m[36mLog Load (1.0ms)[0m  [1mSELECT  "logs".* FROM "logs"  WHERE "logs"."bet_placed" = 't' AND "logs"."bet_validated" IS NULL AND "logs"."transaction_id" = '30f928aac1a569f064f4ea1f7e3c39e769337691'  ORDER BY "logs"."id" ASC LIMIT 1[0m
+  [1m[35mParameter Load (0.7ms)[0m  SELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1
+  [1m[36m (0.3ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "bomb_logs" ("created_at", "sent_url", "updated_at") VALUES ($1, $2, $3) RETURNING "id"  [["created_at", "2015-11-27 14:28:49.489548"], ["sent_url", "94.247.178.141:8080/PAYMONEY_WALLET/rest/remboursement_paris/96325874/rKQNyFfn/15000/0/0/30f928aac1a569f064f4ea1f7e3c39e769337691"], ["updated_at", "2015-11-27 14:28:49.489548"]]
+  [1m[36m (20.7ms)[0m  [1mCOMMIT[0m
+  [1m[35mParameter Load (0.9ms)[0m  SELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1
+  [1m[36m (0.6ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (1.0ms)[0m  UPDATE "logs" SET "bet_paid_back" = $1, "bet_paid_back_at" = $2, "error_log" = $3, "transaction_type" = $4, "updated_at" = $5 WHERE "logs"."id" = 136  [["bet_paid_back", "f"], ["bet_paid_back_at", "2015-11-27 14:28:49.786785"], ["error_log", ""], ["transaction_type", "Remboursement de paris"], ["updated_at", "2015-11-27 14:28:49.789084"]]
+  [1m[36m (55.9ms)[0m  [1mCOMMIT[0m
+  [1m[35mParameter Load (0.9ms)[0m  SELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1
+ETHON: performed EASY effective_url=http://0.0.0.0:3001/api/367419f5968800cd/paymoney_wallet/store_log?transaction_type=Remboursement%20de%20paris&checkout_amount=15000&response_log=none&error_log=&status=false&remote_ip_address=127.0.0.1&transaction_id=30f928aac1a569f064f4ea1f7e3c39e769337691&account_token=rKQNyFfn response_code=0 return_code=couldnt_connect total_time=0.000153
+  Rendered text template (0.0ms)
+Completed 200 OK in 374ms (Views: 1.0ms | ActiveRecord: 82.2ms)
+
+
+Started GET "/api/86d138798bc43ed59e5207c684564/bet/get/LVNbmiDN/rKQNyFfn/3415/15000" for 127.0.0.1 at 2015-11-27 14:29:33 +0000
+Processing by AccountsController#api_get_bet as HTML
+  Parameters: {"game_account_token"=>"LVNbmiDN", "account_token"=>"rKQNyFfn", "password"=>"[FILTERED]", "transaction_amount"=>"15000"}
+  [1m[36mParameter Load (0.8ms)[0m  [1mSELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1[0m
+  [1m[35m (0.5ms)[0m  BEGIN
+  [1m[36mSQL (0.8ms)[0m  [1mINSERT INTO "bomb_logs" ("created_at", "sent_url", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["created_at", "2015-11-27 14:29:33.562832"], ["sent_url", "94.247.178.141:8080/PAYMONEY_WALLET/rest/prise_paris/96325874/LVNbmiDN/rKQNyFfn/15000/0/0/416f5507cb124d74429a9b8ac83cff6422063a46/3415"], ["updated_at", "2015-11-27 14:29:33.562832"]]
+  [1m[35m (17.9ms)[0m  COMMIT
+  [1m[36mParameter Load (0.9ms)[0m  [1mSELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1[0m
+  [1m[35m (0.6ms)[0m  BEGIN
+  [1m[36mSQL (1.0ms)[0m  [1mINSERT INTO "logs" ("account_token", "bet_placed", "bet_placed_at", "checkout_amount", "created_at", "game_account_token", "remote_ip_address", "response_log", "status", "transaction_id", "transaction_type", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING "id"[0m  [["account_token", "rKQNyFfn"], ["bet_placed", "t"], ["bet_placed_at", "2015-11-27 14:29:34.278079"], ["checkout_amount", "15000"], ["created_at", "2015-11-27 14:29:34.281173"], ["game_account_token", "LVNbmiDN"], ["remote_ip_address", "127.0.0.1"], ["response_log", "good"], ["status", "t"], ["transaction_id", "416f5507cb124d74429a9b8ac83cff6422063a46"], ["transaction_type", "Prise de paris"], ["updated_at", "2015-11-27 14:29:34.281173"]]
+  [1m[35m (9.1ms)[0m  COMMIT
+  [1m[36mParameter Load (1.0ms)[0m  [1mSELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1[0m
+ETHON: performed EASY effective_url=http://0.0.0.0:3001/api/367419f5968800cd/paymoney_wallet/store_log?transaction_type=Prise%20de%20paris&checkout_amount=15000&response_log=good&error_log=none&status=true&remote_ip_address=127.0.0.1&transaction_id=416f5507cb124d74429a9b8ac83cff6422063a46&game_account_token=LVNbmiDN&account_token=rKQNyFfn response_code=0 return_code=couldnt_connect total_time=0.000154
+  Rendered text template (0.0ms)
+Completed 200 OK in 741ms (Views: 1.0ms | ActiveRecord: 32.6ms)
+
+
+Started GET "/api/35959d477b5ffc06dc673befbe5b4/bet/payback/416f5507cb124d74429a9b8ac83cff6422063a46" for 127.0.0.1 at 2015-11-27 14:30:36 +0000
+  [1m[35mParameter Load (1.0ms)[0m  SELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1
+Processing by AccountsController#api_payback_bet as HTML
+  Parameters: {"transaction_id"=>"416f5507cb124d74429a9b8ac83cff6422063a46"}
+  [1m[36mLog Load (1.4ms)[0m  [1mSELECT  "logs".* FROM "logs"  WHERE "logs"."bet_placed" = 't' AND "logs"."bet_validated" IS NULL AND "logs"."transaction_id" = '416f5507cb124d74429a9b8ac83cff6422063a46'  ORDER BY "logs"."id" ASC LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1
+  [1m[36m (0.7ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.8ms)[0m  INSERT INTO "bomb_logs" ("created_at", "sent_url", "updated_at") VALUES ($1, $2, $3) RETURNING "id"  [["created_at", "2015-11-27 14:30:36.717515"], ["sent_url", "94.247.178.141:8080/PAYMONEY_WALLET/rest/remboursement_paris/96325874/rKQNyFfn/15000/0/0/416f5507cb124d74429a9b8ac83cff6422063a46"], ["updated_at", "2015-11-27 14:30:36.717515"]]
+  [1m[36m (8.9ms)[0m  [1mCOMMIT[0m
+  [1m[35mParameter Load (0.8ms)[0m  SELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1
+  [1m[36m (0.5ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.7ms)[0m  UPDATE "logs" SET "bet_paid_back" = $1, "bet_paid_back_at" = $2, "error_log" = $3, "transaction_type" = $4, "updated_at" = $5 WHERE "logs"."id" = 137  [["bet_paid_back", "f"], ["bet_paid_back_at", "2015-11-27 14:30:37.044378"], ["error_log", ""], ["transaction_type", "Remboursement de paris"], ["updated_at", "2015-11-27 14:30:37.045981"]]
+  [1m[36m (2.0ms)[0m  [1mCOMMIT[0m
+  [1m[35mParameter Load (0.7ms)[0m  SELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1
+ETHON: performed EASY effective_url=http://0.0.0.0:3001/api/367419f5968800cd/paymoney_wallet/store_log?transaction_type=Remboursement%20de%20paris&checkout_amount=15000&response_log=none&error_log=&status=false&remote_ip_address=127.0.0.1&transaction_id=416f5507cb124d74429a9b8ac83cff6422063a46&account_token=rKQNyFfn response_code=0 return_code=couldnt_connect total_time=0.000124
+  Rendered text template (0.0ms)
+Completed 200 OK in 390ms (Views: 1.1ms | ActiveRecord: 26.0ms)
+
+
+Started GET "/api/35959d477b5ffc06dc673befbe5b4/bet/payback/416f5507cb124d74429a9b8ac83cff6422063a46" for 127.0.0.1 at 2015-11-27 14:35:06 +0000
+  [1m[36mParameter Load (0.9ms)[0m  [1mSELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1[0m
+Processing by AccountsController#api_payback_bet as HTML
+  Parameters: {"transaction_id"=>"416f5507cb124d74429a9b8ac83cff6422063a46"}
+  [1m[35mLog Load (1.5ms)[0m  SELECT  "logs".* FROM "logs"  WHERE "logs"."bet_placed" = 't' AND "logs"."bet_validated" IS NULL AND "logs"."transaction_id" = '416f5507cb124d74429a9b8ac83cff6422063a46'  ORDER BY "logs"."id" ASC LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1[0m
+  [1m[35m (0.6ms)[0m  BEGIN
+  [1m[36mSQL (0.8ms)[0m  [1mINSERT INTO "bomb_logs" ("created_at", "sent_url", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["created_at", "2015-11-27 14:35:06.665461"], ["sent_url", "94.247.178.141:8080/PAYMONEY_WALLET/rest/remboursement_paris/96325874/LVNbmiDN/rKQNyFfn/15000/0/0/416f5507cb124d74429a9b8ac83cff6422063a46"], ["updated_at", "2015-11-27 14:35:06.665461"]]
+  [1m[35m (23.1ms)[0m  COMMIT
+  [1m[36mParameter Load (0.9ms)[0m  [1mSELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1[0m
+  [1m[35m (0.5ms)[0m  BEGIN
+  [1m[36mSQL (1.1ms)[0m  [1mUPDATE "logs" SET "bet_paid_back" = $1, "bet_paid_back_at" = $2, "updated_at" = $3 WHERE "logs"."id" = 137[0m  [["bet_paid_back", "t"], ["bet_paid_back_at", "2015-11-27 14:35:07.014524"], ["updated_at", "2015-11-27 14:35:07.017055"]]
+  [1m[35m (14.1ms)[0m  COMMIT
+  [1m[36mParameter Load (1.0ms)[0m  [1mSELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1[0m
+ETHON: performed EASY effective_url=http://0.0.0.0:3001/api/367419f5968800cd/paymoney_wallet/store_log?transaction_type=Remboursement%20de%20paris&checkout_amount=15000&response_log=good&error_log=none&status=true&remote_ip_address=127.0.0.1&transaction_id=416f5507cb124d74429a9b8ac83cff6422063a46&account_token=rKQNyFfn response_code=0 return_code=couldnt_connect total_time=0.00022
+  Rendered text template (0.0ms)
+Completed 200 OK in 428ms (Views: 1.3ms | ActiveRecord: 54.0ms)

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151006110645) do
+ActiveRecord::Schema.define(version: 20151127085934) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -83,6 +83,12 @@ ActiveRecord::Schema.define(version: 20151006110645) do
     t.string   "mobile_money_account_number"
     t.string   "a_account_transfer"
     t.string   "b_account_transfer"
+    t.boolean  "bet_placed"
+    t.datetime "bet_placed_at"
+    t.boolean  "bet_validated"
+    t.datetime "bet_validated_at"
+    t.boolean  "bet_paid_back"
+    t.datetime "bet_paid_back_at"
   end
 
   create_table "parameters", force: true do |t|

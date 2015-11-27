@@ -426,6 +426,7 @@ class AccountsController < ApplicationController
   def api_get_bet
     transaction_amount = params[:transaction_amount]
     game_account_token = params[:game_account_token]
+    password = params[:password]
     account_token = params[:account_token]
     remote_ip_address = request.remote_ip
     response_log = "none"
@@ -435,15 +436,15 @@ class AccountsController < ApplicationController
 
     if is_a_number?(transaction_amount)
       transaction_id = Digest::SHA1.hexdigest([DateTime.now.iso8601(6), rand].join)
-      BombLog.create(sent_url: "#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/prise_paris/96325874/#{game_account_token}/#{account_token}/#{transaction_amount}/0/0/#{transaction_id}")
-      response = (RestClient.get "#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/prise_paris/96325874/#{game_account_token}/#{account_token}/#{transaction_amount}/0/0/#{transaction_id}" rescue "")
+      BombLog.create(sent_url: "#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/prise_paris/96325874/#{game_account_token}/#{account_token}/#{transaction_amount}/0/0/#{transaction_id}/#{password}")
+      response = (RestClient.get "#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/prise_paris/96325874/#{game_account_token}/#{account_token}/#{transaction_amount}/0/0/#{transaction_id}/#{password}" rescue "")
 
       unless response.blank?
         if response.to_s == "good"
           status = transaction_id
           response_log = response.to_s
           transaction_status = true
-          Log.create(transaction_type: "Prise de paris", checkout_amount: transaction_amount, response_log: response_log, status: true, remote_ip_address: remote_ip_address, transaction_id: transaction_id, game_account_token: game_account_token, account_token: account_token)
+          Log.create(transaction_type: "Prise de paris", checkout_amount: transaction_amount, response_log: response_log, status: true, bet_placed: true, bet_placed_at: DateTime.now, remote_ip_address: remote_ip_address, transaction_id: transaction_id, game_account_token: game_account_token, account_token: account_token)
         else
           status = "|5001|"
           error_log = response.to_s
@@ -456,6 +457,85 @@ class AccountsController < ApplicationController
     end
 
     Typhoeus.get("#{Parameter.first.hub_front_office_url}/api/367419f5968800cd/paymoney_wallet/store_log", params: { transaction_type: "Prise de paris", checkout_amount: transaction_amount, response_log: response_log, error_log: error_log, status: transaction_status, remote_ip_address: remote_ip_address, transaction_id: transaction_id, game_account_token: game_account_token, account_token: account_token })
+
+    render text: status
+  end
+
+  def api_validate_bet
+    bet = Log.find_by_transaction_id(params[:transaction_id])
+
+    remote_ip_address = request.remote_ip
+    response_log = "none"
+    error_log = "none"
+    status = "|5000|"
+    transaction_status = false
+
+    if !bet.blank?
+      transaction_amount = bet.checkout_amount
+      game_account_token = bet.game_account_token
+      transaction_id = bet.transaction_id
+
+      BombLog.create(sent_url: "#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/valide_paris/96325874/#{game_account_token}/#{transaction_amount}/0/0/#{transaction_id}")
+      response = (RestClient.get "#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/valide_paris/96325874/#{game_account_token}/#{transaction_amount}/0/0/#{transaction_id}" rescue "")
+
+      unless response.blank?
+        if response.to_s == "good"
+          status = transaction_id
+          response_log = response.to_s
+          transaction_status = true
+          bet.update_attributes(transaction_type: "Validation de paris", response_log: response_log, bet_validated: true, bet_validated_at: DateTime.now, remote_ip_address: remote_ip_address)
+        else
+          status = "|5001|"
+          error_log = response.to_s
+          bet.update_attributes(transaction_type: "Validation de paris", bet_validated: false, bet_validated_at: DateTime.now, error_log: error_log, remote_ip_address: remote_ip_address)
+        end
+      else
+        error_log = response.to_s
+        bet.update_attributes(transaction_type: "Validation de paris", bet_validated: false, bet_validated_at: DateTime.now, error_log: error_log, remote_ip_address: remote_ip_address)
+      end
+    end
+
+    Typhoeus.get("#{Parameter.first.hub_front_office_url}/api/367419f5968800cd/paymoney_wallet/store_log", params: { transaction_type: "Validation de paris", checkout_amount: transaction_amount, response_log: response_log, error_log: error_log, status: transaction_status, remote_ip_address: remote_ip_address, transaction_id: transaction_id, game_account_token: game_account_token })
+
+    render text: status
+  end
+
+  def api_payback_bet
+    bet = (Log.where(bet_placed: true, bet_validated: nil, transaction_id: params[:transaction_id]).first )
+
+    remote_ip_address = request.remote_ip
+    response_log = "none"
+    error_log = "none"
+    status = "|5000|"
+    transaction_status = false
+
+    if !bet.blank?
+      transaction_amount = bet.checkout_amount
+      account_token = bet.account_token
+      game_account_token = bet.game_account_token
+      transaction_id = bet.transaction_id
+
+      BombLog.create(sent_url: "#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/remboursement_paris/96325874/#{game_account_token}/#{account_token}/#{transaction_amount}/0/0/#{transaction_id}")
+      response = (RestClient.get "#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/remboursement_paris/96325874/#{game_account_token}/#{account_token}/#{transaction_amount}/0/0/#{transaction_id}" rescue "")
+
+      unless response.blank?
+        if response.to_s == "good"
+          status = transaction_id
+          response_log = response.to_s
+          transaction_status = true
+          bet.update_attributes(transaction_type: "Remboursement de paris", response_log: response_log, bet_paid_back: true, bet_paid_back_at: DateTime.now, remote_ip_address: remote_ip_address)
+        else
+          status = "|5001|"
+          error_log = response.to_s
+          bet.update_attributes(transaction_type: "Remboursement de paris", error_log: error_log, bet_paid_back: false, bet_paid_back_at: DateTime.now, remote_ip_address: remote_ip_address)
+        end
+      else
+        error_log = response.to_s
+        bet.update_attributes(transaction_type: "Remboursement de paris", error_log: error_log, bet_paid_back: false, bet_paid_back_at: DateTime.now, remote_ip_address: remote_ip_address)
+      end
+    end
+
+    Typhoeus.get("#{Parameter.first.hub_front_office_url}/api/367419f5968800cd/paymoney_wallet/store_log", params: { transaction_type: "Remboursement de paris", checkout_amount: transaction_amount, response_log: response_log, error_log: error_log, status: transaction_status, remote_ip_address: remote_ip_address, transaction_id: transaction_id, account_token: account_token })
 
     render text: status
   end
