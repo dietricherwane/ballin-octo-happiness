@@ -60,3 +60,40 @@ http://94.247.178.141:8080/PAYMONEY_WALLET/rest/create_compte/BouzWuGT/Dietrich/
 Compte Mobile Money
 
 {"idCompte":null,"status":{"idStatus":1,"statusName":"ENABLE"},"compteNumero":92960000000039,"comptePassword":"3504","compteMontant":"0","compteNom":"Dietrich","comptePrenom":"Mensah","compteDate":1355266800000,"compteAge":null,"compteEmail":"dietricherwane@gmailli.co","comptePhone":"58908957","compteLibelle":"UkGUKNAa","comptePays":null,"compteCodebank":"HGGDN","compteCodeguichet":"KKD47","compteAccountNumber":"123456789654","compteCodeRib":"87","compteCardNumber":"0","typCompteIdtypCompte":5,"compteParent":null,"compteFils":[]}
+
+La prise de paris :
+
+94.247.178.141:8080/PAYMONEY_WALLET/rest/prise_paris/{type_operation}/{type_de_jeux}/{compte_client}/{operation_montant}/{frais}/{timbre}/{numeropanier}/{code_secret}
+
+94.247.178.141:8080/PAYMONEY_WALLET/rest/prise_paris/96325874/LVNbmiDN/rKQNyFfn/15000/0/0/1000256db7765bb86ed7913a6b81fd629184d1fc/3415
+
+La Validation de paris :
+
+94.247.178.141:8080/PAYMONEY_WALLET/rest/valide_paris/{type_operation}/{type_de_jeux}/{operation_montant}/{frais}/{timbre}/{numeropanier}
+
+http://94.247.178.141:8080/PAYMONEY_WALLET/rest/remboursement_paris/96325874/LVNbmiDN/rKQNyFfn/1500/0/0/1000256db7765bb86ed7913a6b81fd629184d1fc
+
+
+
+-Lorsqu'on change le montant de transaction, l'api mets toujours "good"
+-Peu importe le montant, l'api met toujours "good"
+
+
+
+
+Le remboursement de paris :
+
+94.247.178.141:8080/PAYMONEY_WALLET/rest/remboursement_paris/{type_operation}/{type_de_jeux}/ {compte_tokken_source} /{operation_montant}/{frais}/{timbre}/{numeropanier}
+
+94.247.178.141:8080/PAYMONEY_WALLET/rest/remboursement_paris/96325874/LVNbmiDN/rKQNyFfn/15000/0/0/416f5507cb124d74429a9b8ac83cff6422063a46
+
+http://94.247.178.141:8080/PAYMONEY_WALLET/rest/valide_paris/96325874/LVNbmiDN/15000/0/0/1000256db7765bb86ed7913a6b81fd629184d1fc
+
+On ne devrait pas pouvoir rembourser plus d'une fois le même pari
+Peu importe le montant, good est affiché
+Peu importe l'id de transaction, good est affiché
+
+On ne devrait pas pouvoir rembourser un pari qui a été validé
+
+
+223cea90ccb46a714d54cf8271dd4498f71915bc

@@ -38,7 +38,7 @@ Rails.application.routes.draw do
   # Validate a bet
   get '/api/06331525768e6a95680c8bb0dcf55/bet/validate/:transaction_id' => 'accounts#api_validate_bet'
 
-  # Payback a bet
+  # Cancel a bet
   get '/api/35959d477b5ffc06dc673befbe5b4/bet/payback/:transaction_id' => 'accounts#api_payback_bet'
 
   # Pay earnings
