@@ -33,7 +33,7 @@ Rails.application.routes.draw do
   get '/api/1314a3dfb726290bbc99c71b510d2b/:agent/:sub_agent/account/ascent/:transaction_amount' => 'accounts#api_ascent', :constraints => {:transaction_amount => /(\d+(.\d+)?)/}
 
   # Take bet
-  get '/api/86d138798bc43ed59e5207c684564/bet/get/:game_account_token/:account_token/:password/:transaction_amount' => 'accounts#api_get_bet', :constraints => {:transaction_amount => /(\d+(.\d+)?)/}
+  get '/api/86d138798bc43ed59e5207c684564/bet/get/:transaction_id/:game_account_token/:account_token/:password/:transaction_amount' => 'accounts#api_get_bet', :constraints => {:transaction_amount => /(\d+(.\d+)?)/}
 
   # Validate a bet
   get '/api/06331525768e6a95680c8bb0dcf55/bet/validate/:transaction_id' => 'accounts#api_validate_bet'

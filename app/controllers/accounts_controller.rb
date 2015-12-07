@@ -435,7 +435,7 @@ class AccountsController < ApplicationController
     transaction_status = false
 
     if is_a_number?(transaction_amount)
-      transaction_id = Digest::SHA1.hexdigest([DateTime.now.iso8601(6), rand].join)
+      transaction_id = params[:transaction_id]#Digest::SHA1.hexdigest([DateTime.now.iso8601(6), rand].join)
       BombLog.create(sent_url: "#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/prise_paris/96325874/#{game_account_token}/#{account_token}/#{transaction_amount}/0/0/#{transaction_id}/#{password}")
       response = (RestClient.get "#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/prise_paris/96325874/#{game_account_token}/#{account_token}/#{transaction_amount}/0/0/#{transaction_id}/#{password}" rescue "")
 
