@@ -461,6 +461,44 @@ class AccountsController < ApplicationController
     render text: status
   end
 
+  def api_get_bet_without_cancellation
+    transaction_amount = params[:transaction_amount]
+    game_account_token = params[:game_account_token]
+    password = params[:password]
+    account_token = params[:account_token]
+    remote_ip_address = request.remote_ip
+    response_log = "none"
+    error_log = "none"
+    status = "|5000|"
+    transaction_status = false
+
+    if is_a_number?(transaction_amount)
+      transaction_id = params[:transaction_id]#Digest::SHA1.hexdigest([DateTime.now.iso8601(6), rand].join)
+      BombLog.create(sent_url: "#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/prise_paris_first/96325874/#{game_account_token}/#{account_token}/#{transaction_amount}/0/0/#{transaction_id}/#{password}")
+      response = (RestClient.get "#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/prise_paris_first/96325874/#{game_account_token}/#{account_token}/#{transaction_amount}/0/0/#{transaction_id}/#{password}" rescue "")
+
+      unless response.blank?
+        if response.to_s == "good"
+          status = transaction_id
+          response_log = response.to_s
+          transaction_status = true
+          Log.create(transaction_type: "Prise de paris", checkout_amount: transaction_amount, response_log: response_log, status: true, bet_placed: true, bet_placed_at: DateTime.now, remote_ip_address: remote_ip_address, transaction_id: transaction_id, game_account_token: game_account_token, account_token: account_token)
+        else
+          status = "|5001|"
+          error_log = response.to_s
+          Log.create(transaction_type: "Prise de paris", checkout_amount: transaction_amount, error_log: error_log, status: false, remote_ip_address: remote_ip_address, transaction_id: transaction_id, game_account_token: game_account_token, account_token: account_token)
+        end
+      else
+        error_log = response.to_s
+        Log.create(transaction_type: "Prise de paris", checkout_amount: transaction_amount, error_log: error_log, status: false, remote_ip_address: remote_ip_address, transaction_id: transaction_id, game_account_token: game_account_token, account_token: account_token)
+      end
+    end
+
+    Typhoeus.get("#{Parameter.first.hub_front_office_url}/api/367419f5968800cd/paymoney_wallet/store_log", params: { transaction_type: "Prise de paris", checkout_amount: transaction_amount, response_log: response_log, error_log: error_log, status: transaction_status, remote_ip_address: remote_ip_address, transaction_id: transaction_id, game_account_token: game_account_token, account_token: account_token })
+
+    render text: status
+  end
+
   def api_validate_bet
     bet = Log.find_by_transaction_id(params[:transaction_id])
 
@@ -544,6 +582,7 @@ class AccountsController < ApplicationController
     transaction_amount = params[:transaction_amount]
     game_account_token = params[:game_account_token]
     account_token = params[:account_token]
+    transaction_id = params[:transaction_id]
     remote_ip_address = request.remote_ip
     response_log = "none"
     error_log = "none"
@@ -551,7 +590,7 @@ class AccountsController < ApplicationController
     transaction_status = false
 
     if is_a_number?(transaction_amount)
-      transaction_id = Digest::SHA1.hexdigest([DateTime.now.iso8601(6), rand].join)
+      #transaction_id = Digest::SHA1.hexdigest([DateTime.now.iso8601(6), rand].join)
       BombLog.create(sent_url: "#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/paiement_gain/74125895/#{account_token}/#{game_account_token}/#{transaction_amount}/0/0/#{transaction_id}")
       response = (RestClient.get "#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/paiement_gain/74125895/#{account_token}/#{game_account_token}/#{transaction_amount}/0/0/#{transaction_id}" rescue "")
 
