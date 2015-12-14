@@ -21978,3 +21978,1806 @@ Processing by AccountsController#api_get_bet as */*
   [1m[35m (23.2ms)[0m  COMMIT
   [1m[36mParameter Load (0.9ms)[0m  [1mSELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1[0m
 ETHON: Libcurl initialized
+
+
+Started GET "/api/86d138798bc43ed59e5207c684564/bet/get/652366354138143031671960062341193026342842464206/uXAXMDuW/rKQNyFfn/3415/15000" for 127.0.0.1 at 2015-12-11 19:35:50 +0000
+  [1m[36mActiveRecord::SchemaMigration Load (37.7ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35mParameter Load (38.0ms)[0m  SELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1
+Processing by AccountsController#api_get_bet as */*
+  Parameters: {"transaction_id"=>"652366354138143031671960062341193026342842464206", "game_account_token"=>"uXAXMDuW", "account_token"=>"rKQNyFfn", "password"=>"[FILTERED]", "transaction_amount"=>"15000"}
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1[0m
+  [1m[35m (0.5ms)[0m  BEGIN
+  [1m[36mSQL (23.0ms)[0m  [1mINSERT INTO "bomb_logs" ("created_at", "sent_url", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["created_at", "2015-12-11 19:35:51.662719"], ["sent_url", "94.247.178.141:8080/PAYMONEY_WALLET/rest/prise_paris/96325874/uXAXMDuW/rKQNyFfn/15000/0/0/652366354138143031671960062341193026342842464206/3415"], ["updated_at", "2015-12-11 19:35:51.662719"]]
+  [1m[35m (13.1ms)[0m  COMMIT
+  [1m[36mParameter Load (0.7ms)[0m  [1mSELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1[0m
+  [1m[35m (0.6ms)[0m  BEGIN
+  [1m[36mSQL (54.9ms)[0m  [1mINSERT INTO "logs" ("account_token", "bet_placed", "bet_placed_at", "checkout_amount", "created_at", "game_account_token", "remote_ip_address", "response_log", "status", "transaction_id", "transaction_type", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING "id"[0m  [["account_token", "rKQNyFfn"], ["bet_placed", "t"], ["bet_placed_at", "2015-12-11 19:35:52.013143"], ["checkout_amount", "15000"], ["created_at", "2015-12-11 19:35:52.057109"], ["game_account_token", "uXAXMDuW"], ["remote_ip_address", "127.0.0.1"], ["response_log", "good"], ["status", "t"], ["transaction_id", "652366354138143031671960062341193026342842464206"], ["transaction_type", "Prise de paris"], ["updated_at", "2015-12-11 19:35:52.057109"]]
+  [1m[35m (23.2ms)[0m  COMMIT
+  [1m[36mParameter Load (0.9ms)[0m  [1mSELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1[0m
+ETHON: Libcurl initialized
+Completed   in 289577ms
+
+
+Started GET "/api/86d138798bc43ed59e5207c684564/bet/get/652366354138143031671960062341193026342842464206/uXAXMDuW/rKQNyFfn/3415/15000" for 127.0.0.1 at 2015-12-11 19:41:03 +0000
+  [1m[36mActiveRecord::SchemaMigration Load (1.0ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35mParameter Load (2.0ms)[0m  SELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1
+Processing by AccountsController#api_get_bet as */*
+  Parameters: {"transaction_id"=>"652366354138143031671960062341193026342842464206", "game_account_token"=>"uXAXMDuW", "account_token"=>"rKQNyFfn", "password"=>"[FILTERED]", "transaction_amount"=>"15000"}
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1[0m
+  [1m[35m (0.6ms)[0m  BEGIN
+  [1m[36mSQL (1.4ms)[0m  [1mINSERT INTO "bomb_logs" ("created_at", "sent_url", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["created_at", "2015-12-11 19:41:03.920711"], ["sent_url", "94.247.178.141:8080/PAYMONEY_WALLET/rest/prise_paris/96325874/uXAXMDuW/rKQNyFfn/15000/0/0/652366354138143031671960062341193026342842464206/3415"], ["updated_at", "2015-12-11 19:41:03.920711"]]
+  [1m[35m (6.6ms)[0m  COMMIT
+  [1m[36mParameter Load (0.6ms)[0m  [1mSELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1[0m
+  [1m[35m (0.6ms)[0m  BEGIN
+  [1m[36mSQL (1.1ms)[0m  [1mINSERT INTO "logs" ("account_token", "bet_placed", "bet_placed_at", "checkout_amount", "created_at", "game_account_token", "remote_ip_address", "response_log", "status", "transaction_id", "transaction_type", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING "id"[0m  [["account_token", "rKQNyFfn"], ["bet_placed", "t"], ["bet_placed_at", "2015-12-11 19:41:04.236553"], ["checkout_amount", "15000"], ["created_at", "2015-12-11 19:41:04.334813"], ["game_account_token", "uXAXMDuW"], ["remote_ip_address", "127.0.0.1"], ["response_log", "good"], ["status", "t"], ["transaction_id", "652366354138143031671960062341193026342842464206"], ["transaction_type", "Prise de paris"], ["updated_at", "2015-12-11 19:41:04.334813"]]
+  [1m[35m (6.8ms)[0m  COMMIT
+  Rendered text template (0.1ms)
+Completed 200 OK in 479ms (Views: 25.1ms | ActiveRecord: 29.0ms)
+
+
+Started GET "/api/86d138798bc43ed59e5207c684564/bet/get/1128910598011231509512655396897794608936349821602/uXAXMDuW/rKQNyFfn/3415/15000.0" for 127.0.0.1 at 2015-12-11 19:43:28 +0000
+Processing by AccountsController#api_get_bet as */*
+  Parameters: {"transaction_id"=>"1128910598011231509512655396897794608936349821602", "game_account_token"=>"uXAXMDuW", "account_token"=>"rKQNyFfn", "password"=>"[FILTERED]", "transaction_amount"=>"15000.0"}
+  [1m[36mParameter Load (0.7ms)[0m  [1mSELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1[0m
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36mSQL (0.6ms)[0m  [1mINSERT INTO "bomb_logs" ("created_at", "sent_url", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["created_at", "2015-12-11 19:43:28.408118"], ["sent_url", "94.247.178.141:8080/PAYMONEY_WALLET/rest/prise_paris/96325874/uXAXMDuW/rKQNyFfn/15000.0/0/0/1128910598011231509512655396897794608936349821602/3415"], ["updated_at", "2015-12-11 19:43:28.408118"]]
+  [1m[35m (4.9ms)[0m  COMMIT
+  [1m[36mParameter Load (0.7ms)[0m  [1mSELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1[0m
+  [1m[35m (0.7ms)[0m  BEGIN
+  [1m[36mSQL (1.0ms)[0m  [1mINSERT INTO "logs" ("account_token", "bet_placed", "bet_placed_at", "checkout_amount", "created_at", "game_account_token", "remote_ip_address", "response_log", "status", "transaction_id", "transaction_type", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING "id"[0m  [["account_token", "rKQNyFfn"], ["bet_placed", "t"], ["bet_placed_at", "2015-12-11 19:43:28.713476"], ["checkout_amount", "15000.0"], ["created_at", "2015-12-11 19:43:28.716366"], ["game_account_token", "uXAXMDuW"], ["remote_ip_address", "127.0.0.1"], ["response_log", "good"], ["status", "t"], ["transaction_id", "1128910598011231509512655396897794608936349821602"], ["transaction_type", "Prise de paris"], ["updated_at", "2015-12-11 19:43:28.716366"]]
+  [1m[35m (16.6ms)[0m  COMMIT
+  Rendered text template (0.1ms)
+Completed 200 OK in 335ms (Views: 1.5ms | ActiveRecord: 25.6ms)
+
+
+Started GET "/api/86d138798bc43ed59e5207c684564/bet/get/310353255729056404300076025283287700644494715333/uXAXMDuW/rKQNyFfn/3415/15000.0" for 127.0.0.1 at 2015-12-11 19:50:03 +0000
+Processing by AccountsController#api_get_bet as */*
+  Parameters: {"transaction_id"=>"310353255729056404300076025283287700644494715333", "game_account_token"=>"uXAXMDuW", "account_token"=>"rKQNyFfn", "password"=>"[FILTERED]", "transaction_amount"=>"15000.0"}
+  [1m[36mParameter Load (0.7ms)[0m  [1mSELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1[0m
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "bomb_logs" ("created_at", "sent_url", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["created_at", "2015-12-11 19:50:03.034630"], ["sent_url", "94.247.178.141:8080/PAYMONEY_WALLET/rest/prise_paris/96325874/uXAXMDuW/rKQNyFfn/15000.0/0/0/310353255729056404300076025283287700644494715333/3415"], ["updated_at", "2015-12-11 19:50:03.034630"]]
+  [1m[35m (9.7ms)[0m  COMMIT
+  [1m[36mParameter Load (0.7ms)[0m  [1mSELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1[0m
+  [1m[35m (0.6ms)[0m  BEGIN
+  [1m[36mSQL (1.2ms)[0m  [1mINSERT INTO "logs" ("account_token", "bet_placed", "bet_placed_at", "checkout_amount", "created_at", "game_account_token", "remote_ip_address", "response_log", "status", "transaction_id", "transaction_type", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING "id"[0m  [["account_token", "rKQNyFfn"], ["bet_placed", "t"], ["bet_placed_at", "2015-12-11 19:50:03.345730"], ["checkout_amount", "15000.0"], ["created_at", "2015-12-11 19:50:03.348173"], ["game_account_token", "uXAXMDuW"], ["remote_ip_address", "127.0.0.1"], ["response_log", "good"], ["status", "t"], ["transaction_id", "310353255729056404300076025283287700644494715333"], ["transaction_type", "Prise de paris"], ["updated_at", "2015-12-11 19:50:03.348173"]]
+  [1m[35m (38.1ms)[0m  COMMIT
+  Rendered text template (0.0ms)
+Completed 200 OK in 360ms (Views: 0.7ms | ActiveRecord: 51.8ms)
+
+
+Started GET "/api/86d138798bc43ed59e5207c684564/bet/get/1262136363334807116043941081023999475632129686529/uXAXMDuW/rKQNyFfn/3415/15000.0" for 127.0.0.1 at 2015-12-11 19:58:04 +0000
+Processing by AccountsController#api_get_bet as */*
+  Parameters: {"transaction_id"=>"1262136363334807116043941081023999475632129686529", "game_account_token"=>"uXAXMDuW", "account_token"=>"rKQNyFfn", "password"=>"[FILTERED]", "transaction_amount"=>"15000.0"}
+  [1m[36mParameter Load (1.1ms)[0m  [1mSELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1[0m
+  [1m[35m (0.6ms)[0m  BEGIN
+  [1m[36mSQL (1.0ms)[0m  [1mINSERT INTO "bomb_logs" ("created_at", "sent_url", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["created_at", "2015-12-11 19:58:04.947643"], ["sent_url", "94.247.178.141:8080/PAYMONEY_WALLET/rest/prise_paris/96325874/uXAXMDuW/rKQNyFfn/15000.0/0/0/1262136363334807116043941081023999475632129686529/3415"], ["updated_at", "2015-12-11 19:58:04.947643"]]
+  [1m[35m (5.7ms)[0m  COMMIT
+  [1m[36mParameter Load (0.9ms)[0m  [1mSELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1[0m
+  [1m[35m (0.7ms)[0m  BEGIN
+  [1m[36mSQL (1.1ms)[0m  [1mINSERT INTO "logs" ("account_token", "bet_placed", "bet_placed_at", "checkout_amount", "created_at", "game_account_token", "remote_ip_address", "response_log", "status", "transaction_id", "transaction_type", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING "id"[0m  [["account_token", "rKQNyFfn"], ["bet_placed", "t"], ["bet_placed_at", "2015-12-11 19:58:05.254439"], ["checkout_amount", "15000.0"], ["created_at", "2015-12-11 19:58:05.257007"], ["game_account_token", "uXAXMDuW"], ["remote_ip_address", "127.0.0.1"], ["response_log", "good"], ["status", "t"], ["transaction_id", "1262136363334807116043941081023999475632129686529"], ["transaction_type", "Prise de paris"], ["updated_at", "2015-12-11 19:58:05.257007"]]
+  [1m[35m (6.3ms)[0m  COMMIT
+  Rendered text template (0.0ms)
+Completed 200 OK in 326ms (Views: 0.7ms | ActiveRecord: 17.4ms)
+
+
+Started GET "/api/86d138798bc43ed59e5207c684564/bet/get/875248528243153653331697838908863093421241086270/uXAXMDuW/rKQNyFfn/3415/15000.0" for 127.0.0.1 at 2015-12-11 20:04:49 +0000
+Processing by AccountsController#api_get_bet as */*
+  Parameters: {"transaction_id"=>"875248528243153653331697838908863093421241086270", "game_account_token"=>"uXAXMDuW", "account_token"=>"rKQNyFfn", "password"=>"[FILTERED]", "transaction_amount"=>"15000.0"}
+  [1m[36mParameter Load (0.8ms)[0m  [1mSELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1[0m
+  [1m[35m (0.4ms)[0m  BEGIN
+  [1m[36mSQL (0.6ms)[0m  [1mINSERT INTO "bomb_logs" ("created_at", "sent_url", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["created_at", "2015-12-11 20:04:49.579809"], ["sent_url", "94.247.178.141:8080/PAYMONEY_WALLET/rest/prise_paris/96325874/uXAXMDuW/rKQNyFfn/15000.0/0/0/875248528243153653331697838908863093421241086270/3415"], ["updated_at", "2015-12-11 20:04:49.579809"]]
+  [1m[35m (5.3ms)[0m  COMMIT
+  [1m[36mParameter Load (0.9ms)[0m  [1mSELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1[0m
+  [1m[35m (0.6ms)[0m  BEGIN
+  [1m[36mSQL (0.8ms)[0m  [1mINSERT INTO "logs" ("account_token", "bet_placed", "bet_placed_at", "checkout_amount", "created_at", "game_account_token", "remote_ip_address", "response_log", "status", "transaction_id", "transaction_type", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING "id"[0m  [["account_token", "rKQNyFfn"], ["bet_placed", "t"], ["bet_placed_at", "2015-12-11 20:04:49.884023"], ["checkout_amount", "15000.0"], ["created_at", "2015-12-11 20:04:49.886441"], ["game_account_token", "uXAXMDuW"], ["remote_ip_address", "127.0.0.1"], ["response_log", "good"], ["status", "t"], ["transaction_id", "875248528243153653331697838908863093421241086270"], ["transaction_type", "Prise de paris"], ["updated_at", "2015-12-11 20:04:49.886441"]]
+  [1m[35m (8.1ms)[0m  COMMIT
+  Rendered text template (0.0ms)
+Completed 200 OK in 324ms (Views: 0.7ms | ActiveRecord: 17.5ms)
+
+
+Started GET "/api/86d138798bc43ed59e5207c684564/bet/get/549145690275442960448227362911930193070995067046/uXAXMDuW/rKQNyFfn/3415/15000.0" for 127.0.0.1 at 2015-12-11 20:06:36 +0000
+Processing by AccountsController#api_get_bet as */*
+  Parameters: {"transaction_id"=>"549145690275442960448227362911930193070995067046", "game_account_token"=>"uXAXMDuW", "account_token"=>"rKQNyFfn", "password"=>"[FILTERED]", "transaction_amount"=>"15000.0"}
+  [1m[36mParameter Load (1.0ms)[0m  [1mSELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1[0m
+  [1m[35m (0.5ms)[0m  BEGIN
+  [1m[36mSQL (0.7ms)[0m  [1mINSERT INTO "bomb_logs" ("created_at", "sent_url", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["created_at", "2015-12-11 20:06:36.522462"], ["sent_url", "94.247.178.141:8080/PAYMONEY_WALLET/rest/prise_paris/96325874/uXAXMDuW/rKQNyFfn/15000.0/0/0/549145690275442960448227362911930193070995067046/3415"], ["updated_at", "2015-12-11 20:06:36.522462"]]
+  [1m[35m (53.5ms)[0m  COMMIT
+  [1m[36mParameter Load (1.0ms)[0m  [1mSELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1[0m
+  [1m[35m (0.7ms)[0m  BEGIN
+  [1m[36mSQL (1.0ms)[0m  [1mINSERT INTO "logs" ("account_token", "bet_placed", "bet_placed_at", "checkout_amount", "created_at", "game_account_token", "remote_ip_address", "response_log", "status", "transaction_id", "transaction_type", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING "id"[0m  [["account_token", "rKQNyFfn"], ["bet_placed", "t"], ["bet_placed_at", "2015-12-11 20:06:36.928254"], ["checkout_amount", "15000.0"], ["created_at", "2015-12-11 20:06:36.930920"], ["game_account_token", "uXAXMDuW"], ["remote_ip_address", "127.0.0.1"], ["response_log", "good"], ["status", "t"], ["transaction_id", "549145690275442960448227362911930193070995067046"], ["transaction_type", "Prise de paris"], ["updated_at", "2015-12-11 20:06:36.930920"]]
+  [1m[35m (10.7ms)[0m  COMMIT
+  Rendered text template (0.0ms)
+Completed 200 OK in 429ms (Views: 1.0ms | ActiveRecord: 69.1ms)
+
+
+Started GET "/api/86d138798bc43ed59e5207c684564/bet/get/188351584669465091813895578724128247116709640414/uXAXMDuW/rKQNyFfn/3415/15000.0" for 127.0.0.1 at 2015-12-11 20:08:17 +0000
+Processing by AccountsController#api_get_bet as */*
+  Parameters: {"transaction_id"=>"188351584669465091813895578724128247116709640414", "game_account_token"=>"uXAXMDuW", "account_token"=>"rKQNyFfn", "password"=>"[FILTERED]", "transaction_amount"=>"15000.0"}
+  [1m[36mParameter Load (0.7ms)[0m  [1mSELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1[0m
+  [1m[35m (0.4ms)[0m  BEGIN
+  [1m[36mSQL (0.6ms)[0m  [1mINSERT INTO "bomb_logs" ("created_at", "sent_url", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["created_at", "2015-12-11 20:08:17.565448"], ["sent_url", "94.247.178.141:8080/PAYMONEY_WALLET/rest/prise_paris/96325874/uXAXMDuW/rKQNyFfn/15000.0/0/0/188351584669465091813895578724128247116709640414/3415"], ["updated_at", "2015-12-11 20:08:17.565448"]]
+  [1m[35m (13.1ms)[0m  COMMIT
+  [1m[36mParameter Load (0.9ms)[0m  [1mSELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1[0m
+  [1m[35m (0.7ms)[0m  BEGIN
+  [1m[36mSQL (1.1ms)[0m  [1mINSERT INTO "logs" ("account_token", "bet_placed", "bet_placed_at", "checkout_amount", "created_at", "game_account_token", "remote_ip_address", "response_log", "status", "transaction_id", "transaction_type", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING "id"[0m  [["account_token", "rKQNyFfn"], ["bet_placed", "t"], ["bet_placed_at", "2015-12-11 20:08:17.899765"], ["checkout_amount", "15000.0"], ["created_at", "2015-12-11 20:08:17.902383"], ["game_account_token", "uXAXMDuW"], ["remote_ip_address", "127.0.0.1"], ["response_log", "good"], ["status", "t"], ["transaction_id", "188351584669465091813895578724128247116709640414"], ["transaction_type", "Prise de paris"], ["updated_at", "2015-12-11 20:08:17.902383"]]
+  [1m[35m (7.5ms)[0m  COMMIT
+  Rendered text template (0.0ms)
+Completed 200 OK in 353ms (Views: 0.7ms | ActiveRecord: 25.2ms)
+  [1m[36mActiveRecord::SchemaMigration Load (0.9ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to AddPaymoneyValidationIdToLogs (20151211214003)
+  [1m[35m (0.5ms)[0m  BEGIN
+  [1m[36m (20.5ms)[0m  [1mALTER TABLE "logs" ADD COLUMN "paymoney_validation_id" character varying(255)[0m
+  [1m[35mSQL (0.7ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20151211214003"]]
+  [1m[36m (13.9ms)[0m  [1mCOMMIT[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.8ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+
+
+Started GET "/api/06331525768e6a95680c8bb0dcf55/bet/validate/uXAXMDuW/165000.0" for 127.0.0.1 at 2015-12-12 09:49:48 +0000
+  [1m[36mActiveRecord::SchemaMigration Load (37.7ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+
+SyntaxError (/home/dietrich/workshop/PaymoneyWallet/app/controllers/accounts_controller.rb:825: syntax error, unexpected end-of-input, expecting keyword_end):
+  app/controllers/accounts_controller.rb:825: syntax error, unexpected end-of-input, expecting keyword_end
+
+
+  Rendered /home/dietrich/.rvm/gems/ruby-2.0.0-p195@rails4.0.7/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/_source.erb (0.7ms)
+  Rendered /home/dietrich/.rvm/gems/ruby-2.0.0-p195@rails4.0.7/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.2ms)
+  Rendered /home/dietrich/.rvm/gems/ruby-2.0.0-p195@rails4.0.7/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (9.9ms)
+  Rendered /home/dietrich/.rvm/gems/ruby-2.0.0-p195@rails4.0.7/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (24.9ms)
+
+
+Started GET "/api/06331525768e6a95680c8bb0dcf55/bet/validate/uXAXMDuW/165000.0" for 127.0.0.1 at 2015-12-12 09:50:13 +0000
+
+SyntaxError (/home/dietrich/workshop/PaymoneyWallet/app/controllers/accounts_controller.rb:825: syntax error, unexpected end-of-input, expecting keyword_end):
+  app/controllers/accounts_controller.rb:825: syntax error, unexpected end-of-input, expecting keyword_end
+
+
+  Rendered /home/dietrich/.rvm/gems/ruby-2.0.0-p195@rails4.0.7/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/_source.erb (0.6ms)
+  Rendered /home/dietrich/.rvm/gems/ruby-2.0.0-p195@rails4.0.7/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.4ms)
+  Rendered /home/dietrich/.rvm/gems/ruby-2.0.0-p195@rails4.0.7/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.5ms)
+  Rendered /home/dietrich/.rvm/gems/ruby-2.0.0-p195@rails4.0.7/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (16.4ms)
+
+
+Started GET "/api/06331525768e6a95680c8bb0dcf55/bet/validate/uXAXMDuW/165000.0" for 127.0.0.1 at 2015-12-12 09:50:41 +0000
+
+SyntaxError (/home/dietrich/workshop/PaymoneyWallet/app/controllers/accounts_controller.rb:825: syntax error, unexpected end-of-input, expecting keyword_end):
+  app/controllers/accounts_controller.rb:825: syntax error, unexpected end-of-input, expecting keyword_end
+
+
+  Rendered /home/dietrich/.rvm/gems/ruby-2.0.0-p195@rails4.0.7/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/_source.erb (0.6ms)
+  Rendered /home/dietrich/.rvm/gems/ruby-2.0.0-p195@rails4.0.7/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.1ms)
+  Rendered /home/dietrich/.rvm/gems/ruby-2.0.0-p195@rails4.0.7/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.1ms)
+  Rendered /home/dietrich/.rvm/gems/ruby-2.0.0-p195@rails4.0.7/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (14.6ms)
+
+
+Started GET "/api/06331525768e6a95680c8bb0dcf55/bet/validate/uXAXMDuW/165000.0" for 127.0.0.1 at 2015-12-12 09:51:10 +0000
+
+SyntaxError (/home/dietrich/workshop/PaymoneyWallet/app/controllers/accounts_controller.rb:825: syntax error, unexpected end-of-input, expecting keyword_end):
+  app/controllers/accounts_controller.rb:825: syntax error, unexpected end-of-input, expecting keyword_end
+
+
+  Rendered /home/dietrich/.rvm/gems/ruby-2.0.0-p195@rails4.0.7/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/_source.erb (0.6ms)
+  Rendered /home/dietrich/.rvm/gems/ruby-2.0.0-p195@rails4.0.7/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.3ms)
+  Rendered /home/dietrich/.rvm/gems/ruby-2.0.0-p195@rails4.0.7/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.0ms)
+  Rendered /home/dietrich/.rvm/gems/ruby-2.0.0-p195@rails4.0.7/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (15.0ms)
+
+
+Started GET "/api/06331525768e6a95680c8bb0dcf55/bet/validate/uXAXMDuW/165000.0" for 127.0.0.1 at 2015-12-12 09:52:47 +0000
+  [1m[35mParameter Load (38.5ms)[0m  SELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1
+Processing by AccountsController#api_validate_bet as 
+  Parameters: {"game_account_token"=>"uXAXMDuW", "transaction_amount"=>"165000"}
+  [1m[36mLog Load (46.6ms)[0m  [1mSELECT "logs".* FROM "logs"  WHERE (game_account_token = 'uXAXMDuW' AND bet_validated IS NULL)[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1
+  [1m[36m (0.5ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (44.8ms)[0m  INSERT INTO "bomb_logs" ("created_at", "sent_url", "updated_at") VALUES ($1, $2, $3) RETURNING "id"  [["created_at", "2015-12-12 09:52:48.095084"], ["sent_url", "94.247.178.141:8080/PAYMONEY_WALLET/rest/valide_paris/96325874/uXAXMDuW/165000.0/0/0/1327504821399995333388418705997262163630753116298"], ["updated_at", "2015-12-12 09:52:48.095084"]]
+  [1m[36m (15.8ms)[0m  [1mCOMMIT[0m
+  [1m[35mParameter Load (0.9ms)[0m  SELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1
+  Rendered text template (0.1ms)
+Completed 200 OK in 5327ms (Views: 2.4ms | ActiveRecord: 116.6ms)
+
+
+Started GET "/api/06331525768e6a95680c8bb0dcf55/bet/validate/uXAXMDuW/165000.0" for 127.0.0.1 at 2015-12-12 09:55:19 +0000
+  [1m[36mParameter Load (0.8ms)[0m  [1mSELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1[0m
+Processing by AccountsController#api_validate_bet as 
+  Parameters: {"game_account_token"=>"uXAXMDuW", "transaction_amount"=>"165000"}
+  [1m[35mLog Load (1.4ms)[0m  SELECT "logs".* FROM "logs"  WHERE (game_account_token = 'uXAXMDuW' AND bet_validated IS NULL)
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1[0m
+  [1m[35m (0.4ms)[0m  BEGIN
+  [1m[36mSQL (0.8ms)[0m  [1mINSERT INTO "bomb_logs" ("created_at", "sent_url", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["created_at", "2015-12-12 09:55:19.980806"], ["sent_url", "94.247.178.141:8080/PAYMONEY_WALLET/rest/valide_paris/96325874/uXAXMDuW/165000.0/0/0/270467467048210902"], ["updated_at", "2015-12-12 09:55:19.980806"]]
+  [1m[35m (15.7ms)[0m  COMMIT
+  [1m[36mParameter Load (0.7ms)[0m  [1mSELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1[0m
+  [1m[35m (29.9ms)[0m  UPDATE logs SET response_log = 'good', remote_ip_address = '127.0.0.1', bet_validated = TRUE, bet_validated_at = '2015-12-12T09:55:20+00:00', paymoney_validation_id = 'transaction_id' WHERE transaction_type = 'Prise de paris' AND game_account_token = 'uXAXMDuW' AND bet_validated IS NULL
+  Rendered text template (0.0ms)
+Completed 200 OK in 716ms (Views: 0.8ms | ActiveRecord: 55.7ms)
+
+
+Started GET "/api/06331525768e6a95680c8bb0dcf55/bet/validate/uXAXMDuW/165000.0" for 127.0.0.1 at 2015-12-12 10:08:01 +0000
+Processing by AccountsController#api_validate_bet as 
+  Parameters: {"game_account_token"=>"uXAXMDuW", "transaction_amount"=>"165000"}
+  [1m[36mLog Load (1.4ms)[0m  [1mSELECT "logs".* FROM "logs"  WHERE (game_account_token = 'uXAXMDuW' AND bet_validated IS NULL)[0m
+  [1m[35mParameter Load (0.8ms)[0m  SELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1
+  [1m[36m (0.4ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.8ms)[0m  INSERT INTO "bomb_logs" ("created_at", "sent_url", "updated_at") VALUES ($1, $2, $3) RETURNING "id"  [["created_at", "2015-12-12 10:08:01.873139"], ["sent_url", "94.247.178.141:8080/PAYMONEY_WALLET/rest/valide_paris/96325874/uXAXMDuW/165000.0/0/0/110377726723648396"], ["updated_at", "2015-12-12 10:08:01.873139"]]
+  [1m[36m (6.8ms)[0m  [1mCOMMIT[0m
+  [1m[35mParameter Load (0.9ms)[0m  SELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1
+  [1m[36m (24.3ms)[0m  [1mUPDATE logs SET response_log = 'good', remote_ip_address = '127.0.0.1', bet_validated = TRUE, bet_validated_at = '2015-12-12T10:08:03+00:00', paymoney_validation_id = 'transaction_id' WHERE transaction_type = 'Prise de paris' AND game_account_token = 'uXAXMDuW' AND bet_validated IS NULL[0m
+  Rendered text template (0.0ms)
+Completed 200 OK in 1195ms (Views: 0.7ms | ActiveRecord: 35.4ms)
+
+
+Started GET "/api/06331525768e6a95680c8bb0dcf55/bet/validate/uXAXMDuW/165000.0" for 127.0.0.1 at 2015-12-12 10:42:14 +0000
+Processing by AccountsController#api_validate_bet as 
+  Parameters: {"game_account_token"=>"uXAXMDuW", "transaction_amount"=>"165000"}
+  [1m[35mLog Load (2.1ms)[0m  SELECT "logs".* FROM "logs"  WHERE (game_account_token = 'uXAXMDuW' AND bet_validated IS NULL)
+  [1m[36mParameter Load (0.8ms)[0m  [1mSELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1[0m
+  [1m[35m (0.4ms)[0m  BEGIN
+  [1m[36mSQL (0.8ms)[0m  [1mINSERT INTO "bomb_logs" ("created_at", "sent_url", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["created_at", "2015-12-12 10:42:14.025875"], ["sent_url", "94.247.178.141:8080/PAYMONEY_WALLET/rest/valide_paris/96325874/uXAXMDuW/165000.0/0/0/136417188174390054"], ["updated_at", "2015-12-12 10:42:14.025875"]]
+  [1m[35m (11.0ms)[0m  COMMIT
+  [1m[36mParameter Load (1.1ms)[0m  [1mSELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1[0m
+  [1m[35m (55.8ms)[0m  UPDATE logs SET response_log = 'good', remote_ip_address = '127.0.0.1', bet_validated = TRUE, bet_validated_at = '2015-12-12T10:42:14+00:00', paymoney_validation_id = 'transaction_id' WHERE transaction_type = 'Prise de paris' AND game_account_token = 'uXAXMDuW' AND bet_validated IS NULL
+  Rendered text template (0.0ms)
+Completed 200 OK in 1010ms (Views: 0.7ms | ActiveRecord: 71.9ms)
+
+
+Started GET "/api/06331525768e6a95680c8bb0dcf55/bet/validate/uXAXMDuW/30000.0" for 127.0.0.1 at 2015-12-12 10:44:27 +0000
+Processing by AccountsController#api_validate_bet as 
+  Parameters: {"game_account_token"=>"uXAXMDuW", "transaction_amount"=>"30000"}
+  [1m[36mLog Load (18.1ms)[0m  [1mSELECT "logs".* FROM "logs"  WHERE (game_account_token = 'uXAXMDuW' AND bet_validated IS NULL)[0m
+  Rendered text template (0.0ms)
+Completed 200 OK in 21ms (Views: 0.6ms | ActiveRecord: 18.1ms)
+
+
+Started GET "/api/06331525768e6a95680c8bb0dcf55/bet/validate/uXAXMDuW/30000.0" for 127.0.0.1 at 2015-12-12 10:45:42 +0000
+Processing by AccountsController#api_validate_bet as 
+  Parameters: {"game_account_token"=>"uXAXMDuW", "transaction_amount"=>"30000"}
+  [1m[35mLog Load (1.0ms)[0m  SELECT "logs".* FROM "logs"  WHERE (game_account_token = 'uXAXMDuW' AND bet_validated IS NULL)
+  Rendered text template (0.0ms)
+Completed 200 OK in 3ms (Views: 0.7ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/api/06331525768e6a95680c8bb0dcf55/bet/validate/uXAXMDuW/165000.0" for 127.0.0.1 at 2015-12-12 10:47:57 +0000
+Processing by AccountsController#api_validate_bet as 
+  Parameters: {"game_account_token"=>"uXAXMDuW", "transaction_amount"=>"165000"}
+  [1m[36mLog Load (1.7ms)[0m  [1mSELECT "logs".* FROM "logs"  WHERE (game_account_token = 'uXAXMDuW' AND bet_validated IS NULL)[0m
+  [1m[35mParameter Load (0.8ms)[0m  SELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1
+  [1m[36m (0.5ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (1.1ms)[0m  INSERT INTO "bomb_logs" ("created_at", "sent_url", "updated_at") VALUES ($1, $2, $3) RETURNING "id"  [["created_at", "2015-12-12 10:47:57.477055"], ["sent_url", "94.247.178.141:8080/PAYMONEY_WALLET/rest/valide_paris/96325874/uXAXMDuW/165000.0/0/0/442475637112987950"], ["updated_at", "2015-12-12 10:47:57.477055"]]
+  [1m[36m (10.7ms)[0m  [1mCOMMIT[0m
+  [1m[35mParameter Load (0.9ms)[0m  SELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1
+  [1m[36m (10.7ms)[0m  [1mUPDATE logs SET response_log = 'good', remote_ip_address = '127.0.0.1', bet_validated = TRUE, bet_validated_at = '2015-12-12T10:47:57+00:00', paymoney_validation_id = 'transaction_id' WHERE transaction_type = 'Prise de paris' AND game_account_token = 'uXAXMDuW' AND bet_validated IS NULL[0m
+  Rendered text template (0.0ms)
+Completed 200 OK in 468ms (Views: 0.7ms | ActiveRecord: 26.3ms)
+
+
+Started GET "/api/06331525768e6a95680c8bb0dcf55/bet/validate/uXAXMDuW/165000.0" for 127.0.0.1 at 2015-12-12 14:01:51 +0000
+Processing by AccountsController#api_validate_bet as 
+  Parameters: {"game_account_token"=>"uXAXMDuW", "transaction_amount"=>"165000"}
+  [1m[35mLog Load (1.5ms)[0m  SELECT "logs".* FROM "logs"  WHERE (game_account_token = 'uXAXMDuW' AND bet_validated IS NULL)
+  [1m[36mParameter Load (0.9ms)[0m  [1mSELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1[0m
+  [1m[35m (0.5ms)[0m  BEGIN
+  [1m[36mSQL (1.0ms)[0m  [1mINSERT INTO "bomb_logs" ("created_at", "sent_url", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["created_at", "2015-12-12 14:01:51.663274"], ["sent_url", "94.247.178.141:8080/PAYMONEY_WALLET/rest/valide_paris/96325874/uXAXMDuW/165000.0/0/0/198675648133808958"], ["updated_at", "2015-12-12 14:01:51.663274"]]
+  [1m[35m (62.8ms)[0m  COMMIT
+  [1m[36mParameter Load (1.0ms)[0m  [1mSELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1[0m
+  [1m[35m (41.9ms)[0m  UPDATE logs SET response_log = 'good', remote_ip_address = '127.0.0.1', bet_validated = TRUE, bet_validated_at = '2015-12-12T14:01:52+00:00', paymoney_validation_id = 'transaction_id' WHERE transaction_type = 'Prise de paris' AND game_account_token = 'uXAXMDuW' AND bet_validated IS NULL
+  Rendered text template (0.0ms)
+Completed 200 OK in 907ms (Views: 0.8ms | ActiveRecord: 109.7ms)
+
+
+Started GET "/api/06331525768e6a95680c8bb0dcf55/bet/validate/uXAXMDuW/165000.0" for 127.0.0.1 at 2015-12-12 14:24:03 +0000
+Processing by AccountsController#api_validate_bet as 
+  Parameters: {"game_account_token"=>"uXAXMDuW", "transaction_amount"=>"165000"}
+  [1m[36mLog Load (1.5ms)[0m  [1mSELECT "logs".* FROM "logs"  WHERE (game_account_token = 'uXAXMDuW' AND bet_validated IS NULL)[0m
+  [1m[35mParameter Load (0.7ms)[0m  SELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1
+  [1m[36m (0.4ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.7ms)[0m  INSERT INTO "bomb_logs" ("created_at", "sent_url", "updated_at") VALUES ($1, $2, $3) RETURNING "id"  [["created_at", "2015-12-12 14:24:03.854083"], ["sent_url", "94.247.178.141:8080/PAYMONEY_WALLET/rest/valide_paris/96325874/uXAXMDuW/165000.0/0/0/694169037711481009"], ["updated_at", "2015-12-12 14:24:03.854083"]]
+  [1m[36m (13.3ms)[0m  [1mCOMMIT[0m
+  [1m[35mParameter Load (1.0ms)[0m  SELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1
+  [1m[36m (3.8ms)[0m  [1mUPDATE logs SET response_log = 'good', remote_ip_address = '127.0.0.1', bet_validated = TRUE, bet_validated_at = '2015-12-12T14:24:05+00:00', paymoney_validation_id = 'transaction_id' WHERE transaction_type = 'Prise de paris' AND game_account_token = 'uXAXMDuW' AND bet_validated IS NULL[0m
+  Rendered text template (0.0ms)
+Completed 200 OK in 1335ms (Views: 0.7ms | ActiveRecord: 21.4ms)
+
+
+Started GET "/api/06331525768e6a95680c8bb0dcf55/bet/validate/uXAXMDuW/30000.0" for 127.0.0.1 at 2015-12-12 14:26:04 +0000
+Processing by AccountsController#api_validate_bet as 
+  Parameters: {"game_account_token"=>"uXAXMDuW", "transaction_amount"=>"30000"}
+  [1m[35mLog Load (1.1ms)[0m  SELECT "logs".* FROM "logs"  WHERE (game_account_token = 'uXAXMDuW' AND bet_validated IS NULL)
+  Rendered text template (0.0ms)
+Completed 200 OK in 4ms (Views: 0.7ms | ActiveRecord: 1.1ms)
+
+
+Started GET "/api/06331525768e6a95680c8bb0dcf55/bet/validate/uXAXMDuW/30000.0" for 127.0.0.1 at 2015-12-12 14:28:04 +0000
+Processing by AccountsController#api_validate_bet as 
+  Parameters: {"game_account_token"=>"uXAXMDuW", "transaction_amount"=>"30000"}
+  [1m[36mLog Load (0.9ms)[0m  [1mSELECT "logs".* FROM "logs"  WHERE (game_account_token = 'uXAXMDuW' AND bet_validated IS NULL)[0m
+  Rendered text template (0.0ms)
+Completed 200 OK in 3ms (Views: 0.6ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/api/06331525768e6a95680c8bb0dcf55/bet/validate/uXAXMDuW/30000.0" for 127.0.0.1 at 2015-12-13 23:02:04 +0000
+  [1m[36mActiveRecord::SchemaMigration Load (37.5ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35mParameter Load (38.2ms)[0m  SELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1
+Processing by AccountsController#api_validate_bet as 
+  Parameters: {"game_account_token"=>"uXAXMDuW", "transaction_amount"=>"30000"}
+  [1m[36mLog Load (86.8ms)[0m  [1mSELECT "logs".* FROM "logs"  WHERE (game_account_token = 'uXAXMDuW' AND bet_validated IS NULL)[0m
+  Rendered text template (0.1ms)
+Completed 200 OK in 157ms (Views: 33.4ms | ActiveRecord: 86.8ms)
+
+
+Started GET "/api/06331525768e6a95680c8bb0dcf55/bet/validate/uXAXMDuW/30000.0" for 127.0.0.1 at 2015-12-13 23:04:04 +0000
+Processing by AccountsController#api_validate_bet as 
+  Parameters: {"game_account_token"=>"uXAXMDuW", "transaction_amount"=>"30000"}
+  [1m[35mLog Load (1.0ms)[0m  SELECT "logs".* FROM "logs"  WHERE (game_account_token = 'uXAXMDuW' AND bet_validated IS NULL)
+  Rendered text template (0.0ms)
+Completed 200 OK in 3ms (Views: 0.5ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/api/06331525768e6a95680c8bb0dcf55/bet/validate/uXAXMDuW/30000.0" for 127.0.0.1 at 2015-12-13 23:06:04 +0000
+Processing by AccountsController#api_validate_bet as 
+  Parameters: {"game_account_token"=>"uXAXMDuW", "transaction_amount"=>"30000"}
+  [1m[36mLog Load (1.1ms)[0m  [1mSELECT "logs".* FROM "logs"  WHERE (game_account_token = 'uXAXMDuW' AND bet_validated IS NULL)[0m
+  Rendered text template (0.0ms)
+Completed 200 OK in 2ms (Views: 0.4ms | ActiveRecord: 1.1ms)
+
+
+Started GET "/api/06331525768e6a95680c8bb0dcf55/bet/validate/uXAXMDuW/30000.0" for 127.0.0.1 at 2015-12-13 23:08:04 +0000
+Processing by AccountsController#api_validate_bet as 
+  Parameters: {"game_account_token"=>"uXAXMDuW", "transaction_amount"=>"30000"}
+  [1m[35mLog Load (1.0ms)[0m  SELECT "logs".* FROM "logs"  WHERE (game_account_token = 'uXAXMDuW' AND bet_validated IS NULL)
+  Rendered text template (0.0ms)
+Completed 200 OK in 3ms (Views: 0.6ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/api/06331525768e6a95680c8bb0dcf55/bet/validate/uXAXMDuW/30000.0" for 127.0.0.1 at 2015-12-13 23:10:04 +0000
+Processing by AccountsController#api_validate_bet as 
+  Parameters: {"game_account_token"=>"uXAXMDuW", "transaction_amount"=>"30000"}
+  [1m[36mLog Load (1.2ms)[0m  [1mSELECT "logs".* FROM "logs"  WHERE (game_account_token = 'uXAXMDuW' AND bet_validated IS NULL)[0m
+  Rendered text template (0.0ms)
+Completed 200 OK in 4ms (Views: 0.7ms | ActiveRecord: 1.2ms)
+
+
+Started GET "/api/06331525768e6a95680c8bb0dcf55/bet/validate/uXAXMDuW/30000.0" for 127.0.0.1 at 2015-12-13 23:12:04 +0000
+Processing by AccountsController#api_validate_bet as 
+  Parameters: {"game_account_token"=>"uXAXMDuW", "transaction_amount"=>"30000"}
+  [1m[35mLog Load (1.1ms)[0m  SELECT "logs".* FROM "logs"  WHERE (game_account_token = 'uXAXMDuW' AND bet_validated IS NULL)
+  Rendered text template (0.0ms)
+Completed 200 OK in 4ms (Views: 0.8ms | ActiveRecord: 1.1ms)
+
+
+Started GET "/api/06331525768e6a95680c8bb0dcf55/bet/validate/uXAXMDuW/30000.0" for 127.0.0.1 at 2015-12-13 23:14:04 +0000
+Processing by AccountsController#api_validate_bet as 
+  Parameters: {"game_account_token"=>"uXAXMDuW", "transaction_amount"=>"30000"}
+  [1m[36mLog Load (1.0ms)[0m  [1mSELECT "logs".* FROM "logs"  WHERE (game_account_token = 'uXAXMDuW' AND bet_validated IS NULL)[0m
+  Rendered text template (0.0ms)
+Completed 200 OK in 3ms (Views: 0.5ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/api/06331525768e6a95680c8bb0dcf55/bet/validate/uXAXMDuW/30000.0" for 127.0.0.1 at 2015-12-13 23:16:04 +0000
+Processing by AccountsController#api_validate_bet as 
+  Parameters: {"game_account_token"=>"uXAXMDuW", "transaction_amount"=>"30000"}
+  [1m[35mLog Load (1.0ms)[0m  SELECT "logs".* FROM "logs"  WHERE (game_account_token = 'uXAXMDuW' AND bet_validated IS NULL)
+  Rendered text template (0.0ms)
+Completed 200 OK in 2ms (Views: 0.4ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/api/06331525768e6a95680c8bb0dcf55/bet/validate/uXAXMDuW/30000.0" for 127.0.0.1 at 2015-12-13 23:18:04 +0000
+Processing by AccountsController#api_validate_bet as 
+  Parameters: {"game_account_token"=>"uXAXMDuW", "transaction_amount"=>"30000"}
+  [1m[36mLog Load (1.0ms)[0m  [1mSELECT "logs".* FROM "logs"  WHERE (game_account_token = 'uXAXMDuW' AND bet_validated IS NULL)[0m
+  Rendered text template (0.0ms)
+Completed 200 OK in 3ms (Views: 0.7ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/api/06331525768e6a95680c8bb0dcf55/bet/validate/uXAXMDuW/30000.0" for 127.0.0.1 at 2015-12-13 23:20:04 +0000
+Processing by AccountsController#api_validate_bet as 
+  Parameters: {"game_account_token"=>"uXAXMDuW", "transaction_amount"=>"30000"}
+  [1m[35mLog Load (1.1ms)[0m  SELECT "logs".* FROM "logs"  WHERE (game_account_token = 'uXAXMDuW' AND bet_validated IS NULL)
+  Rendered text template (0.0ms)
+Completed 200 OK in 3ms (Views: 0.8ms | ActiveRecord: 1.1ms)
+
+
+Started GET "/api/06331525768e6a95680c8bb0dcf55/bet/validate/uXAXMDuW/30000.0" for 127.0.0.1 at 2015-12-13 23:22:04 +0000
+Processing by AccountsController#api_validate_bet as 
+  Parameters: {"game_account_token"=>"uXAXMDuW", "transaction_amount"=>"30000"}
+  [1m[36mLog Load (0.9ms)[0m  [1mSELECT "logs".* FROM "logs"  WHERE (game_account_token = 'uXAXMDuW' AND bet_validated IS NULL)[0m
+  Rendered text template (0.0ms)
+Completed 200 OK in 3ms (Views: 0.6ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/api/06331525768e6a95680c8bb0dcf55/bet/validate/uXAXMDuW/30000.0" for 127.0.0.1 at 2015-12-13 23:24:04 +0000
+Processing by AccountsController#api_validate_bet as 
+  Parameters: {"game_account_token"=>"uXAXMDuW", "transaction_amount"=>"30000"}
+  [1m[35mLog Load (1.1ms)[0m  SELECT "logs".* FROM "logs"  WHERE (game_account_token = 'uXAXMDuW' AND bet_validated IS NULL)
+  Rendered text template (0.0ms)
+Completed 200 OK in 3ms (Views: 0.7ms | ActiveRecord: 1.1ms)
+
+
+Started GET "/api/06331525768e6a95680c8bb0dcf55/bet/validate/uXAXMDuW/30000.0" for 127.0.0.1 at 2015-12-13 23:26:04 +0000
+Processing by AccountsController#api_validate_bet as 
+  Parameters: {"game_account_token"=>"uXAXMDuW", "transaction_amount"=>"30000"}
+  [1m[36mLog Load (1.2ms)[0m  [1mSELECT "logs".* FROM "logs"  WHERE (game_account_token = 'uXAXMDuW' AND bet_validated IS NULL)[0m
+  Rendered text template (0.0ms)
+Completed 200 OK in 3ms (Views: 0.6ms | ActiveRecord: 1.2ms)
+
+
+Started GET "/api/06331525768e6a95680c8bb0dcf55/bet/validate/uXAXMDuW/30000.0" for 127.0.0.1 at 2015-12-13 23:28:04 +0000
+Processing by AccountsController#api_validate_bet as 
+  Parameters: {"game_account_token"=>"uXAXMDuW", "transaction_amount"=>"30000"}
+  [1m[35mLog Load (1.0ms)[0m  SELECT "logs".* FROM "logs"  WHERE (game_account_token = 'uXAXMDuW' AND bet_validated IS NULL)
+  Rendered text template (0.0ms)
+Completed 200 OK in 2ms (Views: 0.3ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/api/06331525768e6a95680c8bb0dcf55/bet/validate/uXAXMDuW/30000.0" for 127.0.0.1 at 2015-12-13 23:30:04 +0000
+Processing by AccountsController#api_validate_bet as 
+  Parameters: {"game_account_token"=>"uXAXMDuW", "transaction_amount"=>"30000"}
+  [1m[36mLog Load (0.8ms)[0m  [1mSELECT "logs".* FROM "logs"  WHERE (game_account_token = 'uXAXMDuW' AND bet_validated IS NULL)[0m
+  Rendered text template (0.0ms)
+Completed 200 OK in 3ms (Views: 0.4ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/api/06331525768e6a95680c8bb0dcf55/bet/validate/uXAXMDuW/30000.0" for 127.0.0.1 at 2015-12-13 23:32:04 +0000
+Processing by AccountsController#api_validate_bet as 
+  Parameters: {"game_account_token"=>"uXAXMDuW", "transaction_amount"=>"30000"}
+  [1m[35mLog Load (1.1ms)[0m  SELECT "logs".* FROM "logs"  WHERE (game_account_token = 'uXAXMDuW' AND bet_validated IS NULL)
+  Rendered text template (0.0ms)
+Completed 200 OK in 3ms (Views: 0.4ms | ActiveRecord: 1.1ms)
+
+
+Started GET "/api/06331525768e6a95680c8bb0dcf55/bet/validate/uXAXMDuW/30000.0" for 127.0.0.1 at 2015-12-13 23:34:04 +0000
+Processing by AccountsController#api_validate_bet as 
+  Parameters: {"game_account_token"=>"uXAXMDuW", "transaction_amount"=>"30000"}
+  [1m[36mLog Load (0.8ms)[0m  [1mSELECT "logs".* FROM "logs"  WHERE (game_account_token = 'uXAXMDuW' AND bet_validated IS NULL)[0m
+  Rendered text template (0.0ms)
+Completed 200 OK in 3ms (Views: 0.6ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/api/06331525768e6a95680c8bb0dcf55/bet/validate/uXAXMDuW/30000.0" for 127.0.0.1 at 2015-12-13 23:36:04 +0000
+Processing by AccountsController#api_validate_bet as 
+  Parameters: {"game_account_token"=>"uXAXMDuW", "transaction_amount"=>"30000"}
+  [1m[35mLog Load (1.1ms)[0m  SELECT "logs".* FROM "logs"  WHERE (game_account_token = 'uXAXMDuW' AND bet_validated IS NULL)
+  Rendered text template (0.0ms)
+Completed 200 OK in 2ms (Views: 0.4ms | ActiveRecord: 1.1ms)
+
+
+Started GET "/api/06331525768e6a95680c8bb0dcf55/bet/validate/uXAXMDuW/30000.0" for 127.0.0.1 at 2015-12-13 23:38:04 +0000
+Processing by AccountsController#api_validate_bet as 
+  Parameters: {"game_account_token"=>"uXAXMDuW", "transaction_amount"=>"30000"}
+  [1m[36mLog Load (1.1ms)[0m  [1mSELECT "logs".* FROM "logs"  WHERE (game_account_token = 'uXAXMDuW' AND bet_validated IS NULL)[0m
+  Rendered text template (0.0ms)
+Completed 200 OK in 3ms (Views: 0.5ms | ActiveRecord: 1.1ms)
+
+
+Started GET "/api/06331525768e6a95680c8bb0dcf55/bet/validate/uXAXMDuW/30000.0" for 127.0.0.1 at 2015-12-13 23:40:04 +0000
+Processing by AccountsController#api_validate_bet as 
+  Parameters: {"game_account_token"=>"uXAXMDuW", "transaction_amount"=>"30000"}
+  [1m[35mLog Load (1.0ms)[0m  SELECT "logs".* FROM "logs"  WHERE (game_account_token = 'uXAXMDuW' AND bet_validated IS NULL)
+  Rendered text template (0.0ms)
+Completed 200 OK in 3ms (Views: 0.4ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/api/06331525768e6a95680c8bb0dcf55/bet/validate/uXAXMDuW/30000.0" for 127.0.0.1 at 2015-12-13 23:42:04 +0000
+Processing by AccountsController#api_validate_bet as 
+  Parameters: {"game_account_token"=>"uXAXMDuW", "transaction_amount"=>"30000"}
+  [1m[36mLog Load (1.2ms)[0m  [1mSELECT "logs".* FROM "logs"  WHERE (game_account_token = 'uXAXMDuW' AND bet_validated IS NULL)[0m
+  Rendered text template (0.0ms)
+Completed 200 OK in 3ms (Views: 0.4ms | ActiveRecord: 1.2ms)
+
+
+Started GET "/api/06331525768e6a95680c8bb0dcf55/bet/validate/uXAXMDuW/30000.0" for 127.0.0.1 at 2015-12-13 23:44:04 +0000
+Processing by AccountsController#api_validate_bet as 
+  Parameters: {"game_account_token"=>"uXAXMDuW", "transaction_amount"=>"30000"}
+  [1m[35mLog Load (1.2ms)[0m  SELECT "logs".* FROM "logs"  WHERE (game_account_token = 'uXAXMDuW' AND bet_validated IS NULL)
+  Rendered text template (0.0ms)
+Completed 200 OK in 3ms (Views: 0.4ms | ActiveRecord: 1.2ms)
+
+
+Started GET "/api/06331525768e6a95680c8bb0dcf55/bet/validate/uXAXMDuW/30000.0" for 127.0.0.1 at 2015-12-13 23:46:04 +0000
+Processing by AccountsController#api_validate_bet as 
+  Parameters: {"game_account_token"=>"uXAXMDuW", "transaction_amount"=>"30000"}
+  [1m[36mLog Load (1.2ms)[0m  [1mSELECT "logs".* FROM "logs"  WHERE (game_account_token = 'uXAXMDuW' AND bet_validated IS NULL)[0m
+  Rendered text template (0.0ms)
+Completed 200 OK in 2ms (Views: 0.3ms | ActiveRecord: 1.2ms)
+
+
+Started GET "/api/06331525768e6a95680c8bb0dcf55/bet/validate/uXAXMDuW/30000.0" for 127.0.0.1 at 2015-12-13 23:48:04 +0000
+Processing by AccountsController#api_validate_bet as 
+  Parameters: {"game_account_token"=>"uXAXMDuW", "transaction_amount"=>"30000"}
+  [1m[35mLog Load (1.1ms)[0m  SELECT "logs".* FROM "logs"  WHERE (game_account_token = 'uXAXMDuW' AND bet_validated IS NULL)
+  Rendered text template (0.0ms)
+Completed 200 OK in 4ms (Views: 0.7ms | ActiveRecord: 1.1ms)
+
+
+Started GET "/api/06331525768e6a95680c8bb0dcf55/bet/validate/uXAXMDuW/30000.0" for 127.0.0.1 at 2015-12-13 23:50:04 +0000
+Processing by AccountsController#api_validate_bet as 
+  Parameters: {"game_account_token"=>"uXAXMDuW", "transaction_amount"=>"30000"}
+  [1m[36mLog Load (1.2ms)[0m  [1mSELECT "logs".* FROM "logs"  WHERE (game_account_token = 'uXAXMDuW' AND bet_validated IS NULL)[0m
+  Rendered text template (0.0ms)
+Completed 200 OK in 3ms (Views: 0.4ms | ActiveRecord: 1.2ms)
+
+
+Started GET "/api/06331525768e6a95680c8bb0dcf55/bet/validate/uXAXMDuW/30000.0" for 127.0.0.1 at 2015-12-13 23:52:04 +0000
+Processing by AccountsController#api_validate_bet as 
+  Parameters: {"game_account_token"=>"uXAXMDuW", "transaction_amount"=>"30000"}
+  [1m[35mLog Load (1.2ms)[0m  SELECT "logs".* FROM "logs"  WHERE (game_account_token = 'uXAXMDuW' AND bet_validated IS NULL)
+  Rendered text template (0.0ms)
+Completed 200 OK in 2ms (Views: 0.3ms | ActiveRecord: 1.2ms)
+
+
+Started GET "/api/06331525768e6a95680c8bb0dcf55/bet/validate/uXAXMDuW/30000.0" for 127.0.0.1 at 2015-12-13 23:54:04 +0000
+Processing by AccountsController#api_validate_bet as 
+  Parameters: {"game_account_token"=>"uXAXMDuW", "transaction_amount"=>"30000"}
+  [1m[36mLog Load (0.9ms)[0m  [1mSELECT "logs".* FROM "logs"  WHERE (game_account_token = 'uXAXMDuW' AND bet_validated IS NULL)[0m
+  Rendered text template (0.0ms)
+Completed 200 OK in 3ms (Views: 0.6ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/api/06331525768e6a95680c8bb0dcf55/bet/validate/uXAXMDuW/30000.0" for 127.0.0.1 at 2015-12-13 23:56:03 +0000
+Processing by AccountsController#api_validate_bet as 
+  Parameters: {"game_account_token"=>"uXAXMDuW", "transaction_amount"=>"30000"}
+  [1m[35mLog Load (1.2ms)[0m  SELECT "logs".* FROM "logs"  WHERE (game_account_token = 'uXAXMDuW' AND bet_validated IS NULL)
+  Rendered text template (0.0ms)
+Completed 200 OK in 2ms (Views: 0.3ms | ActiveRecord: 1.2ms)
+
+
+Started GET "/api/06331525768e6a95680c8bb0dcf55/bet/validate/uXAXMDuW/30000.0" for 127.0.0.1 at 2015-12-13 23:58:03 +0000
+Processing by AccountsController#api_validate_bet as 
+  Parameters: {"game_account_token"=>"uXAXMDuW", "transaction_amount"=>"30000"}
+  [1m[36mLog Load (1.0ms)[0m  [1mSELECT "logs".* FROM "logs"  WHERE (game_account_token = 'uXAXMDuW' AND bet_validated IS NULL)[0m
+  Rendered text template (0.0ms)
+Completed 200 OK in 2ms (Views: 0.3ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/api/06331525768e6a95680c8bb0dcf55/bet/validate/uXAXMDuW/30000.0" for 127.0.0.1 at 2015-12-14 00:00:03 +0000
+Processing by AccountsController#api_validate_bet as 
+  Parameters: {"game_account_token"=>"uXAXMDuW", "transaction_amount"=>"30000"}
+  [1m[35mLog Load (1.1ms)[0m  SELECT "logs".* FROM "logs"  WHERE (game_account_token = 'uXAXMDuW' AND bet_validated IS NULL)
+  Rendered text template (0.0ms)
+Completed 200 OK in 3ms (Views: 0.6ms | ActiveRecord: 1.1ms)
+
+
+Started GET "/api/06331525768e6a95680c8bb0dcf55/bet/validate/uXAXMDuW/30000.0" for 127.0.0.1 at 2015-12-14 00:02:03 +0000
+Processing by AccountsController#api_validate_bet as 
+  Parameters: {"game_account_token"=>"uXAXMDuW", "transaction_amount"=>"30000"}
+  [1m[36mLog Load (1.1ms)[0m  [1mSELECT "logs".* FROM "logs"  WHERE (game_account_token = 'uXAXMDuW' AND bet_validated IS NULL)[0m
+  Rendered text template (0.0ms)
+Completed 200 OK in 2ms (Views: 0.3ms | ActiveRecord: 1.1ms)
+
+
+Started GET "/api/06331525768e6a95680c8bb0dcf55/bet/validate/uXAXMDuW/30000.0" for 127.0.0.1 at 2015-12-14 00:04:03 +0000
+Processing by AccountsController#api_validate_bet as 
+  Parameters: {"game_account_token"=>"uXAXMDuW", "transaction_amount"=>"30000"}
+  [1m[35mLog Load (1.1ms)[0m  SELECT "logs".* FROM "logs"  WHERE (game_account_token = 'uXAXMDuW' AND bet_validated IS NULL)
+  Rendered text template (0.0ms)
+Completed 200 OK in 3ms (Views: 0.3ms | ActiveRecord: 1.1ms)
+
+
+Started GET "/api/06331525768e6a95680c8bb0dcf55/bet/validate/uXAXMDuW/30000.0" for 127.0.0.1 at 2015-12-14 00:06:03 +0000
+Processing by AccountsController#api_validate_bet as 
+  Parameters: {"game_account_token"=>"uXAXMDuW", "transaction_amount"=>"30000"}
+  [1m[36mLog Load (1.2ms)[0m  [1mSELECT "logs".* FROM "logs"  WHERE (game_account_token = 'uXAXMDuW' AND bet_validated IS NULL)[0m
+  Rendered text template (0.0ms)
+Completed 200 OK in 3ms (Views: 0.6ms | ActiveRecord: 1.2ms)
+
+
+Started GET "/api/06331525768e6a95680c8bb0dcf55/bet/validate/uXAXMDuW/30000.0" for 127.0.0.1 at 2015-12-14 00:08:04 +0000
+Processing by AccountsController#api_validate_bet as 
+  Parameters: {"game_account_token"=>"uXAXMDuW", "transaction_amount"=>"30000"}
+  [1m[35mLog Load (1.3ms)[0m  SELECT "logs".* FROM "logs"  WHERE (game_account_token = 'uXAXMDuW' AND bet_validated IS NULL)
+  Rendered text template (0.0ms)
+Completed 200 OK in 4ms (Views: 0.6ms | ActiveRecord: 1.3ms)
+
+
+Started GET "/api/06331525768e6a95680c8bb0dcf55/bet/validate/uXAXMDuW/30000.0" for 127.0.0.1 at 2015-12-14 00:10:04 +0000
+Processing by AccountsController#api_validate_bet as 
+  Parameters: {"game_account_token"=>"uXAXMDuW", "transaction_amount"=>"30000"}
+  [1m[36mLog Load (1.1ms)[0m  [1mSELECT "logs".* FROM "logs"  WHERE (game_account_token = 'uXAXMDuW' AND bet_validated IS NULL)[0m
+  Rendered text template (0.0ms)
+Completed 200 OK in 3ms (Views: 0.6ms | ActiveRecord: 1.1ms)
+
+
+Started GET "/api/06331525768e6a95680c8bb0dcf55/bet/validate/uXAXMDuW/30000.0" for 127.0.0.1 at 2015-12-14 00:12:04 +0000
+Processing by AccountsController#api_validate_bet as 
+  Parameters: {"game_account_token"=>"uXAXMDuW", "transaction_amount"=>"30000"}
+  [1m[35mLog Load (0.9ms)[0m  SELECT "logs".* FROM "logs"  WHERE (game_account_token = 'uXAXMDuW' AND bet_validated IS NULL)
+  Rendered text template (0.0ms)
+Completed 200 OK in 2ms (Views: 0.3ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/api/06331525768e6a95680c8bb0dcf55/bet/validate/uXAXMDuW/30000.0" for 127.0.0.1 at 2015-12-14 00:14:04 +0000
+Processing by AccountsController#api_validate_bet as 
+  Parameters: {"game_account_token"=>"uXAXMDuW", "transaction_amount"=>"30000"}
+  [1m[36mLog Load (1.1ms)[0m  [1mSELECT "logs".* FROM "logs"  WHERE (game_account_token = 'uXAXMDuW' AND bet_validated IS NULL)[0m
+  Rendered text template (0.0ms)
+Completed 200 OK in 3ms (Views: 0.4ms | ActiveRecord: 1.1ms)
+
+
+Started GET "/api/06331525768e6a95680c8bb0dcf55/bet/validate/uXAXMDuW/30000.0" for 127.0.0.1 at 2015-12-14 00:16:04 +0000
+Processing by AccountsController#api_validate_bet as 
+  Parameters: {"game_account_token"=>"uXAXMDuW", "transaction_amount"=>"30000"}
+  [1m[35mLog Load (1.0ms)[0m  SELECT "logs".* FROM "logs"  WHERE (game_account_token = 'uXAXMDuW' AND bet_validated IS NULL)
+  Rendered text template (0.1ms)
+Completed 200 OK in 3ms (Views: 0.6ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/api/06331525768e6a95680c8bb0dcf55/bet/validate/uXAXMDuW/30000.0" for 127.0.0.1 at 2015-12-14 00:18:04 +0000
+Processing by AccountsController#api_validate_bet as 
+  Parameters: {"game_account_token"=>"uXAXMDuW", "transaction_amount"=>"30000"}
+  [1m[36mLog Load (1.0ms)[0m  [1mSELECT "logs".* FROM "logs"  WHERE (game_account_token = 'uXAXMDuW' AND bet_validated IS NULL)[0m
+  Rendered text template (0.0ms)
+Completed 200 OK in 3ms (Views: 0.6ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/api/06331525768e6a95680c8bb0dcf55/bet/validate/uXAXMDuW/30000.0" for 127.0.0.1 at 2015-12-14 00:20:04 +0000
+Processing by AccountsController#api_validate_bet as 
+  Parameters: {"game_account_token"=>"uXAXMDuW", "transaction_amount"=>"30000"}
+  [1m[35mLog Load (1.0ms)[0m  SELECT "logs".* FROM "logs"  WHERE (game_account_token = 'uXAXMDuW' AND bet_validated IS NULL)
+  Rendered text template (0.0ms)
+Completed 200 OK in 2ms (Views: 0.3ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/api/06331525768e6a95680c8bb0dcf55/bet/validate/uXAXMDuW/30000.0" for 127.0.0.1 at 2015-12-14 00:22:04 +0000
+Processing by AccountsController#api_validate_bet as 
+  Parameters: {"game_account_token"=>"uXAXMDuW", "transaction_amount"=>"30000"}
+  [1m[36mLog Load (1.2ms)[0m  [1mSELECT "logs".* FROM "logs"  WHERE (game_account_token = 'uXAXMDuW' AND bet_validated IS NULL)[0m
+  Rendered text template (0.0ms)
+Completed 200 OK in 3ms (Views: 0.4ms | ActiveRecord: 1.2ms)
+
+
+Started GET "/api/86d1798bc43ed59e5207c68e864564/earnings/pay/LhSpwtyN//135679676536329085/1348" for 127.0.0.1 at 2015-12-14 00:22:11 +0000
+Processing by ErrorsController#routing as */*
+  Parameters: {"rogue_url"=>"api/86d1798bc43ed59e5207c68e864564/earnings/pay/LhSpwtyN/135679676536329085/1348"}
+  Rendered public/404.html (1.9ms)
+Completed 404 Not Found in 31ms (Views: 30.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/api/06331525768e6a95680c8bb0dcf55/bet/validate/uXAXMDuW/30000.0" for 127.0.0.1 at 2015-12-14 00:24:04 +0000
+Processing by AccountsController#api_validate_bet as 
+  Parameters: {"game_account_token"=>"uXAXMDuW", "transaction_amount"=>"30000"}
+  [1m[35mLog Load (1.1ms)[0m  SELECT "logs".* FROM "logs"  WHERE (game_account_token = 'uXAXMDuW' AND bet_validated IS NULL)
+  Rendered text template (0.0ms)
+Completed 200 OK in 3ms (Views: 0.5ms | ActiveRecord: 1.1ms)
+
+
+Started GET "/api/06331525768e6a95680c8bb0dcf55/bet/validate/uXAXMDuW/30000.0" for 127.0.0.1 at 2015-12-14 00:26:04 +0000
+Processing by AccountsController#api_validate_bet as 
+  Parameters: {"game_account_token"=>"uXAXMDuW", "transaction_amount"=>"30000"}
+  [1m[36mLog Load (1.3ms)[0m  [1mSELECT "logs".* FROM "logs"  WHERE (game_account_token = 'uXAXMDuW' AND bet_validated IS NULL)[0m
+  Rendered text template (0.0ms)
+Completed 200 OK in 4ms (Views: 0.8ms | ActiveRecord: 1.3ms)
+
+
+Started GET "/api/06331525768e6a95680c8bb0dcf55/bet/validate/uXAXMDuW/30000.0" for 127.0.0.1 at 2015-12-14 00:28:04 +0000
+Processing by AccountsController#api_validate_bet as 
+  Parameters: {"game_account_token"=>"uXAXMDuW", "transaction_amount"=>"30000"}
+  [1m[35mLog Load (0.9ms)[0m  SELECT "logs".* FROM "logs"  WHERE (game_account_token = 'uXAXMDuW' AND bet_validated IS NULL)
+  Rendered text template (0.0ms)
+Completed 200 OK in 3ms (Views: 0.6ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/api/06331525768e6a95680c8bb0dcf55/bet/validate/uXAXMDuW/30000.0" for 127.0.0.1 at 2015-12-14 00:30:04 +0000
+Processing by AccountsController#api_validate_bet as 
+  Parameters: {"game_account_token"=>"uXAXMDuW", "transaction_amount"=>"30000"}
+  [1m[36mLog Load (1.3ms)[0m  [1mSELECT "logs".* FROM "logs"  WHERE (game_account_token = 'uXAXMDuW' AND bet_validated IS NULL)[0m
+  Rendered text template (0.0ms)
+Completed 200 OK in 3ms (Views: 0.5ms | ActiveRecord: 1.3ms)
+
+
+Started GET "/api/86d1798bc43ed59e5207c68e864564/earnings/pay/LhSpwtyN//135679676536329085/1348" for 127.0.0.1 at 2015-12-14 00:30:42 +0000
+Processing by ErrorsController#routing as */*
+  Parameters: {"rogue_url"=>"api/86d1798bc43ed59e5207c68e864564/earnings/pay/LhSpwtyN/135679676536329085/1348"}
+  Rendered public/404.html (0.1ms)
+Completed 404 Not Found in 13ms (Views: 12.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/api/06331525768e6a95680c8bb0dcf55/bet/validate/uXAXMDuW/30000.0" for 127.0.0.1 at 2015-12-14 00:32:04 +0000
+Processing by AccountsController#api_validate_bet as 
+  Parameters: {"game_account_token"=>"uXAXMDuW", "transaction_amount"=>"30000"}
+  [1m[35mLog Load (0.7ms)[0m  SELECT "logs".* FROM "logs"  WHERE (game_account_token = 'uXAXMDuW' AND bet_validated IS NULL)
+  Rendered text template (0.0ms)
+Completed 200 OK in 2ms (Views: 0.4ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/api/06331525768e6a95680c8bb0dcf55/bet/validate/uXAXMDuW/30000.0" for 127.0.0.1 at 2015-12-14 00:34:03 +0000
+Processing by AccountsController#api_validate_bet as 
+  Parameters: {"game_account_token"=>"uXAXMDuW", "transaction_amount"=>"30000"}
+  [1m[36mLog Load (1.0ms)[0m  [1mSELECT "logs".* FROM "logs"  WHERE (game_account_token = 'uXAXMDuW' AND bet_validated IS NULL)[0m
+  Rendered text template (0.0ms)
+Completed 200 OK in 3ms (Views: 0.6ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/api/06331525768e6a95680c8bb0dcf55/bet/validate/uXAXMDuW/30000.0" for 127.0.0.1 at 2015-12-14 00:36:03 +0000
+Processing by AccountsController#api_validate_bet as 
+  Parameters: {"game_account_token"=>"uXAXMDuW", "transaction_amount"=>"30000"}
+  [1m[35mLog Load (1.1ms)[0m  SELECT "logs".* FROM "logs"  WHERE (game_account_token = 'uXAXMDuW' AND bet_validated IS NULL)
+  Rendered text template (0.0ms)
+Completed 200 OK in 2ms (Views: 0.3ms | ActiveRecord: 1.1ms)
+
+
+Started GET "/api/06331525768e6a95680c8bb0dcf55/bet/validate/uXAXMDuW/30000.0" for 127.0.0.1 at 2015-12-14 00:38:03 +0000
+Processing by AccountsController#api_validate_bet as 
+  Parameters: {"game_account_token"=>"uXAXMDuW", "transaction_amount"=>"30000"}
+  [1m[36mLog Load (1.0ms)[0m  [1mSELECT "logs".* FROM "logs"  WHERE (game_account_token = 'uXAXMDuW' AND bet_validated IS NULL)[0m
+  Rendered text template (0.0ms)
+Completed 200 OK in 3ms (Views: 0.6ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/api/06331525768e6a95680c8bb0dcf55/bet/validate/uXAXMDuW/30000.0" for 127.0.0.1 at 2015-12-14 00:40:04 +0000
+Processing by AccountsController#api_validate_bet as 
+  Parameters: {"game_account_token"=>"uXAXMDuW", "transaction_amount"=>"30000"}
+  [1m[35mLog Load (0.7ms)[0m  SELECT "logs".* FROM "logs"  WHERE (game_account_token = 'uXAXMDuW' AND bet_validated IS NULL)
+  Rendered text template (0.0ms)
+Completed 200 OK in 2ms (Views: 0.4ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/api/06331525768e6a95680c8bb0dcf55/bet/validate/uXAXMDuW/30000.0" for 127.0.0.1 at 2015-12-14 00:42:03 +0000
+Processing by AccountsController#api_validate_bet as 
+  Parameters: {"game_account_token"=>"uXAXMDuW", "transaction_amount"=>"30000"}
+  [1m[36mLog Load (0.7ms)[0m  [1mSELECT "logs".* FROM "logs"  WHERE (game_account_token = 'uXAXMDuW' AND bet_validated IS NULL)[0m
+  Rendered text template (0.0ms)
+Completed 200 OK in 2ms (Views: 0.3ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/api/06331525768e6a95680c8bb0dcf55/bet/validate/uXAXMDuW/30000.0" for 127.0.0.1 at 2015-12-14 00:44:03 +0000
+Processing by AccountsController#api_validate_bet as 
+  Parameters: {"game_account_token"=>"uXAXMDuW", "transaction_amount"=>"30000"}
+  [1m[35mLog Load (1.2ms)[0m  SELECT "logs".* FROM "logs"  WHERE (game_account_token = 'uXAXMDuW' AND bet_validated IS NULL)
+  Rendered text template (0.0ms)
+Completed 200 OK in 2ms (Views: 0.3ms | ActiveRecord: 1.2ms)
+
+
+Started GET "/api/06331525768e6a95680c8bb0dcf55/bet/validate/uXAXMDuW/30000.0" for 127.0.0.1 at 2015-12-14 00:46:03 +0000
+Processing by AccountsController#api_validate_bet as 
+  Parameters: {"game_account_token"=>"uXAXMDuW", "transaction_amount"=>"30000"}
+  [1m[36mLog Load (1.5ms)[0m  [1mSELECT "logs".* FROM "logs"  WHERE (game_account_token = 'uXAXMDuW' AND bet_validated IS NULL)[0m
+  Rendered text template (0.0ms)
+Completed 200 OK in 8ms (Views: 0.6ms | ActiveRecord: 1.5ms)
+
+
+Started GET "/api/06331525768e6a95680c8bb0dcf55/bet/validate/uXAXMDuW/30000.0" for 127.0.0.1 at 2015-12-14 00:48:03 +0000
+Processing by AccountsController#api_validate_bet as 
+  Parameters: {"game_account_token"=>"uXAXMDuW", "transaction_amount"=>"30000"}
+  [1m[35mLog Load (1.2ms)[0m  SELECT "logs".* FROM "logs"  WHERE (game_account_token = 'uXAXMDuW' AND bet_validated IS NULL)
+  Rendered text template (0.0ms)
+Completed 200 OK in 3ms (Views: 0.6ms | ActiveRecord: 1.2ms)
+
+
+Started GET "/api/06331525768e6a95680c8bb0dcf55/bet/validate/uXAXMDuW/30000.0" for 127.0.0.1 at 2015-12-14 00:50:03 +0000
+Processing by AccountsController#api_validate_bet as 
+  Parameters: {"game_account_token"=>"uXAXMDuW", "transaction_amount"=>"30000"}
+  [1m[36mLog Load (1.3ms)[0m  [1mSELECT "logs".* FROM "logs"  WHERE (game_account_token = 'uXAXMDuW' AND bet_validated IS NULL)[0m
+  Rendered text template (0.0ms)
+Completed 200 OK in 4ms (Views: 0.6ms | ActiveRecord: 1.3ms)
+
+
+Started GET "/api/06331525768e6a95680c8bb0dcf55/bet/validate/uXAXMDuW/30000.0" for 127.0.0.1 at 2015-12-14 00:52:04 +0000
+Processing by AccountsController#api_validate_bet as 
+  Parameters: {"game_account_token"=>"uXAXMDuW", "transaction_amount"=>"30000"}
+  [1m[35mLog Load (1.2ms)[0m  SELECT "logs".* FROM "logs"  WHERE (game_account_token = 'uXAXMDuW' AND bet_validated IS NULL)
+  Rendered text template (0.0ms)
+Completed 200 OK in 2ms (Views: 0.4ms | ActiveRecord: 1.2ms)
+
+
+Started GET "/api/06331525768e6a95680c8bb0dcf55/bet/validate/uXAXMDuW/30000.0" for 127.0.0.1 at 2015-12-14 00:54:04 +0000
+Processing by AccountsController#api_validate_bet as 
+  Parameters: {"game_account_token"=>"uXAXMDuW", "transaction_amount"=>"30000"}
+  [1m[36mLog Load (1.2ms)[0m  [1mSELECT "logs".* FROM "logs"  WHERE (game_account_token = 'uXAXMDuW' AND bet_validated IS NULL)[0m
+  Rendered text template (0.0ms)
+Completed 200 OK in 2ms (Views: 0.3ms | ActiveRecord: 1.2ms)
+
+
+Started GET "/api/06331525768e6a95680c8bb0dcf55/bet/validate/uXAXMDuW/30000.0" for 127.0.0.1 at 2015-12-14 00:56:04 +0000
+Processing by AccountsController#api_validate_bet as 
+  Parameters: {"game_account_token"=>"uXAXMDuW", "transaction_amount"=>"30000"}
+  [1m[35mLog Load (1.0ms)[0m  SELECT "logs".* FROM "logs"  WHERE (game_account_token = 'uXAXMDuW' AND bet_validated IS NULL)
+  Rendered text template (0.0ms)
+Completed 200 OK in 3ms (Views: 0.6ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/api/06331525768e6a95680c8bb0dcf55/bet/validate/uXAXMDuW/30000.0" for 127.0.0.1 at 2015-12-14 00:58:04 +0000
+Processing by AccountsController#api_validate_bet as 
+  Parameters: {"game_account_token"=>"uXAXMDuW", "transaction_amount"=>"30000"}
+  [1m[36mLog Load (1.0ms)[0m  [1mSELECT "logs".* FROM "logs"  WHERE (game_account_token = 'uXAXMDuW' AND bet_validated IS NULL)[0m
+  Rendered text template (0.0ms)
+Completed 200 OK in 3ms (Views: 0.6ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/api/06331525768e6a95680c8bb0dcf55/bet/validate/uXAXMDuW/30000.0" for 127.0.0.1 at 2015-12-14 01:00:04 +0000
+Processing by AccountsController#api_validate_bet as 
+  Parameters: {"game_account_token"=>"uXAXMDuW", "transaction_amount"=>"30000"}
+  [1m[35mLog Load (1.1ms)[0m  SELECT "logs".* FROM "logs"  WHERE (game_account_token = 'uXAXMDuW' AND bet_validated IS NULL)
+  Rendered text template (0.0ms)
+Completed 200 OK in 2ms (Views: 0.3ms | ActiveRecord: 1.1ms)
+
+
+Started GET "/api/06331525768e6a95680c8bb0dcf55/bet/validate/uXAXMDuW/30000.0" for 127.0.0.1 at 2015-12-14 01:02:04 +0000
+Processing by AccountsController#api_validate_bet as 
+  Parameters: {"game_account_token"=>"uXAXMDuW", "transaction_amount"=>"30000"}
+  [1m[36mLog Load (0.8ms)[0m  [1mSELECT "logs".* FROM "logs"  WHERE (game_account_token = 'uXAXMDuW' AND bet_validated IS NULL)[0m
+  Rendered text template (0.0ms)
+Completed 200 OK in 3ms (Views: 0.3ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/api/06331525768e6a95680c8bb0dcf55/bet/validate/uXAXMDuW/30000.0" for 127.0.0.1 at 2015-12-14 01:04:04 +0000
+Processing by AccountsController#api_validate_bet as 
+  Parameters: {"game_account_token"=>"uXAXMDuW", "transaction_amount"=>"30000"}
+  [1m[35mLog Load (0.9ms)[0m  SELECT "logs".* FROM "logs"  WHERE (game_account_token = 'uXAXMDuW' AND bet_validated IS NULL)
+  Rendered text template (0.0ms)
+Completed 200 OK in 3ms (Views: 0.7ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/api/06331525768e6a95680c8bb0dcf55/bet/validate/uXAXMDuW/30000.0" for 127.0.0.1 at 2015-12-14 01:06:04 +0000
+Processing by AccountsController#api_validate_bet as 
+  Parameters: {"game_account_token"=>"uXAXMDuW", "transaction_amount"=>"30000"}
+  [1m[36mLog Load (1.2ms)[0m  [1mSELECT "logs".* FROM "logs"  WHERE (game_account_token = 'uXAXMDuW' AND bet_validated IS NULL)[0m
+  Rendered text template (0.0ms)
+Completed 200 OK in 3ms (Views: 0.3ms | ActiveRecord: 1.2ms)
+
+
+Started GET "/api/06331525768e6a95680c8bb0dcf55/bet/validate/uXAXMDuW/30000.0" for 127.0.0.1 at 2015-12-14 01:08:04 +0000
+Processing by AccountsController#api_validate_bet as 
+  Parameters: {"game_account_token"=>"uXAXMDuW", "transaction_amount"=>"30000"}
+  [1m[35mLog Load (1.1ms)[0m  SELECT "logs".* FROM "logs"  WHERE (game_account_token = 'uXAXMDuW' AND bet_validated IS NULL)
+  Rendered text template (0.0ms)
+Completed 200 OK in 2ms (Views: 0.3ms | ActiveRecord: 1.1ms)
+
+
+Started GET "/api/06331525768e6a95680c8bb0dcf55/bet/validate/uXAXMDuW/30000.0" for 127.0.0.1 at 2015-12-14 01:10:04 +0000
+Processing by AccountsController#api_validate_bet as 
+  Parameters: {"game_account_token"=>"uXAXMDuW", "transaction_amount"=>"30000"}
+  [1m[36mLog Load (1.2ms)[0m  [1mSELECT "logs".* FROM "logs"  WHERE (game_account_token = 'uXAXMDuW' AND bet_validated IS NULL)[0m
+  Rendered text template (0.0ms)
+Completed 200 OK in 2ms (Views: 0.3ms | ActiveRecord: 1.2ms)
+
+
+Started GET "/api/06331525768e6a95680c8bb0dcf55/bet/validate/uXAXMDuW/30000.0" for 127.0.0.1 at 2015-12-14 01:12:04 +0000
+Processing by AccountsController#api_validate_bet as 
+  Parameters: {"game_account_token"=>"uXAXMDuW", "transaction_amount"=>"30000"}
+  [1m[35mLog Load (0.8ms)[0m  SELECT "logs".* FROM "logs"  WHERE (game_account_token = 'uXAXMDuW' AND bet_validated IS NULL)
+  Rendered text template (0.0ms)
+Completed 200 OK in 3ms (Views: 0.6ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/api/06331525768e6a95680c8bb0dcf55/bet/validate/uXAXMDuW/30000.0" for 127.0.0.1 at 2015-12-14 01:14:04 +0000
+Processing by AccountsController#api_validate_bet as 
+  Parameters: {"game_account_token"=>"uXAXMDuW", "transaction_amount"=>"30000"}
+  [1m[36mLog Load (0.9ms)[0m  [1mSELECT "logs".* FROM "logs"  WHERE (game_account_token = 'uXAXMDuW' AND bet_validated IS NULL)[0m
+  Rendered text template (0.0ms)
+Completed 200 OK in 2ms (Views: 0.3ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/api/06331525768e6a95680c8bb0dcf55/bet/validate/uXAXMDuW/30000.0" for 127.0.0.1 at 2015-12-14 01:16:04 +0000
+Processing by AccountsController#api_validate_bet as 
+  Parameters: {"game_account_token"=>"uXAXMDuW", "transaction_amount"=>"30000"}
+  [1m[35mLog Load (1.2ms)[0m  SELECT "logs".* FROM "logs"  WHERE (game_account_token = 'uXAXMDuW' AND bet_validated IS NULL)
+  Rendered text template (0.0ms)
+Completed 200 OK in 3ms (Views: 0.6ms | ActiveRecord: 1.2ms)
+
+
+Started GET "/api/06331525768e6a95680c8bb0dcf55/bet/validate/uXAXMDuW/30000.0" for 127.0.0.1 at 2015-12-14 01:18:04 +0000
+Processing by AccountsController#api_validate_bet as 
+  Parameters: {"game_account_token"=>"uXAXMDuW", "transaction_amount"=>"30000"}
+  [1m[36mLog Load (1.3ms)[0m  [1mSELECT "logs".* FROM "logs"  WHERE (game_account_token = 'uXAXMDuW' AND bet_validated IS NULL)[0m
+  Rendered text template (0.0ms)
+Completed 200 OK in 4ms (Views: 0.6ms | ActiveRecord: 1.3ms)
+
+
+Started GET "/api/06331525768e6a95680c8bb0dcf55/bet/validate/uXAXMDuW/30000.0" for 127.0.0.1 at 2015-12-14 01:20:04 +0000
+Processing by AccountsController#api_validate_bet as 
+  Parameters: {"game_account_token"=>"uXAXMDuW", "transaction_amount"=>"30000"}
+  [1m[35mLog Load (1.2ms)[0m  SELECT "logs".* FROM "logs"  WHERE (game_account_token = 'uXAXMDuW' AND bet_validated IS NULL)
+  Rendered text template (0.0ms)
+Completed 200 OK in 3ms (Views: 0.4ms | ActiveRecord: 1.2ms)
+
+
+Started GET "/api/06331525768e6a95680c8bb0dcf55/bet/validate/uXAXMDuW/30000.0" for 127.0.0.1 at 2015-12-14 01:22:04 +0000
+Processing by AccountsController#api_validate_bet as 
+  Parameters: {"game_account_token"=>"uXAXMDuW", "transaction_amount"=>"30000"}
+  [1m[36mLog Load (1.0ms)[0m  [1mSELECT "logs".* FROM "logs"  WHERE (game_account_token = 'uXAXMDuW' AND bet_validated IS NULL)[0m
+  Rendered text template (0.0ms)
+Completed 200 OK in 3ms (Views: 0.3ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/api/06331525768e6a95680c8bb0dcf55/bet/validate/uXAXMDuW/30000.0" for 127.0.0.1 at 2015-12-14 01:24:04 +0000
+Processing by AccountsController#api_validate_bet as 
+  Parameters: {"game_account_token"=>"uXAXMDuW", "transaction_amount"=>"30000"}
+  [1m[35mLog Load (0.9ms)[0m  SELECT "logs".* FROM "logs"  WHERE (game_account_token = 'uXAXMDuW' AND bet_validated IS NULL)
+  Rendered text template (0.0ms)
+Completed 200 OK in 3ms (Views: 0.6ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/api/06331525768e6a95680c8bb0dcf55/bet/validate/uXAXMDuW/30000.0" for 127.0.0.1 at 2015-12-14 01:26:04 +0000
+Processing by AccountsController#api_validate_bet as 
+  Parameters: {"game_account_token"=>"uXAXMDuW", "transaction_amount"=>"30000"}
+  [1m[36mLog Load (0.9ms)[0m  [1mSELECT "logs".* FROM "logs"  WHERE (game_account_token = 'uXAXMDuW' AND bet_validated IS NULL)[0m
+  Rendered text template (0.0ms)
+Completed 200 OK in 3ms (Views: 0.6ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/api/06331525768e6a95680c8bb0dcf55/bet/validate/uXAXMDuW/30000.0" for 127.0.0.1 at 2015-12-14 01:28:03 +0000
+Processing by AccountsController#api_validate_bet as 
+  Parameters: {"game_account_token"=>"uXAXMDuW", "transaction_amount"=>"30000"}
+  [1m[35mLog Load (0.8ms)[0m  SELECT "logs".* FROM "logs"  WHERE (game_account_token = 'uXAXMDuW' AND bet_validated IS NULL)
+  Rendered text template (0.0ms)
+Completed 200 OK in 2ms (Views: 0.3ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/api/06331525768e6a95680c8bb0dcf55/bet/validate/uXAXMDuW/30000.0" for 127.0.0.1 at 2015-12-14 01:30:03 +0000
+Processing by AccountsController#api_validate_bet as 
+  Parameters: {"game_account_token"=>"uXAXMDuW", "transaction_amount"=>"30000"}
+  [1m[36mLog Load (1.0ms)[0m  [1mSELECT "logs".* FROM "logs"  WHERE (game_account_token = 'uXAXMDuW' AND bet_validated IS NULL)[0m
+  Rendered text template (0.0ms)
+Completed 200 OK in 3ms (Views: 0.4ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/api/06331525768e6a95680c8bb0dcf55/bet/validate/uXAXMDuW/30000.0" for 127.0.0.1 at 2015-12-14 01:32:03 +0000
+Processing by AccountsController#api_validate_bet as 
+  Parameters: {"game_account_token"=>"uXAXMDuW", "transaction_amount"=>"30000"}
+  [1m[35mLog Load (1.1ms)[0m  SELECT "logs".* FROM "logs"  WHERE (game_account_token = 'uXAXMDuW' AND bet_validated IS NULL)
+  Rendered text template (0.0ms)
+Completed 200 OK in 2ms (Views: 0.3ms | ActiveRecord: 1.1ms)
+
+
+Started GET "/api/06331525768e6a95680c8bb0dcf55/bet/validate/uXAXMDuW/30000.0" for 127.0.0.1 at 2015-12-14 01:34:03 +0000
+Processing by AccountsController#api_validate_bet as 
+  Parameters: {"game_account_token"=>"uXAXMDuW", "transaction_amount"=>"30000"}
+  [1m[36mLog Load (1.0ms)[0m  [1mSELECT "logs".* FROM "logs"  WHERE (game_account_token = 'uXAXMDuW' AND bet_validated IS NULL)[0m
+  Rendered text template (0.0ms)
+Completed 200 OK in 3ms (Views: 0.7ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/api/06331525768e6a95680c8bb0dcf55/bet/validate/uXAXMDuW/30000.0" for 127.0.0.1 at 2015-12-14 01:36:04 +0000
+Processing by AccountsController#api_validate_bet as 
+  Parameters: {"game_account_token"=>"uXAXMDuW", "transaction_amount"=>"30000"}
+  [1m[35mLog Load (1.2ms)[0m  SELECT "logs".* FROM "logs"  WHERE (game_account_token = 'uXAXMDuW' AND bet_validated IS NULL)
+  Rendered text template (0.0ms)
+Completed 200 OK in 2ms (Views: 0.3ms | ActiveRecord: 1.2ms)
+
+
+Started GET "/api/06331525768e6a95680c8bb0dcf55/bet/validate/uXAXMDuW/30000.0" for 127.0.0.1 at 2015-12-14 04:32:04 +0000
+  [1m[36mActiveRecord::SchemaMigration Load (39.3ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35mParameter Load (38.4ms)[0m  SELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1
+Processing by AccountsController#api_validate_bet as 
+  Parameters: {"game_account_token"=>"uXAXMDuW", "transaction_amount"=>"30000"}
+  [1m[36mLog Load (77.5ms)[0m  [1mSELECT "logs".* FROM "logs"  WHERE (game_account_token = 'uXAXMDuW' AND bet_validated IS NULL)[0m
+  Rendered text template (0.1ms)
+Completed 200 OK in 156ms (Views: 40.5ms | ActiveRecord: 77.5ms)
+
+
+Started GET "/api/06331525768e6a95680c8bb0dcf55/bet/validate/uXAXMDuW/30000.0" for 127.0.0.1 at 2015-12-14 04:34:04 +0000
+Processing by AccountsController#api_validate_bet as 
+  Parameters: {"game_account_token"=>"uXAXMDuW", "transaction_amount"=>"30000"}
+  [1m[35mLog Load (1.2ms)[0m  SELECT "logs".* FROM "logs"  WHERE (game_account_token = 'uXAXMDuW' AND bet_validated IS NULL)
+  Rendered text template (0.0ms)
+Completed 200 OK in 5ms (Views: 1.0ms | ActiveRecord: 1.2ms)
+
+
+Started GET "/api/06331525768e6a95680c8bb0dcf55/bet/validate/uXAXMDuW/30000.0" for 127.0.0.1 at 2015-12-14 04:36:04 +0000
+Processing by AccountsController#api_validate_bet as 
+  Parameters: {"game_account_token"=>"uXAXMDuW", "transaction_amount"=>"30000"}
+  [1m[36mLog Load (1.3ms)[0m  [1mSELECT "logs".* FROM "logs"  WHERE (game_account_token = 'uXAXMDuW' AND bet_validated IS NULL)[0m
+  Rendered text template (0.0ms)
+Completed 200 OK in 3ms (Views: 0.5ms | ActiveRecord: 1.3ms)
+
+
+Started GET "/api/06331525768e6a95680c8bb0dcf55/bet/validate/uXAXMDuW/30000.0" for 127.0.0.1 at 2015-12-14 04:38:04 +0000
+Processing by AccountsController#api_validate_bet as 
+  Parameters: {"game_account_token"=>"uXAXMDuW", "transaction_amount"=>"30000"}
+  [1m[35mLog Load (0.8ms)[0m  SELECT "logs".* FROM "logs"  WHERE (game_account_token = 'uXAXMDuW' AND bet_validated IS NULL)
+  Rendered text template (0.0ms)
+Completed 200 OK in 2ms (Views: 0.4ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/api/06331525768e6a95680c8bb0dcf55/bet/validate/uXAXMDuW/30000.0" for 127.0.0.1 at 2015-12-14 04:40:04 +0000
+Processing by AccountsController#api_validate_bet as 
+  Parameters: {"game_account_token"=>"uXAXMDuW", "transaction_amount"=>"30000"}
+  [1m[36mLog Load (1.3ms)[0m  [1mSELECT "logs".* FROM "logs"  WHERE (game_account_token = 'uXAXMDuW' AND bet_validated IS NULL)[0m
+  Rendered text template (0.0ms)
+Completed 200 OK in 4ms (Views: 0.5ms | ActiveRecord: 1.3ms)
+
+
+Started GET "/api/06331525768e6a95680c8bb0dcf55/bet/validate/uXAXMDuW/30000.0" for 127.0.0.1 at 2015-12-14 04:42:04 +0000
+Processing by AccountsController#api_validate_bet as 
+  Parameters: {"game_account_token"=>"uXAXMDuW", "transaction_amount"=>"30000"}
+  [1m[35mLog Load (1.1ms)[0m  SELECT "logs".* FROM "logs"  WHERE (game_account_token = 'uXAXMDuW' AND bet_validated IS NULL)
+  Rendered text template (0.0ms)
+Completed 200 OK in 4ms (Views: 0.7ms | ActiveRecord: 1.1ms)
+
+
+Started GET "/api/06331525768e6a95680c8bb0dcf55/bet/validate/uXAXMDuW/30000.0" for 127.0.0.1 at 2015-12-14 04:44:04 +0000
+Processing by AccountsController#api_validate_bet as 
+  Parameters: {"game_account_token"=>"uXAXMDuW", "transaction_amount"=>"30000"}
+  [1m[36mLog Load (0.8ms)[0m  [1mSELECT "logs".* FROM "logs"  WHERE (game_account_token = 'uXAXMDuW' AND bet_validated IS NULL)[0m
+  Rendered text template (0.0ms)
+Completed 200 OK in 3ms (Views: 0.8ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/api/06331525768e6a95680c8bb0dcf55/bet/validate/uXAXMDuW/30000.0" for 127.0.0.1 at 2015-12-14 04:46:04 +0000
+Processing by AccountsController#api_validate_bet as 
+  Parameters: {"game_account_token"=>"uXAXMDuW", "transaction_amount"=>"30000"}
+  [1m[35mLog Load (1.0ms)[0m  SELECT "logs".* FROM "logs"  WHERE (game_account_token = 'uXAXMDuW' AND bet_validated IS NULL)
+  Rendered text template (0.0ms)
+Completed 200 OK in 3ms (Views: 0.4ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/api/06331525768e6a95680c8bb0dcf55/bet/validate/uXAXMDuW/30000.0" for 127.0.0.1 at 2015-12-14 04:48:04 +0000
+Processing by AccountsController#api_validate_bet as 
+  Parameters: {"game_account_token"=>"uXAXMDuW", "transaction_amount"=>"30000"}
+  [1m[36mLog Load (1.1ms)[0m  [1mSELECT "logs".* FROM "logs"  WHERE (game_account_token = 'uXAXMDuW' AND bet_validated IS NULL)[0m
+  Rendered text template (0.0ms)
+Completed 200 OK in 3ms (Views: 0.4ms | ActiveRecord: 1.1ms)
+
+
+Started GET "/api/06331525768e6a95680c8bb0dcf55/bet/validate/uXAXMDuW/30000.0" for 127.0.0.1 at 2015-12-14 04:50:04 +0000
+Processing by AccountsController#api_validate_bet as 
+  Parameters: {"game_account_token"=>"uXAXMDuW", "transaction_amount"=>"30000"}
+  [1m[35mLog Load (1.2ms)[0m  SELECT "logs".* FROM "logs"  WHERE (game_account_token = 'uXAXMDuW' AND bet_validated IS NULL)
+  Rendered text template (0.0ms)
+Completed 200 OK in 3ms (Views: 0.3ms | ActiveRecord: 1.2ms)
+
+
+Started GET "/api/06331525768e6a95680c8bb0dcf55/bet/validate/uXAXMDuW/30000.0" for 127.0.0.1 at 2015-12-14 04:52:04 +0000
+Processing by AccountsController#api_validate_bet as 
+  Parameters: {"game_account_token"=>"uXAXMDuW", "transaction_amount"=>"30000"}
+  [1m[36mLog Load (1.2ms)[0m  [1mSELECT "logs".* FROM "logs"  WHERE (game_account_token = 'uXAXMDuW' AND bet_validated IS NULL)[0m
+  Rendered text template (0.0ms)
+Completed 200 OK in 3ms (Views: 0.4ms | ActiveRecord: 1.2ms)
+
+
+Started GET "/api/06331525768e6a95680c8bb0dcf55/bet/validate/uXAXMDuW/30000.0" for 127.0.0.1 at 2015-12-14 04:54:04 +0000
+Processing by AccountsController#api_validate_bet as 
+  Parameters: {"game_account_token"=>"uXAXMDuW", "transaction_amount"=>"30000"}
+  [1m[35mLog Load (1.2ms)[0m  SELECT "logs".* FROM "logs"  WHERE (game_account_token = 'uXAXMDuW' AND bet_validated IS NULL)
+  Rendered text template (0.0ms)
+Completed 200 OK in 3ms (Views: 0.4ms | ActiveRecord: 1.2ms)
+
+
+Started GET "/api/06331525768e6a95680c8bb0dcf55/bet/validate/uXAXMDuW/30000.0" for 127.0.0.1 at 2015-12-14 04:56:04 +0000
+Processing by AccountsController#api_validate_bet as 
+  Parameters: {"game_account_token"=>"uXAXMDuW", "transaction_amount"=>"30000"}
+  [1m[36mLog Load (1.1ms)[0m  [1mSELECT "logs".* FROM "logs"  WHERE (game_account_token = 'uXAXMDuW' AND bet_validated IS NULL)[0m
+  Rendered text template (0.0ms)
+Completed 200 OK in 2ms (Views: 0.3ms | ActiveRecord: 1.1ms)
+
+
+Started GET "/api/06331525768e6a95680c8bb0dcf55/bet/validate/uXAXMDuW/30000.0" for 127.0.0.1 at 2015-12-14 04:58:04 +0000
+Processing by AccountsController#api_validate_bet as 
+  Parameters: {"game_account_token"=>"uXAXMDuW", "transaction_amount"=>"30000"}
+  [1m[35mLog Load (1.0ms)[0m  SELECT "logs".* FROM "logs"  WHERE (game_account_token = 'uXAXMDuW' AND bet_validated IS NULL)
+  Rendered text template (0.0ms)
+Completed 200 OK in 2ms (Views: 0.3ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/api/06331525768e6a95680c8bb0dcf55/bet/validate/uXAXMDuW/30000.0" for 127.0.0.1 at 2015-12-14 05:00:04 +0000
+Processing by AccountsController#api_validate_bet as 
+  Parameters: {"game_account_token"=>"uXAXMDuW", "transaction_amount"=>"30000"}
+  [1m[36mLog Load (0.8ms)[0m  [1mSELECT "logs".* FROM "logs"  WHERE (game_account_token = 'uXAXMDuW' AND bet_validated IS NULL)[0m
+  Rendered text template (0.0ms)
+Completed 200 OK in 3ms (Views: 0.7ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/api/06331525768e6a95680c8bb0dcf55/bet/validate/uXAXMDuW/30000.0" for 127.0.0.1 at 2015-12-14 05:02:04 +0000
+Processing by AccountsController#api_validate_bet as 
+  Parameters: {"game_account_token"=>"uXAXMDuW", "transaction_amount"=>"30000"}
+  [1m[35mLog Load (1.0ms)[0m  SELECT "logs".* FROM "logs"  WHERE (game_account_token = 'uXAXMDuW' AND bet_validated IS NULL)
+  Rendered text template (0.0ms)
+Completed 200 OK in 2ms (Views: 0.3ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/api/06331525768e6a95680c8bb0dcf55/bet/validate/uXAXMDuW/30000.0" for 127.0.0.1 at 2015-12-14 05:04:04 +0000
+Processing by AccountsController#api_validate_bet as 
+  Parameters: {"game_account_token"=>"uXAXMDuW", "transaction_amount"=>"30000"}
+  [1m[36mLog Load (1.2ms)[0m  [1mSELECT "logs".* FROM "logs"  WHERE (game_account_token = 'uXAXMDuW' AND bet_validated IS NULL)[0m
+  Rendered text template (0.0ms)
+Completed 200 OK in 3ms (Views: 0.6ms | ActiveRecord: 1.2ms)
+
+
+Started GET "/api/06331525768e6a95680c8bb0dcf55/bet/validate/uXAXMDuW/30000.0" for 127.0.0.1 at 2015-12-14 05:06:04 +0000
+Processing by AccountsController#api_validate_bet as 
+  Parameters: {"game_account_token"=>"uXAXMDuW", "transaction_amount"=>"30000"}
+  [1m[35mLog Load (1.1ms)[0m  SELECT "logs".* FROM "logs"  WHERE (game_account_token = 'uXAXMDuW' AND bet_validated IS NULL)
+  Rendered text template (0.0ms)
+Completed 200 OK in 3ms (Views: 0.5ms | ActiveRecord: 1.1ms)
+
+
+Started GET "/api/06331525768e6a95680c8bb0dcf55/bet/validate/uXAXMDuW/30000.0" for 127.0.0.1 at 2015-12-14 05:08:04 +0000
+Processing by AccountsController#api_validate_bet as 
+  Parameters: {"game_account_token"=>"uXAXMDuW", "transaction_amount"=>"30000"}
+  [1m[36mLog Load (1.3ms)[0m  [1mSELECT "logs".* FROM "logs"  WHERE (game_account_token = 'uXAXMDuW' AND bet_validated IS NULL)[0m
+  Rendered text template (0.0ms)
+Completed 200 OK in 3ms (Views: 0.3ms | ActiveRecord: 1.3ms)
+
+
+Started GET "/api/06331525768e6a95680c8bb0dcf55/bet/validate/uXAXMDuW/30000.0" for 127.0.0.1 at 2015-12-14 05:10:04 +0000
+Processing by AccountsController#api_validate_bet as 
+  Parameters: {"game_account_token"=>"uXAXMDuW", "transaction_amount"=>"30000"}
+  [1m[35mLog Load (1.2ms)[0m  SELECT "logs".* FROM "logs"  WHERE (game_account_token = 'uXAXMDuW' AND bet_validated IS NULL)
+  Rendered text template (0.0ms)
+Completed 200 OK in 2ms (Views: 0.3ms | ActiveRecord: 1.2ms)
+
+
+Started GET "/api/06331525768e6a95680c8bb0dcf55/bet/validate/uXAXMDuW/30000.0" for 127.0.0.1 at 2015-12-14 05:12:04 +0000
+Processing by AccountsController#api_validate_bet as 
+  Parameters: {"game_account_token"=>"uXAXMDuW", "transaction_amount"=>"30000"}
+  [1m[36mLog Load (1.1ms)[0m  [1mSELECT "logs".* FROM "logs"  WHERE (game_account_token = 'uXAXMDuW' AND bet_validated IS NULL)[0m
+  Rendered text template (0.0ms)
+Completed 200 OK in 2ms (Views: 0.3ms | ActiveRecord: 1.1ms)
+
+
+Started GET "/api/06331525768e6a95680c8bb0dcf55/bet/validate/uXAXMDuW/30000.0" for 127.0.0.1 at 2015-12-14 05:14:04 +0000
+Processing by AccountsController#api_validate_bet as 
+  Parameters: {"game_account_token"=>"uXAXMDuW", "transaction_amount"=>"30000"}
+  [1m[35mLog Load (1.2ms)[0m  SELECT "logs".* FROM "logs"  WHERE (game_account_token = 'uXAXMDuW' AND bet_validated IS NULL)
+  Rendered text template (0.0ms)
+Completed 200 OK in 3ms (Views: 0.5ms | ActiveRecord: 1.2ms)
+
+
+Started GET "/api/06331525768e6a95680c8bb0dcf55/bet/validate/uXAXMDuW/30000.0" for 127.0.0.1 at 2015-12-14 05:16:04 +0000
+Processing by AccountsController#api_validate_bet as 
+  Parameters: {"game_account_token"=>"uXAXMDuW", "transaction_amount"=>"30000"}
+  [1m[36mLog Load (1.2ms)[0m  [1mSELECT "logs".* FROM "logs"  WHERE (game_account_token = 'uXAXMDuW' AND bet_validated IS NULL)[0m
+  Rendered text template (0.0ms)
+Completed 200 OK in 4ms (Views: 0.6ms | ActiveRecord: 1.2ms)
+
+
+Started GET "/api/06331525768e6a95680c8bb0dcf55/bet/validate/uXAXMDuW/30000.0" for 127.0.0.1 at 2015-12-14 05:18:04 +0000
+Processing by AccountsController#api_validate_bet as 
+  Parameters: {"game_account_token"=>"uXAXMDuW", "transaction_amount"=>"30000"}
+  [1m[35mLog Load (1.2ms)[0m  SELECT "logs".* FROM "logs"  WHERE (game_account_token = 'uXAXMDuW' AND bet_validated IS NULL)
+  Rendered text template (0.0ms)
+Completed 200 OK in 2ms (Views: 0.3ms | ActiveRecord: 1.2ms)
+
+
+Started GET "/api/06331525768e6a95680c8bb0dcf55/bet/validate/uXAXMDuW/30000.0" for 127.0.0.1 at 2015-12-14 05:20:04 +0000
+Processing by AccountsController#api_validate_bet as 
+  Parameters: {"game_account_token"=>"uXAXMDuW", "transaction_amount"=>"30000"}
+  [1m[36mLog Load (1.3ms)[0m  [1mSELECT "logs".* FROM "logs"  WHERE (game_account_token = 'uXAXMDuW' AND bet_validated IS NULL)[0m
+  Rendered text template (0.0ms)
+Completed 200 OK in 4ms (Views: 0.6ms | ActiveRecord: 1.3ms)
+
+
+Started GET "/api/06331525768e6a95680c8bb0dcf55/bet/validate/uXAXMDuW/30000.0" for 127.0.0.1 at 2015-12-14 05:22:04 +0000
+Processing by AccountsController#api_validate_bet as 
+  Parameters: {"game_account_token"=>"uXAXMDuW", "transaction_amount"=>"30000"}
+  [1m[35mLog Load (1.5ms)[0m  SELECT "logs".* FROM "logs"  WHERE (game_account_token = 'uXAXMDuW' AND bet_validated IS NULL)
+  Rendered text template (0.0ms)
+Completed 200 OK in 5ms (Views: 0.7ms | ActiveRecord: 1.5ms)
+
+
+Started GET "/api/06331525768e6a95680c8bb0dcf55/bet/validate/uXAXMDuW/30000.0" for 127.0.0.1 at 2015-12-14 05:24:04 +0000
+Processing by AccountsController#api_validate_bet as 
+  Parameters: {"game_account_token"=>"uXAXMDuW", "transaction_amount"=>"30000"}
+  [1m[36mLog Load (1.1ms)[0m  [1mSELECT "logs".* FROM "logs"  WHERE (game_account_token = 'uXAXMDuW' AND bet_validated IS NULL)[0m
+  Rendered text template (0.0ms)
+Completed 200 OK in 4ms (Views: 0.7ms | ActiveRecord: 1.1ms)
+
+
+Started GET "/api/06331525768e6a95680c8bb0dcf55/bet/validate/uXAXMDuW/30000.0" for 127.0.0.1 at 2015-12-14 05:26:04 +0000
+Processing by AccountsController#api_validate_bet as 
+  Parameters: {"game_account_token"=>"uXAXMDuW", "transaction_amount"=>"30000"}
+  [1m[35mLog Load (0.7ms)[0m  SELECT "logs".* FROM "logs"  WHERE (game_account_token = 'uXAXMDuW' AND bet_validated IS NULL)
+  Rendered text template (0.0ms)
+Completed 200 OK in 2ms (Views: 0.3ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/api/06331525768e6a95680c8bb0dcf55/bet/validate/uXAXMDuW/30000.0" for 127.0.0.1 at 2015-12-14 05:28:04 +0000
+Processing by AccountsController#api_validate_bet as 
+  Parameters: {"game_account_token"=>"uXAXMDuW", "transaction_amount"=>"30000"}
+  [1m[36mLog Load (1.0ms)[0m  [1mSELECT "logs".* FROM "logs"  WHERE (game_account_token = 'uXAXMDuW' AND bet_validated IS NULL)[0m
+  Rendered text template (0.0ms)
+Completed 200 OK in 2ms (Views: 0.3ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/api/06331525768e6a95680c8bb0dcf55/bet/validate/uXAXMDuW/30000.0" for 127.0.0.1 at 2015-12-14 05:30:04 +0000
+Processing by AccountsController#api_validate_bet as 
+  Parameters: {"game_account_token"=>"uXAXMDuW", "transaction_amount"=>"30000"}
+  [1m[35mLog Load (1.2ms)[0m  SELECT "logs".* FROM "logs"  WHERE (game_account_token = 'uXAXMDuW' AND bet_validated IS NULL)
+  Rendered text template (0.0ms)
+Completed 200 OK in 3ms (Views: 0.4ms | ActiveRecord: 1.2ms)
+
+
+Started GET "/api/06331525768e6a95680c8bb0dcf55/bet/validate/uXAXMDuW/30000.0" for 127.0.0.1 at 2015-12-14 05:32:04 +0000
+Processing by AccountsController#api_validate_bet as 
+  Parameters: {"game_account_token"=>"uXAXMDuW", "transaction_amount"=>"30000"}
+  [1m[36mLog Load (0.9ms)[0m  [1mSELECT "logs".* FROM "logs"  WHERE (game_account_token = 'uXAXMDuW' AND bet_validated IS NULL)[0m
+  Rendered text template (0.0ms)
+Completed 200 OK in 3ms (Views: 0.6ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/api/06331525768e6a95680c8bb0dcf55/bet/validate/uXAXMDuW/30000.0" for 127.0.0.1 at 2015-12-14 05:34:04 +0000
+Processing by AccountsController#api_validate_bet as 
+  Parameters: {"game_account_token"=>"uXAXMDuW", "transaction_amount"=>"30000"}
+  [1m[35mLog Load (1.2ms)[0m  SELECT "logs".* FROM "logs"  WHERE (game_account_token = 'uXAXMDuW' AND bet_validated IS NULL)
+  Rendered text template (0.0ms)
+Completed 200 OK in 2ms (Views: 0.3ms | ActiveRecord: 1.2ms)
+
+
+Started GET "/api/06331525768e6a95680c8bb0dcf55/bet/validate/uXAXMDuW/30000.0" for 127.0.0.1 at 2015-12-14 07:30:04 +0000
+  [1m[36mActiveRecord::SchemaMigration Load (38.7ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35mParameter Load (39.1ms)[0m  SELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1
+Processing by AccountsController#api_validate_bet as 
+  Parameters: {"game_account_token"=>"uXAXMDuW", "transaction_amount"=>"30000"}
+  [1m[36mLog Load (76.7ms)[0m  [1mSELECT "logs".* FROM "logs"  WHERE (game_account_token = 'uXAXMDuW' AND bet_validated IS NULL)[0m
+  Rendered text template (0.1ms)
+Completed 200 OK in 145ms (Views: 31.3ms | ActiveRecord: 76.7ms)
+
+
+Started GET "/api/06331525768e6a95680c8bb0dcf55/bet/validate/uXAXMDuW/30000.0" for 127.0.0.1 at 2015-12-14 07:32:04 +0000
+Processing by AccountsController#api_validate_bet as 
+  Parameters: {"game_account_token"=>"uXAXMDuW", "transaction_amount"=>"30000"}
+  [1m[35mLog Load (1.3ms)[0m  SELECT "logs".* FROM "logs"  WHERE (game_account_token = 'uXAXMDuW' AND bet_validated IS NULL)
+  Rendered text template (0.0ms)
+Completed 200 OK in 4ms (Views: 0.8ms | ActiveRecord: 1.3ms)
+
+
+Started GET "/api/06331525768e6a95680c8bb0dcf55/bet/validate/uXAXMDuW/30000.0" for 127.0.0.1 at 2015-12-14 07:34:04 +0000
+Processing by AccountsController#api_validate_bet as 
+  Parameters: {"game_account_token"=>"uXAXMDuW", "transaction_amount"=>"30000"}
+  [1m[36mLog Load (1.4ms)[0m  [1mSELECT "logs".* FROM "logs"  WHERE (game_account_token = 'uXAXMDuW' AND bet_validated IS NULL)[0m
+  Rendered text template (0.0ms)
+Completed 200 OK in 3ms (Views: 0.5ms | ActiveRecord: 1.4ms)
+
+
+Started GET "/api/06331525768e6a95680c8bb0dcf55/bet/validate/uXAXMDuW/30000.0" for 127.0.0.1 at 2015-12-14 07:36:04 +0000
+Processing by AccountsController#api_validate_bet as 
+  Parameters: {"game_account_token"=>"uXAXMDuW", "transaction_amount"=>"30000"}
+  [1m[35mLog Load (0.9ms)[0m  SELECT "logs".* FROM "logs"  WHERE (game_account_token = 'uXAXMDuW' AND bet_validated IS NULL)
+  Rendered text template (0.0ms)
+Completed 200 OK in 2ms (Views: 0.4ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/api/06331525768e6a95680c8bb0dcf55/bet/validate/uXAXMDuW/30000.0" for 127.0.0.1 at 2015-12-14 07:38:04 +0000
+Processing by AccountsController#api_validate_bet as 
+  Parameters: {"game_account_token"=>"uXAXMDuW", "transaction_amount"=>"30000"}
+  [1m[36mLog Load (1.2ms)[0m  [1mSELECT "logs".* FROM "logs"  WHERE (game_account_token = 'uXAXMDuW' AND bet_validated IS NULL)[0m
+  Rendered text template (0.0ms)
+Completed 200 OK in 4ms (Views: 0.4ms | ActiveRecord: 1.2ms)
+
+
+Started GET "/api/06331525768e6a95680c8bb0dcf55/bet/validate/uXAXMDuW/30000.0" for 127.0.0.1 at 2015-12-14 07:40:04 +0000
+Processing by AccountsController#api_validate_bet as 
+  Parameters: {"game_account_token"=>"uXAXMDuW", "transaction_amount"=>"30000"}
+  [1m[35mLog Load (1.3ms)[0m  SELECT "logs".* FROM "logs"  WHERE (game_account_token = 'uXAXMDuW' AND bet_validated IS NULL)
+  Rendered text template (0.0ms)
+Completed 200 OK in 4ms (Views: 0.6ms | ActiveRecord: 1.3ms)
+
+
+Started GET "/api/06331525768e6a95680c8bb0dcf55/bet/validate/uXAXMDuW/30000.0" for 127.0.0.1 at 2015-12-14 07:42:04 +0000
+Processing by AccountsController#api_validate_bet as 
+  Parameters: {"game_account_token"=>"uXAXMDuW", "transaction_amount"=>"30000"}
+  [1m[36mLog Load (0.8ms)[0m  [1mSELECT "logs".* FROM "logs"  WHERE (game_account_token = 'uXAXMDuW' AND bet_validated IS NULL)[0m
+  Rendered text template (0.0ms)
+Completed 200 OK in 2ms (Views: 0.3ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/api/06331525768e6a95680c8bb0dcf55/bet/validate/uXAXMDuW/30000.0" for 127.0.0.1 at 2015-12-14 07:44:04 +0000
+Processing by AccountsController#api_validate_bet as 
+  Parameters: {"game_account_token"=>"uXAXMDuW", "transaction_amount"=>"30000"}
+  [1m[35mLog Load (1.0ms)[0m  SELECT "logs".* FROM "logs"  WHERE (game_account_token = 'uXAXMDuW' AND bet_validated IS NULL)
+  Rendered text template (0.1ms)
+Completed 200 OK in 4ms (Views: 0.8ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/api/06331525768e6a95680c8bb0dcf55/bet/validate/uXAXMDuW/30000.0" for 127.0.0.1 at 2015-12-14 07:46:04 +0000
+Processing by AccountsController#api_validate_bet as 
+  Parameters: {"game_account_token"=>"uXAXMDuW", "transaction_amount"=>"30000"}
+  [1m[36mLog Load (1.3ms)[0m  [1mSELECT "logs".* FROM "logs"  WHERE (game_account_token = 'uXAXMDuW' AND bet_validated IS NULL)[0m
+  Rendered text template (0.0ms)
+Completed 200 OK in 3ms (Views: 0.6ms | ActiveRecord: 1.3ms)
+
+
+Started GET "/api/06331525768e6a95680c8bb0dcf55/bet/validate/uXAXMDuW/30000.0" for 127.0.0.1 at 2015-12-14 07:50:04 +0000
+Processing by AccountsController#api_validate_bet as 
+  Parameters: {"game_account_token"=>"uXAXMDuW", "transaction_amount"=>"30000"}
+  [1m[35mLog Load (1.2ms)[0m  SELECT "logs".* FROM "logs"  WHERE (game_account_token = 'uXAXMDuW' AND bet_validated IS NULL)
+  Rendered text template (0.0ms)
+Completed 200 OK in 2ms (Views: 0.3ms | ActiveRecord: 1.2ms)
+
+
+Started GET "/api/06331525768e6a95680c8bb0dcf55/bet/validate/uXAXMDuW/30000.0" for 127.0.0.1 at 2015-12-14 07:52:03 +0000
+Processing by AccountsController#api_validate_bet as 
+  Parameters: {"game_account_token"=>"uXAXMDuW", "transaction_amount"=>"30000"}
+  [1m[36mLog Load (1.2ms)[0m  [1mSELECT "logs".* FROM "logs"  WHERE (game_account_token = 'uXAXMDuW' AND bet_validated IS NULL)[0m
+  Rendered text template (0.0ms)
+Completed 200 OK in 4ms (Views: 0.6ms | ActiveRecord: 1.2ms)
+
+
+Started GET "/api/06331525768e6a95680c8bb0dcf55/bet/validate/uXAXMDuW/30000.0" for 127.0.0.1 at 2015-12-14 07:54:04 +0000
+Processing by AccountsController#api_validate_bet as 
+  Parameters: {"game_account_token"=>"uXAXMDuW", "transaction_amount"=>"30000"}
+  [1m[35mLog Load (1.1ms)[0m  SELECT "logs".* FROM "logs"  WHERE (game_account_token = 'uXAXMDuW' AND bet_validated IS NULL)
+  Rendered text template (0.0ms)
+Completed 200 OK in 3ms (Views: 0.7ms | ActiveRecord: 1.1ms)
+
+
+Started GET "/api/06331525768e6a95680c8bb0dcf55/bet/validate/uXAXMDuW/30000.0" for 127.0.0.1 at 2015-12-14 07:56:04 +0000
+Processing by AccountsController#api_validate_bet as 
+  Parameters: {"game_account_token"=>"uXAXMDuW", "transaction_amount"=>"30000"}
+  [1m[36mLog Load (1.1ms)[0m  [1mSELECT "logs".* FROM "logs"  WHERE (game_account_token = 'uXAXMDuW' AND bet_validated IS NULL)[0m
+  Rendered text template (0.0ms)
+Completed 200 OK in 2ms (Views: 0.4ms | ActiveRecord: 1.1ms)
+
+
+Started GET "/api/06331525768e6a95680c8bb0dcf55/bet/validate/uXAXMDuW/30000.0" for 127.0.0.1 at 2015-12-14 07:58:04 +0000
+Processing by AccountsController#api_validate_bet as 
+  Parameters: {"game_account_token"=>"uXAXMDuW", "transaction_amount"=>"30000"}
+  [1m[35mLog Load (0.9ms)[0m  SELECT "logs".* FROM "logs"  WHERE (game_account_token = 'uXAXMDuW' AND bet_validated IS NULL)
+  Rendered text template (0.0ms)
+Completed 200 OK in 3ms (Views: 0.6ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/api/06331525768e6a95680c8bb0dcf55/bet/validate/uXAXMDuW/30000.0" for 127.0.0.1 at 2015-12-14 08:00:04 +0000
+Processing by AccountsController#api_validate_bet as 
+  Parameters: {"game_account_token"=>"uXAXMDuW", "transaction_amount"=>"30000"}
+  [1m[36mLog Load (1.1ms)[0m  [1mSELECT "logs".* FROM "logs"  WHERE (game_account_token = 'uXAXMDuW' AND bet_validated IS NULL)[0m
+  Rendered text template (0.0ms)
+Completed 200 OK in 4ms (Views: 0.7ms | ActiveRecord: 1.1ms)
+
+
+Started GET "/api/06331525768e6a95680c8bb0dcf55/bet/validate/uXAXMDuW/30000.0" for 127.0.0.1 at 2015-12-14 08:02:04 +0000
+Processing by AccountsController#api_validate_bet as 
+  Parameters: {"game_account_token"=>"uXAXMDuW", "transaction_amount"=>"30000"}
+  [1m[35mLog Load (1.1ms)[0m  SELECT "logs".* FROM "logs"  WHERE (game_account_token = 'uXAXMDuW' AND bet_validated IS NULL)
+  Rendered text template (0.0ms)
+Completed 200 OK in 3ms (Views: 0.6ms | ActiveRecord: 1.1ms)
+
+
+Started GET "/api/06331525768e6a95680c8bb0dcf55/bet/validate/ApXTrliOp/1230.0" for 127.0.0.1 at 2015-12-14 08:03:44 +0000
+Processing by AccountsController#api_validate_bet as 
+  Parameters: {"game_account_token"=>"ApXTrliOp", "transaction_amount"=>"1230"}
+  [1m[36mLog Load (0.8ms)[0m  [1mSELECT "logs".* FROM "logs"  WHERE (game_account_token = 'ApXTrliOp' AND bet_validated IS NULL)[0m
+  Rendered text template (0.0ms)
+Completed 200 OK in 2ms (Views: 0.4ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/api/06331525768e6a95680c8bb0dcf55/bet/validate/uXAXMDuW/30000.0" for 127.0.0.1 at 2015-12-14 08:04:04 +0000
+Processing by AccountsController#api_validate_bet as 
+  Parameters: {"game_account_token"=>"uXAXMDuW", "transaction_amount"=>"30000"}
+  [1m[35mLog Load (1.2ms)[0m  SELECT "logs".* FROM "logs"  WHERE (game_account_token = 'uXAXMDuW' AND bet_validated IS NULL)
+  Rendered text template (0.0ms)
+Completed 200 OK in 3ms (Views: 0.3ms | ActiveRecord: 1.2ms)
+
+
+Started GET "/api/06331525768e6a95680c8bb0dcf55/bet/validate/uXAXMDuW/30000.0" for 127.0.0.1 at 2015-12-14 08:06:04 +0000
+Processing by AccountsController#api_validate_bet as 
+  Parameters: {"game_account_token"=>"uXAXMDuW", "transaction_amount"=>"30000"}
+  [1m[36mLog Load (1.3ms)[0m  [1mSELECT "logs".* FROM "logs"  WHERE (game_account_token = 'uXAXMDuW' AND bet_validated IS NULL)[0m
+  Rendered text template (0.0ms)
+Completed 200 OK in 4ms (Views: 0.7ms | ActiveRecord: 1.3ms)
+
+
+Started GET "/api/06331525768e6a95680c8bb0dcf55/bet/validate/uXAXMDuW/30000.0" for 127.0.0.1 at 2015-12-14 08:08:04 +0000
+Processing by AccountsController#api_validate_bet as 
+  Parameters: {"game_account_token"=>"uXAXMDuW", "transaction_amount"=>"30000"}
+  [1m[35mLog Load (1.3ms)[0m  SELECT "logs".* FROM "logs"  WHERE (game_account_token = 'uXAXMDuW' AND bet_validated IS NULL)
+  Rendered text template (0.0ms)
+Completed 200 OK in 3ms (Views: 0.5ms | ActiveRecord: 1.3ms)
+
+
+Started GET "/api/06331525768e6a95680c8bb0dcf55/bet/validate/uXAXMDuW/30000.0" for 127.0.0.1 at 2015-12-14 08:10:04 +0000
+Processing by AccountsController#api_validate_bet as 
+  Parameters: {"game_account_token"=>"uXAXMDuW", "transaction_amount"=>"30000"}
+  [1m[36mLog Load (0.8ms)[0m  [1mSELECT "logs".* FROM "logs"  WHERE (game_account_token = 'uXAXMDuW' AND bet_validated IS NULL)[0m
+  Rendered text template (0.0ms)
+Completed 200 OK in 2ms (Views: 0.3ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/api/06331525768e6a95680c8bb0dcf55/bet/validate/uXAXMDuW/30000.0" for 127.0.0.1 at 2015-12-14 08:12:04 +0000
+Processing by AccountsController#api_validate_bet as 
+  Parameters: {"game_account_token"=>"uXAXMDuW", "transaction_amount"=>"30000"}
+  [1m[35mLog Load (1.2ms)[0m  SELECT "logs".* FROM "logs"  WHERE (game_account_token = 'uXAXMDuW' AND bet_validated IS NULL)
+  Rendered text template (0.0ms)
+Completed 200 OK in 2ms (Views: 0.3ms | ActiveRecord: 1.2ms)
+
+
+Started GET "/api/06331525768e6a95680c8bb0dcf55/bet/validate/uXAXMDuW/30000.0" for 127.0.0.1 at 2015-12-14 08:14:04 +0000
+Processing by AccountsController#api_validate_bet as 
+  Parameters: {"game_account_token"=>"uXAXMDuW", "transaction_amount"=>"30000"}
+  [1m[36mLog Load (1.1ms)[0m  [1mSELECT "logs".* FROM "logs"  WHERE (game_account_token = 'uXAXMDuW' AND bet_validated IS NULL)[0m
+  Rendered text template (0.0ms)
+Completed 200 OK in 2ms (Views: 0.3ms | ActiveRecord: 1.1ms)
+
+
+Started GET "/api/06331525768e6a95680c8bb0dcf55/bet/validate/ApXTrliOp/1230.0" for 127.0.0.1 at 2015-12-14 08:15:06 +0000
+Processing by AccountsController#api_validate_bet as 
+  Parameters: {"game_account_token"=>"ApXTrliOp", "transaction_amount"=>"1230"}
+  [1m[35mLog Load (1.2ms)[0m  SELECT "logs".* FROM "logs"  WHERE (game_account_token = 'ApXTrliOp' AND bet_validated IS NULL)
+  Rendered text template (0.0ms)
+Completed 200 OK in 2ms (Views: 0.3ms | ActiveRecord: 1.2ms)
+
+
+Started GET "/api/06331525768e6a95680c8bb0dcf55/bet/validate/uXAXMDuW/30000.0" for 127.0.0.1 at 2015-12-14 08:16:04 +0000
+Processing by AccountsController#api_validate_bet as 
+  Parameters: {"game_account_token"=>"uXAXMDuW", "transaction_amount"=>"30000"}
+  [1m[36mLog Load (1.1ms)[0m  [1mSELECT "logs".* FROM "logs"  WHERE (game_account_token = 'uXAXMDuW' AND bet_validated IS NULL)[0m
+  Rendered text template (0.0ms)
+Completed 200 OK in 4ms (Views: 0.7ms | ActiveRecord: 1.1ms)
+
+
+Started GET "/api/06331525768e6a95680c8bb0dcf55/bet/validate/uXAXMDuW/30000.0" for 127.0.0.1 at 2015-12-14 08:18:04 +0000
+Processing by AccountsController#api_validate_bet as 
+  Parameters: {"game_account_token"=>"uXAXMDuW", "transaction_amount"=>"30000"}
+  [1m[35mLog Load (0.7ms)[0m  SELECT "logs".* FROM "logs"  WHERE (game_account_token = 'uXAXMDuW' AND bet_validated IS NULL)
+  Rendered text template (0.0ms)
+Completed 200 OK in 2ms (Views: 0.3ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/api/06331525768e6a95680c8bb0dcf55/bet/validate/uXAXMDuW/30000.0" for 127.0.0.1 at 2015-12-14 08:20:04 +0000
+Processing by AccountsController#api_validate_bet as 
+  Parameters: {"game_account_token"=>"uXAXMDuW", "transaction_amount"=>"30000"}
+  [1m[36mLog Load (1.2ms)[0m  [1mSELECT "logs".* FROM "logs"  WHERE (game_account_token = 'uXAXMDuW' AND bet_validated IS NULL)[0m
+  Rendered text template (0.0ms)
+Completed 200 OK in 3ms (Views: 0.4ms | ActiveRecord: 1.2ms)
+
+
+Started GET "/api/06331525768e6a95680c8bb0dcf55/bet/validate/uXAXMDuW/30000.0" for 127.0.0.1 at 2015-12-14 08:22:04 +0000
+Processing by AccountsController#api_validate_bet as 
+  Parameters: {"game_account_token"=>"uXAXMDuW", "transaction_amount"=>"30000"}
+  [1m[35mLog Load (0.9ms)[0m  SELECT "logs".* FROM "logs"  WHERE (game_account_token = 'uXAXMDuW' AND bet_validated IS NULL)
+  Rendered text template (0.0ms)
+Completed 200 OK in 3ms (Views: 0.6ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/api/06331525768e6a95680c8bb0dcf55/bet/validate/uXAXMDuW/30000.0" for 127.0.0.1 at 2015-12-14 08:24:04 +0000
+Processing by AccountsController#api_validate_bet as 
+  Parameters: {"game_account_token"=>"uXAXMDuW", "transaction_amount"=>"30000"}
+  [1m[36mLog Load (0.9ms)[0m  [1mSELECT "logs".* FROM "logs"  WHERE (game_account_token = 'uXAXMDuW' AND bet_validated IS NULL)[0m
+  Rendered text template (0.0ms)
+Completed 200 OK in 2ms (Views: 0.3ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/api/06331525768e6a95680c8bb0dcf55/bet/validate/uXAXMDuW/30000.0" for 127.0.0.1 at 2015-12-14 08:26:04 +0000
+Processing by AccountsController#api_validate_bet as 
+  Parameters: {"game_account_token"=>"uXAXMDuW", "transaction_amount"=>"30000"}
+  [1m[35mLog Load (1.0ms)[0m  SELECT "logs".* FROM "logs"  WHERE (game_account_token = 'uXAXMDuW' AND bet_validated IS NULL)
+  Rendered text template (0.0ms)
+Completed 200 OK in 3ms (Views: 0.7ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/api/06331525768e6a95680c8bb0dcf55/bet/validate/ApXTrliOp/1230.0" for 127.0.0.1 at 2015-12-14 08:27:54 +0000
+Processing by AccountsController#api_validate_bet as 
+  Parameters: {"game_account_token"=>"ApXTrliOp", "transaction_amount"=>"1230"}
+  [1m[36mLog Load (1.0ms)[0m  [1mSELECT "logs".* FROM "logs"  WHERE (game_account_token = 'ApXTrliOp' AND bet_validated IS NULL)[0m
+  Rendered text template (0.0ms)
+Completed 200 OK in 3ms (Views: 0.6ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/api/06331525768e6a95680c8bb0dcf55/bet/validate/uXAXMDuW/30000.0" for 127.0.0.1 at 2015-12-14 08:28:04 +0000
+Processing by AccountsController#api_validate_bet as 
+  Parameters: {"game_account_token"=>"uXAXMDuW", "transaction_amount"=>"30000"}
+  [1m[35mLog Load (1.1ms)[0m  SELECT "logs".* FROM "logs"  WHERE (game_account_token = 'uXAXMDuW' AND bet_validated IS NULL)
+  Rendered text template (0.0ms)
+Completed 200 OK in 2ms (Views: 0.4ms | ActiveRecord: 1.1ms)
+
+
+Started GET "/api/06331525768e6a95680c8bb0dcf55/bet/validate/uXAXMDuW/30000.0" for 127.0.0.1 at 2015-12-14 08:30:04 +0000
+Processing by AccountsController#api_validate_bet as 
+  Parameters: {"game_account_token"=>"uXAXMDuW", "transaction_amount"=>"30000"}
+  [1m[36mLog Load (1.1ms)[0m  [1mSELECT "logs".* FROM "logs"  WHERE (game_account_token = 'uXAXMDuW' AND bet_validated IS NULL)[0m
+  Rendered text template (0.0ms)
+Completed 200 OK in 2ms (Views: 0.3ms | ActiveRecord: 1.1ms)
+
+
+Started GET "/api/06331525768e6a95680c8bb0dcf55/bet/validate/uXAXMDuW/30000.0" for 127.0.0.1 at 2015-12-14 08:32:04 +0000
+Processing by AccountsController#api_validate_bet as 
+  Parameters: {"game_account_token"=>"uXAXMDuW", "transaction_amount"=>"30000"}
+  [1m[35mLog Load (1.2ms)[0m  SELECT "logs".* FROM "logs"  WHERE (game_account_token = 'uXAXMDuW' AND bet_validated IS NULL)
+  Rendered text template (0.0ms)
+Completed 200 OK in 2ms (Views: 0.3ms | ActiveRecord: 1.2ms)
+
+
+Started GET "/api/06331525768e6a95680c8bb0dcf55/bet/validate/uXAXMDuW/30000.0" for 127.0.0.1 at 2015-12-14 08:34:04 +0000
+Processing by AccountsController#api_validate_bet as 
+  Parameters: {"game_account_token"=>"uXAXMDuW", "transaction_amount"=>"30000"}
+  [1m[36mLog Load (1.1ms)[0m  [1mSELECT "logs".* FROM "logs"  WHERE (game_account_token = 'uXAXMDuW' AND bet_validated IS NULL)[0m
+  Rendered text template (0.0ms)
+Completed 200 OK in 2ms (Views: 0.4ms | ActiveRecord: 1.1ms)
+
+
+Started GET "/api/06331525768e6a95680c8bb0dcf55/bet/validate/ApXTrliOp/1460.0" for 127.0.0.1 at 2015-12-14 08:35:07 +0000
+Processing by AccountsController#api_validate_bet as 
+  Parameters: {"game_account_token"=>"ApXTrliOp", "transaction_amount"=>"1460"}
+  [1m[35mLog Load (1.2ms)[0m  SELECT "logs".* FROM "logs"  WHERE (game_account_token = 'ApXTrliOp' AND bet_validated IS NULL)
+  Rendered text template (0.0ms)
+Completed 200 OK in 2ms (Views: 0.3ms | ActiveRecord: 1.2ms)
+
+
+Started GET "/api/06331525768e6a95680c8bb0dcf55/bet/validate/uXAXMDuW/30000.0" for 127.0.0.1 at 2015-12-14 08:36:04 +0000
+Processing by AccountsController#api_validate_bet as 
+  Parameters: {"game_account_token"=>"uXAXMDuW", "transaction_amount"=>"30000"}
+  [1m[36mLog Load (1.0ms)[0m  [1mSELECT "logs".* FROM "logs"  WHERE (game_account_token = 'uXAXMDuW' AND bet_validated IS NULL)[0m
+  Rendered text template (0.0ms)
+Completed 200 OK in 2ms (Views: 0.3ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/api/06331525768e6a95680c8bb0dcf55/bet/validate/uXAXMDuW/30000.0" for 127.0.0.1 at 2015-12-14 08:38:04 +0000
+Processing by AccountsController#api_validate_bet as 
+  Parameters: {"game_account_token"=>"uXAXMDuW", "transaction_amount"=>"30000"}
+  [1m[35mLog Load (1.2ms)[0m  SELECT "logs".* FROM "logs"  WHERE (game_account_token = 'uXAXMDuW' AND bet_validated IS NULL)
+  Rendered text template (0.0ms)
+Completed 200 OK in 3ms (Views: 0.4ms | ActiveRecord: 1.2ms)
+
+
+Started GET "/api/06331525768e6a95680c8bb0dcf55/bet/validate/uXAXMDuW/30000.0" for 127.0.0.1 at 2015-12-14 08:40:04 +0000
+Processing by AccountsController#api_validate_bet as 
+  Parameters: {"game_account_token"=>"uXAXMDuW", "transaction_amount"=>"30000"}
+  [1m[36mLog Load (1.2ms)[0m  [1mSELECT "logs".* FROM "logs"  WHERE (game_account_token = 'uXAXMDuW' AND bet_validated IS NULL)[0m
+  Rendered text template (0.0ms)
+Completed 200 OK in 2ms (Views: 0.3ms | ActiveRecord: 1.2ms)
+
+
+Started GET "/api/06331525768e6a95680c8bb0dcf55/bet/validate/uXAXMDuW/30000.0" for 127.0.0.1 at 2015-12-14 08:42:04 +0000
+Processing by AccountsController#api_validate_bet as 
+  Parameters: {"game_account_token"=>"uXAXMDuW", "transaction_amount"=>"30000"}
+  [1m[35mLog Load (1.0ms)[0m  SELECT "logs".* FROM "logs"  WHERE (game_account_token = 'uXAXMDuW' AND bet_validated IS NULL)
+  Rendered text template (0.0ms)
+Completed 200 OK in 2ms (Views: 0.3ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/api/06331525768e6a95680c8bb0dcf55/bet/validate/uXAXMDuW/30000.0" for 127.0.0.1 at 2015-12-14 08:44:04 +0000
+Processing by AccountsController#api_validate_bet as 
+  Parameters: {"game_account_token"=>"uXAXMDuW", "transaction_amount"=>"30000"}
+  [1m[36mLog Load (1.2ms)[0m  [1mSELECT "logs".* FROM "logs"  WHERE (game_account_token = 'uXAXMDuW' AND bet_validated IS NULL)[0m
+  Rendered text template (0.0ms)
+Completed 200 OK in 3ms (Views: 0.6ms | ActiveRecord: 1.2ms)
+
+
+Started GET "/api/06331525768e6a95680c8bb0dcf55/bet/validate/uXAXMDuW/30000.0" for 127.0.0.1 at 2015-12-14 08:46:04 +0000
+Processing by AccountsController#api_validate_bet as 
+  Parameters: {"game_account_token"=>"uXAXMDuW", "transaction_amount"=>"30000"}
+  [1m[35mLog Load (0.7ms)[0m  SELECT "logs".* FROM "logs"  WHERE (game_account_token = 'uXAXMDuW' AND bet_validated IS NULL)
+  Rendered text template (0.0ms)
+Completed 200 OK in 3ms (Views: 0.5ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/api/06331525768e6a95680c8bb0dcf55/bet/validate/uXAXMDuW/30000.0" for 127.0.0.1 at 2015-12-14 08:48:04 +0000
+Processing by AccountsController#api_validate_bet as 
+  Parameters: {"game_account_token"=>"uXAXMDuW", "transaction_amount"=>"30000"}
+  [1m[36mLog Load (0.9ms)[0m  [1mSELECT "logs".* FROM "logs"  WHERE (game_account_token = 'uXAXMDuW' AND bet_validated IS NULL)[0m
+  Rendered text template (0.0ms)
+Completed 200 OK in 2ms (Views: 0.4ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/api/06331525768e6a95680c8bb0dcf55/bet/validate/uXAXMDuW/30000.0" for 127.0.0.1 at 2015-12-14 08:50:04 +0000
+Processing by AccountsController#api_validate_bet as 
+  Parameters: {"game_account_token"=>"uXAXMDuW", "transaction_amount"=>"30000"}
+  [1m[35mLog Load (1.2ms)[0m  SELECT "logs".* FROM "logs"  WHERE (game_account_token = 'uXAXMDuW' AND bet_validated IS NULL)
+  Rendered text template (0.0ms)
+Completed 200 OK in 3ms (Views: 0.4ms | ActiveRecord: 1.2ms)
+
+
+Started GET "/api/06331525768e6a95680c8bb0dcf55/bet/validate/uXAXMDuW/30000.0" for 127.0.0.1 at 2015-12-14 08:52:04 +0000
+Processing by AccountsController#api_validate_bet as 
+  Parameters: {"game_account_token"=>"uXAXMDuW", "transaction_amount"=>"30000"}
+  [1m[36mLog Load (1.3ms)[0m  [1mSELECT "logs".* FROM "logs"  WHERE (game_account_token = 'uXAXMDuW' AND bet_validated IS NULL)[0m
+  Rendered text template (0.0ms)
+Completed 200 OK in 4ms (Views: 0.7ms | ActiveRecord: 1.3ms)
+
+
+Started GET "/api/06331525768e6a95680c8bb0dcf55/bet/validate/uXAXMDuW/30000.0" for 127.0.0.1 at 2015-12-14 08:54:04 +0000
+Processing by AccountsController#api_validate_bet as 
+  Parameters: {"game_account_token"=>"uXAXMDuW", "transaction_amount"=>"30000"}
+  [1m[35mLog Load (1.2ms)[0m  SELECT "logs".* FROM "logs"  WHERE (game_account_token = 'uXAXMDuW' AND bet_validated IS NULL)
+  Rendered text template (0.0ms)
+Completed 200 OK in 4ms (Views: 0.8ms | ActiveRecord: 1.2ms)
+
+
+Started GET "/api/06331525768e6a95680c8bb0dcf55/bet/validate/uXAXMDuW/30000.0" for 127.0.0.1 at 2015-12-14 08:56:04 +0000
+Processing by AccountsController#api_validate_bet as 
+  Parameters: {"game_account_token"=>"uXAXMDuW", "transaction_amount"=>"30000"}
+  [1m[36mLog Load (1.2ms)[0m  [1mSELECT "logs".* FROM "logs"  WHERE (game_account_token = 'uXAXMDuW' AND bet_validated IS NULL)[0m
+  Rendered text template (0.0ms)
+Completed 200 OK in 3ms (Views: 0.6ms | ActiveRecord: 1.2ms)
+
+
+Started GET "/api/06331525768e6a95680c8bb0dcf55/bet/validate/uXAXMDuW/30000.0" for 127.0.0.1 at 2015-12-14 08:58:04 +0000
+Processing by AccountsController#api_validate_bet as 
+  Parameters: {"game_account_token"=>"uXAXMDuW", "transaction_amount"=>"30000"}
+  [1m[35mLog Load (1.0ms)[0m  SELECT "logs".* FROM "logs"  WHERE (game_account_token = 'uXAXMDuW' AND bet_validated IS NULL)
+  Rendered text template (0.0ms)
+Completed 200 OK in 3ms (Views: 0.3ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/api/06331525768e6a95680c8bb0dcf55/bet/validate/uXAXMDuW/30000.0" for 127.0.0.1 at 2015-12-14 09:00:04 +0000
+Processing by AccountsController#api_validate_bet as 
+  Parameters: {"game_account_token"=>"uXAXMDuW", "transaction_amount"=>"30000"}
+  [1m[36mLog Load (0.9ms)[0m  [1mSELECT "logs".* FROM "logs"  WHERE (game_account_token = 'uXAXMDuW' AND bet_validated IS NULL)[0m
+  Rendered text template (0.0ms)
+Completed 200 OK in 3ms (Views: 0.4ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/api/06331525768e6a95680c8bb0dcf55/bet/validate/uXAXMDuW/30000.0" for 127.0.0.1 at 2015-12-14 09:02:04 +0000
+Processing by AccountsController#api_validate_bet as 
+  Parameters: {"game_account_token"=>"uXAXMDuW", "transaction_amount"=>"30000"}
+  [1m[35mLog Load (1.2ms)[0m  SELECT "logs".* FROM "logs"  WHERE (game_account_token = 'uXAXMDuW' AND bet_validated IS NULL)
+  Rendered text template (0.0ms)
+Completed 200 OK in 3ms (Views: 0.3ms | ActiveRecord: 1.2ms)
+
+
+Started GET "/api/06331525768e6a95680c8bb0dcf55/bet/validate/uXAXMDuW/30000.0" for 127.0.0.1 at 2015-12-14 09:04:04 +0000
+Processing by AccountsController#api_validate_bet as 
+  Parameters: {"game_account_token"=>"uXAXMDuW", "transaction_amount"=>"30000"}
+  [1m[36mLog Load (1.2ms)[0m  [1mSELECT "logs".* FROM "logs"  WHERE (game_account_token = 'uXAXMDuW' AND bet_validated IS NULL)[0m
+  Rendered text template (0.0ms)
+Completed 200 OK in 2ms (Views: 0.3ms | ActiveRecord: 1.2ms)
+
+
+Started GET "/api/06331525768e6a95680c8bb0dcf55/bet/validate/uXAXMDuW/30000.0" for 127.0.0.1 at 2015-12-14 09:06:04 +0000
+Processing by AccountsController#api_validate_bet as 
+  Parameters: {"game_account_token"=>"uXAXMDuW", "transaction_amount"=>"30000"}
+  [1m[35mLog Load (1.2ms)[0m  SELECT "logs".* FROM "logs"  WHERE (game_account_token = 'uXAXMDuW' AND bet_validated IS NULL)
+  Rendered text template (0.0ms)
+Completed 200 OK in 2ms (Views: 0.3ms | ActiveRecord: 1.2ms)
+
+
+Started GET "/api/06331525768e6a95680c8bb0dcf55/bet/validate/uXAXMDuW/30000.0" for 127.0.0.1 at 2015-12-14 09:08:03 +0000
+Processing by AccountsController#api_validate_bet as 
+  Parameters: {"game_account_token"=>"uXAXMDuW", "transaction_amount"=>"30000"}
+  [1m[36mLog Load (1.0ms)[0m  [1mSELECT "logs".* FROM "logs"  WHERE (game_account_token = 'uXAXMDuW' AND bet_validated IS NULL)[0m
+  Rendered text template (0.0ms)
+Completed 200 OK in 2ms (Views: 0.3ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/api/06331525768e6a95680c8bb0dcf55/bet/validate/uXAXMDuW/30000.0" for 127.0.0.1 at 2015-12-14 09:10:04 +0000
+Processing by AccountsController#api_validate_bet as 
+  Parameters: {"game_account_token"=>"uXAXMDuW", "transaction_amount"=>"30000"}
+  [1m[35mLog Load (1.2ms)[0m  SELECT "logs".* FROM "logs"  WHERE (game_account_token = 'uXAXMDuW' AND bet_validated IS NULL)
+  Rendered text template (0.0ms)
+Completed 200 OK in 2ms (Views: 0.3ms | ActiveRecord: 1.2ms)
+
+
+Started GET "/api/06331525768e6a95680c8bb0dcf55/bet/validate/uXAXMDuW/30000.0" for 127.0.0.1 at 2015-12-14 09:12:04 +0000
+Processing by AccountsController#api_validate_bet as 
+  Parameters: {"game_account_token"=>"uXAXMDuW", "transaction_amount"=>"30000"}
+  [1m[36mLog Load (1.0ms)[0m  [1mSELECT "logs".* FROM "logs"  WHERE (game_account_token = 'uXAXMDuW' AND bet_validated IS NULL)[0m
+  Rendered text template (0.0ms)
+Completed 200 OK in 2ms (Views: 0.3ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/api/06331525768e6a95680c8bb0dcf55/bet/validate/uXAXMDuW/30000.0" for 127.0.0.1 at 2015-12-14 09:14:04 +0000
+Processing by AccountsController#api_validate_bet as 
+  Parameters: {"game_account_token"=>"uXAXMDuW", "transaction_amount"=>"30000"}
+  [1m[35mLog Load (0.9ms)[0m  SELECT "logs".* FROM "logs"  WHERE (game_account_token = 'uXAXMDuW' AND bet_validated IS NULL)
+  Rendered text template (0.0ms)
+Completed 200 OK in 3ms (Views: 0.6ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/api/06331525768e6a95680c8bb0dcf55/bet/validate/uXAXMDuW/30000.0" for 127.0.0.1 at 2015-12-14 09:16:04 +0000
+Processing by AccountsController#api_validate_bet as 
+  Parameters: {"game_account_token"=>"uXAXMDuW", "transaction_amount"=>"30000"}
+  [1m[36mLog Load (1.1ms)[0m  [1mSELECT "logs".* FROM "logs"  WHERE (game_account_token = 'uXAXMDuW' AND bet_validated IS NULL)[0m
+  Rendered text template (0.0ms)
+Completed 200 OK in 3ms (Views: 0.6ms | ActiveRecord: 1.1ms)
+
+
+Started GET "/api/06331525768e6a95680c8bb0dcf55/bet/validate/uXAXMDuW/30000.0" for 127.0.0.1 at 2015-12-14 09:18:04 +0000
+Processing by AccountsController#api_validate_bet as 
+  Parameters: {"game_account_token"=>"uXAXMDuW", "transaction_amount"=>"30000"}
+  [1m[35mLog Load (1.2ms)[0m  SELECT "logs".* FROM "logs"  WHERE (game_account_token = 'uXAXMDuW' AND bet_validated IS NULL)
+  Rendered text template (0.0ms)
+Completed 200 OK in 3ms (Views: 0.4ms | ActiveRecord: 1.2ms)
+
+
+Started GET "/logs/derniere_requete_vers_la_bombe" for 127.0.0.1 at 2015-12-14 09:19:17 +0000
+Processing by BombLogsController#last_request as HTML
+  [1m[36mBombLog Load (39.5ms)[0m  [1mSELECT  "bomb_logs".* FROM "bomb_logs"   ORDER BY "bomb_logs"."id" DESC LIMIT 1[0m
+  Rendered text template (0.1ms)
+Completed 200 OK in 129ms (Views: 1.3ms | ActiveRecord: 44.2ms)
+
+
+Started GET "/api/06331525768e6a95680c8bb0dcf55/bet/validate/uXAXMDuW/30000.0" for 127.0.0.1 at 2015-12-14 09:20:04 +0000
+Processing by AccountsController#api_validate_bet as 
+  Parameters: {"game_account_token"=>"uXAXMDuW", "transaction_amount"=>"30000"}
+  [1m[35mLog Load (0.7ms)[0m  SELECT "logs".* FROM "logs"  WHERE (game_account_token = 'uXAXMDuW' AND bet_validated IS NULL)
+  Rendered text template (0.0ms)
+Completed 200 OK in 2ms (Views: 0.5ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/api/06331525768e6a95680c8bb0dcf55/bet/validate/uXAXMDuW/30000.0" for 127.0.0.1 at 2015-12-14 09:22:04 +0000
+Processing by AccountsController#api_validate_bet as 
+  Parameters: {"game_account_token"=>"uXAXMDuW", "transaction_amount"=>"30000"}
+  [1m[36mLog Load (1.1ms)[0m  [1mSELECT "logs".* FROM "logs"  WHERE (game_account_token = 'uXAXMDuW' AND bet_validated IS NULL)[0m
+  Rendered text template (0.0ms)
+Completed 200 OK in 3ms (Views: 0.4ms | ActiveRecord: 1.1ms)
+
+
+Started GET "/api/06331525768e6a95680c8bb0dcf55/bet/validate/uXAXMDuW/30000.0" for 127.0.0.1 at 2015-12-14 09:24:04 +0000
+Processing by AccountsController#api_validate_bet as 
+  Parameters: {"game_account_token"=>"uXAXMDuW", "transaction_amount"=>"30000"}
+  [1m[35mLog Load (0.9ms)[0m  SELECT "logs".* FROM "logs"  WHERE (game_account_token = 'uXAXMDuW' AND bet_validated IS NULL)
+  Rendered text template (0.0ms)
+Completed 200 OK in 3ms (Views: 0.7ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/api/06331525768e6a95680c8bb0dcf55/bet/validate/uXAXMDuW/30000.0" for 127.0.0.1 at 2015-12-14 09:26:04 +0000
+Processing by AccountsController#api_validate_bet as 
+  Parameters: {"game_account_token"=>"uXAXMDuW", "transaction_amount"=>"30000"}
+  [1m[36mLog Load (1.0ms)[0m  [1mSELECT "logs".* FROM "logs"  WHERE (game_account_token = 'uXAXMDuW' AND bet_validated IS NULL)[0m
+  Rendered text template (0.0ms)
+Completed 200 OK in 2ms (Views: 0.4ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/api/06331525768e6a95680c8bb0dcf55/bet/validate/uXAXMDuW/30000.0" for 127.0.0.1 at 2015-12-14 09:28:04 +0000
+Processing by AccountsController#api_validate_bet as 
+  Parameters: {"game_account_token"=>"uXAXMDuW", "transaction_amount"=>"30000"}
+  [1m[35mLog Load (0.9ms)[0m  SELECT "logs".* FROM "logs"  WHERE (game_account_token = 'uXAXMDuW' AND bet_validated IS NULL)
+  Rendered text template (0.0ms)
+Completed 200 OK in 3ms (Views: 0.7ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/api/06331525768e6a95680c8bb0dcf55/bet/validate/uXAXMDuW/30000.0" for 127.0.0.1 at 2015-12-14 09:30:04 +0000
+Processing by AccountsController#api_validate_bet as 
+  Parameters: {"game_account_token"=>"uXAXMDuW", "transaction_amount"=>"30000"}
+  [1m[36mLog Load (1.3ms)[0m  [1mSELECT "logs".* FROM "logs"  WHERE (game_account_token = 'uXAXMDuW' AND bet_validated IS NULL)[0m
+  Rendered text template (0.0ms)
+Completed 200 OK in 4ms (Views: 0.6ms | ActiveRecord: 1.3ms)
+
+
+Started GET "/api/06331525768e6a95680c8bb0dcf55/bet/validate/uXAXMDuW/30000.0" for 127.0.0.1 at 2015-12-14 09:32:04 +0000
+Processing by AccountsController#api_validate_bet as 
+  Parameters: {"game_account_token"=>"uXAXMDuW", "transaction_amount"=>"30000"}
+  [1m[35mLog Load (1.2ms)[0m  SELECT "logs".* FROM "logs"  WHERE (game_account_token = 'uXAXMDuW' AND bet_validated IS NULL)
+  Rendered text template (0.0ms)
+Completed 200 OK in 3ms (Views: 0.7ms | ActiveRecord: 1.2ms)
+
+
+Started GET "/api/06331525768e6a95680c8bb0dcf55/bet/validate/uXAXMDuW/30000.0" for 127.0.0.1 at 2015-12-14 09:34:04 +0000
+Processing by AccountsController#api_validate_bet as 
+  Parameters: {"game_account_token"=>"uXAXMDuW", "transaction_amount"=>"30000"}
+  [1m[36mLog Load (1.1ms)[0m  [1mSELECT "logs".* FROM "logs"  WHERE (game_account_token = 'uXAXMDuW' AND bet_validated IS NULL)[0m
+  Rendered text template (0.0ms)
+Completed 200 OK in 2ms (Views: 0.3ms | ActiveRecord: 1.1ms)
+
+
+Started GET "/api/06331525768e6a95680c8bb0dcf55/bet/validate/uXAXMDuW/30000.0" for 127.0.0.1 at 2015-12-14 09:36:04 +0000
+Processing by AccountsController#api_validate_bet as 
+  Parameters: {"game_account_token"=>"uXAXMDuW", "transaction_amount"=>"30000"}
+  [1m[35mLog Load (1.1ms)[0m  SELECT "logs".* FROM "logs"  WHERE (game_account_token = 'uXAXMDuW' AND bet_validated IS NULL)
+  Rendered text template (0.0ms)
+Completed 200 OK in 3ms (Views: 0.6ms | ActiveRecord: 1.1ms)
+
+
+Started GET "/api/06331525768e6a95680c8bb0dcf55/bet/validate/uXAXMDuW/30000.0" for 127.0.0.1 at 2015-12-14 09:38:04 +0000
+Processing by AccountsController#api_validate_bet as 
+  Parameters: {"game_account_token"=>"uXAXMDuW", "transaction_amount"=>"30000"}
+  [1m[36mLog Load (1.0ms)[0m  [1mSELECT "logs".* FROM "logs"  WHERE (game_account_token = 'uXAXMDuW' AND bet_validated IS NULL)[0m
+  Rendered text template (0.0ms)
+Completed 200 OK in 2ms (Views: 0.4ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/api/06331525768e6a95680c8bb0dcf55/bet/validate/uXAXMDuW/30000.0" for 127.0.0.1 at 2015-12-14 09:40:04 +0000
+Processing by AccountsController#api_validate_bet as 
+  Parameters: {"game_account_token"=>"uXAXMDuW", "transaction_amount"=>"30000"}
+  [1m[35mLog Load (1.1ms)[0m  SELECT "logs".* FROM "logs"  WHERE (game_account_token = 'uXAXMDuW' AND bet_validated IS NULL)
+  Rendered text template (0.0ms)
+Completed 200 OK in 3ms (Views: 0.3ms | ActiveRecord: 1.1ms)
+
+
+Started GET "/api/06331525768e6a95680c8bb0dcf55/bet/validate/uXAXMDuW/30000.0" for 127.0.0.1 at 2015-12-14 09:42:04 +0000
+Processing by AccountsController#api_validate_bet as 
+  Parameters: {"game_account_token"=>"uXAXMDuW", "transaction_amount"=>"30000"}
+  [1m[36mLog Load (1.5ms)[0m  [1mSELECT "logs".* FROM "logs"  WHERE (game_account_token = 'uXAXMDuW' AND bet_validated IS NULL)[0m
+  Rendered text template (0.0ms)
+Completed 200 OK in 4ms (Views: 0.7ms | ActiveRecord: 1.5ms)
+
+
+Started GET "/api/06331525768e6a95680c8bb0dcf55/bet/validate/uXAXMDuW/30000.0" for 127.0.0.1 at 2015-12-14 09:44:04 +0000
+Processing by AccountsController#api_validate_bet as 
+  Parameters: {"game_account_token"=>"uXAXMDuW", "transaction_amount"=>"30000"}
+  [1m[35mLog Load (1.2ms)[0m  SELECT "logs".* FROM "logs"  WHERE (game_account_token = 'uXAXMDuW' AND bet_validated IS NULL)
+  Rendered text template (0.1ms)
+Completed 200 OK in 4ms (Views: 0.7ms | ActiveRecord: 1.2ms)
+
+
+Started GET "/api/06331525768e6a95680c8bb0dcf55/bet/validate/uXAXMDuW/30000.0" for 127.0.0.1 at 2015-12-14 09:46:04 +0000
+Processing by AccountsController#api_validate_bet as 
+  Parameters: {"game_account_token"=>"uXAXMDuW", "transaction_amount"=>"30000"}
+  [1m[36mLog Load (0.9ms)[0m  [1mSELECT "logs".* FROM "logs"  WHERE (game_account_token = 'uXAXMDuW' AND bet_validated IS NULL)[0m
+  Rendered text template (0.0ms)
+Completed 200 OK in 2ms (Views: 0.3ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/api/06331525768e6a95680c8bb0dcf55/bet/validate/uXAXMDuW/30000.0" for 127.0.0.1 at 2015-12-14 09:48:04 +0000
+Processing by AccountsController#api_validate_bet as 
+  Parameters: {"game_account_token"=>"uXAXMDuW", "transaction_amount"=>"30000"}
+  [1m[35mLog Load (1.4ms)[0m  SELECT "logs".* FROM "logs"  WHERE (game_account_token = 'uXAXMDuW' AND bet_validated IS NULL)
+  Rendered text template (0.0ms)
+Completed 200 OK in 7ms (Views: 0.4ms | ActiveRecord: 1.4ms)

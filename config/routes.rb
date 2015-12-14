@@ -39,7 +39,7 @@ Rails.application.routes.draw do
   get '/api/9b04e57f135f05bc05b5cf6d9b0d8/bet/get/:transaction_id/:game_account_token/:account_token/:password/:transaction_amount' => 'accounts#api_get_bet_without_cancellation', :constraints => {:transaction_amount => /(\d+(.\d+)?)/}
 
   # Validate a bet
-  get '/api/06331525768e6a95680c8bb0dcf55/bet/validate/:transaction_id' => 'accounts#api_validate_bet'
+  get '/api/06331525768e6a95680c8bb0dcf55/bet/validate/:game_account_token/:transaction_amount' => 'accounts#api_validate_bet'
 
   # Cancel a bet
   get '/api/35959d477b5ffc06dc673befbe5b4/bet/payback/:transaction_id' => 'accounts#api_payback_bet'
