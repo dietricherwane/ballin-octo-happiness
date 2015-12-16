@@ -59,8 +59,8 @@ class AccountsController < ApplicationController
       else
         if !account.blank? && is_a_number?(transaction_amount)
           transaction_id = Digest::SHA1.hexdigest([DateTime.now.iso8601(6), rand].join)
-          BombLog.create(sent_url: "#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/cash_in_operation_pos/TYHHKIRE/#{account_token}/#{merchant_pos.token}/#{transaction_amount.to_f - 100}/0/100/#{transaction_id}/null")
-          response = (RestClient.get "#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/cash_in_operation_pos/TYHHKIRE/#{account_token}/#{merchant_pos.token}/#{transaction_amount.to_f - 100}/0/100/#{transaction_id}/null" rescue "")
+          BombLog.create(sent_url: "#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/cash_in_operation_pos/TYHHKIRE/#{account_token}/#{merchant_pos.token}/#{(transaction_amount.to_i rescue 0) - 100}/0/100/#{transaction_id}/null")
+          response = (RestClient.get "#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/cash_in_operation_pos/TYHHKIRE/#{account_token}/#{merchant_pos.token}/#{(transaction_amount.to_i rescue 0) - 100}/0/100/#{transaction_id}/null" rescue "")
 
           response = (JSON.parse(response.to_s) rescue nil)
 
@@ -135,7 +135,7 @@ class AccountsController < ApplicationController
                 Log.create(transaction_type: "Solde du compte", account_number: account, error_log: response.to_s, status: false, remote_ip_address: remote_ip_address, agent: agent, sub_agent: sub_agent, transaction_id: transaction_id)
               end
             else
-              error_log = request.response.body
+              error_log = response.to_s
               Log.create(transaction_type: "Solde du compte", account_number: account, error_log: request.response.body, status: false, remote_ip_address: remote_ip_address, agent: agent, sub_agent: sub_agent, transaction_id: transaction_id)
             end
           end
