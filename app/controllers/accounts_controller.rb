@@ -171,25 +171,6 @@ class AccountsController < ApplicationController
       if account_token.blank?
         status = '|4041|'
       else
-<<<<<<< HEAD
-        if is_a_number?(transaction_amount) && is_a_number?(fee)
-          transaction_id = Digest::SHA1.hexdigest([DateTime.now.iso8601(6), rand].join)
-          BombLog.create(sent_url: "#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/cash_out_operation_pos/12345628/#{merchant_pos.token}/#{account_token}/#{transaction_amount}/#{fee}/0/#{transaction_id}/null")
-          request = Typhoeus::Request.new("#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/cash_out_operation_pos/12345628/#{merchant_pos.token}/#{account_token}/#{transaction_amount}/#{fee}/0/#{transaction_id}/null", followlocation: true, method: :get)
-
-          request.on_complete do |response|
-            if response.success?
-              #response = (request.response.body rescue nil)
-              response = (JSON.parse(response.body.to_s) rescue nil)
-              unless response.blank?
-                #if response != "error" && response != "error, montant insuffisant"
-                if response["otpPin"] != "null" && !response["otpPin"].blank?
-                  status = transaction_id + '|' + response["otpTransactionId"].to_s #+ '|' + response["otpPin"].to_s
-                  response_log = response.to_s
-                  transaction_status = true
-                  otp = response
-                  Log.create(transaction_type: "Débit du compte", account_number: account, checkout_amount: transaction_amount, response_log: response_log, status: true, remote_ip_address: remote_ip_address, otp: response["otpTransactionId"].to_s, pin: response["otpPin"].to_s, agent: agent, sub_agent: sub_agent, transaction_id: transaction_id, thumb: 100, fee: fee)
-=======
         merchant_pos = CertifiedAgent.where("certified_agent_id = '#{params[:agent]}' AND sub_certified_agent_id IS NULL").first rescue nil
         if merchant_pos.blank?
           status = "|4042|"
@@ -216,7 +197,6 @@ class AccountsController < ApplicationController
                     error_log = response.to_s
                     Log.create(transaction_type: "Débit du compte", account_number: account, checkout_amount: transaction_amount, error_log: error_log, status: false, remote_ip_address: remote_ip_address, agent: agent, sub_agent: sub_agent, transaction_id: transaction_id, thumb: 100, fee: fee)
                   end
->>>>>>> f14299a360a8fd08de217f6446c50c951b034b02
                 else
                   error_log = response.to_s
                   Log.create(transaction_type: "Débit du compte", account_number: account, checkout_amount: transaction_amount, error_log: error_log, status: false, remote_ip_address: remote_ip_address, agent: agent, sub_agent: sub_agent, transaction_id: transaction_id, thumb: 100, fee: fee)
