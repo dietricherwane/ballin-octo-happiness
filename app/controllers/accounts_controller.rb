@@ -165,7 +165,8 @@ class AccountsController < ApplicationController
 
     account_token = check_account_number(account)
     fee = cashout_fee(transaction_amount)
-    if fee > 1500000
+
+    if fee.blank?
       status = '|4043|'
     else
       if account_token.blank?
@@ -222,7 +223,7 @@ class AccountsController < ApplicationController
     if fee_type.blank?
       fee = "token invalide"
     else
-      fee = fee_type.fees.where("min_value <= #{ta.to_f} AND max_value >= #{ta.to_f}").first.fee_value.to_s
+      fee = fee_type.fees.where("min_value <= #{ta.to_f} AND max_value >= #{ta.to_f}").first.fee_value.to_s rescue nil
     end
 
     return fee

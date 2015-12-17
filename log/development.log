@@ -23994,3 +23994,149 @@ Processing by AccountsController#api_validate_bet as
   [1m[36mLog Load (1.6ms)[0m  [1mSELECT "logs".* FROM "logs"  WHERE (game_account_token = 'uXAXMDuW' AND bet_validated IS NULL)[0m
   Rendered text template (0.0ms)
 Completed 200 OK in 6ms (Views: 0.9ms | ActiveRecord: 1.6ms)
+
+
+Started GET "/api/06331525768e6a95680c8bb0dcf55/bet/validate/uXAXMDuW/30000.0" for 127.0.0.1 at 2015-12-17 19:02:04 +0000
+Processing by AccountsController#api_validate_bet as 
+  Parameters: {"game_account_token"=>"uXAXMDuW", "transaction_amount"=>"30000"}
+  [1m[35mLog Load (0.9ms)[0m  SELECT "logs".* FROM "logs"  WHERE (game_account_token = 'uXAXMDuW' AND bet_validated IS NULL)
+  Rendered text template (0.0ms)
+Completed 200 OK in 3ms (Views: 0.4ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/api/06331525768e6a95680c8bb0dcf55/bet/validate/uXAXMDuW/30000.0" for 127.0.0.1 at 2015-12-17 19:04:04 +0000
+Processing by AccountsController#api_validate_bet as 
+  Parameters: {"game_account_token"=>"uXAXMDuW", "transaction_amount"=>"30000"}
+  [1m[36mLog Load (1.2ms)[0m  [1mSELECT "logs".* FROM "logs"  WHERE (game_account_token = 'uXAXMDuW' AND bet_validated IS NULL)[0m
+  Rendered text template (0.0ms)
+Completed 200 OK in 3ms (Views: 0.4ms | ActiveRecord: 1.2ms)
+
+
+Started GET "/api/06331525768e6a95680c8bb0dcf55/bet/validate/uXAXMDuW/30000.0" for 127.0.0.1 at 2015-12-17 19:06:04 +0000
+Processing by AccountsController#api_validate_bet as 
+  Parameters: {"game_account_token"=>"uXAXMDuW", "transaction_amount"=>"30000"}
+  [1m[35mLog Load (1.1ms)[0m  SELECT "logs".* FROM "logs"  WHERE (game_account_token = 'uXAXMDuW' AND bet_validated IS NULL)
+  Rendered text template (0.0ms)
+Completed 200 OK in 3ms (Views: 0.5ms | ActiveRecord: 1.1ms)
+
+
+Started GET "/api/06331525768e6a95680c8bb0dcf55/bet/validate/uXAXMDuW/30000.0" for 127.0.0.1 at 2015-12-17 19:08:03 +0000
+Processing by AccountsController#api_validate_bet as 
+  Parameters: {"game_account_token"=>"uXAXMDuW", "transaction_amount"=>"30000"}
+  [1m[36mLog Load (1.2ms)[0m  [1mSELECT "logs".* FROM "logs"  WHERE (game_account_token = 'uXAXMDuW' AND bet_validated IS NULL)[0m
+  Rendered text template (0.0ms)
+Completed 200 OK in 3ms (Views: 0.4ms | ActiveRecord: 1.2ms)
+
+
+Started GET "/api/1314a3dfb72826290bbc99c71b510d2b/af478a2c47d8418a/902dccb56caa695a29/account/checkout/4400019/4000000" for 127.0.0.1 at 2015-12-17 19:08:34 +0000
+Processing by AccountsController#api_checkout_account as HTML
+  Parameters: {"agent"=>"af478a2c47d8418a", "sub_agent"=>"902dccb56caa695a29", "account"=>"4400019", "transaction_amount"=>"4000000"}
+  [1m[35mParameter Load (0.9ms)[0m  SELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1
+  [1m[36mFeeType Load (1.4ms)[0m  [1mSELECT  "fee_types".* FROM "fee_types"  WHERE "fee_types"."name" = 'Cash out' LIMIT 1[0m
+  [1m[35mFee Load (1.2ms)[0m  SELECT  "fees".* FROM "fees"  WHERE "fees"."fee_type_id" = $1 AND (min_value <= 4000000.0 AND max_value >= 4000000.0)  ORDER BY "fees"."id" ASC LIMIT 1  [["fee_type_id", 1]]
+Completed 500 Internal Server Error in 381ms
+
+NoMethodError (undefined method `fee_value' for nil:NilClass):
+  app/controllers/accounts_controller.rb:225:in `cashout_fee'
+  app/controllers/accounts_controller.rb:167:in `api_checkout_account'
+
+
+  Rendered /home/dietrich/.rvm/gems/ruby-2.0.0-p195@rails4.0.7/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/_source.erb (1.0ms)
+  Rendered /home/dietrich/.rvm/gems/ruby-2.0.0-p195@rails4.0.7/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.2ms)
+  Rendered /home/dietrich/.rvm/gems/ruby-2.0.0-p195@rails4.0.7/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.0ms)
+  Rendered /home/dietrich/.rvm/gems/ruby-2.0.0-p195@rails4.0.7/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (16.1ms)
+
+
+Started GET "/api/06331525768e6a95680c8bb0dcf55/bet/validate/uXAXMDuW/30000.0" for 127.0.0.1 at 2015-12-17 19:10:04 +0000
+Processing by AccountsController#api_validate_bet as 
+  Parameters: {"game_account_token"=>"uXAXMDuW", "transaction_amount"=>"30000"}
+  [1m[36mLog Load (1.3ms)[0m  [1mSELECT "logs".* FROM "logs"  WHERE (game_account_token = 'uXAXMDuW' AND bet_validated IS NULL)[0m
+  Rendered text template (0.0ms)
+Completed 200 OK in 4ms (Views: 0.7ms | ActiveRecord: 1.3ms)
+
+
+Started GET "/api/1314a3dfb72826290bbc99c71b510d2b/af478a2c47d8418a/902dccb56caa695a29/account/checkout/4400019/4000000" for 127.0.0.1 at 2015-12-17 19:11:17 +0000
+  [1m[35mParameter Load (0.8ms)[0m  SELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1
+Processing by AccountsController#api_checkout_account as HTML
+  Parameters: {"agent"=>"af478a2c47d8418a", "sub_agent"=>"902dccb56caa695a29", "account"=>"4400019", "transaction_amount"=>"4000000"}
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1[0m
+  [1m[35mFeeType Load (0.8ms)[0m  SELECT  "fee_types".* FROM "fee_types"  WHERE "fee_types"."name" = 'Cash out' LIMIT 1
+  [1m[36mFee Load (0.9ms)[0m  [1mSELECT  "fees".* FROM "fees"  WHERE "fees"."fee_type_id" = $1 AND (min_value <= 4000000.0 AND max_value >= 4000000.0)  ORDER BY "fees"."id" ASC LIMIT 1[0m  [["fee_type_id", 1]]
+Completed 500 Internal Server Error in 302ms
+
+NoMethodError (undefined method `fee_value' for nil:NilClass):
+  app/controllers/accounts_controller.rb:226:in `cashout_fee'
+  app/controllers/accounts_controller.rb:167:in `api_checkout_account'
+
+
+  Rendered /home/dietrich/.rvm/gems/ruby-2.0.0-p195@rails4.0.7/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/_source.erb (0.7ms)
+  Rendered /home/dietrich/.rvm/gems/ruby-2.0.0-p195@rails4.0.7/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.2ms)
+  Rendered /home/dietrich/.rvm/gems/ruby-2.0.0-p195@rails4.0.7/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.2ms)
+  Rendered /home/dietrich/.rvm/gems/ruby-2.0.0-p195@rails4.0.7/gems/actionpack-4.1.8/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (15.4ms)
+
+
+Started GET "/api/06331525768e6a95680c8bb0dcf55/bet/validate/uXAXMDuW/30000.0" for 127.0.0.1 at 2015-12-17 19:12:04 +0000
+Processing by AccountsController#api_validate_bet as 
+  Parameters: {"game_account_token"=>"uXAXMDuW", "transaction_amount"=>"30000"}
+  [1m[35mLog Load (1.3ms)[0m  SELECT "logs".* FROM "logs"  WHERE (game_account_token = 'uXAXMDuW' AND bet_validated IS NULL)
+  Rendered text template (0.0ms)
+Completed 200 OK in 6ms (Views: 1.2ms | ActiveRecord: 1.3ms)
+
+
+Started GET "/api/06331525768e6a95680c8bb0dcf55/bet/validate/uXAXMDuW/30000.0" for 127.0.0.1 at 2015-12-17 19:14:04 +0000
+  [1m[36mParameter Load (0.7ms)[0m  [1mSELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1[0m
+Processing by AccountsController#api_validate_bet as 
+  Parameters: {"game_account_token"=>"uXAXMDuW", "transaction_amount"=>"30000"}
+  [1m[35mLog Load (1.4ms)[0m  SELECT "logs".* FROM "logs"  WHERE (game_account_token = 'uXAXMDuW' AND bet_validated IS NULL)
+  Rendered text template (0.0ms)
+Completed 200 OK in 8ms (Views: 1.4ms | ActiveRecord: 1.4ms)
+
+
+Started GET "/api/06331525768e6a95680c8bb0dcf55/bet/validate/uXAXMDuW/30000.0" for 127.0.0.1 at 2015-12-17 19:16:04 +0000
+Processing by AccountsController#api_validate_bet as 
+  Parameters: {"game_account_token"=>"uXAXMDuW", "transaction_amount"=>"30000"}
+  [1m[36mLog Load (56.6ms)[0m  [1mSELECT "logs".* FROM "logs"  WHERE (game_account_token = 'uXAXMDuW' AND bet_validated IS NULL)[0m
+  Rendered text template (0.0ms)
+Completed 200 OK in 59ms (Views: 0.6ms | ActiveRecord: 56.6ms)
+
+
+Started GET "/api/06331525768e6a95680c8bb0dcf55/bet/validate/uXAXMDuW/30000.0" for 127.0.0.1 at 2015-12-17 19:18:04 +0000
+Processing by AccountsController#api_validate_bet as 
+  Parameters: {"game_account_token"=>"uXAXMDuW", "transaction_amount"=>"30000"}
+  [1m[35mLog Load (1.0ms)[0m  SELECT "logs".* FROM "logs"  WHERE (game_account_token = 'uXAXMDuW' AND bet_validated IS NULL)
+  Rendered text template (0.0ms)
+Completed 200 OK in 4ms (Views: 0.6ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/api/06331525768e6a95680c8bb0dcf55/bet/validate/uXAXMDuW/30000.0" for 127.0.0.1 at 2015-12-17 19:20:04 +0000
+Processing by AccountsController#api_validate_bet as 
+  Parameters: {"game_account_token"=>"uXAXMDuW", "transaction_amount"=>"30000"}
+  [1m[36mLog Load (1.2ms)[0m  [1mSELECT "logs".* FROM "logs"  WHERE (game_account_token = 'uXAXMDuW' AND bet_validated IS NULL)[0m
+  Rendered text template (0.0ms)
+Completed 200 OK in 2ms (Views: 0.3ms | ActiveRecord: 1.2ms)
+
+
+Started GET "/api/06331525768e6a95680c8bb0dcf55/bet/validate/uXAXMDuW/30000.0" for 127.0.0.1 at 2015-12-17 19:22:03 +0000
+Processing by AccountsController#api_validate_bet as 
+  Parameters: {"game_account_token"=>"uXAXMDuW", "transaction_amount"=>"30000"}
+  [1m[35mLog Load (1.0ms)[0m  SELECT "logs".* FROM "logs"  WHERE (game_account_token = 'uXAXMDuW' AND bet_validated IS NULL)
+  Rendered text template (0.0ms)
+Completed 200 OK in 3ms (Views: 0.5ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/api/06331525768e6a95680c8bb0dcf55/bet/validate/uXAXMDuW/30000.0" for 127.0.0.1 at 2015-12-17 19:24:04 +0000
+Processing by AccountsController#api_validate_bet as 
+  Parameters: {"game_account_token"=>"uXAXMDuW", "transaction_amount"=>"30000"}
+  [1m[36mLog Load (0.8ms)[0m  [1mSELECT "logs".* FROM "logs"  WHERE (game_account_token = 'uXAXMDuW' AND bet_validated IS NULL)[0m
+  Rendered text template (0.0ms)
+Completed 200 OK in 3ms (Views: 0.7ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/api/1314a3dfb72826290bbc99c71b510d2b/af478a2c47d8418a/902dccb56caa695a29/account/checkout/4400019/4000000" for 127.0.0.1 at 2015-12-17 19:25:34 +0000
+Processing by AccountsController#api_checkout_account as HTML
+  Parameters: {"agent"=>"af478a2c47d8418a", "sub_agent"=>"902dccb56caa695a29", "account"=>"4400019", "transaction_amount"=>"4000000"}
+  [1m[35mParameter Load (0.9ms)[0m  SELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1
+  [1m[36mFeeType Load (0.7ms)[0m  [1mSELECT  "fee_types".* FROM "fee_types"  WHERE "fee_types"."name" = 'Cash out' LIMIT 1[0m
+  [1m[35mFee Load (0.8ms)[0m  SELECT  "fees".* FROM "fees"  WHERE "fees"."fee_type_id" = $1 AND (min_value <= 4000000.0 AND max_value >= 4000000.0)  ORDER BY "fees"."id" ASC LIMIT 1  [["fee_type_id", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "parameters".* FROM "parameters"   ORDER BY "parameters"."id" ASC LIMIT 1[0m
+ETHON: Libcurl initialized
