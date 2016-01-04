@@ -9,10 +9,16 @@ Rails.application.routes.draw do
   #get '/api/1314a3dfb72826290bbc99c71b510d2b/account/create/:msisdn' => 'accounts#api_create'
   get '/api/1314a3dfb72826290bbc99c71b510d2b/:agent/:sub_agent/account/credit/:account/:transaction_amount' => 'accounts#api_credit_account', :constraints => {:transaction_amount => /(\d+(.\d+)?)/}
 
+  #SF
+  get '/api/b251d96b876012f67bb61b031b155754/:agent/:sub_agent/account/credit/:account/:transaction_amount' => 'accounts#api_credit_account', :constraints => {:transaction_amount => /(\d+(.\d+)?)/}
+
   # Wari
   get '/api/b1a02cc2e4a70953aa49d93/:agent/:wari_sub_agent_id/:phone_number/:status/account/credit/:account/:transaction_amount' => 'accounts#api_credit_account', :constraints => {:transaction_amount => /(\d+(.\d+)?)/}
 
   get '/api/1314a3dfb72826290bbc99c71b510d2b/:agent/:sub_agent/account/checkout/:account/:transaction_amount' => 'accounts#api_checkout_account', :constraints => {:transaction_amount => /(\d+(.\d+)?)/}
+
+  # SF
+  get '/api/3758261321435f9fc979790efd372bbe/:agent/:sub_agent/account/checkout/:account/:transaction_amount' => 'accounts#api_checkout_account', :constraints => {:transaction_amount => /(\d+(.\d+)?)/}
 
   # Wari
   get '/api/c99c71b510d2b/:agent/:wari_sub_agent_id/:phone_number/:status/account/checkout/:account/:transaction_amount' => 'accounts#api_checkout_account', :constraints => {:transaction_amount => /(\d+(.\d+)?)/}
@@ -31,6 +37,9 @@ Rails.application.routes.draw do
 
   # Ascent
   get '/api/1314a3dfb726290bbc99c71b510d2b/:agent/:sub_agent/account/ascent/:transaction_amount' => 'accounts#api_ascent', :constraints => {:transaction_amount => /(\d+(.\d+)?)/}
+
+  #SF
+  get '/api/c067d6dc6a578a789e8fdb4c4556c239/:agent/:sub_agent/account/ascent/:transaction_amount' => 'accounts#api_ascent', :constraints => {:transaction_amount => /(\d+(.\d+)?)/}
 
   # Place bet with cancellation
   get '/api/86d138798bc43ed59e5207c684564/bet/get/:transaction_id/:game_account_token/:account_token/:password/:transaction_amount' => 'accounts#api_get_bet', :constraints => {:transaction_amount => /(\d+(.\d+)?)/}
@@ -62,6 +71,10 @@ Rails.application.routes.draw do
   # Displaying logs
   get '/logs/derniere_requete_vers_la_bombe' => 'bomb_logs#last_request'
   get '/logs/derniere_reponse_de_la_bombe' => 'bomb_logs#last_return'
+
+  # Deposits
+  get "/api/8c240bd95c/fee/check/:amount" => 'accounts#deposit_fee'
+  post "/api/8c240bd95c/fee/check/:amount" => 'accounts#deposit_fee'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

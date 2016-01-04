@@ -827,4 +827,27 @@ class AccountsController < ApplicationController
       return false
     end
   end
+
+  def deposit_fee
+    @amount = params[:amount]
+
+    if amount.to_s.match(/\A[+-]?\d+?(\.\d+)?\Z/) == nil
+  	  @error_code = 5000
+  	  @error_description = "La valeur entrée n'est pas numérique."
+  	else
+  	  fee_type = FeeType.find_by_name("Deposit")
+
+  	  if fee_type.blank?
+  	    @error_code = 5001
+  	    @error_description = "Ce type de frais n'existe pas."
+  	  else
+  	    @fee = fee_type.fees.where("min_value <= #{@amount.to_f} AND max_value >= #{@amount.to_f}").first.fee_value.to_s rescue nil
+  	    if @fee.blank?
+  	      @error_code = 5002
+  	      @error_description = "Le montant entré n'est pas pris en charge."
+  	    end
+  	  end
+  	end
+  end
+
 end
