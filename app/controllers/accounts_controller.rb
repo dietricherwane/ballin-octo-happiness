@@ -831,7 +831,7 @@ class AccountsController < ApplicationController
   def deposit_fee
     @amount = params[:amount]
 
-    if amount.to_s.match(/\A[+-]?\d+?(\.\d+)?\Z/) == nil
+    if @amount.to_s.match(/\A[+-]?\d+?(\.\d+)?\Z/) == nil
   	  @error_code = 5000
   	  @error_description = "La valeur entrée n'est pas numérique."
   	else
