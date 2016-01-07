@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151211214003) do
+ActiveRecord::Schema.define(version: 20160106142907) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -43,6 +43,32 @@ ActiveRecord::Schema.define(version: 20151211214003) do
     t.string   "wari_sub_agent_id"
   end
 
+  create_table "deposit_logs", force: true do |t|
+    t.string   "game_token"
+    t.string   "pos_id"
+    t.text     "deposit_request"
+    t.text     "deposit_response"
+    t.string   "session_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "deposits", force: true do |t|
+    t.string   "game_token"
+    t.string   "pos_id"
+    t.string   "agent"
+    t.string   "sub_agent"
+    t.string   "paymoney_account"
+    t.text     "deposit_request"
+    t.text     "deposit_response"
+    t.string   "deposit_day"
+    t.float    "deposit_amount"
+    t.string   "transaction_id"
+    t.boolean  "deposit_made"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "fee_types", force: true do |t|
     t.string   "name"
     t.string   "token"
@@ -55,6 +81,13 @@ ActiveRecord::Schema.define(version: 20151211214003) do
     t.float    "min_value"
     t.float    "max_value"
     t.float    "fee_value"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "game_tokens", force: true do |t|
+    t.string   "description"
+    t.string   "code"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

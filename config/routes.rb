@@ -76,6 +76,18 @@ Rails.application.routes.draw do
   get "/api/8c240bd95c/fee/check/:amount" => 'accounts#deposit_fee'
   post "/api/8c240bd95c/fee/check/:amount" => 'accounts#deposit_fee'
 
+  # Pos sale balance
+  get "/api/a1b43b7d1b/pos_balance/get/:game_token/:pos_id/:session_id" => 'deposits#api_get_pos_sale_balance'
+  post "/api/a1b43b7d1b/pos_balance/get/:game_token/:pos_id/:session_id" => 'deposits#api_get_pos_sale_balance'
+
+  # Vendor balance
+  get "/api/4839f1cb04/deposit/on_hold/:game_token/:pos_id" => 'deposits#api_get_daily_balance'
+  post "/api/4839f1cb04/deposit/on_hold/:game_token/:pos_id" => 'deposits#api_get_daily_balance'
+
+  # Make a deposit
+  get "/api/3ae7e2f1b1/deposit/:game_token/:pos_id/:paymoney_account_number/:agent/:sub_agent/:date/:amount" => 'deposits#api_proceed_deposit'
+  post "/api/3ae7e2f1b1/deposit/:game_token/:pos_id/:paymoney_account_number/:agent/:sub_agent/:date/:amount" => 'deposits#api_proceed_deposit'
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
