@@ -7,7 +7,7 @@ else
     json.sales_amount @sales_amount
     json.number_of_cancels @number_of_cancels
     json.cancels_amount @cancels_amount
-    json.number_of_payments @number_of_payments
-    json.payments_amount @payments_amount
+    json.number_of_deposits @number_of_payments
+    json.deposits_amount @payments_amount
   end
 end
