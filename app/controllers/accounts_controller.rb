@@ -114,7 +114,7 @@ class AccountsController < ApplicationController
         if !account.blank? && is_a_number?(transaction_amount)
           transaction_id = Digest::SHA1.hexdigest([DateTime.now.iso8601(6), rand].join)
           set_pos_operation_token(agent, "cash_in")
-          @url = "#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/cash_in_operation_pos/TYHHKIRE/#{account_token}/#{@token}/#{(transaction_amount.to_i rescue 0) - 100}/0/100/#{transaction_id}/null"
+          @url = "#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/cash_in_operation_pos/#{@token}/#{account_token}/#{merchant_pos.token}/#{(transaction_amount.to_i rescue 0) - 100}/0/100/#{transaction_id}/null"
 
           if agent == "af478a2c47d8418a"
             wari_fee = cashin_wari((transaction_amount.to_i rescue 0) - 100)
@@ -253,7 +253,7 @@ class AccountsController < ApplicationController
             transaction_id = Digest::SHA1.hexdigest([DateTime.now.iso8601(6), rand].join)
             set_pos_operation_token(agent, "cash_out")
             BombLog.create(sent_url: "#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/cash_out_operation_pos/12345628/#{@token}/#{account_token}/#{transaction_amount}/#{fee}/0/#{transaction_id}/null")
-            request = Typhoeus::Request.new("#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/cash_out_operation_pos/12345628/#{@token}/#{account_token}/#{transaction_amount}/#{fee}/0/#{transaction_id}/null", followlocation: true, method: :get)
+            request = Typhoeus::Request.new("#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/cash_out_operation_pos/#{@token}/#{merchant_pos.token}/#{account_token}/#{transaction_amount}/#{fee}/0/#{transaction_id}/null", followlocation: true, method: :get)
 
             request.on_complete do |response|
               if response.success?
