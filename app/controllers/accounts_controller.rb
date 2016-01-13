@@ -88,7 +88,6 @@ class AccountsController < ApplicationController
         end
       end
     end
-    return
   end
 
   def api_credit_account
@@ -546,8 +545,10 @@ class AccountsController < ApplicationController
 
     if is_a_number?(transaction_amount)
       transaction_id = params[:transaction_id]#Digest::SHA1.hexdigest([DateTime.now.iso8601(6), rand].join)
-      BombLog.create(sent_url: "#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/prise_paris/96325874/#{game_account_token}/#{account_token}/#{transaction_amount}/0/0/#{transaction_id}/#{password}")
-      response = (RestClient.get "#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/prise_paris/96325874/#{game_account_token}/#{account_token}/#{transaction_amount}/0/0/#{transaction_id}/#{password}" rescue "")
+      set_game_operation_token(game_account_token)
+      @url = "#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/prise_paris/#{@token}/#{game_account_token}/#{account_token}/#{transaction_amount}/0/0/#{transaction_id}/#{password}"
+      BombLog.create(sent_url: @url)
+      response = (RestClient.get @url rescue "")
 
       unless response.blank?
         if response.to_s == "good"
@@ -569,6 +570,14 @@ class AccountsController < ApplicationController
     #Typhoeus.get("#{Parameter.first.hub_front_office_url}/api/367419f5968800cd/paymoney_wallet/store_log", params: { transaction_type: "Prise de paris", checkout_amount: transaction_amount, response_log: response_log, error_log: error_log, status: transaction_status, remote_ip_address: remote_ip_address, transaction_id: transaction_id, game_account_token: game_account_token, account_token: account_token })
 
     render text: status
+  end
+
+  def set_game_operation_token(game_account_token)
+    @token = ""
+    # PMU PLR
+    if game_account_token == "ApXTrliOp"
+      @token = "1c28caab"
+    end
   end
 
   def api_get_bet_without_cancellation
