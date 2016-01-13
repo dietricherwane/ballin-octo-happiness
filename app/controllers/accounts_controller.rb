@@ -578,6 +578,22 @@ class AccountsController < ApplicationController
     if game_account_token == "ApXTrliOp"
       @token = "1c28caab"
     end
+    # LOTO
+    if game_account_token == "AliXTtooY"
+      @token = "95c8b9cf"
+    end
+    # SPORT CASH
+    if game_account_token == "LhSpwtyN"
+      @token = "a46fb247"
+    end
+    # EPPL
+    if game_account_token == "uXAXMDuW"
+      @token = "c33fa532"
+    end
+    # CM3
+    if game_account_token == "McoaDIET"
+      @token = "f84d880a"
+    end
   end
 
   def api_get_bet_without_cancellation
