@@ -252,7 +252,7 @@ class AccountsController < ApplicationController
             transaction_id = Digest::SHA1.hexdigest([DateTime.now.iso8601(6), rand].join)
             set_pos_operation_token(agent, "cash_out")
 
-            @url = "#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/cash_out_operation_pos/12345628/#{@token}/#{account_token}/#{transaction_amount}/#{fee}/0/#{transaction_id}/null"
+            @url = "#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/cash_out_operation_pos/#{@token}/#{merchant_pos.token}/#{account_token}/#{transaction_amount}/#{fee}/0/#{transaction_id}/null"
 
             BombLog.create(sent_url: @url)
             request = Typhoeus::Request.new(@url, followlocation: true, method: :get)
@@ -335,11 +335,13 @@ class AccountsController < ApplicationController
       if !pin.blank? && !transaction.blank?
         account_token = check_account_number(transaction.account_number)
 
-        @url = "#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/otp_active_pos/TYHHKIRE/#{account_token}/#{agent_token}/#{transaction.credit_amount}/0/#{transaction.thumb}/#{transaction.transaction_id}/null/#{pin}/#{transaction.otp}"
+        set_pos_operation_token(agent, "cash_in")
+
+        @url = "#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/otp_active_pos/#{@token}/#{account_token}/#{agent_token}/#{transaction.credit_amount}/0/#{transaction.thumb}/#{transaction.transaction_id}/null/#{pin}/#{transaction.otp}"
 
         if agent == "af478a2c47d8418a"
           wari_fee = cashin_wari((transaction.credit_amount.to_i rescue 0) - 100)
-          @url = "#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/otp_active_pos_wari/TYHHKIRE/#{account_token}/#{agent_token}/alOWhAgC/#{transaction.credit_amount}/0/#{wari_fee}/#{transaction.thumb}/#{transaction.transaction_id}/null/#{pin}/#{transaction.otp}"
+          @url = "#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/otp_active_pos_wari/#{@token}/#{account_token}/#{agent_token}/alOWhAgC/#{transaction.credit_amount}/0/#{wari_fee}/#{transaction.thumb}/#{transaction.transaction_id}/null/#{pin}/#{transaction.otp}"
         end
 
         BombLog.create(sent_url: @url)
@@ -392,13 +394,15 @@ class AccountsController < ApplicationController
     else
       if !pin.blank? && !transaction.blank?
         account_token = check_account_number(transaction.account_number)
-        #@url = "#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/otp_active_pos/12345628/#{agent_token}/#{account_token}/#{transaction.checkout_amount}/#{transaction.fee}/0/#{transaction.transaction_id}/null/#{pin}/#{transaction.otp}"
+        set_pos_operation_token(agent, "cash_out")
+        @url = "#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/otp_active_pos/#{@token}/#{agent_token}/#{account_token}/#{transaction.checkout_amount}/#{transaction.fee}/0/#{transaction.transaction_id}/null/#{pin}/#{transaction.otp}"
+=begin
         if has_rib(agent)
           @url = "#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/otp_active_pos_avec_rib/12345628/#{agent_token}/#{account_token}/#{transaction.checkout_amount}/#{transaction.fee}/0/#{transaction.transaction_id}/null/#{pin}/#{transaction.otp}"
         else
           @url = "#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/otp_active_pos_sans_rib/12345628/#{agent_token}/#{account_token}/#{transaction.checkout_amount}/#{transaction.fee}/0/#{transaction.transaction_id}/null/#{pin}/#{transaction.otp}"
         end
-
+=end
         BombLog.create(sent_url: @url)
         request = Typhoeus::Request.new(@url, followlocation: true, method: :get)
 
