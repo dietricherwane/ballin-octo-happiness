@@ -510,8 +510,9 @@ class AccountsController < ApplicationController
 
     if is_a_number?(transaction_amount)
       transaction_id = Digest::SHA1.hexdigest([DateTime.now.iso8601(6), rand].join)
-      BombLog.create(sent_url: "#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/cashtransact/85245623/#{a_account_transfer}/#{b_account_transfer}/#{transaction_amount}/#{transaction_transfer_fee}/100/#{transaction_id}")
-      response = (RestClient.get "#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/cashtransact/85245623/#{a_account_transfer}/#{b_account_transfer}/#{transaction_amount}/#{transaction_transfer_fee}/100/#{transaction_id}" rescue "")
+      @url = "#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/cashtransact/85245623/#{a_account_transfer}/#{b_account_transfer}/#{transaction_amount}/#{transaction_transfer_fee}/100/#{transaction_id}"
+      BombLog.create(sent_url: @url)
+      response = (RestClient.get @url rescue "")
 
       unless response.blank?
         if response.to_s == "good"
