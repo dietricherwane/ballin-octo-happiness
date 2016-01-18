@@ -63,25 +63,25 @@ class AccountsController < ApplicationController
     end
     # Smart Fidelis
     if certified_agent_id == "99999999"
-      has_rib = (RestClient.get "http://pay-money.net/pos/has_rib/#{certified_agent_id}" rescue "")
-      has_rib == 0 ? has_rib = false : has_rib = true
+      @has_rib = (RestClient.get "http://pay-money.net/pos/has_rib/#{certified_agent_id}" rescue "")
+      @has_rib.to_s == "0" ? @has_rib = false : @has_rib = true
 
       if operation_type == "cash_in"
-        if has_rib
+        if @has_rib
           @token = "5a518a5a"
         else
           @token = "6d6dde69"
         end
       end
       if operation_type == "cash_out"
-        if has_rib
+        if @has_rib
           @token = "2968e7b4"
         else
           @token = "9a28edf0"
         end
       end
       if operation_type == "ascent"
-        if has_rib
+        if @has_rib
           @token = "13a3fd04"
         else
           @token = "e3875eab"
@@ -530,7 +530,7 @@ def api_sf_validate_credit
 
         @url = "#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/otp_active_pos/#{@token}/#{account_token}/#{agent_token}/#{transaction.credit_amount}/0/#{transaction.thumb}/#{transaction.transaction_id}/null/#{pin}/#{transaction.otp}"
 
-        if has_rib(agent)
+        if @has_rib
           @url = "#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/otp_active_pos_avec_rib/#{@token}/#{account_token}/#{agent_token}/#{transaction.credit_amount.to_i - 100}/#{transaction.fee.blank? ? 0 : transaction.fee}/100/#{transaction.transaction_id}/null/#{pin}/#{transaction.otp}"
          else
           @url = "#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/otp_active_pos_sans_rib/#{@token}/#{account_token}/#{agent_token}/#{transaction.credit_amount.to_i - 100}/#{transaction.fee.blank? ? 0 : transaction.fee}/100/#{transaction.transaction_id}/null/#{pin}/#{transaction.otp}"
@@ -656,7 +656,7 @@ def api_sf_validate_checkout
         set_pos_operation_token("99999999", "cash_out")
         @url = "#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/otp_active_pos/#{@token}/#{agent_token}/#{account_token}/#{transaction.checkout_amount}/#{transaction.fee}/0/#{transaction.transaction_id}/null/#{pin}/#{transaction.otp}"
 
-        if has_rib(agent)
+        if @has_rib
           @url = "#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/otp_active_pos_avec_rib/#{@token}/#{agent_token}/#{account_token}/#{transaction.checkout_amount}/#{transaction.fee}/0/#{transaction.transaction_id}/null/#{pin}/#{transaction.otp}"
         else
           @url = "#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/otp_active_pos_sans_rib/#{@token}/#{agent_token}/#{account_token}/#{transaction.checkout_amount}/#{transaction.fee}/0/#{transaction.transaction_id}/null/#{pin}/#{transaction.otp}"
@@ -768,7 +768,7 @@ def api_sf_validate_checkout
           transaction_id = Digest::SHA1.hexdigest([DateTime.now.iso8601(6), rand].join)
           set_pos_operation_token("99999999", "ascent")
 
-          if has_rib(agent)
+          if @has_rib
             @url = "#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/Remonte_avec_rib/#{@token}/#{merchant_pos.token}/#{private_pos.token}/#{transaction_amount}/0/0/#{transaction_id}/null"
           else
             @url = "#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/Remonte_sans_rib/#{@token}/#{merchant_pos.token}/#{private_pos.token}/#{transaction_amount}/0/0/#{transaction_id}/null"
