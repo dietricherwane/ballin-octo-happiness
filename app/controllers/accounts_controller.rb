@@ -337,11 +337,11 @@ class AccountsController < ApplicationController
 
         set_pos_operation_token(agent, "cash_in")
 
-        @url = "#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/otp_active_pos/#{@token}/#{account_token}/#{agent_token}/#{transaction.credit_amount}/0/#{transaction.thumb}/#{transaction.transaction_id}/null/#{pin}/#{transaction.otp}"
+        @url = "#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/otp_active_pos/#{@token}/#{account_token}/#{agent_token}/#{(transaction.credit_amount.to_i rescue 0) - 100}/0/#{transaction.thumb}/#{transaction.transaction_id}/null/#{pin}/#{transaction.otp}"
 
         if agent == "af478a2c47d8418a"
           wari_fee = cashin_wari((transaction.credit_amount.to_i rescue 0) - 100)
-          @url = "#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/otp_active_pos_wari/#{@token}/#{account_token}/#{agent_token}/alOWhAgC/#{transaction.credit_amount}/0/#{wari_fee}/#{transaction.thumb}/#{transaction.transaction_id}/null/#{pin}/#{transaction.otp}"
+          @url = "#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/otp_active_pos_wari/#{@token}/#{account_token}/#{agent_token}/alOWhAgC/#{(transaction.credit_amount.to_i rescue 0) - 100}/0/#{wari_fee}/#{transaction.thumb}/#{transaction.transaction_id}/null/#{pin}/#{transaction.otp}"
         end
 
         BombLog.create(sent_url: @url)
