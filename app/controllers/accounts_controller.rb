@@ -66,7 +66,7 @@ class AccountsController < ApplicationController
       @has_rib = (RestClient.get "http://pay-money.net/pos/has_rib/#{certified_agent_id}" rescue "")
       @has_rib.to_s == "0" ? @has_rib = false : @has_rib = true
 
-      print "*****************" + @has_rib + "*****************"
+      print "*****************" + @has_rib.to_s + "*****************"
 
       if operation_type == "cash_in"
         if @has_rib
@@ -526,7 +526,7 @@ def api_sf_validate_credit
 
         set_pos_operation_token("99999999", "cash_in")
 
-        print "*****************" + @has_rib + "*****************"
+        print "*****************" + @has_rib.to_s + "*****************"
 
         if @has_rib
           @url = "#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/otp_active_pos_avec_rib/#{@token}/#{account_token}/#{agent_token}/#{transaction.credit_amount.to_i - 100}/#{transaction.fee.blank? ? 0 : transaction.fee}/100/#{transaction.transaction_id}/null/#{pin}/#{transaction.otp}"
