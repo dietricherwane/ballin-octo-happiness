@@ -1297,6 +1297,7 @@ def api_sf_validate_checkout
     end
   end
 
+=begin
   def deposit_fee
     @amount = params[:amount]
 
@@ -1318,5 +1319,5 @@ def api_sf_validate_checkout
   	  end
   	end
   end
-
+=end
 end
