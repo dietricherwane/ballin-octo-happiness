@@ -714,10 +714,10 @@ def api_sf_validate_checkout
     if merchant_pos.blank?
       status = "|4042|"
     else
-      private_pos = CertifiedAgent.where("sub_certified_agent_id = '#{params[:sub_agent]}' ").first rescue "null"
-      if private_pos.blank?
-        status = "|4041|"
-      else
+      #private_pos = CertifiedAgent.where("sub_certified_agent_id = '#{params[:sub_agent]}' ").first rescue "null"
+      #if private_pos.blank?
+        #status = "|4041|"
+      #else
         if is_a_number?(transaction_amount)
           transaction_id = Digest::SHA1.hexdigest([DateTime.now.iso8601(6), rand].join)
           set_pos_operation_token(agent, "ascent")
@@ -748,7 +748,7 @@ def api_sf_validate_checkout
             Log.create(transaction_type: "Remontée de fonds", credit_amount: transaction_amount, error_log: error_log, status: false, remote_ip_address: remote_ip_address, agent: agent, sub_agent: sub_agent, transaction_id: transaction_id)
           end
         end
-      end
+      #end
     end
 
     Typhoeus.get("#{Parameter.first.hub_front_office_url}/api/367419f5968800cd/paymoney_wallet/store_log", params: { transaction_type: "Remontée de fonds", credit_amount: transaction_amount, response_log: response_log, error_log: error_log, status: transaction_status, remote_ip_address: remote_ip_address, agent: agent, sub_agent: sub_agent, transaction_id: transaction_id })
