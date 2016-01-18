@@ -765,7 +765,7 @@ def api_sf_validate_checkout
     if merchant_pos.blank?
       status = "|4042|"
     else
-      private_pos = CertifiedAgent.where("sub_certified_agent_id = '#{params[:sub_agent]}' ").first rescue nil
+      private_pos = CertifiedAgent.where("sub_certified_agent_id = '#{params[:sub_agent]}' ").first rescue "null"
       if private_pos.blank?
         status = "|4041|"
       else
