@@ -66,6 +66,8 @@ class AccountsController < ApplicationController
       @has_rib = (RestClient.get "http://pay-money.net/pos/has_rib/#{certified_agent_id}" rescue "")
       @has_rib.to_s == "0" ? @has_rib = false : @has_rib = true
 
+      print "*****************" + @has_rib + "*****************"
+
       if operation_type == "cash_in"
         if @has_rib
           @token = "5a518a5a"
@@ -173,12 +175,8 @@ def api_sf_credit_account
         if !account.blank? && is_a_number?(transaction_amount)
           transaction_id = Digest::SHA1.hexdigest([DateTime.now.iso8601(6), rand].join)
           set_pos_operation_token("99999999", "cash_in")
-          @url = "#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/cash_in_operation_pos/#{@token}/#{account_token}/#{merchant_pos.token}/#{(transaction_amount.to_i rescue 0) - 100}/0/100/#{transaction_id}/null"
 
-          if agent == "af478a2c47d8418a"
-            wari_fee = cashin_wari((transaction_amount.to_i rescue 0) - 100)
-            @url = "#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/cash_in_operation_pos/#{@token}/#{account_token}/#{merchant_pos.token}/alOWhAgC/#{(transaction_amount.to_i rescue 0) - 100}/0/#{wari_fee}/100/#{transaction_id}/null"
-          end
+          @url = "#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/cash_in_operation_pos/#{@token}/#{account_token}/#{merchant_pos.token}/#{(transaction_amount.to_i rescue 0) - 100}/0/100/#{transaction_id}/null"
 
           BombLog.create(sent_url: @url)
           response = (RestClient.get @url rescue "")
@@ -528,7 +526,7 @@ def api_sf_validate_credit
 
         set_pos_operation_token("99999999", "cash_in")
 
-        @url = "#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/otp_active_pos/#{@token}/#{account_token}/#{agent_token}/#{transaction.credit_amount}/0/#{transaction.thumb}/#{transaction.transaction_id}/null/#{pin}/#{transaction.otp}"
+        print "*****************" + @has_rib + "*****************"
 
         if @has_rib
           @url = "#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/otp_active_pos_avec_rib/#{@token}/#{account_token}/#{agent_token}/#{transaction.credit_amount.to_i - 100}/#{transaction.fee.blank? ? 0 : transaction.fee}/100/#{transaction.transaction_id}/null/#{pin}/#{transaction.otp}"
