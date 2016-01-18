@@ -722,11 +722,11 @@ def api_sf_validate_checkout
           transaction_id = Digest::SHA1.hexdigest([DateTime.now.iso8601(6), rand].join)
           set_pos_operation_token(agent, "ascent")
 
-          @url = "#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/Remonte/#{@token}/#{merchant_pos.token}/#{sub_agent}/#{transaction_amount}/0/0/#{transaction_id}/null"
+          @url = "#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/Remonte/#{@token}/#{merchant_pos.token}/kWiZyEAM/#{transaction_amount}/0/0/#{transaction_id}/null"
 
           if agent == "af478a2c47d8418a"
             wari_fee = cashin_wari((transaction_amount.to_i rescue 0) - 100)
-            @url = "#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/Remonte/#{@token}/#{merchant_pos.token}/#{sub_agent}/#{transaction_amount}/0/#{wari_fee}/#{transaction_id}/null"
+            @url = "#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/Remonte/#{@token}/#{merchant_pos.token}/kWiZyEAM/#{transaction_amount}/0/#{wari_fee}/#{transaction_id}/null"
           end
 
           BombLog.create(sent_url: @url)
@@ -782,9 +782,9 @@ def api_sf_validate_checkout
           set_pos_operation_token("99999999", "ascent")
 
           if @has_rib
-            @url = "#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/Remonte_avec_rib/#{@token}/#{merchant_pos.token}/#{sub_agent}/#{transaction_amount}/0/0/#{transaction_id}/null"
+            @url = "#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/Remonte_avec_rib/#{@token}/#{merchant_pos.token}/kWiZyEAM/#{transaction_amount}/0/0/#{transaction_id}/null"
           else
-            @url = "#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/Remonte_sans_rib/#{@token}/#{merchant_pos.token}/#{sub_agent}/#{transaction_amount}/0/0/#{transaction_id}/null"
+            @url = "#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/Remonte_sans_rib/#{@token}/#{merchant_pos.token}/kWiZyEAM/#{transaction_amount}/0/0/#{transaction_id}/null"
           end
 
           BombLog.create(sent_url: @url)
