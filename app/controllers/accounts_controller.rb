@@ -927,7 +927,7 @@ def api_sf_validate_checkout
     if is_a_number?(transaction_amount)
       transaction_id = params[:transaction_id]#Digest::SHA1.hexdigest([DateTime.now.iso8601(6), rand].join)
       set_game_operation_token(game_account_token)
-      @url = "#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/prise_paris_first/96325874/#{game_account_token}/#{account_token}/#{transaction_amount}/0/0/#{transaction_id}/#{password}"
+      @url = "#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/prise_paris_first/#{@token}/#{game_account_token}/#{account_token}/#{transaction_amount}/0/0/#{transaction_id}/#{password}"
       BombLog.create(sent_url: @url)
       response = (RestClient.get @url rescue "")
 
