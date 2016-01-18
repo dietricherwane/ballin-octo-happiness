@@ -62,7 +62,7 @@ class AccountsController < ApplicationController
       end
     end
     # Smart Fidelis
-    if certified_agent_id == "94ca63639"
+    if certified_agent_id == "99999999"
       has_rib = (RestClient.get "http://pay-money.net/pos/has_rib/#{certified_agent_id}" rescue "")
       has_rib == 0 ? has_rib = false : has_rib = true
 
@@ -113,6 +113,66 @@ class AccountsController < ApplicationController
         if !account.blank? && is_a_number?(transaction_amount)
           transaction_id = Digest::SHA1.hexdigest([DateTime.now.iso8601(6), rand].join)
           set_pos_operation_token(agent, "cash_in")
+          @url = "#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/cash_in_operation_pos/#{@token}/#{account_token}/#{merchant_pos.token}/#{(transaction_amount.to_i rescue 0) - 100}/0/100/#{transaction_id}/null"
+
+          if agent == "af478a2c47d8418a"
+            wari_fee = cashin_wari((transaction_amount.to_i rescue 0) - 100)
+            @url = "#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/cash_in_operation_pos/#{@token}/#{account_token}/#{merchant_pos.token}/alOWhAgC/#{(transaction_amount.to_i rescue 0) - 100}/0/#{wari_fee}/100/#{transaction_id}/null"
+          end
+
+          BombLog.create(sent_url: @url)
+          response = (RestClient.get @url rescue "")
+
+          response = (JSON.parse(response.to_s) rescue nil)
+
+          unless response.blank?
+            if response["otpPin"] != "null" && !response["otpPin"].blank?
+              status = transaction_id + '|' + response["otpTransactionId"].to_s + '|' + response["otpPin"].to_s
+              response_log = response.to_s
+              transaction_status = true
+              Log.create(transaction_type: "Crédit de compte", account_number: account, credit_amount: transaction_amount, response_log: response.to_s, status: true, remote_ip_address: remote_ip_address, agent: agent, sub_agent: sub_agent, transaction_id: transaction_id, thumb: 100, otp: response["otpTransactionId"].to_s, pin: response["otpPin"].to_s)
+            else
+              status = "|5001|"
+              error_log = response.to_s
+              Log.create(transaction_type: "Crédit de compte", account_number: account, credit_amount: transaction_amount, error_log: response.to_s, status: false, remote_ip_address: remote_ip_address, agent: agent, sub_agent: sub_agent, transaction_id: transaction_id, thumb: 100)
+            end
+          else
+            error_log = request.response.body
+            Log.create(transaction_type: "Crédit de compte", account_number: account, credit_amount: transaction_amount, error_log: request.response.body, status: false, remote_ip_address: remote_ip_address, agent: agent, sub_agent: sub_agent, transaction_id: transaction_id, thumb: 100)
+          end
+
+        end
+      end
+    end
+
+    Typhoeus.get("#{Parameter.first.hub_front_office_url}/api/367419f5968800cd/paymoney_wallet/store_log", params: { transaction_type: "Crédit de compte", account_number: account, credit_amount: transaction_amount, response_log: response_log, error_log: error_log, status: transaction_status, remote_ip_address: remote_ip_address, agent: agent, sub_agent: sub_agent, transaction_id: transaction_id, thumb: 100 })
+
+    render text: status
+  end
+
+def api_sf_credit_account
+    account = params[:account]
+    transaction_amount = params[:transaction_amount]
+    agent = params[:agent]
+    sub_agent = params[:sub_agent]
+    remote_ip_address = request.remote_ip
+    response_log = "none"
+    error_log = "none"
+    status = "|5000|"
+    transaction_status = false
+
+    account_token = check_account_number(account)
+
+    if account_token.blank?
+      status = "|4041|"
+    else
+      merchant_pos = CertifiedAgent.where("certified_agent_id = '#{agent}' AND sub_certified_agent_id IS NULL").first rescue nil
+      if merchant_pos.blank?
+        status = "|4042|"
+      else
+        if !account.blank? && is_a_number?(transaction_amount)
+          transaction_id = Digest::SHA1.hexdigest([DateTime.now.iso8601(6), rand].join)
+          set_pos_operation_token("99999999", "cash_in")
           @url = "#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/cash_in_operation_pos/#{@token}/#{account_token}/#{merchant_pos.token}/#{(transaction_amount.to_i rescue 0) - 100}/0/100/#{transaction_id}/null"
 
           if agent == "af478a2c47d8418a"
@@ -292,6 +352,77 @@ class AccountsController < ApplicationController
     render text: status
   end
 
+def api_sf_checkout_account
+    account = params[:account]
+    agent = params[:agent]
+    sub_agent = params[:sub_agent]
+    transaction_amount = params[:transaction_amount]
+    fee = params[:fee]
+    remote_ip_address = request.remote_ip
+    status = "|5000|"
+    response_log = "none"
+    error_log = "none"
+    transaction_status = false
+    otp = ""
+
+    account_token = check_account_number(account)
+    fee = cashout_fee(transaction_amount)
+
+    if fee.blank?
+      status = '|4043|'
+    else
+      if account_token.blank?
+        status = '|4041|'
+      else
+        merchant_pos = CertifiedAgent.where("certified_agent_id = '#{params[:agent]}' AND sub_certified_agent_id IS NULL").first rescue nil
+        if merchant_pos.blank?
+          status = "|4042|"
+        else
+          if is_a_number?(transaction_amount) && is_a_number?(fee)
+            transaction_id = Digest::SHA1.hexdigest([DateTime.now.iso8601(6), rand].join)
+            set_pos_operation_token("99999999", "cash_out")
+
+            @url = "#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/cash_out_operation_pos/#{@token}/#{merchant_pos.token}/#{account_token}/#{transaction_amount}/#{fee}/0/#{transaction_id}/null"
+
+            BombLog.create(sent_url: @url)
+            request = Typhoeus::Request.new(@url, followlocation: true, method: :get)
+
+            request.on_complete do |response|
+              if response.success?
+                #response = (request.response.body rescue nil)
+                response = (JSON.parse(response.body.to_s) rescue nil)
+                unless response.blank?
+                  #if response != "error" && response != "error, montant insuffisant"
+                  if response["otpPin"] != "null" && !response["otpPin"].blank?
+                    status = transaction_id + '|' + response["otpTransactionId"].to_s + '|' + response["otpPin"].to_s
+                    response_log = response.to_s
+                    transaction_status = true
+                    otp = response
+                    Log.create(transaction_type: "Débit du compte", account_number: account, checkout_amount: transaction_amount, response_log: response_log, status: true, remote_ip_address: remote_ip_address, otp: response["otpTransactionId"].to_s, pin: response["otpPin"].to_s, agent: agent, sub_agent: sub_agent, transaction_id: transaction_id, thumb: 0, fee: fee)
+                  else
+                    status = "|5001|"
+                    error_log = response.to_s
+                    Log.create(transaction_type: "Débit du compte", account_number: account, checkout_amount: transaction_amount, error_log: error_log, status: false, remote_ip_address: remote_ip_address, agent: agent, sub_agent: sub_agent, transaction_id: transaction_id, thumb: 0, fee: fee)
+                  end
+                else
+                  error_log = response.to_s
+                  Log.create(transaction_type: "Débit du compte", account_number: account, checkout_amount: transaction_amount, error_log: error_log, status: false, remote_ip_address: remote_ip_address, agent: agent, sub_agent: sub_agent, transaction_id: transaction_id, thumb: 0, fee: fee)
+                end
+              end
+            end
+
+            request.run
+          end
+        end
+      end
+    end
+
+    Typhoeus.get("#{Parameter.first.hub_front_office_url}/api/367419f5968800cd/paymoney_wallet/store_log", params: { transaction_type: "Débit du compte", account_number: account, checkout_amount: transaction_amount, response_log: response_log, error_log: error_log, status: transaction_status, remote_ip_address: remote_ip_address, agent: agent, sub_agent: sub_agent, transaction_id: transaction_id, thumb: 0, fee: fee, otp: otp })
+
+    render text: status
+  end
+
+
   def cashout_fee(ta)
     fee = ""
     fee_type = FeeType.find_by_name("Cash out")
@@ -337,11 +468,18 @@ class AccountsController < ApplicationController
 
         set_pos_operation_token(agent, "cash_in")
 
+<<<<<<< HEAD
         @url = "#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/otp_active_pos/#{@token}/#{account_token}/#{agent_token}/#{(transaction.credit_amount.to_i rescue 0) - 100}/0/#{transaction.thumb}/#{transaction.transaction_id}/null/#{pin}/#{transaction.otp}"
 
         if agent == "af478a2c47d8418a"
           wari_fee = cashin_wari((transaction.credit_amount.to_i rescue 0) - 100)
           @url = "#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/otp_active_pos_wari/#{@token}/#{account_token}/#{agent_token}/alOWhAgC/#{(transaction.credit_amount.to_i rescue 0) - 100}/0/#{wari_fee}/#{transaction.thumb}/#{transaction.transaction_id}/null/#{pin}/#{transaction.otp}"
+=======
+        @url = "#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/otp_active_pos/#{@token}/#{account_token}/#{agent_token}/#{(transaction.credit_amount.to_i rescue 0) - 100}/0/100/#{transaction.transaction_id}/null/#{pin}/#{transaction.otp}"
+
+        if agent == "af478a2c47d8418a"
+          wari_fee = cashin_wari((transaction.credit_amount.to_i rescue 0) - 100)
+          @url = "#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/otp_active_pos_wari/#{@token}/#{account_token}/#{agent_token}/alOWhAgC/#{(transaction.credit_amount.to_i rescue 0) - 100}/0/#{wari_fee}/100/#{transaction.transaction_id}/null/#{pin}/#{transaction.otp}"
         end
 
         BombLog.create(sent_url: @url)
@@ -375,6 +513,69 @@ class AccountsController < ApplicationController
 
     render text: status
   end
+
+def api_sf_validate_credit
+    pin = params[:pin]
+    transaction_id = params[:transaction_id]
+    agent = params[:agent]
+    sub_agent = params[:sub_agent]
+    remote_ip_address = request.remote_ip
+    status = "|5000|"
+    transaction = Log.find_by_otp(transaction_id)
+    agent_token = CertifiedAgent.find_by_certified_agent_id(agent).token
+    response_log = ""
+    error_log = ""
+    transaction_status = false
+
+    if agent_token.blank?
+      status = "|4042|"
+    else
+      if !pin.blank? && !transaction.blank?
+        account_token = check_account_number(transaction.account_number)
+
+        set_pos_operation_token("99999999", "cash_in")
+
+        @url = "#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/otp_active_pos/#{@token}/#{account_token}/#{agent_token}/#{transaction.credit_amount}/0/#{transaction.thumb}/#{transaction.transaction_id}/null/#{pin}/#{transaction.otp}"
+
+        if has_rib(agent)
+          @url = "#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/otp_active_pos_avec_rib/#{@token}/#{account_token}/#{agent_token}/#{transaction.credit_amount.to_i - 100}/#{transaction.fee.blank? ? 0 : transaction.fee}/100/#{transaction.transaction_id}/null/#{pin}/#{transaction.otp}"
+         else
+          @url = "#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/otp_active_pos_sans_rib/#{@token}/#{account_token}/#{agent_token}/#{transaction.credit_amount.to_i - 100}/#{transaction.fee.blank? ? 0 : transaction.fee}/100/#{transaction.transaction_id}/null/#{pin}/#{transaction.otp}"
+>>>>>>> 672f46859f478c562094a95ab5f246d59dee89a6
+        end
+
+        BombLog.create(sent_url: @url)
+        request = Typhoeus::Request.new(@url, followlocation: true, method: :get)
+
+        request.on_complete do |response|
+          if response.success?
+            response = (JSON.parse(request.response.body) rescue nil)
+            unless response.blank?
+              if response["otpStatus"].to_s == "true"
+                response_log = response.to_s
+                status = Digest::SHA1.hexdigest([DateTime.now.iso8601(6), rand].join)
+                transaction_status = true
+                Log.create(transaction_type: "Validation de crédit", otp: transaction_id, pin: pin, response_log: response_log, status: true, remote_ip_address: remote_ip_address, agent: agent, sub_agent: sub_agent)
+              else
+                status = "|5001|"
+                error_log = response.to_s
+                Log.create(transaction_type: "Validation de crédit", error_log: error_log, status: false, remote_ip_address: remote_ip_address, agent: agent, sub_agent: sub_agent)
+              end
+            else
+              error_log = response.to_s
+              Log.create(transaction_type: "Validation de crédit", error_log: error_log, status: false, remote_ip_address: remote_ip_address, agent: agent, sub_agent: sub_agent)
+            end
+          end
+        end
+
+        request.run
+      end
+       Typhoeus.get("#{Parameter.first.hub_front_office_url}/api/367419f5968800cd/paymoney_wallet/store_log", params: { transaction_type: "Validation de crédit", account_number: (transaction.account_number rescue nil), credit_amount: (transaction.credit_amount rescue nil), response_log: response_log, error_log: error_log, status: transaction_status, remote_ip_address: remote_ip_address, agent: agent, sub_agent: sub_agent, transaction_id: (transaction.transaction_id rescue nil), otp: (transaction.otp rescue nil), pin: pin })
+    end
+
+    render text: status
+  end
+
 
   def api_validate_checkout
     pin = params[:pin]
@@ -442,6 +643,66 @@ class AccountsController < ApplicationController
     return status
   end
 
+def api_sf_validate_checkout
+    pin = params[:pin]
+    transaction_id = params[:transaction_id]
+    agent = params[:agent]
+    sub_agent = params[:sub_agent]
+    remote_ip_address = request.remote_ip
+    status = "|5000|"
+    transaction = Log.find_by_otp(transaction_id)
+    agent_token = CertifiedAgent.find_by_certified_agent_id(agent).token
+    response_log = ""
+    error_log = ""
+    transaction_status = false
+
+    if agent_token.blank?
+      status = "|4042|"
+    else
+      if !pin.blank? && !transaction.blank?
+        account_token = check_account_number(transaction.account_number)
+        set_pos_operation_token("99999999", "cash_out")
+        @url = "#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/otp_active_pos/#{@token}/#{agent_token}/#{account_token}/#{transaction.checkout_amount}/#{transaction.fee}/0/#{transaction.transaction_id}/null/#{pin}/#{transaction.otp}"
+
+        if has_rib(agent)
+          @url = "#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/otp_active_pos_avec_rib/#{@token}/#{agent_token}/#{account_token}/#{transaction.checkout_amount}/#{transaction.fee}/0/#{transaction.transaction_id}/null/#{pin}/#{transaction.otp}"
+        else
+          @url = "#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/otp_active_pos_sans_rib/#{@token}/#{agent_token}/#{account_token}/#{transaction.checkout_amount}/#{transaction.fee}/0/#{transaction.transaction_id}/null/#{pin}/#{transaction.otp}"
+        end
+
+        BombLog.create(sent_url: @url)
+        request = Typhoeus::Request.new(@url, followlocation: true, method: :get)
+
+        request.on_complete do |response|
+          if response.success?
+            response = (JSON.parse(request.response.body) rescue nil)
+            unless response.blank?
+              if response["otpStatus"].to_s == "true"
+                response_log = response.to_s
+                status = Digest::SHA1.hexdigest([DateTime.now.iso8601(6), rand].join)
+                transaction_status = true
+                Log.create(transaction_type: "Validation de paiement", otp: transaction_id, pin: pin, response_log: response_log, status: true, remote_ip_address: remote_ip_address, agent: agent, sub_agent: sub_agent)
+              else
+                status = "|5001|"
+                error_log = response.to_s
+                Log.create(transaction_type: "Validation de paiement", error_log: error_log, status: false, remote_ip_address: remote_ip_address, agent: agent, sub_agent: sub_agent)
+              end
+            else
+              error_log = response.to_s
+              Log.create(transaction_type: "Validation de paiement", error_log: error_log, status: false, remote_ip_address: remote_ip_address, agent: agent, sub_agent: sub_agent)
+            end
+          end
+        end
+
+        request.run
+      end
+       Typhoeus.get("#{Parameter.first.hub_front_office_url}/api/367419f5968800cd/paymoney_wallet/store_log", params: { transaction_type: "Validation de débit", account_number: (transaction.account_number rescue nil), checkout_amount: (transaction.checkout_amount rescue nil), response_log: response_log, error_log: error_log, status: transaction_status, remote_ip_address: remote_ip_address, agent: agent, sub_agent: sub_agent, transaction_id: (transaction.transaction_id rescue nil), otp: (transaction.otp rescue nil), pin: pin })
+    end
+
+    render text: status
+  end
+
+
   def api_ascent
     transaction_amount = params[:transaction_amount]
     agent = params[:agent]
@@ -465,9 +726,9 @@ class AccountsController < ApplicationController
           set_pos_operation_token(agent, "ascent")
 
           if has_rib(agent)
-            @url = "#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/Remonte_avec_rib/78945612/#{@token}/#{private_pos.token}/#{transaction_amount}/0/0/#{transaction_id}/null"
+            @url = "#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/Remonte_avec_rib/#{@token}/#{merchant_pos.token}/#{private_pos.token}/#{transaction_amount}/0/0/#{transaction_id}/null"
           else
-            @url = "#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/Remonte_sans_rib/78945612/#{@token}/#{private_pos.token}/#{transaction_amount}/0/0/#{transaction_id}/null"
+            @url = "#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/Remonte_sans_rib/#{@token}/#{merchant_pos.token}/#{private_pos.token}/#{transaction_amount}/0/0/#{transaction_id}/null"
           end
 
           BombLog.create(sent_url: @url)
