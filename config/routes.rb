@@ -45,7 +45,7 @@ Rails.application.routes.draw do
   get '/api/1314a3dfb726290bbc99c71b510d2b/:agent/:sub_agent/account/ascent/:transaction_amount' => 'accounts#api_ascent', :constraints => {:transaction_amount => /(\d+(.\d+)?)/}
 
   #SF
-  get '/api/c067d6dc6a578a789e8fdb4c4556c239/:agent/:sub_agent/account/ascent/:transaction_amount' => 'accounts#api_ascent', :constraints => {:transaction_amount => /(\d+(.\d+)?)/}
+  get '/api/c067d6dc6a578a789e8fdb4c4556c239/:agent/:sub_agent/account/ascent/:transaction_amount' => 'accounts#api_sf_ascent', :constraints => {:transaction_amount => /(\d+(.\d+)?)/}
 
   # Place bet with cancellation
   get '/api/86d138798bc43ed59e5207c684564/bet/get/:transaction_id/:game_account_token/:account_token/:password/:transaction_amount' => 'accounts#api_get_bet', :constraints => {:transaction_amount => /(\d+(.\d+)?)/}
