@@ -724,6 +724,11 @@ def api_sf_validate_checkout
 
           @url = "#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/Remonte/#{@token}/#{merchant_pos.token}/#{private_pos.token}/#{transaction_amount}/0/0/#{transaction_id}/null"
 
+          if agent == "af478a2c47d8418a"
+            wari_fee = cashin_wari((transaction_amount.to_i rescue 0) - 100)
+            @url = "#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/Remonte/#{@token}/#{merchant_pos.token}/#{private_pos.token}/#{transaction_amount}/0/#{wari_fee}/#{transaction_id}/null"
+          end
+
           BombLog.create(sent_url: @url)
           response = (RestClient.get @url rescue "")
 
