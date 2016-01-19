@@ -180,7 +180,37 @@ class DepositsController < ApplicationController
     @token = params[:game_token]
     @pos_id = params[:pos_id]
     @agent = params[:agent]
-    @agent = params[:sub_agent]
+    @sub_agent = params[:sub_agent]
+    @paymoney_account_number = params[:paymoney_account_number]
+    @transaction_amount = params[:amount]
+    @date = params[:date]
+    @error_code = ''
+    @error_description = ''
+
+    if game_token_exists
+      if @game_token.code == 'ff9b6970d9'
+        cm3_proceed_deposit
+      end
+      if @game_token.code == '7284cc39bb'
+        ail_pmu_proceed_deposit
+      end
+      if @game_token.code == 'b1b1cf1c75'
+        ail_loto_proceed_deposit
+      end
+      if @game_token.code == '04f50a4961'
+        spc_proceed_deposit
+      end
+    else
+      @error_code = '4000'
+      @error_description = "Ce jeu n'a pas été trouvé."
+    end
+  end
+
+  def api_sf_proceed_deposit
+    @token = params[:game_token]
+    @pos_id = params[:pos_id]
+    @agent = "99999999"
+    @sub_agent = params[:sub_agent]
     @paymoney_account_number = params[:paymoney_account_number]
     @transaction_amount = params[:amount]
     @date = params[:date]
@@ -244,14 +274,20 @@ class DepositsController < ApplicationController
         @error_code = '5001'
         @error_description = "Ce compte paymoney n'existe pas."
       else
-        request = Typhoeus::Request.new("#{paymoney_wallet_url}/api/86d13843ed59e5207c68e864564/deposit/#{@paymoney_account_number}/#{@transaction_amount}", followlocation: true, method: :get)
+        @url = "#{paymoney_wallet_url}/api/1314a3dfb726290bbc99c71b510d2b/#{@agent}/#{@sub_agent}/account/ascent/#{@transaction_amount}"
+
+        if @agent = "99999999"
+          @url = "#{paymoney_wallet_url}/api/c067d6dc6a578a789e8fdb4c4556c239/#{@agent}/#{@sub_agent}/account/ascent/#{@transaction_amount}"
+        end
+
+        request = Typhoeus::Request.new(@url, followlocation: true, method: :get)
 
         request.on_complete do |response|
           if response.success?
             response_body = response.body
 
             if !response_body.include?("|")
-              @deposit.update_attributes(paymoney_transaction_id: response_body, paymoney_request: "#{paymoney_wallet_url}/api/86d13843ed59e5207c68e864564/deposit/#{@paymoney_account_number}/#{@transaction_amount}", paymoney_response: response_body)
+              @deposit.update_attributes(paymoney_transaction_id: response_body, paymoney_request: @url, paymoney_response: response_body)
               status = true
             else
               @error_code = '4001'

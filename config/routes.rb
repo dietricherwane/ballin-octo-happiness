@@ -41,11 +41,7 @@ Rails.application.routes.draw do
 
   get '/api/1314a3dfb72826290bbc99c71b510d2b/fee/:fee_type_token/:transaction_amount' => 'fees#cashout', :constraints => {:transaction_amount => /(\d+(.\d+)?)/}
 
-  # Ascent
-  get '/api/1314a3dfb726290bbc99c71b510d2b/:agent/:sub_agent/account/ascent/:transaction_amount' => 'accounts#api_ascent', :constraints => {:transaction_amount => /(\d+(.\d+)?)/}
 
-  #SF
-  get '/api/c067d6dc6a578a789e8fdb4c4556c239/:agent/:sub_agent/account/ascent/:transaction_amount' => 'accounts#api_sf_ascent', :constraints => {:transaction_amount => /(\d+(.\d+)?)/}
 
   # Place bet with cancellation
   get '/api/86d138798bc43ed59e5207c684564/bet/get/:transaction_id/:game_account_token/:account_token/:password/:transaction_amount' => 'accounts#api_get_bet', :constraints => {:transaction_amount => /(\d+(.\d+)?)/}
@@ -92,7 +88,15 @@ Rails.application.routes.draw do
 
   # Make a deposit
   get "/api/3ae7e2f1b1/deposit/:game_token/:pos_id/:paymoney_account_number/:agent/:sub_agent/:date/:amount" => 'deposits#api_proceed_deposit'
-  post "/api/3ae7e2f1b1/deposit/:game_token/:pos_id/:paymoney_account_number/:agent/:sub_agent/:date/:amount" => 'deposits#api_proceed_deposit'
+
+  # SF Make a deposit
+  get "/api/rff741v1b1/deposit/:game_token/:pos_id/:paymoney_account_number/:agent/:sub_agent/:date/:amount" => 'deposits#api_sf_proceed_deposit'
+
+  # Ascent
+  get '/api/1314a3dfb726290bbc99c71b510d2b/:agent/:sub_agent/account/ascent/:transaction_amount' => 'accounts#api_ascent', :constraints => {:transaction_amount => /(\d+(.\d+)?)/}
+
+  #SF Ascent
+  get '/api/c067d6dc6a578a789e8fdb4c4556c239/:agent/:sub_agent/account/ascent/:transaction_amount' => 'accounts#api_sf_ascent', :constraints => {:transaction_amount => /(\d+(.\d+)?)/}
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
