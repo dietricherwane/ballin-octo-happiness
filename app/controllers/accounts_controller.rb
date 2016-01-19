@@ -932,8 +932,11 @@ def api_sf_validate_checkout
       transaction_id = Digest::SHA1.hexdigest([DateTime.now.iso8601(6), rand].join).hex.to_s[0..17]
       status = "|5001|"
 
-      BombLog.create(sent_url: "#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/valide_paris/96325874/#{game_account_token}/#{transaction_amount}/0/0/#{transaction_id}")
-      response = (RestClient.get "#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/valide_paris/96325874/#{game_account_token}/#{transaction_amount}/0/0/#{transaction_id}" rescue "")
+      set_game_operation_token(game_account_token)
+      @url = "#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/valide_paris/#{@token}/#{game_account_token}/#{transaction_amount}/0/0/#{transaction_id}"
+
+      BombLog.create(sent_url: @url)
+      response = (RestClient.get @url rescue "")
 
       unless response.blank?
         status = "|5002|"
@@ -974,8 +977,12 @@ def api_sf_validate_checkout
       game_account_token = bet.game_account_token
       transaction_id = bet.transaction_id
 
-      BombLog.create(sent_url: "#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/remboursement_paris/96325874/#{game_account_token}/#{account_token}/#{transaction_amount}/0/0/#{transaction_id}")
-      response = (RestClient.get "#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/remboursement_paris/96325874/#{game_account_token}/#{account_token}/#{transaction_amount}/0/0/#{transaction_id}" rescue "")
+      set_game_operation_token(game_account_token)
+
+      @url = "#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/remboursement_paris/96325874/#{game_account_token}/#{account_token}/#{transaction_amount}/0/0/#{transaction_id}"
+
+      BombLog.create(sent_url: @url)
+      response = (RestClient.get @url rescue "")
 
       unless response.blank?
         if response.to_s == "good"
@@ -1011,9 +1018,11 @@ def api_sf_validate_checkout
     transaction_status = false
 
     if is_a_number?(transaction_amount)
+      set_game_operation_token(game_account_token)
+      @url = "#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/paiement_gain/74125895/#{account_token}/#{game_account_token}/#{transaction_amount}/0/0/#{transaction_id}"
       #transaction_id = Digest::SHA1.hexdigest([DateTime.now.iso8601(6), rand].join)
-      BombLog.create(sent_url: "#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/paiement_gain/74125895/#{account_token}/#{game_account_token}/#{transaction_amount}/0/0/#{transaction_id}")
-      response = (RestClient.get "#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/paiement_gain/74125895/#{account_token}/#{game_account_token}/#{transaction_amount}/0/0/#{transaction_id}" rescue "")
+      BombLog.create(sent_url: @url)
+      response = (RestClient.get @url rescue "")
 
       unless response.blank?
         if response.to_s == "good"
@@ -1053,8 +1062,10 @@ def api_sf_validate_checkout
     else
       if is_a_number?(transaction_amount)
         transaction_id = Digest::SHA1.hexdigest([DateTime.now.iso8601(6), rand].join)
-        BombLog.create(sent_url: "#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/cash_in_pos/53740905/#{account_token}/#{transaction_amount}/#{transaction_id}")
-        response = (RestClient.get "#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/cash_in_pos/53740905/#{account_token}/#{transaction_amount}/#{transaction_id}" rescue "")
+        set_game_operation_token(game_account_token)
+        @url = "#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/cash_in_pos/53740905/#{account_token}/#{transaction_amount}/#{transaction_id}"
+        BombLog.create(sent_url: @url)
+        response = (RestClient.get @url rescue "")
 
         unless response.blank?
           if response.to_s == "good"
@@ -1096,8 +1107,10 @@ def api_sf_validate_checkout
     if !account_token.blank? && !mobile_money_token.blank?
       if is_a_number?(transaction_amount)
         transaction_id = Digest::SHA1.hexdigest([DateTime.now.iso8601(6), rand].join)
-        BombLog.create(sent_url: "#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/cash_in_operation_momo/tertybgd/#{account_token}/#{mobile_money_token}/#{transaction_amount}/#{fee}/100/#{transaction_id}")
-        response = (RestClient.get "#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/cash_in_operation_momo/tertybgd/#{account_token}/#{mobile_money_token}/#{transaction_amount}/#{fee}/100/#{transaction_id}" rescue "")
+        set_game_operation_token(game_account_token)
+        @url = "#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/cash_in_operation_momo/tertybgd/#{account_token}/#{mobile_money_token}/#{transaction_amount}/#{fee}/100/#{transaction_id}"
+        BombLog.create(sent_url: @url)
+        response = (RestClient.get @url rescue "")
 
         unless response.blank?
           if response.to_s == "good"
@@ -1139,8 +1152,10 @@ def api_sf_validate_checkout
     if !account_token.blank? && !mobile_money_token.blank?
       if is_a_number?(transaction_amount)
         transaction_id = Digest::SHA1.hexdigest([DateTime.now.iso8601(6), rand].join)
-        BombLog.create(sent_url: "#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/cash_out_operation_momo/14725836/#{account_token}/#{mobile_money_token}/#{transaction_amount}/#{fee}/100/#{transaction_id}")
-        response = (RestClient.get "#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/cash_out_operation_momo/14725836/#{account_token}/#{mobile_money_token}/#{transaction_amount}/#{fee}/100/#{transaction_id}" rescue "")
+        set_game_operation_token(game_account_token)
+        @url = "#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/cash_out_operation_momo/14725836/#{account_token}/#{mobile_money_token}/#{transaction_amount}/#{fee}/100/#{transaction_id}"
+        BombLog.create(sent_url: @url)
+        response = (RestClient.get @url rescue "")
 
         unless response.blank?
           if response.to_s == "good"
