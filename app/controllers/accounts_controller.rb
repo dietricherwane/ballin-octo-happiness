@@ -869,7 +869,7 @@ def api_sf_validate_checkout
       @token = "a46fb247"
     end
     # EPPL
-    if game_account_token == "uXAXMDuW"
+    if game_account_token == "PExxGeLY"
       @token = "c33fa532"
     end
     # CM3
