@@ -393,6 +393,7 @@ def api_sf_checkout_account
     return fee
   end
 
+=begin
   def deposit_fee
     ta = params[:amount]
     fee = ""
@@ -404,6 +405,7 @@ def api_sf_checkout_account
 
     return fee
   end
+=end
 
   def check_deposit_fee(ta)
     fee = ""
@@ -1269,7 +1271,7 @@ def api_sf_validate_checkout
     end
   end
 
-=begin
+
   def deposit_fee
     @amount = params[:amount]
 
@@ -1291,5 +1293,5 @@ def api_sf_validate_checkout
   	  end
   	end
   end
-=end
+
 end
