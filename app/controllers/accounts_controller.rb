@@ -393,7 +393,19 @@ def api_sf_checkout_account
     return fee
   end
 
-  def deposit_fee(ta)
+  def deposit_fee
+    ta = params[:amount]
+    fee = ""
+    fee_type = FeeType.find_by_name("Deposit")
+
+    if !fee_type.blank?
+      fee = fee_type.fees.where("min_value <= #{ta.to_f} AND max_value >= #{ta.to_f}").first.fee_value.to_s rescue nil
+    end
+
+    return fee
+  end
+
+  def check_deposit_fee(ta)
     fee = ""
     fee_type = FeeType.find_by_name("Deposit")
 
@@ -678,7 +690,7 @@ def api_sf_validate_checkout
           transaction_id = Digest::SHA1.hexdigest([DateTime.now.iso8601(6), rand].join)
           set_pos_operation_token(agent, "ascent")
 
-          fee = deposit_fee((transaction_amount.to_i rescue 0))
+          fee = check_deposit_fee((transaction_amount.to_i rescue 0))
 
           @url = "#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/Remonte/#{@token}/#{merchant_pos.token}/DNLiVHcI/#{transaction_amount}/#{fee}/0/#{transaction_id}/null"
 
@@ -739,7 +751,7 @@ def api_sf_validate_checkout
 
           set_pos_operation_token("99999999", "ascent")
 
-          fee = deposit_fee((transaction_amount.to_i rescue 0))
+          fee = check_deposit_fee((transaction_amount.to_i rescue 0))
 
           if @has_rib
             @url = "#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/Remonte_avec_rib/#{@token}/#{merchant_pos.token}/DNLiVHcI/#{transaction_amount}/#{fee}/0/#{transaction_id}/null"
