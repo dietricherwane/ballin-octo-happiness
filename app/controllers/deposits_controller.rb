@@ -1,4 +1,6 @@
 class DepositsController < ApplicationController
+  before_action :ensure_login, only: [:api_get_pos_sale_balance, :api_get_daily_balance, :api_proceed_deposit, :api_sf_proceed_deposit]
+
   @@user_name = "ngser@lonaci"
   @@password = "lemotdepasse"
   @@notification_url = "https://142.11.15.18:11111"
