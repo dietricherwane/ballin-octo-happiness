@@ -280,10 +280,10 @@ class DepositsController < ApplicationController
         @error_code = '5001'
         @error_description = "Ce compte paymoney n'existe pas."
       else
-        @url = "#{paymoney_wallet_url}/api/1314a3dfb726290bbc99c71b510d2b/#{@agent}/#{@sub_agent}/account/ascent/#{@transaction_amount}"
+        @url = "http://195.14.0.128:9587/api/1314a3dfb726290bbc99c71b510d2b/#{@agent}/#{@sub_agent}/account/ascent/#{@transaction_amount}"
 
         if @agent == "99999999"
-          @url = "#{paymoney_wallet_url}/api/c067d6dc6a578a789e8fdb4c4556c239/#{@agent}/#{@sub_agent}/account/ascent/#{@transaction_amount}"
+          @url = "http://195.14.0.128:9587/api/c067d6dc6a578a789e8fdb4c4556c239/#{@agent}/#{@sub_agent}/account/ascent/#{@transaction_amount}"
         end
 
         request = Typhoeus::Request.new(@url, followlocation: true, method: :get)
