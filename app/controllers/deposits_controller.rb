@@ -413,4 +413,10 @@ class DepositsController < ApplicationController
       @login_error = true
     end
   end
+
+  def check_account_number(account_number)
+    token = (RestClient.get "#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/check2_compte/#{account_number}" rescue "")
+
+    return token
+  end
 end
