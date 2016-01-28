@@ -4,8 +4,8 @@ class DepositsController < ApplicationController
   @@user_name = "ngser@lonaci"
   @@password = "lemotdepasse"
   @@notification_url = "https://142.11.15.18:11111"
-  #@@url = "http://192.168.1.44:29000"
-  @@url = "http://office.cm3.work:27000"
+  @@url = "http://192.168.1.44:29000"
+  #@@url = "http://office.cm3.work:27000"
 
   def api_get_pos_sale_balance
     @token = params[:game_token]
