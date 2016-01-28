@@ -2,6 +2,7 @@ class DepositsController < ApplicationController
   @@user_name = "ngser@lonaci"
   @@password = "lemotdepasse"
   @@notification_url = "https://142.11.15.18:11111"
+  @@url = "http://192.168.1.44:29000"
 
   def api_get_pos_sale_balance
     @token = params[:game_token]
@@ -38,7 +39,7 @@ class DepositsController < ApplicationController
     else
       @body = "<balanceRequest><connectionId>#{@connection_id}</connectionId><sessionId>#{@session_id}</sessionId></balanceRequest>"
 
-      send_request(@body, "http://office.cm3.work:27000/getSessionBalance")
+      send_request(@body, "#{@@url}/getSessionBalance")
       error_code = (@request_result.xpath('//return').at('error').content rescue nil)
       if error_code.blank? && @error != true
         @number_of_sales = (@request_result.xpath('//balance').at('nbSales').content rescue nil)
@@ -126,7 +127,7 @@ class DepositsController < ApplicationController
     else
       body = "<vendorBalanceRequest><connectionId>#{@connection_id}</connectionId><vendorId>#{@pos_id}</vendorId></vendorBalanceRequest>"
 
-      send_request(body, "http://office.cm3.work:27000/getVendorBalance")
+      send_request(body, "#{@@url}/getVendorBalance")
       error_code = (@request_result.xpath('//return').at('error').content rescue nil)
       if error_code.blank? && @error != true
         @deposit_days = (@request_result.xpath('//vendorBalanceResponse/depositDay') rescue nil)
@@ -246,7 +247,7 @@ class DepositsController < ApplicationController
 
       @deposit = Deposit.create(game_token: @token, pos_id: @pos_id, agent: @agent, sub_agent: @sub_agent, paymoney_account: @paymoney_account_number, deposit_day: @date, deposit_amount: @transaction_amount, deposit_request: body, transaction_id: Digest::SHA1.hexdigest([DateTime.now.iso8601(6), rand].join).hex.to_s)
 
-      send_request(body, "http://office.cm3.work:27000/depositVendorCash")
+      send_request(body, "#{@@url}/depositVendorCash")
       @deposit.update_attributes(deposit_response: @response_body)
       error_code = (@request_result.xpath('//return').at('error').content rescue nil)
       if error_code.to_s == "0" && @error != true
@@ -397,7 +398,7 @@ class DepositsController < ApplicationController
                 <password>#{@@password}<password>
                 <notificationUrl>#{@@notification_url}</notificationUrl>
               </loginRequest>]
-    send_request(body, "http://office.cm3.work:27000/login")
+    send_request(body, "#{@@url}/login")
 
     error_code = (@request_result.xpath('//return').at('error').content rescue nil)
 
