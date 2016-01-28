@@ -298,12 +298,12 @@ class DepositsController < ApplicationController
             else
               @error_code = '4001'
               @error_description = 'Paymoney-Erreur de paiement.'
-              @deposit.update_attributes(paymoney_request: request, paymoney_response: response_body)
+              @deposit.update_attributes(paymoney_request: @url, paymoney_response: response_body)
             end
           else
             @error_code = '4000'
             @error_description = "Le serveur de paiement n'est pas disponible."
-            @deposit.update_attributes(paymoney_request: request, paymoney_response: response_body)
+            @deposit.update_attributes(paymoney_request: @url, paymoney_response: response_body)
           end
         end
 
