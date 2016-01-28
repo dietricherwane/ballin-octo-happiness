@@ -121,19 +121,18 @@ class DepositsController < ApplicationController
       @error_code = '4000'
       @error_description = "Ce jeu n'a pas été trouvé."
     end
+
+    DepositLog.create(game_token: @game_token, pos_id: @pos_id, deposit_request: @body, deposit_response: @response_body)
   end
 
   def cm3_get_daily_balance
-    ensure_login
     if @login_error
       @error_code = '3000'
       @error_description = "La connexion n'a pas pu être établie."
     else
-      body = "<vendorBalanceRequest><connectionId>#{@connection_id}</connectionId><vendorId>#{@pos_id}</vendorId></vendorBalanceRequest>"
+      @body = "<vendorBalanceRequest><connectionId>#{@connection_id}</connectionId><vendorId>#{@pos_id}</vendorId></vendorBalanceRequest>"
 
-      print "#{@@url}/getVendorBalance"
-
-      send_request(body, "#{@@url}/getVendorBalance")
+      send_request(@body, "#{@@url}/getVendorBalance")
       error_code = (@request_result.xpath('//return').at('error').content rescue nil)
       if error_code.blank? && @error != true
         @deposit_days = (@request_result.xpath('//vendorBalanceResponse/depositDay') rescue nil)
