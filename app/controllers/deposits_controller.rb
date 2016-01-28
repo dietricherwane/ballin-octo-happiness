@@ -248,7 +248,7 @@ class DepositsController < ApplicationController
       @error_code = '3000'
       @error_description = "La connexion n'a pas pu être établie."
     else
-      body = "<vendorDepositRequest><connectionId>#{@connection_id}</connectionId><deposit><vendorId>#{@pos_id}</vendorId><date>#{@date}<date><amount>#{@transaction_amount}</amount><deposit></vendorDepositRequest>"
+      body = "<vendorDepositRequest><connectionId>#{@connection_id}</connectionId><deposit><vendorId>#{@pos_id}</vendorId><date>#{@date}</date><amount>#{@transaction_amount}</amount></deposit></vendorDepositRequest>"
 
       @deposit = Deposit.create(game_token: @token, pos_id: @pos_id, agent: @agent, sub_agent: @sub_agent, paymoney_account: @paymoney_account_number, deposit_day: @date, deposit_amount: @transaction_amount, deposit_request: body, transaction_id: Digest::SHA1.hexdigest([DateTime.now.iso8601(6), rand].join).hex.to_s)
 
