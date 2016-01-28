@@ -4,7 +4,8 @@ class DepositsController < ApplicationController
   @@user_name = "ngser@lonaci"
   @@password = "lemotdepasse"
   @@notification_url = "https://142.11.15.18:11111"
-  @@url = "http://192.168.1.44:29000"
+  #@@url = "http://192.168.1.44:29000"
+  @@url = "http://office.cm3.work:27000"
 
   def api_get_pos_sale_balance
     @token = params[:game_token]
@@ -31,7 +32,7 @@ class DepositsController < ApplicationController
       @error_description = "Ce jeu n'a pas été trouvé."
     end
 
-    DepositLog.create(game_token: @token, pos_id: @pos_id, deposit_request: @body, deposit_response: @response_body)
+    DepositLog.create(game_token: @game_token, pos_id: @pos_id, deposit_request: @body, deposit_response: @response_body)
   end
 
   def cm3_get_session_balance
@@ -129,6 +130,8 @@ class DepositsController < ApplicationController
       @error_description = "La connexion n'a pas pu être établie."
     else
       body = "<vendorBalanceRequest><connectionId>#{@connection_id}</connectionId><vendorId>#{@pos_id}</vendorId></vendorBalanceRequest>"
+
+      print "#{@@url}/getVendorBalance"
 
       send_request(body, "#{@@url}/getVendorBalance")
       error_code = (@request_result.xpath('//return').at('error').content rescue nil)
@@ -280,7 +283,7 @@ class DepositsController < ApplicationController
       else
         @url = "#{paymoney_wallet_url}/api/1314a3dfb726290bbc99c71b510d2b/#{@agent}/#{@sub_agent}/account/ascent/#{@transaction_amount}"
 
-        if @agent = "99999999"
+        if @agent == "99999999"
           @url = "#{paymoney_wallet_url}/api/c067d6dc6a578a789e8fdb4c4556c239/#{@agent}/#{@sub_agent}/account/ascent/#{@transaction_amount}"
         end
 
@@ -395,12 +398,12 @@ class DepositsController < ApplicationController
   end
 
   def ensure_login
-    body = %Q[<?xml version='1.0' encoding='UTF-8'?>
-              <loginRequest>
+    body = %Q[<loginRequest>
                 <username>#{@@user_name}</username>
                 <password>#{@@password}</password>
                 <notificationUrl>#{@@notification_url}</notificationUrl>
               </loginRequest>]
+
     send_request(body, "#{@@url}/login")
 
     error_code = (@request_result.xpath('//return').at('error').content rescue nil)

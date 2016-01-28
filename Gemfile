@@ -34,6 +34,9 @@ gem 'typhoeus', '0.6.9'
 
 gem 'rest-client'
 
+# XML parser
+gem "nokogiri"
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
