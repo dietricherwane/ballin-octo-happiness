@@ -26,11 +26,12 @@ class DepositsController < ApplicationController
       if @game_token.code == '04f50a4961'
         spc_get_session_balance
       end
-      DepositLog.create(game_token: @game_token, pos_id: @pos_id, deposit_request: @body, deposit_response: @response_body)
     else
       @error_code = '4000'
       @error_description = "Ce jeu n'a pas été trouvé."
     end
+
+    DepositLog.create(game_token: @token, pos_id: @pos_id, deposit_request: @body, deposit_response: @response_body)
   end
 
   def cm3_get_session_balance
