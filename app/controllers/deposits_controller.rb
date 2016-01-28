@@ -397,7 +397,7 @@ class DepositsController < ApplicationController
     body = %Q[<?xml version='1.0' encoding='UTF-8'?>
               <loginRequest>
                 <username>#{@@user_name}</username>
-                <password>#{@@password}<password>
+                <password>#{@@password}</password>
                 <notificationUrl>#{@@notification_url}</notificationUrl>
               </loginRequest>]
     send_request(body, "#{@@url}/login")
