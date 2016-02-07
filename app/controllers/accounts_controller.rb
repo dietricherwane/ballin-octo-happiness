@@ -407,17 +407,6 @@ def api_sf_checkout_account
   end
 =end
 
-  def check_deposit_fee(ta)
-    fee = ""
-    fee_type = FeeType.find_by_name("Deposit")
-
-    if !fee_type.blank?
-      fee = fee_type.fees.where("min_value <= #{ta.to_f} AND max_value >= #{ta.to_f}").first.fee_value.to_s rescue nil
-    end
-
-    return fee
-  end
-
   def api_validate_credit
     pin = params[:pin]
     transaction_id = params[:transaction_id]

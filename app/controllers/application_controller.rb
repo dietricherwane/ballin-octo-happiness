@@ -63,4 +63,15 @@ class ApplicationController < ActionController::Base
   	n.to_s.match(/\A[+-]?\d+?(\.\d+)?\Z/) == nil ? false : true
   end
 
+  def check_deposit_fee(ta)
+    fee = ""
+    fee_type = FeeType.find_by_name("Deposit")
+
+    if !fee_type.blank?
+      fee = fee_type.fees.where("min_value <= #{ta.to_f} AND max_value >= #{ta.to_f}").first.fee_value.to_s rescue nil
+    end
+
+    return fee
+  end
+
 end
