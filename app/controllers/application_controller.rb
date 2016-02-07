@@ -58,4 +58,9 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  # Check if the parameter is not a number
+  def is_a_number?(n)
+  	n.to_s.match(/\A[+-]?\d+?(\.\d+)?\Z/) == nil ? false : true
+  end
+
 end
