@@ -445,7 +445,7 @@ class DepositsController < ApplicationController
 
           @fee = check_deposit_fee((transaction_amount.to_i rescue 0))
 
-          if has_rib(@agent) == true
+          if has_rib(@agent)
             @token = "13a3fd04"
             @url = "#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/Remonte_avec_rib/#{@token}/#{merchant_pos.token}/DNLiVHcI/#{transaction_amount}/#{@fee}/0/#{transaction_id}/null"
           else

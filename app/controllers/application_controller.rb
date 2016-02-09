@@ -76,7 +76,7 @@ class ApplicationController < ActionController::Base
 
   def has_rib(certified_agent_id)
     status = (RestClient.get "http://pay-money.net/pos/has_rib/#{certified_agent_id}" rescue "")
-    status == 0 ? has_rib = false : has_rib = true
+    status == "0" ? has_rib = false : has_rib = true
 
     return has_rib
   end
