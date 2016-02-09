@@ -215,7 +215,8 @@ class DepositsController < ApplicationController
   def api_sf_proceed_deposit
     @token = params[:game_token]
     @pos_id = params[:pos_id]
-    @agent = "99999999"
+    @agent = params[:sub_agent]
+    @origin = "99999999"
     @sub_agent = params[:sub_agent]
     @paymoney_account_number = params[:paymoney_account_number]
     @transaction_amount = params[:amount]
@@ -280,7 +281,7 @@ class DepositsController < ApplicationController
           #@url = "api_sf_ascent"
         #end
 
-        if @agent == "99999999"
+        if @origin == "99999999"
           if !api_sf_ascent.include?("|")
             @deposit.update_attributes(paymoney_transaction_id: response_body, paymoney_request: @url, paymoney_response: @status)
             status = true
