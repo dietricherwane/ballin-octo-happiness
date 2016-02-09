@@ -292,12 +292,12 @@ class DepositsController < ApplicationController
           end
         else
           if !api_ascent.include?("|")
-            @deposit.update_attributes(paymoney_transaction_id: response_body, paymoney_request: @url, paymoney_response: response_body)
+            @deposit.update_attributes(paymoney_request: @url, paymoney_response: @status)
             status = true
           else
             @error_code = '4001'
             @error_description = 'Paymoney-Erreur de paiement.'
-            @deposit.update_attributes(paymoney_request: @url, paymoney_response: response_body)
+            @deposit.update_attributes(paymoney_request: @url, paymoney_response: @status)
           end
         end
 
