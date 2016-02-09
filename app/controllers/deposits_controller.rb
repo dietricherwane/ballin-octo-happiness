@@ -261,7 +261,7 @@ class DepositsController < ApplicationController
   end
 
   def cm3_paymoney_deposit
-    paymoney_account_token = check_account_number(@paymoney_account_number)
+    @paymoney_account_token = check_account_number(@paymoney_account_number)
 
     paymoney_wallet_url = (Parameters.first.paymoney_wallet_url rescue "")
     @transaction_amount = @transaction_amount
@@ -271,10 +271,10 @@ class DepositsController < ApplicationController
      @error_code = '5000'
      @error_description = "Le montant de transaction n'est pas valide."
     else
-      if paymoney_account_token.blank?
-        @error_code = '5001'
-        @error_description = "Ce compte paymoney n'existe pas."
-      else
+      #if @paymoney_account_token.blank?
+        #@error_code = '5001'
+        #@error_description = "Ce compte paymoney n'existe pas."
+      #else
         #@url = "api_ascent"
 
         #if @agent == "99999999"
@@ -301,7 +301,7 @@ class DepositsController < ApplicationController
           end
         end
 
-      end
+      #end
     end
 
     return status
@@ -384,10 +384,10 @@ class DepositsController < ApplicationController
 
           @fee = check_deposit_fee((transaction_amount.to_i rescue 0))
 
-          @url = "#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/Remonte/#{@token}/#{merchant_pos.token}/DNLiVHcI/#{transaction_amount}/#{@fee}/0/#{transaction_id}/null"
+          @url = "#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/Remonte/#{@token}/#{merchant_pos.token}/#{@paymoney_account_token.blank? ? 'DNLiVHcI' : @paymoney_account_token}/#{transaction_amount}/#{@fee}/0/#{transaction_id}/null"
 
           if agent == "af478a2c47d8418a"
-            @url = "#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/Remonte/#{@token}/#{merchant_pos.token}/DNLiVHcI/#{transaction_amount}/#{@fee}/0/#{transaction_id}/null"
+            @url = "#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/Remonte/#{@token}/#{merchant_pos.token}/#{@paymoney_account_token.blank? ? 'DNLiVHcI' : @paymoney_account_token}/#{transaction_amount}/#{@fee}/0/#{transaction_id}/null"
           end
 
           BombLog.create(sent_url: @url)
@@ -447,10 +447,10 @@ class DepositsController < ApplicationController
 
           if has_rib(@agent)
             @token = "13a3fd04"
-            @url = "#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/Remonte_avec_rib/#{@token}/#{merchant_pos.token}/DNLiVHcI/#{transaction_amount}/#{@fee}/0/#{transaction_id}/null"
+            @url = "#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/Remonte_avec_rib/#{@token}/#{merchant_pos.token}/#{@paymoney_account_token.blank? ? 'DNLiVHcI' : @paymoney_account_token}/#{transaction_amount}/#{@fee}/0/#{transaction_id}/null"
           else
             @token = "e3875eab"
-            @url = "#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/Remonte_sans_rib/#{@token}/#{merchant_pos.token}/DNLiVHcI/#{transaction_amount}/#{@fee}/0/#{transaction_id}/null"
+            @url = "#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/Remonte_sans_rib/#{@token}/#{merchant_pos.token}/#{@paymoney_account_token.blank? ? 'DNLiVHcI' : @paymoney_account_token}/#{transaction_amount}/#{@fee}/0/#{transaction_id}/null"
           end
 
           BombLog.create(sent_url: @url)
