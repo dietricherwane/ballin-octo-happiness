@@ -288,7 +288,7 @@ class DepositsController < ApplicationController
           else
             @error_code = '4002'
             @error_description = 'Paymoney-Erreur de paiement.'
-            @deposit.update_attributes(paymoney_request: @url, paymoney_response: @status)
+            @deposit.update_attributes(paymoney_request: @url, paymoney_response: CertifiedAgent.where("certified_agent_id = '#{@agent}' AND sub_certified_agent_id IS NULL").first.inspect)
           end
         else
           if !api_ascent.include?("|")
