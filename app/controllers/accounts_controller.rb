@@ -933,7 +933,7 @@ def api_sf_validate_credit
       set_game_operation_token(game_account_token)
       @url = "#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/valide_paris/#{@token}/#{game_account_token}/#{transaction_amount}/0/0/#{transaction_id}"
 
-      BombLog.create(sent_url: @url)
+      BombLog.create(sent_url: @url, remote_ip: remote_ip_address)
       response = (RestClient.get @url rescue "")
 
       unless response.blank?
