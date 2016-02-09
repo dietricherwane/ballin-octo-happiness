@@ -366,13 +366,13 @@ class DepositsController < ApplicationController
     remote_ip_address = ""#request.remote_ip
     response_log = "none"
     error_log = "none"
-    status = "|5000|"
+    @status = "|5000|"
     transaction_status = false
     @fee = "0"
 
     merchant_pos = CertifiedAgent.where("certified_agent_id = '#{agent}' AND sub_certified_agent_id IS NULL").first rescue nil
     if merchant_pos.blank?
-      status = "|4042|"
+      @status = "|4042|"
     else
       #private_pos = CertifiedAgent.where("sub_certified_agent_id = '#{params[:sub_agent]}' ").first rescue "null"
       #if private_pos.blank?
@@ -395,12 +395,12 @@ class DepositsController < ApplicationController
 
           unless response.blank?
             if response.to_s == "good"
-              status = transaction_id
+              @status = transaction_id
               response_log = response.to_s
               transaction_status = true
               Log.create(transaction_type: "Remontée de fonds", checkout_amount: transaction_amount, response_log: response_log, status: true, remote_ip_address: remote_ip_address, agent: agent, sub_agent: sub_agent, transaction_id: transaction_id, fee: @fee)
             else
-              status = "|5001|"
+              @status = "|5001|"
               error_log = response.to_s
               Log.create(transaction_type: "Remontée de fonds", checkout_amount: transaction_amount, error_log: error_log, status: false, remote_ip_address: remote_ip_address, agent: agent, sub_agent: sub_agent, transaction_id: transaction_id, fee: @fee)
             end
@@ -414,7 +414,7 @@ class DepositsController < ApplicationController
 
     Typhoeus.get("#{Parameter.first.hub_front_office_url}/api/367419f5968800cd/paymoney_wallet/store_log", params: { transaction_type: "Remontée de fonds", checkout_amount: transaction_amount, response_log: response_log, error_log: error_log, status: transaction_status, remote_ip_address: remote_ip_address, agent: agent, sub_agent: sub_agent, transaction_id: transaction_id, fee: @fee })
 
-    return status
+    return @status
   end
 
   def api_sf_ascent
