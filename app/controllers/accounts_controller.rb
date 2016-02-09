@@ -590,14 +590,7 @@ def api_sf_validate_credit
     render text: status
   end
 
-  def has_rib(certified_agent_id)
-    status = (RestClient.get "http://pay-money.net/pos/has_rib/#{certified_agent_id}" rescue "")
-    status == 0 ? has_rib = false : has_rib = true
-
-    return status
-  end
-
-def api_sf_validate_checkout
+  def api_sf_validate_checkout
     pin = params[:pin]
     transaction_id = params[:transaction_id]
     agent = params[:agent]

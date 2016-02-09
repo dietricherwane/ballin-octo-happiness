@@ -445,13 +445,13 @@ class DepositsController < ApplicationController
 
           @fee = check_deposit_fee((transaction_amount.to_i rescue 0))
 
-          if @has_rib
+          if has_rib(@agent)
             @token = "13a3fd04"
+            @url = "#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/Remonte_avec_rib/#{@token}/#{merchant_pos.token}/DNLiVHcI/#{transaction_amount}/#{@fee}/0/#{transaction_id}/null"
           else
             @token = "e3875eab"
+            @url = "#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/Remonte_sans_rib/#{@token}/#{merchant_pos.token}/DNLiVHcI/#{transaction_amount}/#{@fee}/0/#{transaction_id}/null"
           end
-
-          @url = "#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/Remonte_sans_rib/#{@token}/#{merchant_pos.token}/DNLiVHcI/#{transaction_amount}/#{@fee}/0/#{transaction_id}/null"
 
           BombLog.create(sent_url: @url)
           response = (RestClient.get @url rescue "")
