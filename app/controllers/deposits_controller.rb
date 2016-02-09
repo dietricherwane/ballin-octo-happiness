@@ -282,7 +282,7 @@ class DepositsController < ApplicationController
 
         if @agent == "99999999"
           if !api_sf_ascent.include?("|")
-            @deposit.update_attributes(paymoney_transaction_id: response_body, paymoney_request: @url, paymoney_response: 1000)
+            @deposit.update_attributes(paymoney_transaction_id: response_body, paymoney_request: @url, paymoney_response: @status)
             status = true
           else
             @error_code = '4002'
