@@ -215,7 +215,7 @@ class DepositsController < ApplicationController
   def api_sf_proceed_deposit
     @token = params[:game_token]
     @pos_id = params[:pos_id]
-    @agent = params[:sub_agent]
+    @agent = params[:agent]
     @origin = "99999999"
     @sub_agent = params[:sub_agent]
     @paymoney_account_number = params[:paymoney_account_number]
