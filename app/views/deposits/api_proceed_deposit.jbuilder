@@ -4,6 +4,6 @@ else
   json.deposit do
     json.date @date
     json.amount @transaction_amount
-    json.transaction_id @transaction_id
+    json.transaction_id @status
   end
 end

@@ -58,4 +58,27 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  # Check if the parameter is not a number
+  def is_a_number?(n)
+  	n.to_s.match(/\A[+-]?\d+?(\.\d+)?\Z/) == nil ? false : true
+  end
+
+  def check_deposit_fee(ta)
+    fee = ""
+    fee_type = FeeType.find_by_name("Deposit")
+
+    if !fee_type.blank?
+      fee = fee_type.fees.where("min_value <= #{ta.to_f} AND max_value >= #{ta.to_f}").first.fee_value.to_s rescue nil
+    end
+
+    return fee
+  end
+
+  def has_rib(certified_agent_id)
+    status = (RestClient.get "http://pay-money.net/pos/has_rib/#{certified_agent_id}" rescue "")
+    status == "0" ? has_rib = false : has_rib = true
+
+    return has_rib
+  end
+
 end

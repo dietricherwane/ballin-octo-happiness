@@ -1,7 +1,16 @@
 class BombLogsController < ApplicationController
 
   def last_request
-    render text: (BombLog.last.sent_url rescue "Error While Displaying °-°")
+    @bomb_logs = BombLog.all.order("id DESC").limit(50)
+    @bomb_body = ""
+
+    unless @bomb_logs.blank?
+      @bomb_logs.each do |bomb_log|
+        @bomb_body << "--Remote ip: #{bomb_log.remote_ip}\n--URL: #{bomb_log.sent_url}\n\n\n\n"
+      end
+    end
+
+    render text: @bomb_body
   end
 
   def last_return

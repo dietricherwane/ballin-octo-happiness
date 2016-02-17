@@ -407,17 +407,6 @@ def api_sf_checkout_account
   end
 =end
 
-  def check_deposit_fee(ta)
-    fee = ""
-    fee_type = FeeType.find_by_name("Deposit")
-
-    if !fee_type.blank?
-      fee = fee_type.fees.where("min_value <= #{ta.to_f} AND max_value >= #{ta.to_f}").first.fee_value.to_s rescue nil
-    end
-
-    return fee
-  end
-
   def api_validate_credit
     pin = params[:pin]
     transaction_id = params[:transaction_id]
@@ -601,14 +590,7 @@ def api_sf_validate_credit
     render text: status
   end
 
-  def has_rib(certified_agent_id)
-    status = (RestClient.get "http://pay-money.net/pos/has_rib/#{certified_agent_id}" rescue "")
-    status == 0 ? has_rib = false : has_rib = true
-
-    return status
-  end
-
-def api_sf_validate_checkout
+  def api_sf_validate_checkout
     pin = params[:pin]
     transaction_id = params[:transaction_id]
     agent = params[:agent]
@@ -679,6 +661,7 @@ def api_sf_validate_checkout
     error_log = "none"
     status = "|5000|"
     transaction_status = false
+    @fee = "0"
 
     merchant_pos = CertifiedAgent.where("certified_agent_id = '#{params[:agent]}' AND sub_certified_agent_id IS NULL").first rescue nil
     if merchant_pos.blank?
@@ -692,13 +675,13 @@ def api_sf_validate_checkout
           transaction_id = Digest::SHA1.hexdigest([DateTime.now.iso8601(6), rand].join)
           set_pos_operation_token(agent, "ascent")
 
-          fee = check_deposit_fee((transaction_amount.to_i rescue 0))
+          @fee = check_deposit_fee((transaction_amount.to_i rescue 0))
 
-          @url = "#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/Remonte/#{@token}/#{merchant_pos.token}/DNLiVHcI/#{transaction_amount}/#{fee}/0/#{transaction_id}/null"
+          @url = "#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/Remonte/#{@token}/#{merchant_pos.token}/DNLiVHcI/#{transaction_amount}/#{@fee}/0/#{transaction_id}/null"
 
           if agent == "af478a2c47d8418a"
 
-            @url = "#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/Remonte/#{@token}/#{merchant_pos.token}/DNLiVHcI/#{transaction_amount}/#{fee}/0/#{transaction_id}/null"
+            @url = "#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/Remonte/#{@token}/#{merchant_pos.token}/DNLiVHcI/#{transaction_amount}/#{@fee}/0/#{transaction_id}/null"
           end
 
           BombLog.create(sent_url: @url)
@@ -709,21 +692,21 @@ def api_sf_validate_checkout
               status = transaction_id
               response_log = response.to_s
               transaction_status = true
-              Log.create(transaction_type: "Remontée de fonds", credit_amount: transaction_amount, response_log: response_log, status: true, remote_ip_address: remote_ip_address, agent: agent, sub_agent: sub_agent, transaction_id: transaction_id)
+              Log.create(transaction_type: "Remontée de fonds", checkout_amount: transaction_amount, response_log: response_log, status: true, remote_ip_address: remote_ip_address, agent: agent, sub_agent: sub_agent, transaction_id: transaction_id, fee: @fee)
             else
               status = "|5001|"
               error_log = response.to_s
-              Log.create(transaction_type: "Remontée de fonds", credit_amount: transaction_amount, error_log: error_log, status: false, remote_ip_address: remote_ip_address, agent: agent, sub_agent: sub_agent, transaction_id: transaction_id)
+              Log.create(transaction_type: "Remontée de fonds", checkout_amount: transaction_amount, error_log: error_log, status: false, remote_ip_address: remote_ip_address, agent: agent, sub_agent: sub_agent, transaction_id: transaction_id, fee: @fee)
             end
           else
             error_log = response.to_s
-            Log.create(transaction_type: "Remontée de fonds", credit_amount: transaction_amount, error_log: error_log, status: false, remote_ip_address: remote_ip_address, agent: agent, sub_agent: sub_agent, transaction_id: transaction_id)
+            Log.create(transaction_type: "Remontée de fonds", checkout_amount: transaction_amount, error_log: error_log, status: false, remote_ip_address: remote_ip_address, agent: agent, sub_agent: sub_agent, transaction_id: transaction_id, fee: @fee)
           end
         end
       #end
     end
 
-    Typhoeus.get("#{Parameter.first.hub_front_office_url}/api/367419f5968800cd/paymoney_wallet/store_log", params: { transaction_type: "Remontée de fonds", credit_amount: transaction_amount, response_log: response_log, error_log: error_log, status: transaction_status, remote_ip_address: remote_ip_address, agent: agent, sub_agent: sub_agent, transaction_id: transaction_id })
+    Typhoeus.get("#{Parameter.first.hub_front_office_url}/api/367419f5968800cd/paymoney_wallet/store_log", params: { transaction_type: "Remontée de fonds", checkout_amount: transaction_amount, response_log: response_log, error_log: error_log, status: transaction_status, remote_ip_address: remote_ip_address, agent: agent, sub_agent: sub_agent, transaction_id: transaction_id, fee: @fee })
 
     render text: status
   end
@@ -737,6 +720,7 @@ def api_sf_validate_checkout
     error_log = "none"
     status = "|5000|"
     transaction_status = false
+    @fee = "0"
 
     merchant_pos = CertifiedAgent.where("certified_agent_id = '#{params[:agent]}' AND sub_certified_agent_id IS NULL").first rescue nil
     if merchant_pos.blank?
@@ -753,12 +737,12 @@ def api_sf_validate_checkout
 
           set_pos_operation_token("99999999", "ascent")
 
-          fee = check_deposit_fee((transaction_amount.to_i rescue 0))
+          @fee = check_deposit_fee((transaction_amount.to_i rescue 0))
 
           if @has_rib
-            @url = "#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/Remonte_avec_rib/#{@token}/#{merchant_pos.token}/DNLiVHcI/#{transaction_amount}/#{fee}/0/#{transaction_id}/null"
+            @url = "#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/Remonte_avec_rib/#{@token}/#{merchant_pos.token}/DNLiVHcI/#{transaction_amount}/#{@fee}/0/#{transaction_id}/null"
           else
-            @url = "#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/Remonte_sans_rib/#{@token}/#{merchant_pos.token}/DNLiVHcI/#{transaction_amount}/#{fee}/0/#{transaction_id}/null"
+            @url = "#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/Remonte_sans_rib/#{@token}/#{merchant_pos.token}/DNLiVHcI/#{transaction_amount}/#{@fee}/0/#{transaction_id}/null"
           end
 
           BombLog.create(sent_url: @url)
@@ -769,21 +753,21 @@ def api_sf_validate_checkout
               status = transaction_id
               response_log = response.to_s
               transaction_status = true
-              Log.create(transaction_type: "Remontée de fonds", credit_amount: transaction_amount, response_log: response_log, status: true, remote_ip_address: remote_ip_address, agent: agent, sub_agent: sub_agent, transaction_id: transaction_id)
+              Log.create(transaction_type: "Remontée de fonds", checkout_amount: transaction_amount, response_log: response_log, status: true, remote_ip_address: remote_ip_address, agent: agent, sub_agent: sub_agent, transaction_id: transaction_id, fee: @fee)
             else
               status = "|5001|"
               error_log = response.to_s
-              Log.create(transaction_type: "Remontée de fonds", credit_amount: transaction_amount, error_log: error_log, status: false, remote_ip_address: remote_ip_address, agent: agent, sub_agent: sub_agent, transaction_id: transaction_id)
+              Log.create(transaction_type: "Remontée de fonds", checkout_amount: transaction_amount, error_log: error_log, status: false, remote_ip_address: remote_ip_address, agent: agent, sub_agent: sub_agent, transaction_id: transaction_id, fee: @fee)
             end
           else
             error_log = response.to_s
-            Log.create(transaction_type: "Remontée de fonds", credit_amount: transaction_amount, error_log: error_log, status: false, remote_ip_address: remote_ip_address, agent: agent, sub_agent: sub_agent, transaction_id: transaction_id)
+            Log.create(transaction_type: "Remontée de fonds", checkout_amount: transaction_amount, error_log: error_log, status: false, remote_ip_address: remote_ip_address, agent: agent, sub_agent: sub_agent, transaction_id: transaction_id, fee: @fee)
           end
         end
       #end
     end
 
-    Typhoeus.get("#{Parameter.first.hub_front_office_url}/api/367419f5968800cd/paymoney_wallet/store_log", params: { transaction_type: "Remontée de fonds", credit_amount: transaction_amount, response_log: response_log, error_log: error_log, status: transaction_status, remote_ip_address: remote_ip_address, agent: agent, sub_agent: sub_agent, transaction_id: transaction_id })
+    Typhoeus.get("#{Parameter.first.hub_front_office_url}/api/367419f5968800cd/paymoney_wallet/store_log", params: { transaction_type: "Remontée de fonds", checkout_amount: transaction_amount, response_log: response_log, error_log: error_log, status: transaction_status, remote_ip_address: remote_ip_address, agent: agent, sub_agent: sub_agent, transaction_id: transaction_id, fee: @fee })
 
     render text: status
   end
@@ -949,7 +933,7 @@ def api_sf_validate_checkout
       set_game_operation_token(game_account_token)
       @url = "#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/valide_paris/#{@token}/#{game_account_token}/#{transaction_amount}/0/0/#{transaction_id}"
 
-      BombLog.create(sent_url: @url)
+      BombLog.create(sent_url: @url, remote_ip: remote_ip_address)
       response = (RestClient.get @url rescue "")
 
       unless response.blank?
@@ -1076,7 +1060,6 @@ def api_sf_validate_checkout
     else
       if is_a_number?(transaction_amount)
         transaction_id = Digest::SHA1.hexdigest([DateTime.now.iso8601(6), rand].join)
-        set_game_operation_token(game_account_token)
         @url = "#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/cash_in_pos/53740905/#{account_token}/#{transaction_amount}/#{transaction_id}"
         BombLog.create(sent_url: @url)
         response = (RestClient.get @url rescue "")

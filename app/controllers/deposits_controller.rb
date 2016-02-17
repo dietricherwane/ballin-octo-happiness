@@ -1,8 +1,11 @@
 class DepositsController < ApplicationController
+  before_action :ensure_login, only: [:api_get_pos_sale_balance, :api_get_daily_balance, :api_proceed_deposit, :api_sf_proceed_deposit]
+
   @@user_name = "ngser@lonaci"
   @@password = "lemotdepasse"
   @@notification_url = "https://142.11.15.18:11111"
-  @@url = "http://192.168.1.44:29000"
+  #@@url = "http://192.168.1.44:29000"
+  @@url = "http://office.cm3.work:27000"
 
   def api_get_pos_sale_balance
     @token = params[:game_token]
@@ -24,11 +27,12 @@ class DepositsController < ApplicationController
       if @game_token.code == '04f50a4961'
         spc_get_session_balance
       end
-      DepositLog.create(game_token: @game_token, pos_id: @pos_id, deposit_request: @body, deposit_response: @response_body)
     else
       @error_code = '4000'
       @error_description = "Ce jeu n'a pas été trouvé."
     end
+
+    DepositLog.create(game_token: @game_token, pos_id: @pos_id, deposit_request: @body, deposit_response: @response_body)
   end
 
   def cm3_get_session_balance
@@ -117,17 +121,18 @@ class DepositsController < ApplicationController
       @error_code = '4000'
       @error_description = "Ce jeu n'a pas été trouvé."
     end
+
+    DepositLog.create(game_token: @game_token, pos_id: @pos_id, deposit_request: @body, deposit_response: @response_body)
   end
 
   def cm3_get_daily_balance
-    ensure_login
     if @login_error
       @error_code = '3000'
       @error_description = "La connexion n'a pas pu être établie."
     else
-      body = "<vendorBalanceRequest><connectionId>#{@connection_id}</connectionId><vendorId>#{@pos_id}</vendorId></vendorBalanceRequest>"
+      @body = "<vendorBalanceRequest><connectionId>#{@connection_id}</connectionId><vendorId>#{@pos_id}</vendorId></vendorBalanceRequest>"
 
-      send_request(body, "#{@@url}/getVendorBalance")
+      send_request(@body, "#{@@url}/getVendorBalance")
       error_code = (@request_result.xpath('//return').at('error').content rescue nil)
       if error_code.blank? && @error != true
         @deposit_days = (@request_result.xpath('//vendorBalanceResponse/depositDay') rescue nil)
@@ -210,7 +215,8 @@ class DepositsController < ApplicationController
   def api_sf_proceed_deposit
     @token = params[:game_token]
     @pos_id = params[:pos_id]
-    @agent = "99999999"
+    @agent = params[:agent]
+    @origin = "99999999"
     @sub_agent = params[:sub_agent]
     @paymoney_account_number = params[:paymoney_account_number]
     @transaction_amount = params[:amount]
@@ -238,30 +244,24 @@ class DepositsController < ApplicationController
   end
 
   def cm3_proceed_deposit
-    ensure_login
-    if @login_error
-      @error_code = '3000'
-      @error_description = "La connexion n'a pas pu être établie."
+    body = "<vendorDepositRequest><connectionId>#{@connection_id}</connectionId><deposit><vendorId>#{@pos_id}</vendorId><date>#{@date}</date><amount>#{@transaction_amount}</amount></deposit></vendorDepositRequest>"
+
+    @deposit = Deposit.create(game_token: @token, pos_id: @pos_id, agent: @agent, sub_agent: @sub_agent, paymoney_account: @paymoney_account_number, deposit_day: @date, deposit_amount: @transaction_amount, deposit_request: body, transaction_id: Digest::SHA1.hexdigest([DateTime.now.iso8601(6), rand].join).hex.to_s)
+
+    send_request(body, "#{@@url}/depositVendorCash")
+    @deposit.update_attributes(deposit_response: @response_body)
+    error_code = (@request_result.xpath('//return').at('error').content rescue nil)
+    if error_code.to_s == "0" && @error != true
+      @deposit.update_attributes(deposit_made: true)
+      cm3_paymoney_deposit
     else
-      body = "<vendorDepositRequest><connectionId>#{@connection_id}</connectionId><deposit><vendorId>#{@pos_id}</vendorId><date>#{@date}<date><amount>#{@transaction_amount}</amount><deposit></vendorDepositRequest>"
-
-      @deposit = Deposit.create(game_token: @token, pos_id: @pos_id, agent: @agent, sub_agent: @sub_agent, paymoney_account: @paymoney_account_number, deposit_day: @date, deposit_amount: @transaction_amount, deposit_request: body, transaction_id: Digest::SHA1.hexdigest([DateTime.now.iso8601(6), rand].join).hex.to_s)
-
-      send_request(body, "#{@@url}/depositVendorCash")
-      @deposit.update_attributes(deposit_response: @response_body)
-      error_code = (@request_result.xpath('//return').at('error').content rescue nil)
-      if error_code.to_s == "0" && @error != true
-        @deposit.update_attributes(deposit_made: true)
-        cm3_paymoney_deposit
-      else
-        @error_code = (@request_result.xpath('//return').at('error').content rescue nil)
-        @error_description = (@request_result.xpath('//message').at('error').content rescue nil)
-      end
+      @error_code = (@request_result.xpath('//return').at('error').content rescue nil)
+      @error_description = (@request_result.xpath('//message').at('error').content rescue nil)
     end
   end
 
   def cm3_paymoney_deposit
-    paymoney_account_token = check_account_number(@paymoney_account_number)
+    @paymoney_account_token = check_account_number(@paymoney_account_number)
 
     paymoney_wallet_url = (Parameters.first.paymoney_wallet_url rescue "")
     @transaction_amount = @transaction_amount
@@ -271,39 +271,37 @@ class DepositsController < ApplicationController
      @error_code = '5000'
      @error_description = "Le montant de transaction n'est pas valide."
     else
-      if paymoney_account_token.blank?
-        @error_code = '5001'
-        @error_description = "Ce compte paymoney n'existe pas."
-      else
-        @url = "#{paymoney_wallet_url}/api/1314a3dfb726290bbc99c71b510d2b/#{@agent}/#{@sub_agent}/account/ascent/#{@transaction_amount}"
+      #if @paymoney_account_token.blank?
+        #@error_code = '5001'
+        #@error_description = "Ce compte paymoney n'existe pas."
+      #else
+        #@url = "api_ascent"
 
-        if @agent = "99999999"
-          @url = "#{paymoney_wallet_url}/api/c067d6dc6a578a789e8fdb4c4556c239/#{@agent}/#{@sub_agent}/account/ascent/#{@transaction_amount}"
-        end
+        #if @agent == "99999999"
+          #@url = "api_sf_ascent"
+        #end
 
-        request = Typhoeus::Request.new(@url, followlocation: true, method: :get)
-
-        request.on_complete do |response|
-          if response.success?
-            response_body = response.body
-
-            if !response_body.include?("|")
-              @deposit.update_attributes(paymoney_transaction_id: response_body, paymoney_request: @url, paymoney_response: response_body)
-              status = true
-            else
-              @error_code = '4001'
-              @error_description = 'Paymoney-Erreur de paiement.'
-              @deposit.update_attributes(paymoney_request: request, paymoney_response: response_body)
-            end
+        if @origin == "99999999"
+          if !api_sf_ascent.include?("|")
+            @deposit.update_attributes(paymoney_request: @url, paymoney_response: @status)
+            status = true
           else
-            @error_code = '4000'
-            @error_description = "Le serveur de paiement n'est pas disponible."
-            @deposit.update_attributes(paymoney_request: request, paymoney_response: response_body)
+            @error_code = '4002'
+            @error_description = 'Paymoney-Erreur de paiement.'
+            @deposit.update_attributes(paymoney_request: @url, paymoney_response: CertifiedAgent.where("certified_agent_id = '#{@agent}' AND sub_certified_agent_id IS NULL").first.inspect)
+          end
+        else
+          if !api_ascent.include?("|")
+            @deposit.update_attributes(paymoney_request: @url, paymoney_response: @status)
+            status = true
+          else
+            @error_code = '4001'
+            @error_description = 'Paymoney-Erreur de paiement.'
+            @deposit.update_attributes(paymoney_request: @url, paymoney_response: @status)
           end
         end
 
-        request.run
-      end
+      #end
     end
 
     return status
@@ -361,6 +359,127 @@ class DepositsController < ApplicationController
     end
   end
 
+  def api_ascent
+    transaction_amount = @transaction_amount
+    agent = @agent
+    sub_agent = @sub_agent
+    remote_ip_address = ""#request.remote_ip
+    response_log = "none"
+    error_log = "none"
+    @status = "|5000|"
+    transaction_status = false
+    @fee = "0"
+
+    merchant_pos = CertifiedAgent.where("certified_agent_id = '#{agent}' AND sub_certified_agent_id IS NULL").first rescue nil
+    if merchant_pos.blank?
+      @status = "|4042|"
+    else
+      #private_pos = CertifiedAgent.where("sub_certified_agent_id = '#{params[:sub_agent]}' ").first rescue "null"
+      #if private_pos.blank?
+        #status = "|4041|"
+      #else
+        if is_a_number?(transaction_amount)
+          transaction_id = Digest::SHA1.hexdigest([DateTime.now.iso8601(6), rand].join)
+          set_pos_operation_token(agent, "ascent")
+
+          @fee = check_deposit_fee((transaction_amount.to_i rescue 0))
+
+          @url = "#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/Remonte/#{@token}/#{merchant_pos.token}/#{@paymoney_account_token.blank? ? 'DNLiVHcI' : @paymoney_account_token}/#{transaction_amount}/#{@fee}/0/#{transaction_id}/null"
+
+          if agent == "af478a2c47d8418a"
+            @url = "#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/Remonte/#{@token}/#{merchant_pos.token}/#{@paymoney_account_token.blank? ? 'DNLiVHcI' : @paymoney_account_token}/#{transaction_amount}/#{@fee}/0/#{transaction_id}/null"
+          end
+
+          BombLog.create(sent_url: @url)
+          response = (RestClient.get @url rescue "")
+
+          unless response.blank?
+            if response.to_s == "good"
+              @status = transaction_id
+              response_log = response.to_s
+              transaction_status = true
+              Log.create(transaction_type: "Remontée de fonds", checkout_amount: transaction_amount, response_log: response_log, status: true, remote_ip_address: remote_ip_address, agent: agent, sub_agent: sub_agent, transaction_id: transaction_id, fee: @fee)
+            else
+              @status = "|5001|"
+              error_log = response.to_s
+              Log.create(transaction_type: "Remontée de fonds", checkout_amount: transaction_amount, error_log: error_log, status: false, remote_ip_address: remote_ip_address, agent: agent, sub_agent: sub_agent, transaction_id: transaction_id, fee: @fee)
+            end
+          else
+            error_log = response.to_s
+            Log.create(transaction_type: "Remontée de fonds", checkout_amount: transaction_amount, error_log: error_log, status: false, remote_ip_address: remote_ip_address, agent: agent, sub_agent: sub_agent, transaction_id: transaction_id, fee: @fee)
+          end
+        end
+      #end
+    end
+
+    Typhoeus.get("#{Parameter.first.hub_front_office_url}/api/367419f5968800cd/paymoney_wallet/store_log", params: { transaction_type: "Remontée de fonds", checkout_amount: transaction_amount, response_log: response_log, error_log: error_log, status: transaction_status, remote_ip_address: remote_ip_address, agent: agent, sub_agent: sub_agent, transaction_id: transaction_id, fee: @fee })
+
+    return @status
+  end
+
+  def api_sf_ascent
+    transaction_amount = @transaction_amount
+    agent = @agent
+    sub_agent = @sub_agent
+    remote_ip_address = ""
+    response_log = "none"
+    error_log = "none"
+    @status = "|5000|"
+    transaction_status = false
+    @fee = "0"
+
+    merchant_pos = CertifiedAgent.where("certified_agent_id = '#{@agent}' AND sub_certified_agent_id IS NULL").first rescue nil
+    if merchant_pos.blank?
+      @status = "|4042|"
+    else
+      #private_pos = CertifiedAgent.where("sub_certified_agent_id = '#{params[:sub_agent]}' ").first rescue "null"
+      #if private_pos.blank?
+        #status = "|4041|"
+      #else
+        if is_a_number?(transaction_amount)
+          transaction_id = Digest::SHA1.hexdigest([DateTime.now.iso8601(6), rand].join)
+
+          @certified_agent_id = agent
+
+          set_pos_operation_token("99999999", "ascent")
+
+          @fee = check_deposit_fee((transaction_amount.to_i rescue 0))
+
+          if has_rib(@agent)
+            @token = "13a3fd04"
+            @url = "#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/Remonte_avec_rib/#{@token}/#{merchant_pos.token}/#{@paymoney_account_token.blank? ? 'DNLiVHcI' : @paymoney_account_token}/#{transaction_amount}/#{@fee}/0/#{transaction_id}/null"
+          else
+            @token = "e3875eab"
+            @url = "#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/Remonte_sans_rib/#{@token}/#{merchant_pos.token}/#{@paymoney_account_token.blank? ? 'DNLiVHcI' : @paymoney_account_token}/#{transaction_amount}/#{@fee}/0/#{transaction_id}/null"
+          end
+
+          BombLog.create(sent_url: @url)
+          response = (RestClient.get @url rescue "")
+
+          unless response.blank?
+            if response.to_s == "good"
+              @status = transaction_id
+              response_log = response.to_s
+              transaction_status = true
+              Log.create(transaction_type: "Remontée de fonds", checkout_amount: transaction_amount, response_log: response_log, status: true, remote_ip_address: remote_ip_address, agent: agent, sub_agent: sub_agent, transaction_id: transaction_id, fee: @fee)
+            else
+              @status = "|5001|"
+              error_log = response.to_s
+              Log.create(transaction_type: "Remontée de fonds", checkout_amount: transaction_amount, error_log: error_log, status: false, remote_ip_address: remote_ip_address, agent: agent, sub_agent: sub_agent, transaction_id: transaction_id, fee: @fee)
+            end
+          else
+            error_log = response.to_s
+            Log.create(transaction_type: "Remontée de fonds", checkout_amount: transaction_amount, error_log: error_log, status: false, remote_ip_address: remote_ip_address, agent: agent, sub_agent: sub_agent, transaction_id: transaction_id, fee: @fee)
+          end
+        end
+      #end
+    end
+
+    Typhoeus.get("#{Parameter.first.hub_front_office_url}/api/367419f5968800cd/paymoney_wallet/store_log", params: { transaction_type: "Remontée de fonds", checkout_amount: transaction_amount, response_log: response_log, error_log: error_log, status: transaction_status, remote_ip_address: remote_ip_address, agent: agent, sub_agent: sub_agent, transaction_id: transaction_id, fee: @fee })
+
+    return @status
+  end
+
   def game_token_exists
     @game_token = GameToken.find_by_code(@token)
     status = true
@@ -392,12 +511,12 @@ class DepositsController < ApplicationController
   end
 
   def ensure_login
-    body = %Q[<?xml version='1.0' encoding='UTF-8'?>
-              <loginRequest>
+    body = %Q[<loginRequest>
                 <username>#{@@user_name}</username>
-                <password>#{@@password}<password>
+                <password>#{@@password}</password>
                 <notificationUrl>#{@@notification_url}</notificationUrl>
               </loginRequest>]
+
     send_request(body, "#{@@url}/login")
 
     error_code = (@request_result.xpath('//return').at('error').content rescue nil)
@@ -407,5 +526,15 @@ class DepositsController < ApplicationController
     else
       @login_error = true
     end
+  end
+
+  def check_account_number(account_number)
+    token = (RestClient.get "#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/check2_compte/#{account_number}" rescue "")
+
+    if token == "null"
+      token = ""
+    end
+
+    return token
   end
 end
