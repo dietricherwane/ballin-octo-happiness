@@ -12,7 +12,7 @@ class AccountsController < ApplicationController
     status = "error"
 
     if !msisdn.blank? && is_a_number?(msisdn) && right_msisdn_length?(msisdn)
-      request = Typhoeus::Request.new("http://195.14.0.128:8080/PAYMONEY_WALLET/rest/ussd_create_compte/#{msisdn}", followlocation: true, method: :get)
+      request = Typhoeus::Request.new("http://41.189.40.193:8080/PAYMONEY_WALLET/rest/ussd_create_compte/#{msisdn}", followlocation: true, method: :get)
 
       request.on_complete do |response|
         if response.success?
