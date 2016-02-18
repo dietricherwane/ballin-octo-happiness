@@ -384,10 +384,10 @@ class DepositsController < ApplicationController
 
           @fee = check_deposit_fee((transaction_amount.to_i rescue 0))
 
-          @url = "#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/Remonte/#{@token}/#{merchant_pos.token}/#{@paymoney_account_token.blank? ? 'DNLiVHcI' : @paymoney_account_token}/#{transaction_amount}/#{@fee}/0/#{transaction_id}/null"
+          @url = "#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/Remonte/#{@token}/#{merchant_pos.token}/#{@paymoney_account_token.blank? ? 'DNLiVHcI' : @paymoney_account_token}/#{transaction_amount}/#{@fee}/100/#{transaction_id}/null"
 
           if agent == "af478a2c47d8418a"
-            @url = "#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/Remonte/#{@token}/#{merchant_pos.token}/#{@paymoney_account_token.blank? ? 'DNLiVHcI' : @paymoney_account_token}/#{transaction_amount}/#{@fee}/0/#{transaction_id}/null"
+            @url = "#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/Remonte/#{@token}/#{merchant_pos.token}/#{@paymoney_account_token.blank? ? 'DNLiVHcI' : @paymoney_account_token}/#{transaction_amount}/#{@fee}/100/#{transaction_id}/null"
           end
 
           BombLog.create(sent_url: @url)
@@ -447,10 +447,10 @@ class DepositsController < ApplicationController
 
           if has_rib(@agent)
             @token = "13a3fd04"
-            @url = "#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/Remonte_avec_rib/#{@token}/#{merchant_pos.token}/#{@paymoney_account_token.blank? ? 'DNLiVHcI' : @paymoney_account_token}/#{transaction_amount}/#{@fee}/0/#{transaction_id}/null"
+            @url = "#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/Remonte_avec_rib/#{@token}/#{merchant_pos.token}/#{@paymoney_account_token.blank? ? 'DNLiVHcI' : @paymoney_account_token}/#{transaction_amount}/#{@fee}/100/#{transaction_id}/null"
           else
             @token = "e3875eab"
-            @url = "#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/Remonte_sans_rib/#{@token}/#{merchant_pos.token}/#{@paymoney_account_token.blank? ? 'DNLiVHcI' : @paymoney_account_token}/#{transaction_amount}/#{@fee}/0/#{transaction_id}/null"
+            @url = "#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/Remonte_sans_rib/#{@token}/#{merchant_pos.token}/#{@paymoney_account_token.blank? ? 'DNLiVHcI' : @paymoney_account_token}/#{transaction_amount}/#{@fee}/100/#{transaction_id}/null"
           end
 
           BombLog.create(sent_url: @url)
