@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160209152305) do
+ActiveRecord::Schema.define(version: 20160304170305) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -42,6 +42,12 @@ ActiveRecord::Schema.define(version: 20160209152305) do
     t.string   "token"
     t.string   "sub_certified_agent_id"
     t.string   "wari_sub_agent_id"
+  end
+
+  create_table "cm_logins", force: true do |t|
+    t.string   "connection_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "deposit_logs", force: true do |t|

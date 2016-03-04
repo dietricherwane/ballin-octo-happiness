@@ -3,9 +3,18 @@ class DepositsController < ApplicationController
 
   @@user_name = "ngser@lonaci"
   @@password = "lemotdepasse"
-  @@notification_url = "https://142.11.15.18:11111"
-  #@@url = "http://192.168.1.44:29000"
-  @@url = "http://office.cm3.work:27000"
+  @@notification_url = "http://154.68.45.82:1180/api/dc4741d1b1/"
+  @@hub_notification_url = "http://parionsdirect.ci/test/api/cm3" # URL vers la plateforme de Moïse
+  @@cm3_server_url = "http://office.cm3.work:27000"
+  #@@cm3_server_url = "http://192.168.1.44:29000"
+
+  def reset_connection_id(error_code)
+    if error_code == "501"
+      CmLogin.first.delete rescue nil
+      @error_code = '3000'
+      @error_description = "Session interrompue, veuillez réessayer."
+    end
+  end
 
   def api_get_pos_sale_balance
     @token = params[:game_token]
@@ -55,6 +64,8 @@ class DepositsController < ApplicationController
       else
         @error_code = '3001'
         @error_description = "La balance n'a pas pu être récupérée."
+
+        reset_connection_id(error_code)
       end
     end
   end
@@ -139,6 +150,8 @@ class DepositsController < ApplicationController
       else
         @error_code = '3001'
         @error_description = "La balance n'a pas pu être récupérée."
+
+        reset_connection_id(error_code)
       end
     end
   end
@@ -257,6 +270,8 @@ class DepositsController < ApplicationController
     else
       @error_code = (@request_result.xpath('//return').at('error').content rescue nil)
       @error_description = (@request_result.xpath('//message').at('error').content rescue nil)
+
+      reset_connection_id(error_code)
     end
   end
 
@@ -511,20 +526,27 @@ class DepositsController < ApplicationController
   end
 
   def ensure_login
-    body = %Q[<loginRequest>
-                <username>#{@@user_name}</username>
-                <password>#{@@password}</password>
-                <notificationUrl>#{@@notification_url}</notificationUrl>
-              </loginRequest>]
+    @connection_id = CmLogin.first.connection_id rescue nil
+    if @connection_id.blank?
+      body = %Q[<?xml version='1.0' encoding='UTF-8'?>
+                <loginRequest>
+                  <username>#{@@user_name}</username>
+                  <password>#{@@password}</password>
+                  <notificationUrl>#{@@notification_url}</notificationUrl>
+                </loginRequest>]
+      send_request(body, "#{@@cm3_server_url}/login")
 
-    send_request(body, "#{@@url}/login")
+      error_code = (@request_result.xpath('//return').at('error').content rescue nil)
 
-    error_code = (@request_result.xpath('//return').at('error').content rescue nil)
-
-    if error_code.blank? && @error != true
-      @connection_id = (@request_result.xpath('//loginResponse').at('connectionId').content  rescue nil)
-    else
-      @login_error = true
+      if error_code.blank? && @error != true
+        @connection_id = (@request_result.xpath('//loginResponse').at('connectionId').content  rescue nil)
+        CmLogin.create(connection_id: @connection_id)
+        CmLog.create(operation: "Login", connection_id: @connection_id, login_request: body, login_response: @response_body)
+      else
+        @login_error = true
+        CmLogin.first.delete rescue nil
+        CmLog.create(login_error_code: error_code, login_error_description: (@request_result.xpath('//return').at('message').content rescue nil), login_request: body, login_response: @response_body, login_error_code: @response_code)
+      end
     end
   end
 
