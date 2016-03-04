@@ -189,7 +189,7 @@ class DepositsController < ApplicationController
     @sub_agent = params[:sub_agent]
     @paymoney_account_number = params[:paymoney_account_number]
     @transaction_amount = params[:amount]
-    @date = Date.today.strftime("%Y-%m-%d")
+    @date = (Date.today - 1).strftime("%Y-%m-%d")
     @error_code = ''
     @error_description = ''
 
@@ -220,7 +220,7 @@ class DepositsController < ApplicationController
     @sub_agent = params[:sub_agent]
     @paymoney_account_number = params[:paymoney_account_number]
     @transaction_amount = params[:amount]
-    @date = Date.today.strftime("%Y-%m-%d")
+    @date = (Date.today - 1).strftime("%Y-%m-%d")
     @error_code = ''
     @error_description = ''
 
