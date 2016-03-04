@@ -52,7 +52,7 @@ class DepositsController < ApplicationController
     else
       @body = "<balanceRequest><connectionId>#{@connection_id}</connectionId><sessionId>#{@session_id}</sessionId></balanceRequest>"
 
-      send_request(@body, "#{@@url}/getSessionBalance")
+      send_request(@body, "#{@@cm3_server_url}/getSessionBalance")
       error_code = (@request_result.xpath('//return').at('error').content rescue nil)
       if error_code.blank? && @error != true
         @number_of_sales = (@request_result.xpath('//balance').at('nbSales').content rescue nil)
@@ -143,7 +143,7 @@ class DepositsController < ApplicationController
     else
       @body = "<vendorBalanceRequest><connectionId>#{@connection_id}</connectionId><vendorId>#{@pos_id}</vendorId></vendorBalanceRequest>"
 
-      send_request(@body, "#{@@url}/getVendorBalance")
+      send_request(@body, "#{@@cm3_server_url}/getVendorBalance")
       error_code = (@request_result.xpath('//return').at('error').content rescue nil)
       if error_code.blank? && @error != true
         @deposit_days = (@request_result.xpath('//vendorBalanceResponse/depositDay') rescue nil)
@@ -261,7 +261,7 @@ class DepositsController < ApplicationController
 
     @deposit = Deposit.create(game_token: @token, pos_id: @pos_id, agent: @agent, sub_agent: @sub_agent, paymoney_account: @paymoney_account_number, deposit_day: @date, deposit_amount: @transaction_amount, deposit_request: body, transaction_id: Digest::SHA1.hexdigest([DateTime.now.iso8601(6), rand].join).hex.to_s)
 
-    send_request(body, "#{@@url}/depositVendorCash")
+    send_request(body, "#{@@cm3_server_url}/depositVendorCash")
     @deposit.update_attributes(deposit_response: @response_body)
     error_code = (@request_result.xpath('//return').at('error').content rescue nil)
     if error_code.to_s == "0" && @error != true
