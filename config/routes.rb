@@ -93,10 +93,10 @@ Rails.application.routes.draw do
   get "/api/rff741v1b1/deposit/:game_token/:pos_id/:paymoney_account_number/:agent/:sub_agent/:date/:amount" => 'deposits#api_sf_proceed_deposit'
 
   # Ascent
-  get '/api/1314a3dfb726290bbc99c71b510d2b/:agent/:sub_agent/account/ascent/:transaction_amount' => 'accounts#api_ascent', :constraints => {:transaction_amount => /(\d+(.\d+)?)/}
+  get '/api/1314a3dfb726290bbc99c71b510d2b/:agent/:sub_agent/account/ascent/:transaction_amount/:pos_id' => 'accounts#api_ascent', :constraints => {:transaction_amount => /(\d+(.\d+)?)/}
 
   #SF Ascent
-  get '/api/c067d6dc6a578a789e8fdb4c4556c239/:agent/:sub_agent/account/ascent/:transaction_amount' => 'accounts#api_sf_ascent', :constraints => {:transaction_amount => /(\d+(.\d+)?)/}
+  get '/api/c067d6dc6a578a789e8fdb4c4556c239/:agent/:sub_agent/account/ascent/:transaction_amount/:pos_id' => 'accounts#api_sf_ascent', :constraints => {:transaction_amount => /(\d+(.\d+)?)/}
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
