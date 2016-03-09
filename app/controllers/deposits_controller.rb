@@ -578,4 +578,15 @@ class DepositsController < ApplicationController
 
     render text: status
   end
+
+  def api_check_deposit_fee
+    fee = ""
+    fee_type = FeeType.find_by_name("Deposit")
+
+    if !fee_type.blank?
+      fee = fee_type.fees.where("min_value <= #{params[:amount].to_f} AND max_value >= #{params[:amount].to_f}").first.fee_value.to_s rescue nil
+    end
+
+    render text: status
+  end
 end

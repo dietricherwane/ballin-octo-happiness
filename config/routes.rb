@@ -101,6 +101,9 @@ Rails.application.routes.draw do
   # Check certified agent id
   get '/api/c067dkkdfkkdh48a789e8fdb4c4556c239/certified_agent/check/:agent_id' => 'deposits#check_certified_agent_id'
 
+  # Check deposit fee
+  get '/api/df522df8418a789e8fdb4c4556c239/fee/check/:amount' => 'deposits#api_check_deposit_fee'
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
