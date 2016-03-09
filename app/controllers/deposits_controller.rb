@@ -587,6 +587,6 @@ class DepositsController < ApplicationController
       fee = fee_type.fees.where("min_value <= #{params[:amount].to_f} AND max_value >= #{params[:amount].to_f}").first.fee_value.to_s rescue nil
     end
 
-    render text: status
+    render text: fee
   end
 end
