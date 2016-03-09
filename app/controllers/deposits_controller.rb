@@ -113,6 +113,8 @@ class DepositsController < ApplicationController
   end
 
   def api_get_daily_balance
+    redirect_to %Q[#{@@notification_url}/api/4839f1cb04/deposit/on_hold/#{params[:game_token]}/#{params[:pos_id]}]
+=begin
     @token = params[:game_token]
     @pos_id = params[:pos_id]
     @error_code = ''
@@ -137,6 +139,7 @@ class DepositsController < ApplicationController
     end
 
     DepositLog.create(game_token: @game_token, pos_id: @pos_id, deposit_request: @body, deposit_response: @response_body)
+=end
   end
 
   def cm3_get_daily_balance
@@ -199,6 +202,8 @@ class DepositsController < ApplicationController
   end
 
   def api_proceed_deposit
+    redirect_to %Q[#{@@notification_url}/api/3ae7e2f1b1/deposit/#{params[:game_token]}/#{params[:pos_id]}/#{params[:paymoney_account_number]}/#{params[:agent]}/#{params[:sub_agent]}/#{params[:date]}/#{params[:amount]}]
+=begin
     @token = params[:game_token]
     @pos_id = params[:pos_id]
     @agent = params[:agent]
@@ -226,9 +231,12 @@ class DepositsController < ApplicationController
       @error_code = '4000'
       @error_description = "Ce jeu n'a pas été trouvé."
     end
+=end
   end
 
   def api_sf_proceed_deposit
+    redirect_to %Q[#{@@notification_url}/api/rff741v1b1/deposit/#{params[:game_token]}/#{params[:pos_id]}/#{params[:paymoney_account_number]}/#{params[:agent]}/#{params[:sub_agent]}/#{params[:date]}/#{params[:amount]}]
+=begin
     @token = params[:game_token]
     @pos_id = params[:pos_id]
     @agent = params[:agent]
@@ -257,6 +265,7 @@ class DepositsController < ApplicationController
       @error_code = '4000'
       @error_description = "Ce jeu n'a pas été trouvé."
     end
+=end
   end
 
   def cm3_proceed_deposit
