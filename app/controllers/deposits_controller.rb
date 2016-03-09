@@ -202,7 +202,11 @@ class DepositsController < ApplicationController
   end
 
   def api_proceed_deposit
-    redirect_to %Q[#{@@notification_url}/api/3ae7e2f1b1/deposit/#{params[:game_token]}/#{params[:pos_id]}/#{params[:paymoney_account_number]}/#{params[:agent]}/#{params[:sub_agent]}/#{params[:date]}/#{params[:amount]}]
+    transaction_amount = params[:amount]
+    agent_id = params[:agent]
+    merchant_pos = check_certified_agent_id(agent_id)
+    fee = check_deposit_fee(transaction_amount)
+    redirect_to %Q[#{@@notification_url}/api/3ae7e2f1b1/deposit/#{params[:game_token]}/#{params[:pos_id]}/#{params[:paymoney_account_number]}/#{params[:agent]}/#{params[:sub_agent]}/#{params[:date]}/#{transaction_amount}/#{merchant_pos}/#{fee}]
 =begin
     @token = params[:game_token]
     @pos_id = params[:pos_id]
@@ -235,7 +239,11 @@ class DepositsController < ApplicationController
   end
 
   def api_sf_proceed_deposit
-    redirect_to %Q[#{@@notification_url}/api/rff741v1b1/deposit/#{params[:game_token]}/#{params[:pos_id]}/#{params[:paymoney_account_number]}/#{params[:agent]}/#{params[:sub_agent]}/#{params[:date]}/#{params[:amount]}]
+    transaction_amount = params[:amount]
+    agent_id = params[:agent]
+    merchant_pos = check_certified_agent_id(agent_id)
+    fee = check_deposit_fee(transaction_amount)
+    redirect_to %Q[#{@@notification_url}/api/rff741v1b1/deposit/#{params[:game_token]}/#{params[:pos_id]}/#{params[:paymoney_account_number]}/#{params[:agent]}/#{params[:sub_agent]}/#{params[:date]}/#{params[:amount]}/#{merchant_pos}/#{fee}]
 =begin
     @token = params[:game_token]
     @pos_id = params[:pos_id]
@@ -572,11 +580,11 @@ class DepositsController < ApplicationController
     return token
   end
 
-  def check_certified_agent_id
+  def check_certified_agent_id(agent_id)
     certified_agent_token = CertifiedAgent.where("certified_agent_id = ? AND sub_certified_agent_id IS NULL", params[:agent_id]).first.token rescue nil
     status = (certified_agent.blank? ? 'not_found' : certified_agent_token)
 
-    render text: status
+    return status
   end
 
   def api_check_deposit_fee
