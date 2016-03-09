@@ -582,7 +582,7 @@ class DepositsController < ApplicationController
 
   def check_certified_agent_id(agent_id)
     certified_agent_token = CertifiedAgent.where("certified_agent_id = ? AND sub_certified_agent_id IS NULL", params[:agent_id]).first.token rescue nil
-    status = (certified_agent.blank? ? 'not_found' : certified_agent_token)
+    status = (certified_agent_token.blank? ? 'not_found' : certified_agent_token)
 
     return status
   end
