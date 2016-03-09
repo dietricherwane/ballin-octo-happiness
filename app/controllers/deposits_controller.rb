@@ -3,7 +3,7 @@ class DepositsController < ApplicationController
 
   @@user_name = "ngser@lonaci"
   @@password = "lemotdepasse"
-  @@notification_url = "http://154.68.45.82:1180/api/dc4741d1b1"
+  @@notification_url = "http://154.68.45.82:1180"
   @@hub_notification_url = "http://parionsdirect.ci/test/api/cm3" # URL vers la plateforme de Moïse
   @@cm3_server_url = "http://office.cm3.work:27000"
   #@@cm3_server_url = "http://192.168.1.44:29000"
