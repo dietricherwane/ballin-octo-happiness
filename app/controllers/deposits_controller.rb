@@ -573,7 +573,7 @@ class DepositsController < ApplicationController
   end
 
   def check_certified_agent_id
-    certified_agent = CertifiedAgent.where("certified_agent_id = '?' AND sub_certified_agent_id IS NULL", params[:agent_id]).first rescue nil
+    certified_agent = CertifiedAgent.where("certified_agent_id = ? AND sub_certified_agent_id IS NULL", params[:agent_id]).first rescue nil
     status = (certified_agent.blank? ? '0' : '1')
 
     render text: status
