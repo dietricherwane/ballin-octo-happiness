@@ -1,5 +1,5 @@
 class DepositsController < ApplicationController
-  before_action :ensure_login, only: [:api_get_pos_sale_balance, :api_get_daily_balance, :api_proceed_deposit, :api_sf_proceed_deposit]
+  #before_action :ensure_login, only: [:api_get_pos_sale_balance, :api_get_daily_balance, :api_proceed_deposit, :api_sf_proceed_deposit]
 
   @@user_name = "ngser@lonaci"
   @@password = "lemotdepasse"
@@ -17,6 +17,8 @@ class DepositsController < ApplicationController
   end
 
   def api_get_pos_sale_balance
+    redirect_to @@notification_url "/api/a1b43b7d1b/pos_balance/get/#{params[:game_token]}/#{params[:pos_id]}/#{params[:session_id]}"
+=begin
     @token = params[:game_token]
     @pos_id = params[:pos_id]
     @session_id = params[:session_id]
@@ -42,6 +44,7 @@ class DepositsController < ApplicationController
     end
 
     DepositLog.create(game_token: @game_token, pos_id: @pos_id, deposit_request: @body, deposit_response: @response_body)
+=end
   end
 
   def cm3_get_session_balance
