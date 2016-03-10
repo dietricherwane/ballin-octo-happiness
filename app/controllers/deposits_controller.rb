@@ -17,7 +17,8 @@ class DepositsController < ApplicationController
   end
 
   def api_get_pos_sale_balance
-    redirect_to %Q[#{@@notification_url}/api/a1b43b7d1b/pos_balance/get/#{params[:game_token]}/#{params[:pos_id]}/#{params[:session_id]}]
+    render text: (RestClient.get  %Q[#{@@notification_url}/api/a1b43b7d1b/pos_balance/get/#{params[:game_token]}/#{params[:pos_id]}/#{params[:session_id]}] rescue "")
+
 =begin
     @token = params[:game_token]
     @pos_id = params[:pos_id]
