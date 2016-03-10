@@ -5,8 +5,8 @@ class DepositsController < ApplicationController
   @@password = "lemotdepasse"
   @@notification_url = "http://154.68.45.82:1180"
   @@hub_notification_url = "http://parionsdirect.ci/test/api/cm3" # URL vers la plateforme de Moïse
-  @@cm3_server_url = "http://office.cm3.work:27000"
-  #@@cm3_server_url = "http://192.168.1.44:29000"
+  #@@cm3_server_url = "http://office.cm3.work:27000"
+  @@cm3_server_url = "http://192.168.1.44:29000"
 
   def reset_connection_id(error_code)
     if error_code == "501"
