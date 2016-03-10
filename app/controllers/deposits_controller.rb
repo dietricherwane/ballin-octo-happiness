@@ -114,7 +114,8 @@ class DepositsController < ApplicationController
   end
 
   def api_get_daily_balance
-    redirect_to %Q[#{@@notification_url}/api/4839f1cb04/deposit/on_hold/#{params[:game_token]}/#{params[:pos_id]}]
+    render text: (RestClient.get  %Q[#{@@notification_url}/api/4839f1cb04/deposit/on_hold/#{params[:game_token]}/#{params[:pos_id]}] rescue "")
+
 =begin
     @token = params[:game_token]
     @pos_id = params[:pos_id]
@@ -207,7 +208,9 @@ class DepositsController < ApplicationController
     agent_id = params[:agent]
     merchant_pos = check_certified_agent_id(agent_id)
     fee = check_deposit_fee(transaction_amount)
-    redirect_to %Q[#{@@notification_url}/api/3ae7e2f1b1/deposit/#{params[:game_token]}/#{params[:pos_id]}/#{params[:paymoney_account_number]}/#{params[:agent]}/#{params[:sub_agent]}/#{params[:date]}/#{transaction_amount}/#{merchant_pos}/#{fee}]
+
+    render text: (RestClient.get  %Q[#{@@notification_url}/api/3ae7e2f1b1/deposit/#{params[:game_token]}/#{params[:pos_id]}/#{params[:paymoney_account_number]}/#{params[:agent]}/#{params[:sub_agent]}/#{params[:date]}/#{transaction_amount}/#{merchant_pos}/#{fee}] rescue "")
+
 =begin
     @token = params[:game_token]
     @pos_id = params[:pos_id]
