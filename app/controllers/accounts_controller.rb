@@ -63,7 +63,8 @@ class AccountsController < ApplicationController
           @url = "#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/cash_in_operation_pos/#{@token}/#{account_token}/#{merchant_pos.token}/#{(transaction_amount.to_i rescue 0) - 100}/0/100/#{transaction_id}/null"
 
           if agent == "af478a2c47d8418a"
-            wari_fee = cashin_wari((transaction_amount.to_i rescue 0) - 100)
+            #wari_fee = cashin_wari((transaction_amount.to_i rescue 0) - 100)
+            wari_fee = cashin_wari(transaction_amount)
             @url = "#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/cash_in_operation_pos/#{@token}/#{account_token}/#{merchant_pos.token}/alOWhAgC/#{(transaction_amount.to_i rescue 0) - 100}/0/#{wari_fee}/100/#{transaction_id}/null"
           end
 
@@ -156,13 +157,16 @@ def api_sf_credit_account
   end
 
   def cashin_wari(ta)
+    fee = ta.to_f * 1.05
+    (fee > 2000) if (fee = 2000)
+=begin
     fee = ""
     fee_type = FeeType.find_by_name("Cash in Wari")
 
     if !fee_type.blank?
       fee = fee_type.fees.where("min_value <= #{ta.to_f} AND max_value >= #{ta.to_f}").first.fee_value.to_s rescue nil
     end
-
+=end
     return fee
   end
 
@@ -431,7 +435,7 @@ def api_sf_checkout_account
         @url = "#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/otp_active_pos/#{@token}/#{account_token}/#{agent_token}/#{(transaction.credit_amount.to_i rescue 0) - 100}/0/100/#{transaction.transaction_id}/null/#{pin}/#{transaction.otp}"
 
         if agent == "af478a2c47d8418a"
-          wari_fee = cashin_wari((transaction.credit_amount.to_i rescue 0) - 100)
+          wari_fee = cashin_wari(transaction.credit_amount)
           @url = "#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/otp_active_pos_wari/#{@token}/#{account_token}/#{agent_token}/alOWhAgC/#{(transaction.credit_amount.to_i rescue 0) - 100}/0/#{wari_fee}/100/#{transaction.transaction_id}/null/#{pin}/#{transaction.otp}"
         end
 

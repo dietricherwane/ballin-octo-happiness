@@ -247,7 +247,7 @@ class DepositsController < ApplicationController
     agent_id = params[:agent]
     merchant_pos = check_certified_agent_id(agent_id)
     fee = check_deposit_fee(transaction_amount)
-    redirect_to %Q[#{@@notification_url}/api/rff741v1b1/deposit/#{params[:game_token]}/#{params[:pos_id]}/#{params[:paymoney_account_number]}/#{params[:agent]}/#{params[:sub_agent]}/#{params[:date]}/#{params[:amount]}/#{merchant_pos}/#{fee}]
+    render text: (RestClient.get %Q[#{@@notification_url}/api/rff741v1b1/deposit/#{params[:game_token]}/#{params[:pos_id]}/#{params[:paymoney_account_number]}/#{params[:agent]}/#{params[:sub_agent]}/#{params[:date]}/#{params[:amount]}/#{merchant_pos}/#{fee}] rescue "")
 =begin
     @token = params[:game_token]
     @pos_id = params[:pos_id]
