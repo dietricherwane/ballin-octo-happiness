@@ -158,7 +158,7 @@ def api_sf_credit_account
 
   def cashin_wari(ta)
     fee = ta.to_f * 0.05
-    (fee > 2000) if (fee = 2000)
+    (fee = 2000) if (fee > 2000)
 =begin
     fee = ""
     fee_type = FeeType.find_by_name("Cash in Wari")
