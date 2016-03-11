@@ -157,7 +157,7 @@ def api_sf_credit_account
   end
 
   def cashin_wari(ta)
-    fee = ta.to_f * 0.005
+    fee = (ta.to_f - 100) * 0.005
     (fee = 2000) if (fee > 2000)
 =begin
     fee = ""
