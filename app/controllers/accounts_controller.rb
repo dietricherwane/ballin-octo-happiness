@@ -47,6 +47,7 @@ class AccountsController < ApplicationController
     error_log = "none"
     status = "|5000|"
     transaction_status = false
+    fee = 0
 
     account_token = check_account_number(account)
 
@@ -63,8 +64,10 @@ class AccountsController < ApplicationController
           @url = "#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/cash_in_operation_pos/#{@token}/#{account_token}/#{merchant_pos.token}/#{(transaction_amount.to_i rescue 0) - 100}/0/100/#{transaction_id}/null"
 
           if agent == "af478a2c47d8418a"
-            wari_fee = cashin_wari((transaction_amount.to_i rescue 0) - 100)
+            #wari_fee = cashin_wari((transaction_amount.to_i rescue 0) - 100)
+            wari_fee = cashin_wari(transaction_amount)
             @url = "#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/cash_in_operation_pos/#{@token}/#{account_token}/#{merchant_pos.token}/alOWhAgC/#{(transaction_amount.to_i rescue 0) - 100}/0/#{wari_fee}/100/#{transaction_id}/null"
+            fee = wari_fee
           end
 
           BombLog.create(sent_url: @url)
@@ -92,7 +95,7 @@ class AccountsController < ApplicationController
       end
     end
 
-    Typhoeus.get("#{Parameter.first.hub_front_office_url}/api/367419f5968800cd/paymoney_wallet/store_log", params: { transaction_type: "Crédit de compte", account_number: account, credit_amount: transaction_amount, response_log: response_log, error_log: error_log, status: transaction_status, remote_ip_address: remote_ip_address, agent: agent, sub_agent: sub_agent, transaction_id: transaction_id, thumb: 100 })
+    Typhoeus.get("#{Parameter.first.hub_front_office_url}/api/367419f5968800cd/paymoney_wallet/store_log", params: { transaction_type: "Crédit de compte", account_number: account, credit_amount: transaction_amount, response_log: response_log, error_log: error_log, status: transaction_status, remote_ip_address: remote_ip_address, agent: agent, sub_agent: sub_agent, transaction_id: transaction_id, thumb: 100, fee: fee })
 
     render text: status
   end
@@ -107,6 +110,7 @@ def api_sf_credit_account
     error_log = "none"
     status = "|5000|"
     transaction_status = false
+    fee = 0
 
     account_token = check_account_number(account)
 
@@ -150,19 +154,22 @@ def api_sf_credit_account
       end
     end
 
-    Typhoeus.get("#{Parameter.first.hub_front_office_url}/api/367419f5968800cd/paymoney_wallet/store_log", params: { transaction_type: "Crédit de compte", account_number: account, credit_amount: transaction_amount, response_log: response_log, error_log: error_log, status: transaction_status, remote_ip_address: remote_ip_address, agent: agent, sub_agent: sub_agent, transaction_id: transaction_id, thumb: 100 })
+    Typhoeus.get("#{Parameter.first.hub_front_office_url}/api/367419f5968800cd/paymoney_wallet/store_log", params: { transaction_type: "Crédit de compte", account_number: account, credit_amount: transaction_amount, response_log: response_log, error_log: error_log, status: transaction_status, remote_ip_address: remote_ip_address, agent: agent, sub_agent: sub_agent, transaction_id: transaction_id, thumb: 100, fee: fee })
 
     render text: status
   end
 
   def cashin_wari(ta)
+    fee = ((ta.to_f - 100) * 0.005).ceil
+    (fee = 2000) if (fee > 2000)
+=begin
     fee = ""
     fee_type = FeeType.find_by_name("Cash in Wari")
 
     if !fee_type.blank?
       fee = fee_type.fees.where("min_value <= #{ta.to_f} AND max_value >= #{ta.to_f}").first.fee_value.to_s rescue nil
     end
-
+=end
     return fee
   end
 
@@ -431,7 +438,7 @@ def api_sf_checkout_account
         @url = "#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/otp_active_pos/#{@token}/#{account_token}/#{agent_token}/#{(transaction.credit_amount.to_i rescue 0) - 100}/0/100/#{transaction.transaction_id}/null/#{pin}/#{transaction.otp}"
 
         if agent == "af478a2c47d8418a"
-          wari_fee = cashin_wari((transaction.credit_amount.to_i rescue 0) - 100)
+          wari_fee = cashin_wari(transaction.credit_amount)
           @url = "#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/otp_active_pos_wari/#{@token}/#{account_token}/#{agent_token}/alOWhAgC/#{(transaction.credit_amount.to_i rescue 0) - 100}/0/#{wari_fee}/100/#{transaction.transaction_id}/null/#{pin}/#{transaction.otp}"
         end
 
@@ -1127,7 +1134,7 @@ def api_sf_validate_credit
       end
     end
 
-    Typhoeus.get("#{Parameter.first.hub_front_office_url}/api/367419f5968800cd/paymoney_wallet/store_log", params: { transaction_type: "Cashin mobile money", credit_amount: transaction_amount, response_log: response_log, error_log: error_log, status: transaction_status, remote_ip_address: remote_ip_address, transaction_id: transaction_id, account_number: account, mobile_money_account_number: mobile_money_account })
+    Typhoeus.get("#{Parameter.first.hub_front_office_url}/api/367419f5968800cd/paymoney_wallet/store_log", params: { transaction_type: "Cashin mobile money", credit_amount: transaction_amount, response_log: response_log, error_log: error_log, status: transaction_status, remote_ip_address: remote_ip_address, transaction_id: transaction_id, account_number: account, mobile_money_account_number: mobile_money_account, fee: fee })
 
     render text: status
   end
@@ -1172,7 +1179,7 @@ def api_sf_validate_credit
       end
     end
 
-    Typhoeus.get("#{Parameter.first.hub_front_office_url}/api/367419f5968800cd/paymoney_wallet/store_log", params: { transaction_type: "Cashout mobile money", checkout_amount: transaction_amount, response_log: response_log, error_log: error_log, status: transaction_status, remote_ip_address: remote_ip_address, transaction_id: transaction_id, account_number: account, mobile_money_account_number: mobile_money_account })
+    Typhoeus.get("#{Parameter.first.hub_front_office_url}/api/367419f5968800cd/paymoney_wallet/store_log", params: { transaction_type: "Cashout mobile money", checkout_amount: transaction_amount, response_log: response_log, error_log: error_log, status: transaction_status, remote_ip_address: remote_ip_address, transaction_id: transaction_id, account_number: account, mobile_money_account_number: mobile_money_account, fee: fee })
 
     render text: status
   end
