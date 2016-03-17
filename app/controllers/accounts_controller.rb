@@ -948,7 +948,7 @@ def api_sf_validate_credit
         if response.to_s == "good"
           status = transaction_id
           response_log = response.to_s
-          ActiveRecord::Base.connection.execute("UPDATE logs SET response_log = '#{response_log}', remote_ip_address = '#{remote_ip_address}', bet_validated = TRUE, bet_validated_at = '#{DateTime.now}', paymoney_validation_id = 'transaction_id' WHERE transaction_type = 'Prise de paris' AND game_account_token = '#{game_account_token}' AND bet_validated IS NULL")
+          ActiveRecord::Base.connection.execute("UPDATE logs SET response_log = '#{response_log}', remote_ip_address = '#{remote_ip_address}', bet_validated = TRUE, bet_validated_at = '#{DateTime.now}', paymoney_validation_id = '#{transaction_id}' WHERE transaction_type = 'Prise de paris' AND game_account_token = '#{game_account_token}' AND bet_validated IS NULL")
           #bets.update_attributes(transaction_type: "Validation de paris", response_log: response_log, bet_validated: true, bet_validated_at: DateTime.now, remote_ip_address: remote_ip_address)
         else
           status = "|5003|"
