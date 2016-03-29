@@ -51,7 +51,7 @@ class AccountsController < ApplicationController
 
     account_token = check_account_number(account)
 
-    if account_token.blank?
+    if account_token.blank? || account_token == 'null'
       status = "|4041|"
     else
       merchant_pos = CertifiedAgent.where("certified_agent_id = '#{agent}' AND sub_certified_agent_id IS NULL").first rescue nil
@@ -114,7 +114,7 @@ def api_sf_credit_account
 
     account_token = check_account_number(account)
 
-    if account_token.blank?
+    if account_token.blank? || account_token == 'null'
       status = "|4041|"
     else
       merchant_pos = CertifiedAgent.where("certified_agent_id = '#{agent}' AND sub_certified_agent_id IS NULL").first rescue nil
@@ -253,7 +253,7 @@ def api_sf_credit_account
     if fee.blank?
       status = '|4043|'
     else
-      if account_token.blank?
+      if account_token.blank? || account_token == 'null'
         status = '|4041|'
       else
         merchant_pos = CertifiedAgent.where("certified_agent_id = '#{params[:agent]}' AND sub_certified_agent_id IS NULL").first rescue nil
@@ -323,7 +323,7 @@ def api_sf_checkout_account
     if fee.blank?
       status = '|4043|'
     else
-      if account_token.blank?
+      if account_token.blank? || account_token == 'null'
         status = '|4041|'
       else
         merchant_pos = CertifiedAgent.where("certified_agent_id = '#{params[:agent]}' AND sub_certified_agent_id IS NULL").first rescue nil
@@ -1064,7 +1064,7 @@ def api_sf_validate_credit
 
     account_token = check_account_number(account_number)
 
-    if account_token.blank?
+    if account_token.blank? || account_token == 'null'
       status = "|4041|"
     else
       if is_a_number?(transaction_amount)
@@ -1110,7 +1110,7 @@ def api_sf_validate_credit
     account_token = check_account_number(account)
     mobile_money_token = check_account_number(mobile_money_account)
 
-    if !account_token.blank? && !mobile_money_token.blank?
+    if !account_token.blank? && !mobile_money_token.blank? && account_token != 'null'
       if is_a_number?(transaction_amount)
         transaction_id = Digest::SHA1.hexdigest([DateTime.now.iso8601(6), rand].join)
         set_game_operation_token(game_account_token)
@@ -1155,7 +1155,7 @@ def api_sf_validate_credit
     account_token = check_account_number(account)
     mobile_money_token = check_account_number(mobile_money_account)
 
-    if !account_token.blank? && !mobile_money_token.blank?
+    if !account_token.blank? && !mobile_money_token.blank? && account_token != 'null'
       if is_a_number?(transaction_amount)
         transaction_id = Digest::SHA1.hexdigest([DateTime.now.iso8601(6), rand].join)
         set_game_operation_token(game_account_token)
