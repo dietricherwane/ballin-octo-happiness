@@ -992,7 +992,7 @@ def api_sf_validate_credit
       response = (RestClient.get @url rescue "")
 
       unless response.blank?
-        if response.to_s == "good"
+        if response.to_s == "good, operation effectuée avec succes"
           status = transaction_id
           response_log = response.to_s
           transaction_status = true
@@ -1032,7 +1032,7 @@ def api_sf_validate_credit
       response = (RestClient.get @url rescue "")
 
       unless response.blank?
-        if response.to_s == "good"
+        if response.to_s == "good, operation effectuée avec succes"
           status = transaction_id
           response_log = response.to_s
           transaction_status = true
