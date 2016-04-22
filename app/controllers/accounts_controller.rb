@@ -990,9 +990,10 @@ def api_sf_validate_credit
 
       BombLog.create(sent_url: @url)
       response = (RestClient.get @url rescue "")
+      response = response.to_s.force_encoding('iso-8859-1').encode('utf-8')
 
       unless response.blank?
-        if response.to_s == "good, operation effectuée avec succes"
+        if response == "good, operation effectuée avec succes "
           status = transaction_id
           response_log = response.to_s
           transaction_status = true
@@ -1030,9 +1031,10 @@ def api_sf_validate_credit
       #transaction_id = Digest::SHA1.hexdigest([DateTime.now.iso8601(6), rand].join)
       BombLog.create(sent_url: @url)
       response = (RestClient.get @url rescue "")
+      response = response.to_s.force_encoding('iso-8859-1').encode('utf-8')
 
       unless response.blank?
-        if response.to_s == "good, operation effectuée avec succes"
+        if response == "good, operation effectuée avec succes "
           status = transaction_id
           response_log = response.to_s
           transaction_status = true
