@@ -942,10 +942,11 @@ def api_sf_validate_credit
 
       BombLog.create(sent_url: @url, remote_ip: remote_ip_address)
       response = (RestClient.get @url rescue "")
+      response = response.to_s.force_encoding('iso-8859-1').encode('utf-8')
 
       unless response.blank?
         status = "|5002|"
-        if response.to_s == "good"
+        if response == "good, operation effectuée avec succes "
           status = transaction_id
           response_log = response.to_s
           #ActiveRecord::Base.connection.execute("UPDATE logs SET response_log = '#{response_log}', remote_ip_address = '#{remote_ip_address}', bet_validated = TRUE, bet_validated_at = '#{DateTime.now}', paymoney_validation_id = '#{transaction_id}' WHERE transaction_type = 'Prise de paris' AND game_account_token = '#{game_account_token}' AND bet_validated IS NULL")
