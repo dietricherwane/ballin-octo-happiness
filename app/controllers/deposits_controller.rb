@@ -3,8 +3,10 @@ class DepositsController < ApplicationController
 
   @@user_name = "ngser@lonaci"
   @@password = "lemotdepasse"
-  @@notification_url = "http://154.68.45.82:1180"
-  @@hub_notification_url = "http://parionsdirect.ci/test/api/cm3" # URL vers la plateforme de Moïse
+  #@@notification_url = "http://154.68.45.82:1180"
+  @@notification_url = "http://41.189.40.193:10000"
+  #@@hub_notification_url = "http://parionsdirect.ci/test/api/cm3" # URL vers la plateforme de Moïse
+  @@hub_notification_url = "http://41.189.40.193:7200"
   #@@cm3_server_url = "http://office.cm3.work:27000"
   @@cm3_server_url = "http://192.168.1.44:29000"
 
@@ -251,7 +253,11 @@ print %Q[#{@@notification_url}/api/3ae7e2f1b1/deposit/#{params[:game_token]}/#{p
 
     print %Q[#{@@notification_url}/api/rff741v1b1/deposit/#{params[:game_token]}/#{params[:pos_id]}/#{params[:paymoney_account_number]}/#{params[:agent]}/#{params[:sub_agent]}/#{params[:date]}/#{params[:amount]}/#{merchant_pos}/#{fee}]
     render text: (RestClient.get %Q[#{@@notification_url}/api/rff741v1b1/deposit/#{params[:game_token]}/#{params[:pos_id]}/#{params[:paymoney_account_number]}/#{params[:agent]}/#{params[:sub_agent]}/#{params[:date]}/#{params[:amount]}/#{merchant_pos}/#{fee}] rescue "")
+<<<<<<< HEAD
 
+=======
+    
+>>>>>>> 1289ee23fa854d7c86f2af81d660194e886dce04
 =begin
     @token = params[:game_token]
     @pos_id = params[:pos_id]
