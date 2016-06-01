@@ -211,6 +211,7 @@ class DepositsController < ApplicationController
     merchant_pos = check_certified_agent_id(agent_id)
     fee = check_deposit_fee(transaction_amount)
 
+print %Q[#{@@notification_url}/api/3ae7e2f1b1/deposit/#{params[:game_token]}/#{params[:pos_id]}/#{params[:paymoney_account_number]}/#{params[:agent]}/#{params[:sub_agent]}/#{params[:date]}/#{transaction_amount}/#{merchant_pos}/#{fee}]
     render text: (RestClient.get  %Q[#{@@notification_url}/api/3ae7e2f1b1/deposit/#{params[:game_token]}/#{params[:pos_id]}/#{params[:paymoney_account_number]}/#{params[:agent]}/#{params[:sub_agent]}/#{params[:date]}/#{transaction_amount}/#{merchant_pos}/#{fee}] rescue "")
 
 =begin
@@ -249,7 +250,10 @@ class DepositsController < ApplicationController
     agent_id = params[:agent]
     merchant_pos = check_certified_agent_id(agent_id)
     fee = check_deposit_fee(transaction_amount)
+
+    print %Q[#{@@notification_url}/api/rff741v1b1/deposit/#{params[:game_token]}/#{params[:pos_id]}/#{params[:paymoney_account_number]}/#{params[:agent]}/#{params[:sub_agent]}/#{params[:date]}/#{params[:amount]}/#{merchant_pos}/#{fee}]
     render text: (RestClient.get %Q[#{@@notification_url}/api/rff741v1b1/deposit/#{params[:game_token]}/#{params[:pos_id]}/#{params[:paymoney_account_number]}/#{params[:agent]}/#{params[:sub_agent]}/#{params[:date]}/#{params[:amount]}/#{merchant_pos}/#{fee}] rescue "")
+    
 =begin
     @token = params[:game_token]
     @pos_id = params[:pos_id]
@@ -591,6 +595,13 @@ class DepositsController < ApplicationController
     status = (certified_agent_token.blank? ? 'not_found' : certified_agent_token)
 
     return status
+  end
+
+  def api_check_certified_agent_id
+    certified_agent_token = CertifiedAgent.where("certified_agent_id = ? AND sub_certified_agent_id IS NULL", params[:agent_id]).first.token rescue nil
+    status = (certified_agent_token.blank? ? 'not_found' : certified_agent_token)
+
+    render text: status
   end
 
   def api_check_deposit_fee

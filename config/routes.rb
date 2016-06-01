@@ -99,7 +99,7 @@ Rails.application.routes.draw do
   get '/api/c067d6dc6a578a789e8fdb4c4556c239/:agent/:sub_agent/account/ascent/:transaction_amount' => 'accounts#api_sf_ascent', :constraints => {:transaction_amount => /(\d+(.\d+)?)/}
 
   # Check certified agent id
-  get '/api/c067dkkdfkkdh48a789e8fdb4c4556c239/certified_agent/check/:agent_id' => 'deposits#check_certified_agent_id'
+  get '/api/c067dkkdfkkdh48a789e8fdb4c4556c239/certified_agent/check/:agent_id' => 'deposits#api_check_certified_agent_id'
 
   # Check deposit fee
   get '/api/df522df8418a789e8fdb4c4556c239/fee/check/:amount' => 'deposits#api_check_deposit_fee'
