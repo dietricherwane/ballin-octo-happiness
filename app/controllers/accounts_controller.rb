@@ -4,7 +4,16 @@ class AccountsController < ApplicationController
 
   #before_filter :create_or_update_wari_sub_agent, only: [:api_checkout_account]
 
+  before_filter :check_ip, only: [:api_create, :api_credit_account, :api_sf_credit_account, :api_sold, :api_checkout_account, :api_sf_checkout_account, :api_validate_credit, :api_sf_validate_credit, :api_validate_checkout, :api_sf_validate_checkout, :api_ascent, :api_sf_ascent, :api_transfer, :api_get_bet, :api_get_bet_without_cancellation, :api_validate_bet, :api_payback_bet, :api_pay_earnings, :api_deposit, :cashin_mobile_money, :cashout_mobile_money]
+
   @paymoney_wallet_url = (Parameter.first.paymoney_wallet_url rescue "")
+
+  def check_ip
+    remote_ip_address = request.remote_ip
+    if !(['154.68.45.82', '94.247.178.141', '172.16.172.0', '172.16.100.2', '192.168.7.242', '192.168.80.200'].include?(remote_ip_address) rescue false)
+      render text: 'moron'
+    end
+  end
 
   def api_create
     msisdn = params[:msisdn]

@@ -10,6 +10,15 @@ class DepositsController < ApplicationController
   #@@cm3_server_url = "http://office.cm3.work:27000"
   @@cm3_server_url = "http://192.168.1.44:29000"
 
+  before_filter :check_ip, only: [:api_get_pos_sale_balance, :api_get_daily_balance, :api_proceed_deposit, :api_sf_proceed_deposit, :api_ascent, :api_sf_ascent, :api_check_certified_agent_id]
+
+  def check_ip
+    remote_ip_address = request.remote_ip
+    if !(['154.68.45.82', '94.247.178.141', '172.16.172.0', '172.16.100.2', '192.168.7.242', '192.168.80.200'].include?(remote_ip_address) rescue false)
+      render text: 'moron'
+    end
+  end
+
   def reset_connection_id(error_code)
     if error_code == "501"
       CmLogin.first.delete rescue nil
@@ -253,11 +262,7 @@ print %Q[#{@@notification_url}/api/3ae7e2f1b1/deposit/#{params[:game_token]}/#{p
 
     print %Q[#{@@notification_url}/api/rff741v1b1/deposit/#{params[:game_token]}/#{params[:pos_id]}/#{params[:paymoney_account_number]}/#{params[:agent]}/#{params[:sub_agent]}/#{params[:date]}/#{params[:amount]}/#{merchant_pos}/#{fee}]
     render text: (RestClient.get %Q[#{@@notification_url}/api/rff741v1b1/deposit/#{params[:game_token]}/#{params[:pos_id]}/#{params[:paymoney_account_number]}/#{params[:agent]}/#{params[:sub_agent]}/#{params[:date]}/#{params[:amount]}/#{merchant_pos}/#{fee}] rescue "")
-<<<<<<< HEAD
 
-=======
-    
->>>>>>> 1289ee23fa854d7c86f2af81d660194e886dce04
 =begin
     @token = params[:game_token]
     @pos_id = params[:pos_id]
