@@ -1120,7 +1120,7 @@ def api_sf_validate_credit
     transaction_status = false
 
     account_token = check_account_number(account)
-    mobile_money_token = check_account_number(mobile_money_account)
+    mobile_money_token = mobile_money_account #check_account_number(mobile_money_account)
 
     if !account_token.blank? && !mobile_money_token.blank? && account_token != 'null'
       if is_a_number?(transaction_amount)
