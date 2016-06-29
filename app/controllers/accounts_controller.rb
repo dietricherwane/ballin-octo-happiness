@@ -1113,6 +1113,7 @@ def api_sf_validate_credit
     account = params[:account]
     fee = params[:fee]
     mobile_money_account = params[:mobile_money_account]
+    wallet = params[:wallet]
     remote_ip_address = request.remote_ip
     response_log = "none"
     error_log = "none"
@@ -1126,12 +1127,13 @@ def api_sf_validate_credit
       if is_a_number?(transaction_amount)
         transaction_id = Digest::SHA1.hexdigest([DateTime.now.iso8601(6), rand].join)
         set_game_operation_token(game_account_token)
-        @url = "#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/cash_in_operation_momo/tertybgd/#{account_token}/#{mobile_money_token}/#{transaction_amount}/#{fee}/100/#{transaction_id}"
+        @url = "#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/cash_in_operation_momo_#{wallet}/tertybgd/#{account_token}/#{mobile_money_token}/#{transaction_amount}/#{fee}/100/#{transaction_id}"
         BombLog.create(sent_url: @url)
         response = (RestClient.get @url rescue "")
+        response = response.to_s.force_encoding('iso-8859-1').encode('utf-8')
 
         unless response.blank?
-          if response.to_s == "good"
+          if response == "good, operation effectué avec succès"
             status = transaction_id
             response_log = response.to_s
             transaction_status = true
