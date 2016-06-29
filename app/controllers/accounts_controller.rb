@@ -1126,7 +1126,7 @@ def api_sf_validate_credit
     if !account_token.blank? && !mobile_money_token.blank? && account_token != 'null'
       if is_a_number?(transaction_amount)
         transaction_id = Digest::SHA1.hexdigest([DateTime.now.iso8601(6), rand].join)
-        set_game_operation_token(game_account_token)
+        #set_game_operation_token(game_account_token)
         @url = "#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/cash_in_operation_momo_#{wallet}/tertybgd/#{account_token}/#{mobile_money_token}/#{transaction_amount}/#{fee}/100/#{transaction_id}"
         BombLog.create(sent_url: @url)
         response = (RestClient.get @url rescue "")
