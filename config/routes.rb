@@ -65,7 +65,7 @@ Rails.application.routes.draw do
   get '/api/86d138798bc43ed59e5207c68e864/account/transfer/:a_account_token/:b_account_token/:transaction_amount' => 'accounts#api_transfer', :constraints => {:transaction_amount => /(\d+(.\d+)?)/}
 
   # Cashin from mobile money
-  get '/api/86d138798bc43ed59e5207c664/mobile_money/cashin/:wallet/:mobile_money_account/:account/:transaction_amount/:fee' => 'accounts#cashin_mobile_money', :constraints => {:transaction_amount => /(\d+(.\d+)?)/}
+  get '/api/86d138798bc43ed59e5207c664/mobile_money/cashin/:wallet/:operation_token/:mobile_money_account/:account/:transaction_amount/:fee' => 'accounts#cashin_mobile_money', :constraints => {:transaction_amount => /(\d+(.\d+)?)/}
 
   # Cashout from mobile money
   get '/api/88bc43ed59e5207c68e864564/mobile_money/cashout/:mobile_money_account/:account/:transaction_amount/:fee' => 'accounts#cashout_mobile_money', :constraints => {:transaction_amount => /(\d+(.\d+)?)/}
