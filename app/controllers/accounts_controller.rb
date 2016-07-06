@@ -1084,9 +1084,10 @@ def api_sf_validate_credit
         @url = "#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/cash_in_pos/53740905/#{account_token}/#{transaction_amount}/#{transaction_id}"
         BombLog.create(sent_url: @url)
         response = (RestClient.get @url rescue "")
+        response = response.to_s.force_encoding('iso-8859-1').encode('utf-8')
 
         unless response.blank?
-          if response.to_s == "good"
+          if response.to_s == "good, operation effectué avec succès"
             status = transaction_id
             response_log = response.to_s
             transaction_status = true
