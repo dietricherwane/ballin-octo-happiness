@@ -17,7 +17,7 @@ class LogsController < ApplicationController
 
     unless transactions.blank?
       transactions.each do |transaction|
-        response = Typhoeus.get("#{Parameter.first.hub_front_office_url}/api/377777f5968800cd/paymoney_wallet/store_unlogged_transactions", params: { transaction_type: "Credit de compte", account_number: transaction.account_number, credit_amount: transaction.credit_amount, status: transaction.status, remote_ip_address: transaction.remote_ip_address, agent: transaction.agent, sub_agent: transaction.sub_agent, transaction_id: transaction.transaction_id, thumb: transaction.thumb, fee: transaction.fee }).body rescue '0'
+        response = Typhoeus.get("#{Parameter.first.hub_front_office_url}/api/377777f5968800cd/paymoney_wallet/store_unlogged_transactions", params: { transaction_type: "Credit de compte", account_number: transaction.account_number, credit_amount: transaction.credit_amount, status: transaction.status, remote_ip_address: transaction.remote_ip_address, agent: transaction.agent, sub_agent: transaction.sub_agent, transaction_id: transaction.transaction_id, thumb: transaction.thumb, fee: transaction.fee, created_at: transaction.created_at }).body rescue '0'
         transaction.update_attributes(logging_response: response, logged: (response == '1' ? true : false))
       end
     end
