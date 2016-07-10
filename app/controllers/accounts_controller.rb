@@ -89,22 +89,22 @@ class AccountsController < ApplicationController
               status = transaction_id + '|' + response["otpTransactionId"].to_s + '|' + response["otpPin"].to_s
               response_log = response.to_s
               transaction_status = true
-              Log.create(transaction_type: "Crédit de compte", account_number: account, credit_amount: transaction_amount, response_log: response.to_s, status: true, remote_ip_address: remote_ip_address, agent: agent, sub_agent: sub_agent, transaction_id: transaction_id, thumb: 100, otp: response["otpTransactionId"].to_s, pin: response["otpPin"].to_s)
+              Log.create(transaction_type: "Credit de compte", account_number: account, credit_amount: transaction_amount, response_log: response.to_s, status: true, remote_ip_address: remote_ip_address, agent: agent, sub_agent: sub_agent, transaction_id: transaction_id, thumb: 100, otp: response["otpTransactionId"].to_s, pin: response["otpPin"].to_s)
             else
               status = "|5001|"
               error_log = response.to_s
-              Log.create(transaction_type: "Crédit de compte", account_number: account, credit_amount: transaction_amount, error_log: response.to_s, status: false, remote_ip_address: remote_ip_address, agent: agent, sub_agent: sub_agent, transaction_id: transaction_id, thumb: 100)
+              Log.create(transaction_type: "Credit de compte", account_number: account, credit_amount: transaction_amount, error_log: response.to_s, status: false, remote_ip_address: remote_ip_address, agent: agent, sub_agent: sub_agent, transaction_id: transaction_id, thumb: 100)
             end
           else
             error_log = request.response.body
-            Log.create(transaction_type: "Crédit de compte", account_number: account, credit_amount: transaction_amount, error_log: request.response.body, status: false, remote_ip_address: remote_ip_address, agent: agent, sub_agent: sub_agent, transaction_id: transaction_id, thumb: 100)
+            Log.create(transaction_type: "Credit de compte", account_number: account, credit_amount: transaction_amount, error_log: request.response.body, status: false, remote_ip_address: remote_ip_address, agent: agent, sub_agent: sub_agent, transaction_id: transaction_id, thumb: 100)
           end
 
         end
       end
     end
 
-    Typhoeus.get("#{Parameter.first.hub_front_office_url}/api/367419f5968800cd/paymoney_wallet/store_log", params: { transaction_type: "Crédit de compte", account_number: account, credit_amount: transaction_amount, response_log: response_log, error_log: error_log, status: transaction_status, remote_ip_address: remote_ip_address, agent: agent, sub_agent: sub_agent, transaction_id: transaction_id, thumb: 100, fee: fee })
+    Typhoeus.get("#{Parameter.first.hub_front_office_url}/api/367419f5968800cd/paymoney_wallet/store_log", params: { transaction_type: "Credit de compte", account_number: account, credit_amount: transaction_amount, response_log: response_log, error_log: error_log, status: transaction_status, remote_ip_address: remote_ip_address, agent: agent, sub_agent: sub_agent, transaction_id: transaction_id, thumb: 100, fee: fee })
 
     render text: status
   end
@@ -148,22 +148,22 @@ def api_sf_credit_account
               status = transaction_id + '|' + response["otpTransactionId"].to_s + '|' + response["otpPin"].to_s
               response_log = response.to_s
               transaction_status = true
-              Log.create(transaction_type: "Crédit de compte", account_number: account, credit_amount: transaction_amount, response_log: response.to_s, status: true, remote_ip_address: remote_ip_address, agent: agent, sub_agent: sub_agent, transaction_id: transaction_id, thumb: 100, otp: response["otpTransactionId"].to_s, pin: response["otpPin"].to_s)
+              Log.create(transaction_type: "Credit de compte", account_number: account, credit_amount: transaction_amount, response_log: response.to_s, status: true, remote_ip_address: remote_ip_address, agent: agent, sub_agent: sub_agent, transaction_id: transaction_id, thumb: 100, otp: response["otpTransactionId"].to_s, pin: response["otpPin"].to_s)
             else
               status = "|5001|"
               error_log = response.to_s
-              Log.create(transaction_type: "Crédit de compte", account_number: account, credit_amount: transaction_amount, error_log: response.to_s, status: false, remote_ip_address: remote_ip_address, agent: agent, sub_agent: sub_agent, transaction_id: transaction_id, thumb: 100)
+              Log.create(transaction_type: "Credit de compte", account_number: account, credit_amount: transaction_amount, error_log: response.to_s, status: false, remote_ip_address: remote_ip_address, agent: agent, sub_agent: sub_agent, transaction_id: transaction_id, thumb: 100)
             end
           else
             error_log = request.response.body
-            Log.create(transaction_type: "Crédit de compte", account_number: account, credit_amount: transaction_amount, error_log: request.response.body, status: false, remote_ip_address: remote_ip_address, agent: agent, sub_agent: sub_agent, transaction_id: transaction_id, thumb: 100)
+            Log.create(transaction_type: "Credit de compte", account_number: account, credit_amount: transaction_amount, error_log: request.response.body, status: false, remote_ip_address: remote_ip_address, agent: agent, sub_agent: sub_agent, transaction_id: transaction_id, thumb: 100)
           end
 
         end
       end
     end
 
-    Typhoeus.get("#{Parameter.first.hub_front_office_url}/api/367419f5968800cd/paymoney_wallet/store_log", params: { transaction_type: "Crédit de compte", account_number: account, credit_amount: transaction_amount, response_log: response_log, error_log: error_log, status: transaction_status, remote_ip_address: remote_ip_address, agent: agent, sub_agent: sub_agent, transaction_id: transaction_id, thumb: 100, fee: fee })
+    Typhoeus.get("#{Parameter.first.hub_front_office_url}/api/367419f5968800cd/paymoney_wallet/store_log", params: { transaction_type: "Credit de compte", account_number: account, credit_amount: transaction_amount, response_log: response_log, error_log: error_log, status: transaction_status, remote_ip_address: remote_ip_address, agent: agent, sub_agent: sub_agent, transaction_id: transaction_id, thumb: 100, fee: fee })
 
     render text: status
   end
@@ -289,15 +289,15 @@ def api_sf_credit_account
                     response_log = response.to_s
                     transaction_status = true
                     otp = response
-                    Log.create(transaction_type: "Débit du compte", account_number: account, checkout_amount: transaction_amount, response_log: response_log, status: true, remote_ip_address: remote_ip_address, otp: response["otpTransactionId"].to_s, pin: response["otpPin"].to_s, agent: agent, sub_agent: sub_agent, transaction_id: transaction_id, thumb: 0, fee: fee)
+                    Log.create(transaction_type: "Debit du compte", account_number: account, checkout_amount: transaction_amount, response_log: response_log, status: true, remote_ip_address: remote_ip_address, otp: response["otpTransactionId"].to_s, pin: response["otpPin"].to_s, agent: agent, sub_agent: sub_agent, transaction_id: transaction_id, thumb: 0, fee: fee)
                   else
                     status = "|5001|"
                     error_log = response.to_s
-                    Log.create(transaction_type: "Débit du compte", account_number: account, checkout_amount: transaction_amount, error_log: error_log, status: false, remote_ip_address: remote_ip_address, agent: agent, sub_agent: sub_agent, transaction_id: transaction_id, thumb: 0, fee: fee)
+                    Log.create(transaction_type: "Debit du compte", account_number: account, checkout_amount: transaction_amount, error_log: error_log, status: false, remote_ip_address: remote_ip_address, agent: agent, sub_agent: sub_agent, transaction_id: transaction_id, thumb: 0, fee: fee)
                   end
                 else
                   error_log = response.to_s
-                  Log.create(transaction_type: "Débit du compte", account_number: account, checkout_amount: transaction_amount, error_log: error_log, status: false, remote_ip_address: remote_ip_address, agent: agent, sub_agent: sub_agent, transaction_id: transaction_id, thumb: 0, fee: fee)
+                  Log.create(transaction_type: "Debit du compte", account_number: account, checkout_amount: transaction_amount, error_log: error_log, status: false, remote_ip_address: remote_ip_address, agent: agent, sub_agent: sub_agent, transaction_id: transaction_id, thumb: 0, fee: fee)
                 end
               end
             end
@@ -308,7 +308,7 @@ def api_sf_credit_account
       end
     end
 
-    Typhoeus.get("#{Parameter.first.hub_front_office_url}/api/367419f5968800cd/paymoney_wallet/store_log", params: { transaction_type: "Débit du compte", account_number: account, checkout_amount: transaction_amount, response_log: response_log, error_log: error_log, status: transaction_status, remote_ip_address: remote_ip_address, agent: agent, sub_agent: sub_agent, transaction_id: transaction_id, thumb: 0, fee: fee, otp: otp })
+    Typhoeus.get("#{Parameter.first.hub_front_office_url}/api/367419f5968800cd/paymoney_wallet/store_log", params: { transaction_type: "Debit du compte", account_number: account, checkout_amount: transaction_amount, response_log: response_log, error_log: error_log, status: transaction_status, remote_ip_address: remote_ip_address, agent: agent, sub_agent: sub_agent, transaction_id: transaction_id, thumb: 0, fee: fee, otp: otp })
 
     render text: status
   end
@@ -360,15 +360,15 @@ def api_sf_checkout_account
                     response_log = response.to_s
                     transaction_status = true
                     otp = response
-                    Log.create(transaction_type: "Débit du compte", account_number: account, checkout_amount: transaction_amount, response_log: response_log, status: true, remote_ip_address: remote_ip_address, otp: response["otpTransactionId"].to_s, pin: response["otpPin"].to_s, agent: agent, sub_agent: sub_agent, transaction_id: transaction_id, thumb: 0, fee: fee)
+                    Log.create(transaction_type: "Debit du compte", account_number: account, checkout_amount: transaction_amount, response_log: response_log, status: true, remote_ip_address: remote_ip_address, otp: response["otpTransactionId"].to_s, pin: response["otpPin"].to_s, agent: agent, sub_agent: sub_agent, transaction_id: transaction_id, thumb: 0, fee: fee)
                   else
                     status = "|5001|"
                     error_log = response.to_s
-                    Log.create(transaction_type: "Débit du compte", account_number: account, checkout_amount: transaction_amount, error_log: error_log, status: false, remote_ip_address: remote_ip_address, agent: agent, sub_agent: sub_agent, transaction_id: transaction_id, thumb: 0, fee: fee)
+                    Log.create(transaction_type: "Debit du compte", account_number: account, checkout_amount: transaction_amount, error_log: error_log, status: false, remote_ip_address: remote_ip_address, agent: agent, sub_agent: sub_agent, transaction_id: transaction_id, thumb: 0, fee: fee)
                   end
                 else
                   error_log = response.to_s
-                  Log.create(transaction_type: "Débit du compte", account_number: account, checkout_amount: transaction_amount, error_log: error_log, status: false, remote_ip_address: remote_ip_address, agent: agent, sub_agent: sub_agent, transaction_id: transaction_id, thumb: 0, fee: fee)
+                  Log.create(transaction_type: "Debit du compte", account_number: account, checkout_amount: transaction_amount, error_log: error_log, status: false, remote_ip_address: remote_ip_address, agent: agent, sub_agent: sub_agent, transaction_id: transaction_id, thumb: 0, fee: fee)
                 end
               end
             end
@@ -379,7 +379,7 @@ def api_sf_checkout_account
       end
     end
 
-    Typhoeus.get("#{Parameter.first.hub_front_office_url}/api/367419f5968800cd/paymoney_wallet/store_log", params: { transaction_type: "Débit du compte", account_number: account, checkout_amount: transaction_amount, response_log: response_log, error_log: error_log, status: transaction_status, remote_ip_address: remote_ip_address, agent: agent, sub_agent: sub_agent, transaction_id: transaction_id, thumb: 0, fee: fee, otp: otp })
+    Typhoeus.get("#{Parameter.first.hub_front_office_url}/api/367419f5968800cd/paymoney_wallet/store_log", params: { transaction_type: "Debit du compte", account_number: account, checkout_amount: transaction_amount, response_log: response_log, error_log: error_log, status: transaction_status, remote_ip_address: remote_ip_address, agent: agent, sub_agent: sub_agent, transaction_id: transaction_id, thumb: 0, fee: fee, otp: otp })
 
     render text: status
   end
@@ -462,22 +462,22 @@ def api_sf_checkout_account
                 response_log = response.to_s
                 status = Digest::SHA1.hexdigest([DateTime.now.iso8601(6), rand].join)
                 transaction_status = true
-                Log.create(transaction_type: "Validation de crédit", otp: transaction_id, pin: pin, response_log: response_log, status: true, remote_ip_address: remote_ip_address, agent: agent, sub_agent: sub_agent)
+                Log.create(transaction_type: "Validation de credit", otp: transaction_id, pin: pin, response_log: response_log, status: true, remote_ip_address: remote_ip_address, agent: agent, sub_agent: sub_agent)
               else
                 status = "|5001|"
                 error_log = response.to_s
-                Log.create(transaction_type: "Validation de crédit", error_log: error_log, status: false, remote_ip_address: remote_ip_address, agent: agent, sub_agent: sub_agent)
+                Log.create(transaction_type: "Validation de credit", error_log: error_log, status: false, remote_ip_address: remote_ip_address, agent: agent, sub_agent: sub_agent)
               end
             else
               error_log = response.to_s
-              Log.create(transaction_type: "Validation de crédit", error_log: error_log, status: false, remote_ip_address: remote_ip_address, agent: agent, sub_agent: sub_agent)
+              Log.create(transaction_type: "Validation de credit", error_log: error_log, status: false, remote_ip_address: remote_ip_address, agent: agent, sub_agent: sub_agent)
             end
           end
         end
 
         request.run
       end
-       Typhoeus.get("#{Parameter.first.hub_front_office_url}/api/367419f5968800cd/paymoney_wallet/store_log", params: { transaction_type: "Validation de crédit", account_number: (transaction.account_number rescue nil), credit_amount: (transaction.credit_amount rescue nil), response_log: response_log, error_log: error_log, status: transaction_status, remote_ip_address: remote_ip_address, agent: agent, sub_agent: sub_agent, transaction_id: (transaction.transaction_id rescue nil), otp: (transaction.otp rescue nil), pin: pin })
+       Typhoeus.get("#{Parameter.first.hub_front_office_url}/api/367419f5968800cd/paymoney_wallet/store_log", params: { transaction_type: "Validation de credit", account_number: (transaction.account_number rescue nil), credit_amount: (transaction.credit_amount rescue nil), response_log: response_log, error_log: error_log, status: transaction_status, remote_ip_address: remote_ip_address, agent: agent, sub_agent: sub_agent, transaction_id: (transaction.transaction_id rescue nil), otp: (transaction.otp rescue nil), pin: pin })
     end
 
     render text: status
@@ -525,22 +525,22 @@ def api_sf_validate_credit
                 response_log = response.to_s
                 status = Digest::SHA1.hexdigest([DateTime.now.iso8601(6), rand].join)
                 transaction_status = true
-                Log.create(transaction_type: "Validation de crédit", otp: transaction_id, pin: pin, response_log: response_log, status: true, remote_ip_address: remote_ip_address, agent: agent, sub_agent: sub_agent)
+                Log.create(transaction_type: "Validation de credit", otp: transaction_id, pin: pin, response_log: response_log, status: true, remote_ip_address: remote_ip_address, agent: agent, sub_agent: sub_agent)
               else
                 status = "|5001|"
                 error_log = response.to_s
-                Log.create(transaction_type: "Validation de crédit", error_log: error_log, status: false, remote_ip_address: remote_ip_address, agent: agent, sub_agent: sub_agent)
+                Log.create(transaction_type: "Validation de credit", error_log: error_log, status: false, remote_ip_address: remote_ip_address, agent: agent, sub_agent: sub_agent)
               end
             else
               error_log = response.to_s
-              Log.create(transaction_type: "Validation de crédit", error_log: error_log, status: false, remote_ip_address: remote_ip_address, agent: agent, sub_agent: sub_agent)
+              Log.create(transaction_type: "Validation de credit", error_log: error_log, status: false, remote_ip_address: remote_ip_address, agent: agent, sub_agent: sub_agent)
             end
           end
         end
 
         request.run
       end
-       Typhoeus.get("#{Parameter.first.hub_front_office_url}/api/367419f5968800cd/paymoney_wallet/store_log", params: { transaction_type: "Validation de crédit", account_number: (transaction.account_number rescue nil), credit_amount: (transaction.credit_amount rescue nil), response_log: response_log, error_log: error_log, status: transaction_status, remote_ip_address: remote_ip_address, agent: agent, sub_agent: sub_agent, transaction_id: (transaction.transaction_id rescue nil), otp: (transaction.otp rescue nil), pin: pin })
+       Typhoeus.get("#{Parameter.first.hub_front_office_url}/api/367419f5968800cd/paymoney_wallet/store_log", params: { transaction_type: "Validation de credit", account_number: (transaction.account_number rescue nil), credit_amount: (transaction.credit_amount rescue nil), response_log: response_log, error_log: error_log, status: transaction_status, remote_ip_address: remote_ip_address, agent: agent, sub_agent: sub_agent, transaction_id: (transaction.transaction_id rescue nil), otp: (transaction.otp rescue nil), pin: pin })
     end
 
     render text: status
@@ -708,21 +708,21 @@ def api_sf_validate_credit
               status = transaction_id
               response_log = response.to_s
               transaction_status = true
-              Log.create(transaction_type: "Remontée de fonds", checkout_amount: transaction_amount, response_log: response_log, status: true, remote_ip_address: remote_ip_address, agent: agent, sub_agent: sub_agent, transaction_id: transaction_id, fee: @fee)
+              Log.create(transaction_type: "Remontee de fonds", checkout_amount: transaction_amount, response_log: response_log, status: true, remote_ip_address: remote_ip_address, agent: agent, sub_agent: sub_agent, transaction_id: transaction_id, fee: @fee)
             else
               status = "|5001|"
               error_log = response.to_s
-              Log.create(transaction_type: "Remontée de fonds", checkout_amount: transaction_amount, error_log: error_log, status: false, remote_ip_address: remote_ip_address, agent: agent, sub_agent: sub_agent, transaction_id: transaction_id, fee: @fee)
+              Log.create(transaction_type: "Remontee de fonds", checkout_amount: transaction_amount, error_log: error_log, status: false, remote_ip_address: remote_ip_address, agent: agent, sub_agent: sub_agent, transaction_id: transaction_id, fee: @fee)
             end
           else
             error_log = response.to_s
-            Log.create(transaction_type: "Remontée de fonds", checkout_amount: transaction_amount, error_log: error_log, status: false, remote_ip_address: remote_ip_address, agent: agent, sub_agent: sub_agent, transaction_id: transaction_id, fee: @fee)
+            Log.create(transaction_type: "Remontee de fonds", checkout_amount: transaction_amount, error_log: error_log, status: false, remote_ip_address: remote_ip_address, agent: agent, sub_agent: sub_agent, transaction_id: transaction_id, fee: @fee)
           end
         end
       #end
     end
 
-    Typhoeus.get("#{Parameter.first.hub_front_office_url}/api/367419f5968800cd/paymoney_wallet/store_log", params: { transaction_type: "Remontée de fonds", checkout_amount: transaction_amount, response_log: response_log, error_log: error_log, status: transaction_status, remote_ip_address: remote_ip_address, agent: agent, sub_agent: sub_agent, transaction_id: transaction_id, fee: @fee })
+    Typhoeus.get("#{Parameter.first.hub_front_office_url}/api/367419f5968800cd/paymoney_wallet/store_log", params: { transaction_type: "Remontee de fonds", checkout_amount: transaction_amount, response_log: response_log, error_log: error_log, status: transaction_status, remote_ip_address: remote_ip_address, agent: agent, sub_agent: sub_agent, transaction_id: transaction_id, fee: @fee })
 
     render text: status
   end
@@ -769,21 +769,21 @@ def api_sf_validate_credit
               status = transaction_id
               response_log = response.to_s
               transaction_status = true
-              Log.create(transaction_type: "Remontée de fonds", checkout_amount: transaction_amount, response_log: response_log, status: true, remote_ip_address: remote_ip_address, agent: agent, sub_agent: sub_agent, transaction_id: transaction_id, fee: @fee)
+              Log.create(transaction_type: "Remontee de fonds", checkout_amount: transaction_amount, response_log: response_log, status: true, remote_ip_address: remote_ip_address, agent: agent, sub_agent: sub_agent, transaction_id: transaction_id, fee: @fee)
             else
               status = "|5001|"
               error_log = response.to_s
-              Log.create(transaction_type: "Remontée de fonds", checkout_amount: transaction_amount, error_log: error_log, status: false, remote_ip_address: remote_ip_address, agent: agent, sub_agent: sub_agent, transaction_id: transaction_id, fee: @fee)
+              Log.create(transaction_type: "Remontee de fonds", checkout_amount: transaction_amount, error_log: error_log, status: false, remote_ip_address: remote_ip_address, agent: agent, sub_agent: sub_agent, transaction_id: transaction_id, fee: @fee)
             end
           else
             error_log = response.to_s
-            Log.create(transaction_type: "Remontée de fonds", checkout_amount: transaction_amount, error_log: error_log, status: false, remote_ip_address: remote_ip_address, agent: agent, sub_agent: sub_agent, transaction_id: transaction_id, fee: @fee)
+            Log.create(transaction_type: "Remontee de fonds", checkout_amount: transaction_amount, error_log: error_log, status: false, remote_ip_address: remote_ip_address, agent: agent, sub_agent: sub_agent, transaction_id: transaction_id, fee: @fee)
           end
         end
       #end
     end
 
-    Typhoeus.get("#{Parameter.first.hub_front_office_url}/api/367419f5968800cd/paymoney_wallet/store_log", params: { transaction_type: "Remontée de fonds", checkout_amount: transaction_amount, response_log: response_log, error_log: error_log, status: transaction_status, remote_ip_address: remote_ip_address, agent: agent, sub_agent: sub_agent, transaction_id: transaction_id, fee: @fee })
+    Typhoeus.get("#{Parameter.first.hub_front_office_url}/api/367419f5968800cd/paymoney_wallet/store_log", params: { transaction_type: "Remontee de fonds", checkout_amount: transaction_amount, response_log: response_log, error_log: error_log, status: transaction_status, remote_ip_address: remote_ip_address, agent: agent, sub_agent: sub_agent, transaction_id: transaction_id, fee: @fee })
 
     render text: status
   end
@@ -810,20 +810,20 @@ def api_sf_validate_credit
           status = transaction_id
           response_log = response.to_s
           transaction_status = true
-          Log.create(transaction_type: "Transfert de crédit", credit_amount: transaction_amount, response_log: response_log, status: true, remote_ip_address: remote_ip_address, a_account_transfer: a_account_transfer, b_account_transfer: b_account_transfer, transaction_id: transaction_id, fee: transaction_transfer_fee)
+          Log.create(transaction_type: "Transfert de credit", credit_amount: transaction_amount, response_log: response_log, status: true, remote_ip_address: remote_ip_address, a_account_transfer: a_account_transfer, b_account_transfer: b_account_transfer, transaction_id: transaction_id, fee: transaction_transfer_fee)
         else
           status = "|5001|"
           error_log = response.to_s
-          Log.create(transaction_type: "Transfert de crédit", credit_amount: transaction_amount, error_log: error_log, status: false, remote_ip_address: remote_ip_address, a_account_transfer: a_account_transfer, b_account_transfer: b_account_transfer, transaction_id: transaction_id, fee: transaction_transfer_fee)
+          Log.create(transaction_type: "Transfert de credit", credit_amount: transaction_amount, error_log: error_log, status: false, remote_ip_address: remote_ip_address, a_account_transfer: a_account_transfer, b_account_transfer: b_account_transfer, transaction_id: transaction_id, fee: transaction_transfer_fee)
         end
       else
         error_log = response.to_s
-        Log.create(transaction_type: "Transfert de crédit", credit_amount: transaction_amount, error_log: error_log, status: false, remote_ip_address: remote_ip_address, a_account_transfer: a_account_transfer, b_account_transfer: b_account_transfer, transaction_id: transaction_id, fee: transaction_transfer_fee)
+        Log.create(transaction_type: "Transfert de credit", credit_amount: transaction_amount, error_log: error_log, status: false, remote_ip_address: remote_ip_address, a_account_transfer: a_account_transfer, b_account_transfer: b_account_transfer, transaction_id: transaction_id, fee: transaction_transfer_fee)
       end
     end
 
 
-    Typhoeus.get("#{Parameter.first.hub_front_office_url}/api/367419f5968800cd/paymoney_wallet/store_log", params: { transaction_type: "Transfert de crédit", credit_amount: transaction_amount, response_log: response_log, error_log: error_log, status: transaction_status, remote_ip_address: remote_ip_address, a_account_transfer: a_account_transfer, b_account_transfer: b_account_transfer, transaction_id: transaction_id, fee: transaction_transfer_fee.to_i })
+    Typhoeus.get("#{Parameter.first.hub_front_office_url}/api/367419f5968800cd/paymoney_wallet/store_log", params: { transaction_type: "Transfert de credit", credit_amount: transaction_amount, response_log: response_log, error_log: error_log, status: transaction_status, remote_ip_address: remote_ip_address, a_account_transfer: a_account_transfer, b_account_transfer: b_account_transfer, transaction_id: transaction_id, fee: transaction_transfer_fee.to_i })
 
     render text: status
   end
