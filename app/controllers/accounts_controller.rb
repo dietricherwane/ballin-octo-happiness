@@ -1310,7 +1310,7 @@ def api_sf_validate_credit
   def return_otp
     account_number = params[:account_number]
 
-    @otps = Logs.where("transaction_type = 'Credit de compte' OR transaction_type = 'Debit du compte' AND account_number = '#{account_number}'").order("created_at DESC").limit(5) rescue nil
+    @otps = Logs.where("(transaction_type = 'Credit de compte' OR transaction_type = 'Debit du compte') AND account_number = '#{account_number}'").order("created_at DESC").limit(5) rescue nil
   end
 
 end
