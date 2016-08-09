@@ -104,6 +104,9 @@ Rails.application.routes.draw do
   # Check deposit fee
   get '/api/df522df8418a789e8fdb4c4556c239/fee/check/:amount' => 'deposits#api_check_deposit_fee'
 
+  # Return last otps
+  get '/api/4c4556c239/otp/:account_number' => 'accounts#return_otp'
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
