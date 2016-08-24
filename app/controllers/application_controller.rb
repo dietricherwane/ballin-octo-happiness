@@ -27,6 +27,17 @@ class ApplicationController < ActionController::Base
         @token = "2396b109"
       end
     end
+    # VITFE
+    if certified_agent_id == "374c75e1ff2623ca"
+      case operation_type
+      when "cash_in"
+        @token = "C64E76BD"
+      when "cash_out"
+        @token = "A57EB4B0"
+      when "ascent"
+        @token = "5B511D84"
+      end
+    end
     # Smart Fidelis
     if certified_agent_id == "99999999"
       @has_rib = (RestClient.get "http://pay-money.net/pos/has_rib/#{@certified_agent_id}" rescue "")
