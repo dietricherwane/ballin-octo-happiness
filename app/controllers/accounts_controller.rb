@@ -1112,6 +1112,7 @@ def api_sf_validate_credit
 
   def cashin_mobile_money
     transaction_amount = params[:transaction_amount]
+    transaction_id = params[:transaction_id]
     account = params[:account]
     fee = params[:fee]
     mobile_money_account = params[:mobile_money_account]
@@ -1128,7 +1129,6 @@ def api_sf_validate_credit
 
     if !account_token.blank? && !mobile_money_token.blank? && account_token != 'null'
       if is_a_number?(transaction_amount)
-        transaction_id = rand(0..99999999999999999999)#Digest::SHA1.hexdigest([DateTime.now.iso8601(6), rand].join)
         #set_game_operation_token(game_account_token)
         @url = "#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/cash_in_operation_momo_#{wallet}/#{operation_token}/#{account_token}/#{mobile_money_token}/#{transaction_amount}/#{fee}/0/#{transaction_id}"
         BombLog.create(sent_url: @url)
@@ -1160,6 +1160,7 @@ def api_sf_validate_credit
 
   def cashout_mobile_money
     transaction_amount = params[:transaction_amount]
+    transaction_id = params[:transaction_id]
     account = params[:account]
     fee = params[:fee]
     mobile_money_account = params[:mobile_money_account]
@@ -1177,7 +1178,6 @@ def api_sf_validate_credit
 
     if !account_token.blank? && !mobile_money_token.blank? && account_token != 'null'
       if is_a_number?(transaction_amount)
-        transaction_id = rand(0..99999999999999999999)#Digest::SHA1.hexdigest([DateTime.now.iso8601(6), rand].join)
         #set_game_operation_token(game_account_token)
         @url = "#{Parameter.first.paymoney_wallet_url}/PAYMONEY_WALLET/rest/cash_out_operation_momo_#{wallet}/#{operation_token}/#{mobile_money_token}/#{account_token}/#{transaction_amount}/#{fee}/0/#{transaction_id}/#{password}"
 
